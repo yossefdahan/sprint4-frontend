@@ -1,15 +1,22 @@
 .stay-list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+
     // display: grid;
     // grid-template-columns: repeat(6, 1fr);
     // grid-template-rows: 0;
     list-style: none;
 
 
-    // &.img {
-    //     width: 100%;
-    //     height: 340.75px;
-    // }
+
+
+}
+
+.stay-preview {
+    img {
+        border-radius: 10px;
+    }
 }
 
 .link-no-decoration,
