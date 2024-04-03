@@ -2,6 +2,8 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+
+
 const STORAGE_KEY = 'stay'
 createStays()
 
@@ -116,7 +118,7 @@ function createStays() {
                 _id: "s101",
                 name: "Ribeira Charming Duplex",
                 type: "House",
-                imgUrls: ["https://e26e9b.jpg", "otherImg.jpg"],
+                imgUrls: [`/img/1.jpeg`],
                 price: 80.00,
                 summary: "Fantastic duplex apartment...",
                 capacity: 8,
@@ -165,10 +167,7 @@ function createStays() {
                 _id: "s202",
                 name: "Cozy Mountain Cabin",
                 type: "Cabin",
-                imgUrls: [
-                    "https://example.com/img/mountaincabin1.jpg",
-                    "https://example.com/img/mountaincabin2.jpg"
-                ],
+                imgUrls: [`/img/2.jpeg`],
                 price: 120.00,
                 summary: "A cozy cabin in the heart of the mountains, perfect for a weekend getaway.",
                 capacity: 4,
@@ -209,7 +208,7 @@ function createStays() {
                 _id: "s203",
                 name: "Urban Studio Loft",
                 type: "Apartment",
-                imgUrls: ["https://example.com/img/loft1.jpg", "https://example.com/img/loft2.jpg"],
+                imgUrls: [`/img/3.jpeg`],
                 price: 85.00,
                 summary: "Modern loft in the city center, perfect for exploring the urban sights.",
                 capacity: 2,
@@ -246,7 +245,7 @@ function createStays() {
                 _id: "s204",
                 name: "Beachfront Bungalow",
                 type: "House",
-                imgUrls: ["https://example.com/img/beachbungalow1.jpg", "https://example.com/img/beachbungalow2.jpg"],
+                imgUrls: [`/img/4.jpeg`],
                 price: 130.00,
                 summary: "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
                 capacity: 5,
