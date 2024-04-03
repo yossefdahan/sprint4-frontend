@@ -14,7 +14,7 @@ export function AppHeader() {
 
     return (
         <header className="app-header flex align-center ">
-            <img className="logo-img" src={logoImg} />
+            <Link to="/"><img className="logo-img" src={logoImg} /></Link>
             <div className='stays-search  flex align-center'>
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>
