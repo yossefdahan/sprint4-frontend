@@ -8,7 +8,7 @@ import { UserMsg } from './UserMsg.jsx'
 
 export function AppFooter() {
     const [isCartShown, setIsCartShown] = useState(false)
-    const cart = useSelector(storeState => storeState.carModule.cart)
+    const cart = useSelector(storeState => storeState.stayModule.cart)
     const count = useSelector(storeState => storeState.userModule.count)
     const cartTotal = cart.reduce((acc, stay) => acc + stay.price, 0)
 

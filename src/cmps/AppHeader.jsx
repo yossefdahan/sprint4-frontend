@@ -19,7 +19,7 @@ export function AppHeader() {
                 <h2>Airstay you home</h2>
                 <h2><i className="fa-solid fa-globe"></i></h2>
             </div>
-            <button><i class="fa-solid fa-bars"></i></button>
+            <button><i className="fa-solid fa-bars"></i></button>
         </header>
     )
 }
