@@ -1,4 +1,4 @@
-import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
+// import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
 
 export function MainDetails({ stay }) {
 
@@ -28,7 +28,7 @@ export function MainDetails({ stay }) {
                     })}
                     <button>show all{stay.amenities.length} amenities </button>
                 </div>
-                <DateRangeCalendar />
+                {/* <DateRangeCalendar /> */}
             </section>
 
         </section>
