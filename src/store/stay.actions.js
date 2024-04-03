@@ -25,6 +25,10 @@ export function getActionUpdateStay(stay) {
     }
 }
 
+
+
+
+
 export async function loadStays() {
     try {
         const stays = await stayService.query()

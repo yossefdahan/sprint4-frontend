@@ -17,7 +17,18 @@ $black2: #222222;
 $background-clr: #e5e5e5;
 $light-white: #000000, opacity 0% COPY #ffffff, opacity 90%;
 
+
+
+
+
+// LAYOUT
+$layoutPadding: 20px;
+
+// LAYOUT BREAKPOINTS
+$mobile-breakpoint: 1200px;
+$narrow-breakpoint: 1360px;
+$normal-breakpoint: 1920px;
 // Breakpoints
-$mobile-breakpoint: 460px;
-$narrow-breakpoint: 720px;
-$normal-breakpoint: 960px;
+$padded-break-mobile: $mobile-breakpoint + $layoutPadding * 2;
+$padded-break-normal: $narrow-breakpoint + $layoutPadding * 2;
+$padded-break-wide: $normal-breakpoint + $layoutPadding * 2;

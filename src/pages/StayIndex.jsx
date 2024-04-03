@@ -5,6 +5,8 @@ import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { stayService } from '../services/stay.service.local.js'
+import { StayDetails } from './StayDetails.jsx'
+import { StayList } from '../cmps/StayList.jsx'
 
 export function StayIndex() {
 
@@ -70,26 +72,14 @@ export function StayIndex() {
 
     return (
         <div>
-            <h3>Stays App</h3>
+            <div></div>
             <main>
-                <button onClick={onAddStay}>Add Stay</button>
-                <ul className="stay-list">
-                    {stays.map(stay =>
-                        <li className="stay-preview" key={stay._id}>
-                            <h4>{stay.name}</h4>
-                            <h1>🏠</h1>
-                            <p>Price: <span>${stay.price.toLocaleString()}</span></p>
-                            <p>Host: <span>{stay.host && stay.host.fullname}</span></p>
-                            {shouldShowActionBtns(stay) && <div>
-                                <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
-                                <button onClick={() => { onUpdateStay(stay) }}>Edit</button>
-                            </div>}
-
-                            <button onClick={() => { onAddStayMsg(stay) }}>Add stay msg</button>
-                            <button className="buy" onClick={() => { onAddToCart(stay) }}>Add to cart</button>
-                        </li>)
-                    }
-                </ul>
+                {/* <button onClick={onAddStay}>Add Stay</button> */}
+                <StayList stays={stays}
+                    onUpdateStay={onUpdateStay}
+                    onRemoveStay={onRemoveStay}
+                    shouldShowActionBtns={shouldShowActionBtns}
+                />
             </main>
         </div>
     )
