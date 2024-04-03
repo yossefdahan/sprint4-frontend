@@ -1,92 +1,92 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { loadCars, addCar, updateCar, removeCar, addToCart } from '../store/car.actions.js'
+import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
-import { carService } from '../services/car.service.js'
+import { stayService } from '../services/stay.service.local.js'
 
 export function StayIndex() {
 
-    const cars = useSelector(storeState => storeState.carModule.cars)
+    const stays = useSelector(storeState => storeState.stayModule.stays)
 
     useEffect(() => {
-        loadCars()
+        loadStays()
     }, [])
 
-    async function onRemoveCar(carId) {
+    async function onRemoveStay(stayId) {
         try {
-            await removeCar(carId)
-            showSuccessMsg('Car removed')
+            await removeStay(stayId)
+            showSuccessMsg('Stay removed')
         } catch (err) {
-            showErrorMsg('Cannot remove car')
+            showErrorMsg('Cannot remove stay')
         }
     }
 
-    async function onAddCar() {
-        const car = carService.getEmptyCar()
-        car.vendor = prompt('Vendor?')
+    async function onAddStay() {
+        const stay = stayService.getEmptyStay()
+        stay.name = prompt('name?')
         try {
-            const savedCar = await addCar(car)
-            showSuccessMsg(`Car added (id: ${savedCar._id})`)
+            const savedStay = await addStay(stay)
+            showSuccessMsg(`Stay added (id: ${savedStay._id})`)
         } catch (err) {
-            showErrorMsg('Cannot add car')
+            showErrorMsg('Cannot add stay')
         }
     }
 
-    async function onUpdateCar(car) {
+    async function onUpdateStay(stay) {
         const price = +prompt('New price?')
-        const carToSave = { ...car, price }
+        const stayToSave = { ...stay, price }
         try {
-            const savedCar = await updateCar(carToSave)
-            showSuccessMsg(`Car updated, new price: ${savedCar.price}`)
+            const savedStay = await updateStay(stayToSave)
+            showSuccessMsg(`Stay updated, new price: ${savedStay.price}`)
         } catch (err) {
-            showErrorMsg('Cannot update car')
+            showErrorMsg('Cannot update stay')
         }
     }
 
-    function onAddToCart(car) {
-        console.log(`Adding ${car.vendor} to Cart`)
-        addToCart(car)
+    function onAddToCart(stay) {
+        console.log(`Adding ${stay.name} to Cart`)
+        addToCart(stay)
         showSuccessMsg('Added to Cart')
     }
 
-    function onAddCarMsg(car) {
-        console.log(`TODO Adding msg to car`)
+    function onAddStayMsg(stay) {
+        console.log(`TODO Adding msg to stay`)
         try {
-            showSuccessMsg(`Car msg added, it now has: ${3}`)
+            showSuccessMsg(`Stay msg added, it now has: ${3}`)
         } catch (err) {
-            showErrorMsg('Cannot update car')
+            showErrorMsg('Cannot update stay')
         }
 
     }
 
-    function shouldShowActionBtns(car) {
+    function shouldShowActionBtns(stay) {
         const user = userService.getLoggedinUser()
         if (!user) return false
         if (user.isAdmin) return true
-        return car.owner?._id === user._id
+        return stay.host?._id === user._id
     }
 
     return (
         <div>
-            <h3>Cars App</h3>
+            <h3>Stays App</h3>
             <main>
-                <button onClick={onAddCar}>Add Car ⛐</button>
-                <ul className="car-list">
-                    {cars.map(car =>
-                        <li className="car-preview" key={car._id}>
-                            <h4>{car.vendor}</h4>
-                            <h1>⛐</h1>
-                            <p>Price: <span>${car.price.toLocaleString()}</span></p>
-                            <p>Owner: <span>{car.owner && car.owner.fullname}</span></p>
-                            {shouldShowActionBtns(car) && <div>
-                                <button onClick={() => { onRemoveCar(car._id) }}>x</button>
-                                <button onClick={() => { onUpdateCar(car) }}>Edit</button>
+                <button onClick={onAddStay}>Add Stay</button>
+                <ul className="stay-list">
+                    {stays.map(stay =>
+                        <li className="stay-preview" key={stay._id}>
+                            <h4>{stay.name}</h4>
+                            <h1>🏠</h1>
+                            <p>Price: <span>${stay.price.toLocaleString()}</span></p>
+                            <p>Host: <span>{stay.host && stay.host.fullname}</span></p>
+                            {shouldShowActionBtns(stay) && <div>
+                                <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
+                                <button onClick={() => { onUpdateStay(stay) }}>Edit</button>
                             </div>}
 
-                            <button onClick={() => { onAddCarMsg(car) }}>Add car msg</button>
-                            <button className="buy" onClick={() => { onAddToCart(car) }}>Add to cart</button>
+                            <button onClick={() => { onAddStayMsg(stay) }}>Add stay msg</button>
+                            <button className="buy" onClick={() => { onAddToCart(stay) }}>Add to cart</button>
                         </li>)
                     }
                 </ul>
