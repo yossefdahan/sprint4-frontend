@@ -78,7 +78,7 @@ export function StayIndex() {
                         <li className="stay-preview" key={stay._id}>
                             <h4>{stay.name}</h4>
                             <h1>🏠</h1>
-                            <p>Price: <span>${stay.price.toLocaleString()}</span></p>
+                            <p>Price: <span>${stay.price}</span></p>
                             <p>Host: <span>{stay.host && stay.host.fullname}</span></p>
                             {shouldShowActionBtns(stay) && <div>
                                 <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
