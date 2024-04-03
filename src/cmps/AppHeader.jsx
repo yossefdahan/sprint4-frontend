@@ -1,60 +1,25 @@
 import { Link, NavLink } from 'react-router-dom'
-import {useSelector} from 'react-redux'
-import routes from '../routes'
+import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { login, logout, signup } from '../store/user.actions.js'
-import { LoginSignup } from './LoginSignup.jsx'
+import logoImg from '../assets/Img/logo.png'
+
 
 export function AppHeader() {
-    const user = useSelector(storeState => storeState.userModule.user)
 
-    async function onLogin(credentials) {
-        try {
-            const user = await login(credentials)
-            showSuccessMsg(`Welcome: ${user.fullname}`)
-        } catch(err) {
-            showErrorMsg('Cannot login')
-        }
-    }
-    async function onSignup(credentials) {
-        try {
-            const user = await signup(credentials)
-            showSuccessMsg(`Welcome new user: ${user.fullname}`)
-        } catch(err) {
-            showErrorMsg('Cannot signup')
-        }
-    }
-    async function onLogout() {
-        try {
-            await logout()
-            showSuccessMsg(`Bye now`)
-        } catch(err) {
-            showErrorMsg('Cannot logout')
-        }
-    }
+
 
     return (
-        <header className="app-header">
-            <nav>
-                {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-
-                {user &&
-                    <span className="user-info">
-                        <Link to={`user/${user._id}`}>
-                            {user.imgUrl && <img src={user.imgUrl} />}
-                            {user.fullname}
-                        </Link>
-                        <span className="score">{user.score?.toLocaleString()}</span>
-                        <button onClick={onLogout}>Logout</button>
-                    </span>
-                }
-                {!user &&
-                    <section className="user-info">
-                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                    </section>
-                }
-            </nav>
-            <h1>My App</h1>
+        <header className="app-header flex space between">
+            <img className="logo-img" src={logoImg} />
+            <div className='stays-search'>
+                <h2>Stays</h2>
+                <h2>Experiences</h2>
+            </div>
+            <div>
+                <h2>Airstay you home</h2>
+                <h2><i className="fa-solid fa-globe"></i></h2>
+            </div>
+            <button><i class="fa-solid fa-bars"></i></button>
         </header>
     )
 }
