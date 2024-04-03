@@ -3,9 +3,12 @@ import { Routes, Route } from 'react-router'
 
 import routes from './routes'
 
-import { AppHeader } from './cmps/AppHeader'
-import { AppFooter } from './cmps/AppFooter'
-import { UserDetails } from './pages/UserDetails'
+import { AppHeader } from './cmps/AppHeader.jsx'
+import { AppFooter } from './cmps/AppFooter.jsx'
+import { UserDetails } from './pages/UserDetails.jsx'
+import { StayDetails } from './pages/StayDetails.jsx'
+import { FinalPayment } from './pages/FinalPayment.jsx'
+import { StayIndex } from './pages/StayIndex.jsx'
 
 export function RootCmp() {
 
@@ -14,8 +17,15 @@ export function RootCmp() {
             <AppHeader />
             <main>
                 <Routes>
-                    {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
-                    <Route path="user/:id" element={<UserDetails />} />
+                    <Route path='/stay' element={<StayIndex />} />
+                    <Route path='/stay/:stayId' element={<StayDetails />} />
+                    <Route path='/payment' element={<FinalPayment />} />
+                    <Route path='/user/:userId' element={<UserDetails />} />
+                    {/* <Route path='' element={} /> */}
+                    {/* <Route path='' element={} /> */}
+                    {/* <Route path='' element={} /> */}
+                    {/* <Route path='' element={} /> */}
+
                 </Routes>
             </main>
             <AppFooter />
