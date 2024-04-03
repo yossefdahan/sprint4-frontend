@@ -12,9 +12,9 @@ import { StayIndex } from './pages/StayIndex.jsx'
 export function RootCmp() {
 
     return (
-        <div>
+        <div className='main-container' >
             <AppHeader />
-            <main>
+            <main >
                 <Routes>
                     <Route path='/' element={<StayIndex />} />
                     <Route path='/:stayId' element={<StayDetails />} />

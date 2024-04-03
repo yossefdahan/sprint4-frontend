@@ -1,10 +1,106 @@
 .app-header {
-  background-color: $clr4;
+  margin-top: 20px;
   padding: 10px;
   justify-content: space-between;
+  cursor: pointer;
+  z-index: 10;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 
   .logo-img {
-    width: 300px;
-    height: 100px;
+    width: 200px;
+  }
+
+  .side-nav {
+    position: relative;
+
+    border: 3px solid $light-gray;
+    border-radius: 30px;
+    width: 85px;
+    height: 48px;
+
+    &:hover {
+      box-shadow: 1px 1px 1px 2px $light-gray;
+    }
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 150%;
+    width: 100%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f1f1;
+    box-shadow: 3px 3px 3px 3px $light-gray;
+    border: 1px solid $light-gray;
+    z-index: 1000;
+    border-radius: 12px;
+    width: 240px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .nav-links a {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 10px;
+    margin-right: 50px;
+  }
+
+  .Languages-btn {
+    background-color: transparent;
+    color: $black2;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: $light-gray;
+    }
+  }
+
+  .side-nav-bar {
+    height: fit-content;
+    background-color: transparent;
+    color: $black2;
+    font-size: 18px;
+  }
+
+  .host-your-home-nav {
+    background-color: transparent;
+    color: $black2;
+    // margin-right: 20px;
+    font-size: 18px;
+    height: 50px;
+    width: 180px;
+
+    &:hover {
+      background-color: $light-gray;
+      border-radius: 30px;
+    }
+  }
+
+  .stays,
+  .experiences {
+    background-color: transparent;
+    height: 40px;
+    color: $main-gray;
+    // margin-right: 20px;
+    font-size: 18px;
+    width: 130px;
+    padding: 0 20px;
+
+    &:hover {
+      background-color: $light-gray;
+      border-radius: 30px;
+    }
+  }
+
+  .israel-img {
+    width: 30px;
+    clip-path: circle(50% at 50% 50%);
+  }
+  .line-hr {
+    border-color: black;
   }
 }
