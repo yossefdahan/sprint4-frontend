@@ -11,7 +11,7 @@ export const stayService = {
     save,
     remove,
     getEmptyStay,
-    addStayMsg
+    addStayReviews
 }
 window.cs = stayService
 
@@ -44,23 +44,24 @@ async function save(stay) {
         savedStay = await storageService.put(STORAGE_KEY, stay)
     } else {
         // Later, owner is set by the backend
-        stay.host = userService.getLoggedinUser()
+        // stay.host = userService.getLoggedinUser()
+        stay._id = utilService.makeId(5)
         savedStay = await storageService.post(STORAGE_KEY, stay)
     }
     return savedStay
 }
 
-async function addStayMsg(stayId) {
+async function addStayReviews(stayId) {
     // Later, this is all done by the backend
     const stay = await getById(stayId)
-    if (!stay.msgs) stay.msgs = []
+    if (!stay.reviews) stay.reviews = []
 
-    const msg = {
+    const review = {
         id: utilService.makeId(),
         by: userService.getLoggedinUser(),
         txt
     }
-    stay.msgs.push(msg)
+    stay.reviews.push(review)
     await storageService.put(STORAGE_KEY, stay)
 
     return stay
@@ -79,7 +80,11 @@ function getEmptyStay() {
         ],
 
         labels: [] || ["Top of the world", "Trending", "Play", "Tropical"],
-
+        host: {
+            _id: "u101",
+            fullname: "Davit Pok",
+            imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+        },
         loc: {
             country: '' || "Portugal",
             countryCode: '' || "PT",
@@ -91,13 +96,13 @@ function getEmptyStay() {
 
         reviews: [],
 
-        likedByUsers: ['mini-user']
+        // likedByUsers: []
     }
 }
 
 
 // TEST DATA
-storageService.post(STORAGE_KEY, getEmptyStay()).then(x => console.log(x))
+// storageService.post(STORAGE_KEY, getEmptyStay()).then(x => console.log(x))
 
 
 
