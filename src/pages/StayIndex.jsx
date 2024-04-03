@@ -4,7 +4,7 @@ import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
-import { stayService } from '../services/stay.service.js'
+import { stayService } from '../services/stay.service.local.js'
 
 export function StayIndex() {
 
@@ -25,7 +25,7 @@ export function StayIndex() {
 
     async function onAddStay() {
         const stay = stayService.getEmptyStay()
-        stay.name = prompt('Vendor?')
+        stay.name = prompt('name?')
         try {
             const savedStay = await addStay(stay)
             showSuccessMsg(`Stay added (id: ${savedStay._id})`)
