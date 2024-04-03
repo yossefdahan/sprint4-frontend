@@ -3,20 +3,20 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
-import { removeFromCart, checkout } from '../store/car.actions'
+import { removeFromCart, checkout } from '../store/stay.actions'
 import { UserMsg } from './UserMsg.jsx'
 
 export function AppFooter() {
     const [isCartShown, setIsCartShown] = useState(false)
     const cart = useSelector(storeState => storeState.carModule.cart)
     const count = useSelector(storeState => storeState.userModule.count)
-    const cartTotal = cart.reduce((acc, car) => acc + car.price, 0)
+    const cartTotal = cart.reduce((acc, stay) => acc + stay.price, 0)
 
     async function onCheckout() {
         try {
             const score = await checkout(cartTotal)
             showSuccessMsg(`Charged, your new score: ${score.toLocaleString()}`)
-        } catch(err) {
+        } catch (err) {
             showErrorMsg('Cannot checkout')
         }
     }
@@ -42,11 +42,11 @@ export function AppFooter() {
                 <h5>Your Cart</h5>
                 <ul>
                     {
-                        cart.map((car, idx) => <li key={idx}>
+                        cart.map((stay, idx) => <li key={idx}>
                             <button onClick={() => {
-                                removeFromCart(car._id)
+                                removeFromCart(stay._id)
                             }}>x</button>
-                            {car.vendor}
+                            {stay.name}
                         </li>)
                     }
                 </ul>
