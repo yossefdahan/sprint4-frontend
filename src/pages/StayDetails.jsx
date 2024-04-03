@@ -31,20 +31,20 @@ export function StayDetails() {
     }
 
 
-    
+
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
     if (!stay) return <div>yosef we have proble!</div>
     return (
         <section>
             <h1>{stay.name}</h1>
             <section className='gallery'>
-                {stay.imgUrls.map((img) => 
-                    <img src={img} alt="img of the photo" />
+                {stay.imgUrls.map((img) =>
+                    <img src={img} alt="img of the photo" key={img} />
                 )
                 }
             </section>
             <section className='main-details'>
-            <MainDetails stay={stay} />
+                <MainDetails stay={stay} />
             </section>
         </section>
     )
