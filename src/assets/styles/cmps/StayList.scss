@@ -31,3 +31,25 @@
 
     }
 }
+
+.header-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-preview {
+    display: flex;
+    justify-content: space-between;
+}
+
+.preview-card {
+    position: relative;
+}
+
+.btn-preview {
+    position: absolute;
+    top: 25%;
+    display: flex;
+    justify-content: space-between;
+}
