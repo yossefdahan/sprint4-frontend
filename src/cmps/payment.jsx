@@ -46,7 +46,7 @@ export function Payment({ stay }) {
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
-        <button>Reserve</button>
+            <button>Reserve</button>
         </form>
     </section >
 
