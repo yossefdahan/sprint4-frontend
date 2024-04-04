@@ -52,10 +52,10 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             )
             setSuggestions(filteredCountries)
         }
-        setFilterByToEdit(prevFilter => ({
-            ...prevFilter,
-            loc: { ...prevFilter.loc, country: value }
-        }))
+        // setFilterByToEdit(prevFilter => ({
+        //     ...prevFilter,
+        //     loc: { ...prevFilter.loc, country: value }
+        // }))
     }
 
     function handleSuggestionClick(suggestion) {
@@ -69,11 +69,18 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     function handleSubmit(event) {
         event.preventDefault()
 
-        console.log('Submitted with startDate:', startDate, 'endDate:', endDate, 'location:', inputValue)
+        const updatedFilter = {
+            ...filterByToEdit,
+            loc: { country: inputValue },
+            startDate,
+            endDate
+        }
+
+        onSetFilter.current(updatedFilter)
+
 
         setIsOpen(false)
         setCountryModal(false)
-        onSetFilter.current(filterByToEdit)
     }
 
     return (<section className="where-filter-container" >
@@ -153,7 +160,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     />
                 </div>
             )}
-            {!countyModal ? < button >🔍</button> : <button>🔍 Search</button>}
+            {!countyModal ? < button type="submit">🔍</button> : <button type="submit">🔍 Search</button>}
         </form>
     </section >)
 }
