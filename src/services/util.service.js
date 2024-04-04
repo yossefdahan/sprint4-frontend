@@ -5,7 +5,9 @@ export const utilService = {
     debounce,
     randomPastTime,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    formatDateToEng,
+    formatDate
 }
 
 function makeId(length = 6) {
@@ -62,3 +64,19 @@ function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
+function formatDateToEng(date) {
+    return date ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+}
+
+
+function formatDate(date) {
+    if (!date) return '';
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    const monthIndex = date.getMonth(); // getMonth() returns month from 0-11
+    const day = date.getDate(); // getDate() returns day of the month
+
+    return `${monthNames[monthIndex]} ${day}`;
+}
