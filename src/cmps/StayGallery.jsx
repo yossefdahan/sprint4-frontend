@@ -15,8 +15,8 @@ export function StayGallery({ imgUrls }) {
     <div className="stay-gallery">
       <img src={imgUrls[currentImgIndex]} alt="Stay" />
       <section className='btn-preview'>
-      <button onClick={prevImg}>Prev</button>
-      <button onClick={nextImg}>Next</button>
+      {/* <button onClick={prevImg}>Prev</button>
+      <button onClick={nextImg}>Next</button> */}
       </section>
     </div>
   )
