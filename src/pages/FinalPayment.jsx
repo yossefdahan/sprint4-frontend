@@ -40,6 +40,19 @@ export function FinalPayment() {
             navigate('/')
         }
     }
+    console.log(order)
+
+    // async function onSaveReview(ev) {
+    //     ev.preventDefault()
+
+    //     try {
+
+    //         const savedReview = await reviewService.add(order)
+    //         showSuccessMsg('Review saved!')
+    //     } catch (err) {
+    //         console.log('error saving the review :', err)
+    //     }
+    // }
     if (!stay) return <div>loading...</div>
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
 
@@ -97,21 +110,35 @@ export function FinalPayment() {
             <section className='paymentModal' >
                 <div className='finishOrder'>
                     <section className='title-container'>
-                        <img src={stay.imgUrls[0]} alt="" />
-                        <section className='title'>
-                            <h4>{stay.name}</h4>
-                            <span>Entire rental unit</span>
-                            <section className='rate-title'>
-                                <span>★{rate / stay.reviews.length}({stay.reviews.length})</span>
-                            </section>
+                        <section >
+                            <div className='header-pay'>
+                                <img src={stay.imgUrls[0]} alt="" />
+                                <section className='title'>
+                                    <h4>{stay.name}</h4>
+                                    <span>Entire rental unit</span>
+                                    <section className='rate-title'>
+                                    </section>
+                                    <span>★{rate / stay.reviews.length}({stay.reviews.length} reviews)</span>
+                                </section>
+                            </div>
                             <hr />
                             <h2>Price details</h2>
-                            <section></section>
-                            <section></section>
-                            <section></section>
+                            <section>
+                                <span>{order.stay.price}X{5}nights</span>
+                                <span>{order.stay.price * 5}$</span>
+                            </section>
+                            <section>
+                                <span>Cleaning fee</span>
+                                <span>{order.stay.price / 10}$</span>
+                            </section>
+                            <section>
+                                <span>Taxes</span>
+                                <span>{order.stay.price / 10}$</span>
+                            </section>
                             <hr />
                             <section>
                                 <h3>total(USD)</h3>
+                                <span>{order.stay.price * 5 + 2 * (order.stay.price / 10)}$</span>
                             </section>
                             <hr />
                             <p>This property requires a ₪504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p>

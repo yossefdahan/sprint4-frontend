@@ -37,16 +37,16 @@ export function Payment({ stay }) {
     }
 
     return < section className="payment-modal" >
-        <h1>hello
-            from payment
+        <h1>${stay.price}<span> night</span>
         </h1>
+
         <form onSubmit={sendToFinalOrder}>
-            <select name="capacity" value={order.guests}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+            <select name="capacity" value={order.guests.adults}>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
             </select>
-        <button>Reserve</button>
+            <button>Reserve</button>
         </form>
     </section >
 

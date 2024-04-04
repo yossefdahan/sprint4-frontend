@@ -10,13 +10,14 @@
   margin: auto;
   cursor: pointer;
 
-  .input-group {
+  .input-group,
+  .input-group-last {
     display: flex;
-    flex-direction: column;
     border-right: 1px solid $light-gray;
     margin-right: 10px;
     flex-grow: 1;
     height: 60px;
+    align-items: center;
 
     &:last-of-type {
       border-right: none;
@@ -24,16 +25,12 @@
 
     &:hover {
       border-radius: 30px;
-      background-color: #f2f2f2;
-    }
-
-    .add-guests {
-      text-align: start;
+      background-color: rgba(209, 209, 209, 0.365);
     }
 
     input {
       border: none;
-      // margin-right: 5px;
+
       padding: 10px;
       border-radius: 50px;
       outline: none;
@@ -48,7 +45,7 @@
       &:focus {
         box-shadow: 2px 2px 2 2px rgba(106, 105, 105, 0.552);
         font-weight: 500;
-        background-color: rgba(176, 175, 175, 0.623);
+        background-color: rgba(209, 209, 209, 0.365);
         border: 1px solid rgba(238, 237, 237, 0.623);
       }
 
@@ -56,6 +53,10 @@
         background-color: rgba(209, 209, 209, 0.365);
       }
     }
+  }
+
+  .add-guests {
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   .search-btn {
@@ -69,7 +70,7 @@
     outline: none;
     width: 60px;
     height: 50px;
-    margin-right: 10px;
+    margin-left: 40px;
 
     i {
       font-size: 20px;
