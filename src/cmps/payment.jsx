@@ -35,7 +35,7 @@ export function Payment({ stay }) {
                 <option value="3">3</option>
             </select>
         </form>
-        <button><Link to={`/payment`}>reserve</Link></button>
+        <button><Link to={`/payment/${stay._id}`}>reserve</Link></button>
     </section >
 
 }
