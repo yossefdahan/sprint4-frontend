@@ -1,8 +1,6 @@
 // import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
 
 import { Amenities } from "./Amenities"
-import { GoogleMap } from "./GoogleMap"
-import { Reviews } from "./Reviews"
 
 export function MainDetails({ stay }) {
 
@@ -31,17 +29,10 @@ export function MainDetails({ stay }) {
                 <div className="details-amenities">
                     <Amenities amenities={stay.amenities} />
                 </div>
-                <hr />
-                <div className="details-reviews">
-                    <Reviews reviews={stay.reviews} />
-                </div>
-
-
-                <hr />
+                
+                
                 {/* <DateRangeCalendar /> */}
-                <div className="google-map-details">
-                    <GoogleMap stay={stay} />
-                </div>
+            
             </section>
 
         </section>

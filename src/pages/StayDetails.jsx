@@ -6,6 +6,10 @@ import { userService } from '../services/user.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { stayService } from '../services/stay.service.local.js'
 import { MainDetails } from '../cmps/MainDetails.jsx'
+import { GoogleMap } from '../cmps/GoogleMap.jsx'
+import { Reviews } from '../cmps/Reviews.jsx'
+import { Payment } from '../cmps/payment.jsx'
+
 
 
 export function StayDetails() {
@@ -45,7 +49,14 @@ export function StayDetails() {
             </section>
             <section className='main-details'>
                 <MainDetails stay={stay} />
+                <Payment />
             </section>
+            <div className="details-reviews">
+                <Reviews reviews={stay.reviews} />
+            </div>
+            <div className="google-map-details">
+                <GoogleMap stay={stay} />
+            </div>
         </section>
     )
 

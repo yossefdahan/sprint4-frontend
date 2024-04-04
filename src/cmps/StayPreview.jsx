@@ -8,6 +8,7 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
 
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
 
+
     return (
         <Link to={`/${stay._id}`} className="link-no-decoration" >
             <StayGallery imgUrls={stay.imgUrls} />
