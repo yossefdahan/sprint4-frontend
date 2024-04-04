@@ -20,7 +20,7 @@ export function AppHeader() {
     }
 
 
-    return (
+    return (<>
         <header className="app-header flex align-center ">
             <Link to="/"><img className="logo-img" src={logoImg} /></Link>
             <div className='stays-search  flex align-center'>
@@ -51,9 +51,11 @@ export function AppHeader() {
                 </div>
 
             </div>
-            <div className='filter-container-max'>
-                <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-            </div>
         </header>
+        <div className='filter-container-max'>
+            <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+        </div>
+
+    </>
     )
 }
