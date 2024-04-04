@@ -40,6 +40,19 @@ export function FinalPayment() {
             navigate('/')
         }
     }
+    console.log(order)
+
+    // async function onSaveReview(ev) {
+    //     ev.preventDefault()
+
+    //     try {
+
+    //         const savedReview = await reviewService.add(order)
+    //         showSuccessMsg('Review saved!')
+    //     } catch (err) {
+    //         console.log('error saving the review :', err)
+    //     }
+    // }
     if (!stay) return <div>loading...</div>
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
 
