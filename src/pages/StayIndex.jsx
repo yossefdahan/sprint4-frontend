@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
@@ -9,12 +9,13 @@ import { StayDetails } from './StayDetails.jsx'
 import { StayList } from '../cmps/StayList.jsx'
 
 export function StayIndex() {
-
+    const dispatch = useDispatch()
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
     useEffect(() => {
-        loadStays()
-    }, [])
+        loadStays(filterBy)
+    }, [filterBy])
 
     async function onRemoveStay(stayId) {
         try {

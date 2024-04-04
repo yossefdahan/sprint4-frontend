@@ -2,8 +2,9 @@ import { stayService } from '../services/stay.service.local.js'
 import { userService } from '../services/user.service.js'
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { ADD_STAY, ADD_TO_CART, CLEAR_CART, REMOVE_STAY, REMOVE_FROM_CART, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY } from './stay.reducer.js'
+import { ADD_STAY, ADD_TO_CART, CLEAR_CART, REMOVE_STAY, REMOVE_FROM_CART, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_FILTER_BY } from './stay.reducer.js'
 import { SET_SCORE } from './user.reducer.js'
+import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 
 // Action Creators:
 export function getActionRemoveStay(stayId) {
@@ -30,20 +31,29 @@ export function getActionUpdateStay(stay) {
 
 
 export async function loadStays() {
+    const filterBy = store.getState().stayModule.filterBy
+    store.dispatch({ type: 'LOADING_START', isLoading: true })
     try {
-        const stays = await stayService.query()
-        console.log('stays from DB:', stays)
+        const stays = await stayService.query(filterBy)
         store.dispatch({
             type: SET_STAYS,
-            stays
+            stays,
         })
-
     } catch (err) {
-        console.log('Cannot load stays', err)
+        console.error('Cannot load stays', err)
         throw err
+    } finally {
+        store.dispatch({ type: 'LOADING_DONE', isLoading: false })
     }
+}
+
+export function setFilterBy(filterBy) {
+    store.dispatch({ type: SET_FILTER_BY, filterBy })
 
 }
+
+
+
 
 export async function removeStay(stayId) {
     try {

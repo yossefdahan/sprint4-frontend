@@ -2,6 +2,7 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { func } from 'prop-types'
 
 
 const STORAGE_KEY = 'stay'
@@ -13,21 +14,28 @@ export const stayService = {
     save,
     remove,
     getEmptyStay,
-    addStayReviews
+    addStayReviews,
+    getDefaultFilter,
+    getFilterFromParams,
+    getCountries
 }
 window.cs = stayService
 
+async function getCountries() {
+    const stays = await storageService.query(STORAGE_KEY)
+    const countries = stays.map(stay => stay.loc.country)
+    const uniqueCountries = [...new Set(countries)]
+    return uniqueCountries
+}
 
-async function query() {
+async function query(filterBy = getDefaultFilter()) {
     var stays = await storageService.query(STORAGE_KEY)
-    // filterBy = { txt: '', price: 0 }
-    // if (filterBy.txt) {
-    //     const regex = new RegExp(filterBy.txt, 'i')
-    //     stays = stays.filter(stay => regex.test(stay.name) || regex.test(stay.description))
-    // }
-    // if (filterBy.price) {
-    //     stays = stays.filter(stay => stay.price <= filterBy.price)
-    // }
+
+    if (filterBy.loc.country) {
+        const regex = new RegExp(filterBy.loc.country, 'i')
+        stays = stays.filter(stay => regex.test(stay.loc.country))
+    }
+
     return stays
 }
 
@@ -67,6 +75,35 @@ async function addStayReviews(stayId) {
     await storageService.put(STORAGE_KEY, stay)
 
     return stay
+}
+
+function getDefaultFilter() {
+    return {
+        loc: {
+            country: '',
+            countryCode: '',
+            city: '',
+            address: '',
+            lat: 0,
+            lng: 0,
+        },
+        amenities: [],
+        type: '',
+        priceRange: {
+            minPrice: 0,
+            maxPrice: Infinity
+        },
+    }
+}
+
+function getFilterFromParams(searchParams) {
+    const defaultFilter = getDefaultFilter()
+    return {
+        loc: searchParams.get('loc') || defaultFilter.loc,
+        amenities: searchParams.get('amenities') || defaultFilter.amenities,
+        type: searchParams.get('type') || defaultFilter.type,
+        priceRange: searchParams.get('priceRange') || defaultFilter.priceRange,
+    }
 }
 
 function getEmptyStay() {
@@ -118,7 +155,7 @@ function createStays() {
                 _id: "s101",
                 name: "Ribeira Charming Duplex",
                 type: "House",
-                imgUrls: [`/img/1.jpeg`,`/img/2.jpeg`],
+                imgUrls: [`/img/1.jpeg`, `/img/2.jpeg`],
                 price: 80.00,
                 summary: "Fantastic duplex apartment...",
                 capacity: 8,
