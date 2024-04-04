@@ -51,8 +51,9 @@ export function SearchFilter() {
           onChange={handleChange}
         />
       </div>
-      <div className="input-group">
-        <input
+      <div className="input-group-last flex  ">
+        <span className='add-guests'>Add guests</span>
+        {/* <input
           className='add-guests'
           type="number"
           name="guests"
@@ -60,11 +61,12 @@ export function SearchFilter() {
           value={search.guests}
           onChange={handleChange}
           min="1"
-        />
+        /> */}
+        <button type="submit" className="search-btn">
+          <i className="fa fa-search"></i>
+        </button>
       </div>
-      <button type="submit" className="search-btn">
-        <i className="fa fa-search"></i>
-      </button>
+
     </form>
   );
 };
