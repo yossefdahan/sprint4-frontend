@@ -6,6 +6,7 @@ import logoImg from '../assets/Img/logo.png'
 import israelImg from '../assets/Img/israel.jpg'
 import { WhereFilter } from './WhereFilter'
 import { setFilterBy } from '../store/stay.actions'
+import { SearchFilter } from './SearchFilter.jsx'
 
 
 export function AppHeader() {
@@ -51,7 +52,11 @@ export function AppHeader() {
                 </div>
 
             </div>
+
         </header>
+        <div className='search-container'>
+            < SearchFilter />
+        </div>
         <div className='filter-container-max'>
             <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
         </div>
