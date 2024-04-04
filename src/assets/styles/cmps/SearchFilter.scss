@@ -5,10 +5,10 @@
   border-radius: 50px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border: 1px solid $light-gray;
-  padding: 10px;
-  height: 70px;
+  height: 65px;
   max-width: 850px;
   margin: auto;
+  cursor: pointer;
 
   .input-group {
     display: flex;
@@ -16,33 +16,44 @@
     border-right: 1px solid $light-gray;
     margin-right: 10px;
     flex-grow: 1;
+    height: 60px;
 
     &:last-of-type {
       border-right: none;
     }
 
     &:hover {
-      background-color: gray;
+      border-radius: 30px;
+      background-color: #f2f2f2;
+    }
+
+    .add-guests {
+      text-align: start;
     }
 
     input {
       border: none;
-      margin-right: 10px;
+      // margin-right: 5px;
       padding: 10px;
       border-radius: 50px;
       outline: none;
       font-size: 16px;
+      height: 60px;
+      text-align: center;
 
       &::placeholder {
-        color: #cccccc;
+        color: $main-gray;
       }
 
       &:focus {
-        box-shadow: 0 0 0 2px rgba(130, 130, 130, 0.5);
+        box-shadow: 2px 2px 2 2px rgba(106, 105, 105, 0.552);
+        font-weight: 500;
+        background-color: rgba(176, 175, 175, 0.623);
+        border: 1px solid rgba(238, 237, 237, 0.623);
       }
 
       &:hover {
-        background-color: gray;
+        background-color: rgba(209, 209, 209, 0.365);
       }
     }
   }
@@ -52,11 +63,11 @@
     color: white;
     border: none;
     border-radius: 50px;
-    padding: 10px 10px;
+    padding: 10px;
     font-size: 16px;
     cursor: pointer;
     outline: none;
-    width: 50px;
+    width: 60px;
     height: 50px;
     margin-right: 10px;
 

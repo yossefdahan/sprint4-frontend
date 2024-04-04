@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 export function SearchFilter() {
@@ -24,6 +23,7 @@ export function SearchFilter() {
   return (
     <form className="search-filter" onSubmit={handleSubmit}>
       <div className="input-group">
+
         <input
           type="text"
           name="destination"
