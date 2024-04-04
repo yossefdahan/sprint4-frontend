@@ -26,7 +26,8 @@ export function AppHeader() {
                     <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>
                     {isNavVisible && (
                         <nav className="nav-links">
-                            <NavLink className=" nav-icon " to="/">Messages</NavLink>
+
+                            <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
                             <NavLink className=" nav-icon" to="/">Trips</NavLink>
                             <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
                             <div><hr /></div>

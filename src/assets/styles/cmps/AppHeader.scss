@@ -4,6 +4,7 @@
   justify-content: space-between;
   cursor: pointer;
   z-index: 10;
+  text-decoration: none;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 
   .logo-img {
@@ -38,12 +39,18 @@
     width: 240px;
     font-weight: bold;
     font-size: 16px;
+    color: $main-gray;
   }
 
   .nav-links a {
     font-family: Arial, Helvetica, sans-serif;
-    padding: 10px 10px;
-    margin-right: 50px;
+    padding: 10px 15px;
+    color: $main-gray;
+
+    text-decoration: none;
+    &:hover {
+      background-color: $light-gray;
+    }
   }
 
   .Languages-btn {
@@ -64,6 +71,10 @@
     background-color: transparent;
     color: $black2;
     font-size: 18px;
+  }
+
+  .nav-icon-massages {
+    margin-top: 10px;
   }
 
   .host-your-home-nav {
