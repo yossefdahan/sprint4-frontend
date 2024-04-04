@@ -1,0 +1,61 @@
+.stay-card {
+  width: 270px;
+  height: 356px;
+  font-size: 14px;
+}
+
+.stay-preview {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.go-to-details {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.header-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  text-decoration: none;
+}
+
+.stay-location-preview {
+  font-size: 14px;
+  color: $black2;
+}
+
+.review-preview {
+  color: $black2;
+}
+
+.km-away,
+.date-stay-preview {
+  color: $main-gray;
+}
+
+.stay-preview-price {
+  color: $black2;
+  font-weight: 600;
+}
+
+.btn-preview {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-preview {
+  position: absolute;
+  top: 25%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-stay-btn {
+  position: relative;
+  background-color: transparent;
+  color: $black2;
+  font-size: 1.5em;
+  top: 0;
+}

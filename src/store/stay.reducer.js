@@ -1,3 +1,5 @@
+import { stayService } from "../services/stay.service.local"
+
 export const SET_STAYS = 'SET_STAYS'
 export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
@@ -6,49 +8,61 @@ export const ADD_TO_CART = 'ADD_TO_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 export const UNDO_REMOVE_STAY = 'UNDO_REMOVE_STAY'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+export const SET_FILTER_BY = 'SET_FILTER_BY'
+
 
 const initialState = {
     stays: [],
     cart: [],
-    lastRemovedStay: null
+    lastRemovedStay: null,
+    filterBy: stayService.getDefaultFilter()
 }
 
-export function stayReducer(state = initialState, action) {
-    var newState = state
-    var stays
-    var cart
+export function stayReducer(state = initialState, action = {}) {
+
+
+
     switch (action.type) {
         case SET_STAYS:
-            newState = { ...state, stays: action.stays }
-            break
+            return { ...state, stays: action.stays }
+
         case REMOVE_STAY:
             const lastRemovedstay = state.stays.find(stay => stay._id === action.stayId)
             stays = state.stays.filter(stay => stay._id !== action.stayId)
-            newState = { ...state, stays, lastRemovedstay }
-            break
+            return { ...state, stays, lastRemovedstay }
+
         case ADD_STAY:
-            newState = { ...state, stays: [...state.stays, action.stay] }
-            break
+            return { ...state, stays: [...state.stays, action.stay] }
         case UPDATE_STAY:
             stays = state.stays.map(stay => (stay._id === action.stay._id) ? action.stay : stay)
-            newState = { ...state, stays }
-            break
+            return { ...state, stays }
+
         case ADD_TO_CART:
-            newState = { ...state, CART: [...state.CART, action.stay] }
-            break
+            return { ...state, cart: [...state.cart, action.stay] }
+
         case REMOVE_FROM_CART:
-            cart = state.cart.filter(stay => stay._id !== action.stayId)
-            newState = { ...state, cart }
-            break
+            var cart = state.cart.filter(stay => stay._id !== action.stayId)
+            return { ...state, cart }
+
         case CLEAR_CART:
-            newState = { ...state, cart: [] }
-            break
+            return { ...state, cart: [] }
+
+
         case UNDO_REMOVE_STAY:
             if (state.lastRemovedStay) {
-                newState = { ...state, stays: [...state.stays, state.lastRemovedStay], lastRemovedStay: null }
+                return { ...state, stays: [...state.stays, state.lastRemovedStay], lastRemovedStay: null }
             }
-            break
+
+
+        case SET_FILTER_BY: {
+            return {
+                ...state,
+                filterBy: { ...state.filterBy, ...action.filterBy },
+            }
+        }
+
         default:
+            return state
     }
-    return newState
+
 }

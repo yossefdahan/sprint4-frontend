@@ -4,13 +4,21 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
 import israelImg from '../assets/Img/israel.jpg'
+import { WhereFilter } from './WhereFilter'
+import { setFilterBy } from '../store/stay.actions'
 
 
 export function AppHeader() {
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false);
     const toggleNavBar = () => {
-        setIsNavVisible(!isNavVisible);
-    };
+        setIsNavVisible(!isNavVisible)
+    }
+
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
+
 
     return (
         <header className="app-header flex align-center ">
@@ -43,7 +51,9 @@ export function AppHeader() {
                 </div>
 
             </div>
-
+            <div className='filter-container-max'>
+                <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            </div>
         </header>
     )
 }
