@@ -1,14 +1,16 @@
-// import { orderService } from "../services/order.service.js"
+import { orderService } from "../services/order.service.js"
 
 export const SET_ORDERS = 'SET_ORDERS'
 export const ADD_ORDER = 'ADD_ORDER'
 export const REMOVE_ORDER = 'REMOVE_ORDER'
 export const UPDATE_ORDER = 'UPDATE_ORDER'
+export const SET_ORDER = 'SET_ORDER'
+
 
 
 const initialState = {
   orders: [],
-  // order: orderService.emptyOrder()
+  order: orderService.getOrderPending()
 }
 
 export function orderReducer(state = initialState, action = {}) {
@@ -27,7 +29,9 @@ export function orderReducer(state = initialState, action = {}) {
         )
       }
 
-  
+    case SET_ORDER:
+      return { ...state, order: action.order }
+
     default:
       return state
   }
