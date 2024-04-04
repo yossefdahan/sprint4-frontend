@@ -1,10 +1,14 @@
+// import { orderService } from "../services/order.service.js"
+
 export const SET_ORDERS = 'SET_ORDERS'
 export const ADD_ORDER = 'ADD_ORDER'
 export const REMOVE_ORDER = 'REMOVE_ORDER'
 export const UPDATE_ORDER = 'UPDATE_ORDER'
 
+
 const initialState = {
   orders: [],
+  // order: orderService.emptyOrder()
 }
 
 export function orderReducer(state = initialState, action = {}) {
@@ -22,6 +26,8 @@ export function orderReducer(state = initialState, action = {}) {
           order._id === action.order._id ? action.order : order
         )
       }
+
+  
     default:
       return state
   }

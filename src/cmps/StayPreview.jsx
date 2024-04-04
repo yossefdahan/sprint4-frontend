@@ -16,13 +16,15 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
 
     return (
         <section className='stay-card' >
-            <Link className="go-to-details" to={`/${stay._id}`} >
-                <div className="stay-preview" >
-                    <StayGallery
-                        imgUrls={stay.imgUrls}
-                        isSaved={isSaved}
-                        onSave={handleSave} />
-                    <div className='preview-details'>
+            <div className="stay-preview" >
+
+                <StayGallery
+                    imgUrls={stay.imgUrls}
+                    isSaved={isSaved}
+                    onSave={handleSave}
+                    stayId={stay._id} />
+                <div className='preview-details'>
+                    <Link className="go-to-details" to={`/${stay._id}`} >
                         <div className="header-preview">
                             <h4 className="stay-location-preview"><span>{stay.loc.country}</span>, <span>{stay.loc.countryCode}</span></h4>
                             <span className="review-preview">★{rate / stay.reviews.length < 4 ? '' : rate / stay.reviews.length}</span>
@@ -30,16 +32,11 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                         <p className="km-away">2,138 kilometers away</p>
                         <p className="date-stay-preview"><span>Apr</span> <span>7-12</span></p>
                         <p className="stay-preview-price">${stay.price} night</p>
-                    </div>
-                    {shouldShowActionBtns(stay) && <div>
-                        <button onClick={() => { onRemoveStay(stay._id) }}>x</button>
-                        <button onClick={() => { onUpdateStay(stay) }}>Edit</button>
-                    </div>}
-
-                    {/* <button onClick={() => { onAddStayMsg(stay) }}>Add stay msg</button> */}
-                    {/* <button className="buy" onClick={() => { onAddToCart(stay) }}>Add to cart</button> */}
+                    </Link>
                 </div>
-            </Link>
+
+
+            </div>
         </section >
     )
 }
