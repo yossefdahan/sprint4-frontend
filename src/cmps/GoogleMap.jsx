@@ -14,28 +14,29 @@ export function GoogleMap({ stay }) {
     // }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: "center", margin: '20px', flexDirection: "column" }}>
+        <div style={{ display: 'flex', justifyContent: 'center',  margin: '0px', flexDirection: "column" }}>
             <h1>Where you’ll be</h1>
-            <h2>{stay.loc.city} ,{stay.loc.country}</h2>
 
-            <div style={{ height: '50vh', width: '70%', marginTop: "10px" }}>
+            <div style={{ height: '50vh', width: '100%', marginTop: "10px" }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY" }}
                     center={coords}
                     defaultZoom={zoom}
-                // onClick={handleClick}
-                >
+                    // onClick={handleClick}
+                    >
 
                     <AnyReactComponent
                         key={stay.name}
                         lat={stay.loc.lat}
                         lng={stay.loc.lng}
                         text="😁"
-
-                    />
+                        
+                        />
 
                 </GoogleMapReact>
             </div>
+                        <h2>{stay.loc.city} ,{stay.loc.country}</h2>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis amet, laudantium ex nobis praesentium incidunt esse sed inventore iusto quidem et distinctio! Voluptatum sunt enim debitis, maiores praesentium beatae asperiores expedita blanditiis laboriosam quod ipsam aliquid, excepturi, soluta voluptas quisquam tempora saepe tempore deleniti quidem corrupti quam odit aut totam.</p>
         </div>
     );
 }

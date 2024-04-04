@@ -205,6 +205,16 @@ function createStays() {
           lng: -115.570769,
         },
         reviews: [
+                    {
+                        id: "rev202",
+                        txt: "The perfect retreat from city life! The hiking trails were fantastic.",
+                        rate: 5,
+                        by: {
+                            _id: "u204",
+                            fullname: "Amy Wong",
+                            imgUrl: "/img/users/amy.jpg"
+                        }
+                    },
           {
             id: "rev202",
             txt: "The perfect retreat from city life! The hiking trails were fantastic.",
