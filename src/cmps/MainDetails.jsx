@@ -1,16 +1,17 @@
 // import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
-
+import { useState } from "react"
 import { Amenities } from "./Amenities"
 import Avatar from '@mui/material/Avatar';
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 // import Stack from '@mui/material/Stack';
 
 export function MainDetails({ stay }) {
+    const [startDate, setStartDate] = useState(new Date())
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     // const amenities =stay.amenities.slice(0,3)// use it in the future
     return (
-        <section className='main-details'>
-            <section className='details-unit'>
-
+        <section className='main-user-host'>
                 <h2>Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
                 <section className="flex">
                     <span>{stay.capacity}</span>-<span>{stay.type}</span>-<span></span>-<span></span>
@@ -44,10 +45,9 @@ export function MainDetails({ stay }) {
                     <Amenities amenities={stay.amenities} />
                 </div>
 
+                {/* <MyDateRangePicker/> */}
+                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
 
-                {/* <DateRangeCalendar /> */}
-
-            </section>
         
         </section>
     )
