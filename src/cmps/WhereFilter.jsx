@@ -153,6 +153,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     />
                 </div>
             )}
+            {!countyModal ? < button >🔍</button> : <button>🔍 Search</button>}
         </form>
-    </section>)
+    </section >)
 }
