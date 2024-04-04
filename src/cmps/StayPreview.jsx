@@ -31,7 +31,7 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                         </div>
                         <p className="km-away">2,138 kilometers away</p>
                         <p className="date-stay-preview"><span>Apr</span> <span>7-12</span></p>
-                        <p className="stay-preview-price">${stay.price} night</p>
+                        <p className="stay-preview-price"><span>${stay.price}</span> night</p>
                     </Link>
                 </div>
 
