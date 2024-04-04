@@ -1,18 +1,10 @@
-// .stay-gallery {
-//   .img-gallery {
-//     border-radius: 12px;
-//     min-height: 200px;
-//     width: 100%;
-//   }
-// }
-
 .stay-gallery {
-  position: relative; // This ensures that the heart icon is positioned relative to the gallery
+  position: relative;
   .img-gallery {
     border-radius: 12px;
     height: 250px;
-    width: 270px;
-    object-fit: cover; // This ensures that your images cover the div without stretching
+    width: 100%;
+    object-fit: cover;
   }
   .fa-heart {
     position: absolute;
@@ -21,17 +13,10 @@
     font-size: 24px;
     color: white;
     cursor: pointer;
-    // To ensure the icon stands out, add a shadow or a background
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+
     &:hover {
       transform: scale(1.1);
     }
-  }
-  .btn-preview {
-    // Styles for your preview buttons, if needed
-  }
-  // Add a class for when the heart is 'saved'
-  .is-saved {
-    color: red; // Or any color to indicate that the item is saved
   }
 }

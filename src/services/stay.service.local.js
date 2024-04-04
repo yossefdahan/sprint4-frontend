@@ -109,7 +109,7 @@ function createStays() {
         _id: "s101",
         name: "Ribeira Charming Duplex",
         type: "House",
-        imgUrls: [`/img/4.jpeg`, `/img/3.jpeg`],
+        imgUrls: [`/img/4.jpeg`, `/img/3.jpeg`, `/img/4.jpeg`],
         price: 80.0,
         summary: "Fantastic duplex apartment...",
         capacity: 8,

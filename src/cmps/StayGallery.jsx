@@ -20,7 +20,7 @@ export function StayGallery({ imgUrls, isSaved, onSave }) {
     <div className="stay-gallery">
       <img className='img-gallery ' src={imgUrls[currentImgIndex]} alt="Stay" />
       <i
-        className={`fa-heart ${isSaved ? 'fas' : 'far'}`}
+        className={`fa-duotone fa-heart  ${isSaved ? 'fas' : 'far'}`}
         onClick={handleSaveClick}
 
       ></i>
