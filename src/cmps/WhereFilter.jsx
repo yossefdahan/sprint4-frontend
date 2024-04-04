@@ -37,9 +37,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }
 
     useEffectUpdate(() => {
-        onSetFilter.current({ ...filterByToEdit, loc: { country: inputValue } })
-    }, [filterByToEdit, inputValue])
 
+    }, [filterByToEdit, inputValue])
 
     function handleChange({ target }) {
         const { value } = target
@@ -52,36 +51,40 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             )
             setSuggestions(filteredCountries)
         }
-        // setFilterByToEdit(prevFilter => ({
-        //     ...prevFilter,
-        //     loc: { ...prevFilter.loc, country: value }
-        // }))
+        setFilterByToEdit(prevFilter => ({
+            ...prevFilter,
+            loc: { ...prevFilter.loc, country: value }
+        }))
     }
 
     function handleSuggestionClick(suggestion) {
         setInputValue(suggestion)
         setSuggestions([])
 
-        onSetFilter.current({ ...filterByToEdit, loc: { country: suggestion } })
+        // onSetFilter.current({ ...filterByToEdit, loc: { country: suggestion } })
         setIsOpen(true)
     }
 
     function handleSubmit(event) {
         event.preventDefault()
 
-        const updatedFilter = {
-            ...filterByToEdit,
-            loc: { country: inputValue },
-            startDate,
-            endDate
-        }
+        // const updatedFilter = {
+        //     ...filterByToEdit,
+        //     loc: { country: inputValue },
+        //     startDate,
+        //     endDate
+        // }
 
-        onSetFilter.current(updatedFilter)
+        // onSetFilter.current(updatedFilter)
 
-
+        onSetFilter.current({ ...filterByToEdit, loc: { country: inputValue } })
         setIsOpen(false)
         setCountryModal(false)
     }
+
+    // function formatDate(date) {
+    //     return date ? date.toLocaleDateString() : '';
+    // }
 
     return (<section className="where-filter-container" >
         <h5>Where</h5>
@@ -144,7 +147,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 </ul>
             )}
             {isOpen && (
-                <div tabIndex={0} onKeyDown={handleKeyDown}>
+                <div className="date-picker-container" tabIndex={0} onKeyDown={handleKeyDown}>
                     <DatePicker
                         selected={startDate}
                         onChange={(dates) => {
@@ -157,7 +160,30 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                         selectsRange
                         inline
                         monthsShown={2}
+                        open={isOpen}
+                        onFocus={() => setIsOpen(true)}
+                        onBlur={() => setIsOpen(false)}
                     />
+                    <div>
+                        <h5>Check in</h5>
+                        <input
+                            type="text"
+                            readOnly
+                            value={utilService.formatDate(startDate)}
+                            placeholder="Start Date"
+                            onClick={() => setIsOpen(true)}
+                        />
+                    </div>
+                    <div>
+                        <h5>Check out</h5>
+                        <input
+                            type="text"
+                            readOnly
+                            value={utilService.formatDate(endDate)}
+                            placeholder="End Date"
+                            onClick={() => setIsOpen(true)}
+                        />
+                    </div>
                 </div>
             )}
             {!countyModal ? < button type="submit">🔍</button> : <button type="submit">🔍 Search</button>}
