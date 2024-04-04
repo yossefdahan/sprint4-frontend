@@ -49,7 +49,7 @@ export function StayDetails() {
             </section>
             <section className='main-details'>
                 <MainDetails stay={stay} />
-                <Payment />
+                <Payment stay={stay} />
 
             </section>
             <div className="details-reviews">

@@ -3,10 +3,11 @@ import { storageService } from './async-storage.service'
 import { userService } from './user.service'
 
 
-export const reviewService = {
+export const orderService = {
     add,
     query,
-    remove
+    remove,
+    emptyOrder
 }
 
 function query(filterBy) {
@@ -14,6 +15,31 @@ function query(filterBy) {
     // return httpService.get(`review${queryStr}`)
     return storageService.query('review')
 }
+
+function emptyOrder() {
+    return {
+        hostId: '',
+        buyer: {
+            _id: '',
+            fullname: '',
+        },
+        totalPrice: 0,
+        startDate: '',
+        endDate: '',
+        guests: {
+            adults: 0,
+            kids: 0
+        },
+        stay: {
+            _id: '',
+            name: '',
+            price: 0
+        },
+        msgs: [],
+        status: "pending"
+    }
+}
+
 
 async function remove(reviewId) {
     // await httpService.delete(`review/${reviewId}`)
