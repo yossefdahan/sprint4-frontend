@@ -34,6 +34,11 @@ async function query(filterBy = getDefaultFilter()) {
     stays = stays.filter((stay) => regex.test(stay.loc.country))
   }
 
+  if (filterBy.capacity) {
+    const totalGuests = Object.values(filterBy.guests).reduce((acc, guestCount) => acc + guestCount, 0)
+    stays = stays.filter(stay => stay.capacity >= totalGuests)
+  }
+  console.log(stays);
   return stays
 }
 
@@ -85,8 +90,14 @@ function getDefaultFilter() {
       lat: 0,
       lng: 0,
     },
+    dates: {
+      checkIn: '',
+      checkOut: '',
+    },
+    guests: {},
     amenities: [],
     type: "",
+    capacity: 0,
     priceRange: {
       minPrice: 0,
       maxPrice: Infinity,
@@ -205,16 +216,16 @@ function createStays() {
           lng: -115.570769,
         },
         reviews: [
-                    {
-                        id: "rev202",
-                        txt: "The perfect retreat from city life! The hiking trails were fantastic.",
-                        rate: 5,
-                        by: {
-                            _id: "u204",
-                            fullname: "Amy Wong",
-                            imgUrl: "/img/users/amy.jpg"
-                        }
-                    },
+          {
+            id: "rev202",
+            txt: "The perfect retreat from city life! The hiking trails were fantastic.",
+            rate: 5,
+            by: {
+              _id: "u204",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg"
+            }
+          },
           {
             id: "rev202",
             txt: "The perfect retreat from city life! The hiking trails were fantastic.",

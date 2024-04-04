@@ -1,0 +1,133 @@
+// position: relative;
+
+.maps-search {
+    position: absolute;
+    display: grid;
+
+    grid-template-areas:
+        "title . ."
+        "all spain europe"
+        "usa greece south"
+    ;
+    top: 20%;
+    left: 20%;
+    box-shadow: 1px 1px 1px 1px $light-gray;
+    border: 2px solid $light-gray;
+    z-index: 1000;
+    border-radius: 12px;
+
+    background-color: white;
+    width: 500px;
+    align-items: center;
+    justify-content: center;
+    // gap: px;
+    justify-items: center;
+
+    & .country-filter {
+        margin: 5px;
+        padding: 8px;
+
+        &:hover {
+            background-color: $light-gray;
+            border-radius: 12px;
+        }
+
+    }
+
+    &.input-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    & h4 {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    & img {
+        width: 120px;
+        border: 1px solid grey;
+        border-radius: 10px;
+    }
+
+    & .img-south {
+        grid-area: south;
+    }
+
+    & .img-usa {
+        grid-area: usa;
+    }
+
+    & .img-greece {
+        grid-area: greece;
+    }
+
+    & .img-italy {
+        grid-area: spain;
+    }
+
+    & .img-flexible {
+        grid-area: all;
+    }
+
+    & .img-europe {
+        grid-area: europe;
+    }
+
+    & h5 {
+        grid-area: title;
+        // display: flex;
+        align-items: start;
+        margin: 20px 5px;
+    }
+
+
+    // .react-datepicker-popper {
+    //     z-index: 1;
+    //     line-height: 0;
+    //     position: absolute;
+    //     left: -220px;
+    //     top: 10px;
+    //     transform: translate(-120.909px, 30px);
+    // }
+
+
+
+
+
+}
+
+
+
+.react-datepicker__input-container {
+    // position: absolute;
+    display: none;
+    width: 100%;
+
+
+
+
+}
+
+.react-datepicker-wrapper {
+    // display: none;
+    padding: 0;
+    border: 0;
+    position: absolute;
+    // left: 100%;
+}
+
+.react-datepicker-popper {
+    position: absolute;
+    left: -220px;
+    top: 50px;
+    margin-top: 30px;
+    transform: translate(666.364px, 144.545px);
+
+}
+
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
+    display: none;
+}

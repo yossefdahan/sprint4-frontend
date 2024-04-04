@@ -17,7 +17,7 @@ export function StayDetails() {
     const [stay, setStay] = useState(null)
     const navigate = useNavigate()
     const users = useSelector(storeState => storeState.userModule.users)
-
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
     useEffect(() => {
         loadStay()

@@ -54,10 +54,10 @@ export function AppHeader() {
             </div>
 
         </header>
-        <div className='search-container'>
+        {/* <div className='search-container'>
             < SearchFilter />
-        </div>
-        <div className='filter-container-max'>
+        </div> */}
+        <div className='search-container'>
             <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
         </div>
 
