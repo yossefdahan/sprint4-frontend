@@ -10,6 +10,7 @@ import { loadStays, setFilterBy } from '../store/stay.actions'
 import { stayService } from '../services/stay.service.local.js'
 
 
+
 export function AppHeader() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))

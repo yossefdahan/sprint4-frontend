@@ -8,6 +8,7 @@ import { stayService } from '../services/stay.service.local.js'
 import { StayDetails } from './StayDetails.jsx'
 import { StayList } from '../cmps/StayList.jsx'
 import { useSearchParams } from 'react-router-dom'
+import { ScrollingFilter } from '../cmps/ScrollingFilter.jsx'
 
 export function StayIndex() {
     const dispatch = useDispatch()
@@ -80,6 +81,7 @@ export function StayIndex() {
             <div></div>
             <main>
                 {/* <button onClick={onAddStay}>Add Stay</button> */}
+                <ScrollingFilter />
                 <StayList stays={stays}
                     onUpdateStay={onUpdateStay}
                     onRemoveStay={onRemoveStay}

@@ -297,7 +297,6 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                 {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
             </div>
-            {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search"></i> Search</button>}
             {showGuestDropdown && <div className="input-group guests-container">
 
                 <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />

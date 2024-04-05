@@ -1,0 +1,114 @@
+.swiper-slide {
+  display: flex;
+  width: 60px;
+  height: 80px;
+
+  .label-name {
+    color: #717171;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    text-wrap: nowrap;
+    // text-align: center;
+    // justify-content: center;
+  }
+
+  &:hover .label-name {
+    color: black;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+  }
+
+  button {
+    cursor: pointer;
+    width: fit-content;
+    height: 48px;
+  }
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: flex;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  margin: auto;
+  margin-bottom: 10px;
+  color: #717171;
+}
+
+.carusel-filter-main {
+  display: inline-block;
+  width: 110rem;
+  margin-top: 10px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+
+  .swiper-button-next {
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    width: 27px;
+    height: 27px;
+    font-size: 13px;
+    color: black;
+    background-color: white;
+    margin-top: -20px;
+  }
+
+  .swiper-button-next:hover {
+    box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+  }
+
+  .swiper-button-next::after {
+    font-size: 13px;
+    color: black;
+  }
+
+  .swiper-button-next::before {
+    font-size: 13px;
+    color: black;
+  }
+
+  .swiper-button-prev {
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    width: 27px;
+    height: 27px;
+    font-size: 13px;
+    color: black;
+    margin-left: 20px;
+    margin-top: -14px;
+    display: none;
+  }
+
+  .swiper-button-prev::after {
+    font-size: 13px;
+    color: black;
+  }
+
+  .swiper-button-prev:hover {
+    box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+  }
+
+  button {
+    text-decoration: none;
+    text-align: center;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: "Arial, Helvetica, sans-serif";
+  }
+}
