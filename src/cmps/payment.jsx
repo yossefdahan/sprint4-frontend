@@ -23,22 +23,25 @@ export function Payment({ stay }) {
         const field = ev.target.name
         const value = ev.target.value
         setOrder((order) => ({ ...order, [field]: value }))
-    }
-    sendToFinalOrder(order)
 
-    async function sendToFinalOrder(ev) {
+    }
+    // sendToFinalOrder(order)
+    async function sendToFinalOrder(ev, order) {
         ev.preventDefault()
         try {
             const savedOrder = await orderService.OrderInProggres(order)
             setOrder(savedOrder)
+
             setOrder(orderService.emptyOrder())
             showSuccessMsg('order saved!')
             navigate(`/payment/${stay._id}`)
         } catch (err) {
             console.log('err cant save order', err)
         }
-
     }
+
+
+
 
     return < section className="payment-modal" >
         <h1>${stay.price}<span> night</span></h1>
