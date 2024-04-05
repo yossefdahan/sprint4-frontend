@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
 import israelImg from '../assets/Img/israel.jpg'
-import { WhereFilter } from './WhereFilter'
+import { WhereFilter } from './WhereFilter.jsx'
 import { setFilterBy } from '../store/stay.actions'
-import { SearchFilter } from './SearchFilter.jsx'
+// import { SearchFilter } from './SearchFilter.jsx'
 
 
 export function AppHeader() {

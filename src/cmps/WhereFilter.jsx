@@ -141,6 +141,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
         <form onSubmit={handleSubmit} className="search-filter">
             <div className="input-group">
+                {/* <p>Where</p> */}
                 <input
                     placeholder="Search destination"
                     type="text"
@@ -159,7 +160,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             setInputValue("mexico")
                             setIsOpen(true)
                         }} src="src\assets\img\destination\asset 0.jpeg" alt="Im flexible" />
-                        <h4>Im flexible</h4>
+                        <h4>I'm flexible</h4>
                     </div>
                     <div className="img-europe country-filter">
                         <img onClick={() => {
@@ -216,58 +217,58 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     type="text"
                     readOnly
                     value={utilService.formatDate(startDate)}
-                    placeholder="Start Date"
+                    placeholder="Check in"
                     onClick={() => setIsOpen(true)}
                 />
             </div>
             {isOpen && (
-                // <div className="date-pick">
-                <div tabIndex={0} onKeyDown={handleKeyDown}>
-                    <div className="datepicker-header">
-                        <button className="datepicker-tab">Dates</button>
-                        <button className="datepicker-tab">Months</button>
-                        <button className="datepicker-tab">Flexible</button>
-                    </div>
-                    <DatePicker
-                        selected={startDate}
-                        onChange={(dates) => {
-                            const [start, end] = dates
-                            setStartDate(start)
-                            setEndDate(end)
-                        }}
-                        startDate={startDate}
-                        endDate={endDate}
-                        selectsRange
-                        // inline
-                        monthsShown={2}
-                        open={isOpen}
-                        // onClick={() => setIsOpen(true)}
-                        onFocus={() => setIsOpen(true)}
-                        onBlur={() => setIsOpen(false)}
+                <div className="date-pick">
+                    <div tabIndex={0} onKeyDown={handleKeyDown}>
+                        <div className="datepicker-header">
+                            <button className="dates datepicker-tab">Dates</button>
+                            <button className="datepicker-tab">Months</button>
+                            <button className="datepicker-tab">Flexible</button>
+                        </div>
 
-                    />
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(dates) => {
+                                const [start, end] = dates
+                                setStartDate(start)
+                                setEndDate(end)
+                            }}
+                            startDate={startDate}
+                            endDate={endDate}
+                            selectsRange
+                            // inline
+                            monthsShown={2}
+                            open={isOpen}
+                            // onClick={() => setIsOpen(true)}
+                            onFocus={() => setIsOpen(true)}
+                            onBlur={() => setIsOpen(false)}
+
+                        />
+                    </div>
                     <div className="datepicker-footer">
-                        <button className="datepicker-range-button">Exact dates</button>
-                        <button className="datepicker-range-button">+1 day</button>
-                        <button className="datepicker-range-button">+2 days</button>
+                        <button className=" exact-date datepicker-range-button">Exact dates</button>
+                        <button className=" date-btn-search datepicker-range-button">+1 day</button>
+                        <button className="date-btn-search  datepicker-range-button">+2 days</button>
                     </div>
                 </div>
 
-                // </div>
+
+
+
             )}
             <div className="input-group">
-
                 <input
                     type="text"
                     readOnly
                     value={utilService.formatDate(endDate)}
-                    placeholder="End Date"
+                    placeholder="Check out"
                     onClick={() => setIsOpen(true)}
                 />
             </div>
-
-
-
 
             <div className="input-group">
                 <input type="text"
@@ -280,17 +281,17 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     readOnly
                 />
 
-
+                {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
             </div>
-            {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search"></i> Search</button>}
-            {showGuestDropdown && <div className="input-group">
+            {showGuestDropdown &&
+                <div className="input-group">
 
-                <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
 
-            </div>}
+                </div>}
 
         </form>
     )
