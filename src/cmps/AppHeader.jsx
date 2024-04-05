@@ -1,29 +1,46 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useSearchParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
 import israelImg from '../assets/Img/israel.jpg'
 import { WhereFilter } from './WhereFilter.jsx'
-import { setFilterBy } from '../store/stay.actions'
+import { loadStays, setFilterBy } from '../store/stay.actions'
 // import { SearchFilter } from './SearchFilter.jsx'
+import { stayService } from '../services/stay.service.local.js'
 
 
 export function AppHeader() {
-    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
-    const [isNavVisible, setIsNavVisible] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
+    const navigate = useNavigate()
+
+    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const [isNavVisible, setIsNavVisible] = useState(false)
+
+    useEffect(() => {
+
+        setSearchParams(filterBy)
+        loadStays(filterBy)
+    }, [filterBy])
+
     const toggleNavBar = () => {
         setIsNavVisible(!isNavVisible)
     }
 
     function onSetFilter(filterBy) {
+
         setFilterBy(filterBy)
     }
+    function setP() {
+        setFilterBy("")
+        navigate('/')
 
+    }
 
     return (<>
         <header className="app-header flex align-center ">
-            <Link to="/"><img className="logo-img" src={logoImg} /></Link>
+            <img onClick={setP} className="logo-img" src={logoImg} />
             <div className='stays-search  flex align-center'>
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>

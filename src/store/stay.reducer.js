@@ -15,7 +15,8 @@ const initialState = {
     stays: [],
     cart: [],
     lastRemovedStay: null,
-    filterBy: stayService.getDefaultFilter()
+    // filterBy: stayService.getFilterFromParams()
+    // filterBy: null
 }
 
 export function stayReducer(state = initialState, action = {}) {
@@ -54,12 +55,12 @@ export function stayReducer(state = initialState, action = {}) {
             }
 
 
-        case SET_FILTER_BY: {
-            return {
-                ...state,
-                filterBy: { ...state.filterBy, ...action.filterBy },
-            }
-        }
+        // case SET_FILTER_BY: {
+        //     return {
+        //         ...state,
+        //         filterBy: { ...state.filterBy, ...action.filterBy },
+        //     }
+        // }
 
         default:
             return state

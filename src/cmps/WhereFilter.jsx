@@ -75,10 +75,20 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
     function handleSubmit(event) {
         event.preventDefault()
+        const adults = guestCounts.adults
+        const children = guestCounts.children
+        const infants = guestCounts.infants
+        const pets = guestCounts.pets
         onSetFilter.current({
-            ...filterByToEdit, loc: { country: inputValue },
-            dates: { checkIn: startDate, checkOut: endDate },
-            guests: guestCounts
+            ...filterByToEdit,
+            country: inputValue,
+            checkIn: startDate,
+            checkOut: endDate,
+            adults,
+            children,
+            infants,
+            pets
+            // guests: guestCounts
         })
         setIsOpen(false)
         setCountryModal(false)
@@ -124,7 +134,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
     const formatGuestSummary = () => {
         let summary = []
-        summary.push(guestCounts.adults + (guestCounts.adults === 1 ? ' Adult' : ' Adults'))
+        if (guestCounts.adults > 0) {
+            summary.push(guestCounts.adults + (guestCounts.adults === 1 ? ' Adult' : ' Adults'))
+        }
         if (guestCounts.children > 0) {
             summary.push(guestCounts.children + (guestCounts.children === 1 ? ' Child' : ' Children'))
         }
@@ -136,7 +148,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         }
         return summary.join(', ')
     }
-
+    // const { country, city } = filterBy
+    // const { guests } = filterBy
+    // const { dates } = filterBy
     return (
 
         <form onSubmit={handleSubmit} className="search-filter">
@@ -283,15 +297,15 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                 {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
             </div>
-            {showGuestDropdown &&
-                <div className="input-group">
+            {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search"></i> Search</button>}
+            {showGuestDropdown && <div className="input-group guests-container">
 
-                    <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                    <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                    <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                    <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
 
-                </div>}
+            </div>}
 
         </form>
     )

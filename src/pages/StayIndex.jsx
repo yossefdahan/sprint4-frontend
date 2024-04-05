@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/stay.actions.js'
 
@@ -7,13 +7,17 @@ import { userService } from '../services/user.service.js'
 import { stayService } from '../services/stay.service.local.js'
 import { StayDetails } from './StayDetails.jsx'
 import { StayList } from '../cmps/StayList.jsx'
+import { useSearchParams } from 'react-router-dom'
 
 export function StayIndex() {
     const dispatch = useDispatch()
-    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
+    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
     useEffect(() => {
+        setSearchParams(filterBy)
         loadStays(filterBy)
     }, [filterBy])
 

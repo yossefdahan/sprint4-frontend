@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from "react"
 // import { useParams } from 'react-router-dom'
 import { userService } from '../services/user.service.js'
@@ -14,12 +14,16 @@ import { Payment } from '../cmps/payment.jsx'
 
 export function StayDetails() {
     const { stayId } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+    // const filterBy = stayService.getFilterFromParams(searchParams)
+    const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
     const [stay, setStay] = useState(null)
     const navigate = useNavigate()
     const users = useSelector(storeState => storeState.userModule.users)
-    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
     useEffect(() => {
+        setSearchParams(filterBy)
         loadStay()
     }, [stayId])
 
