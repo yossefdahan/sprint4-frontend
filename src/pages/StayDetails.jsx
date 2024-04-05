@@ -16,13 +16,14 @@ export function StayDetails() {
     const { stayId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
     // const filterBy = stayService.getFilterFromParams(searchParams)
-    const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [stay, setStay] = useState(null)
     const navigate = useNavigate()
     const users = useSelector(storeState => storeState.userModule.users)
-    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
+    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     useEffect(() => {
+        
         setSearchParams(filterBy)
         loadStay()
     }, [stayId])
@@ -53,7 +54,7 @@ export function StayDetails() {
             </section>
             <section className='main-details'>
                 <MainDetails stay={stay} />
-                <Payment stay={stay} />
+                <Payment stay={stay} searchParams={searchParams} />
 
             </section>
             <div className="details-reviews">

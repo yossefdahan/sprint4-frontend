@@ -12,8 +12,9 @@ import { stayService } from '../services/stay.service.local.js'
 
 export function AppHeader() {
     const [searchParams, setSearchParams] = useSearchParams()
-    const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const navigate = useNavigate()
+
 
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
@@ -29,11 +30,11 @@ export function AppHeader() {
     }
 
     function onSetFilter(filterBy) {
-
         setFilterBy(filterBy)
     }
     function setP() {
-        setFilterBy("")
+        // let filterzero = stayService.getDefaultFilter()
+        setFilterBy()
         navigate('/')
 
     }

@@ -11,15 +11,15 @@ import { useSearchParams } from 'react-router-dom'
 
 export function StayIndex() {
     const dispatch = useDispatch()
-    const [searchParams, setSearchParams] = useSearchParams()
-    const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
+    // const [searchParams, setSearchParams] = useSearchParams()
+    // // const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams))
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const stays = useSelector(storeState => storeState.stayModule.stays)
-
-    useEffect(() => {
-        setSearchParams(filterBy)
-        loadStays(filterBy)
-    }, [filterBy])
+    
+    // useEffect(() => {
+    //     setSearchParams(filterBy)
+    //     loadStays(filterBy)
+    // }, [filterBy])
 
     async function onRemoveStay(stayId) {
         try {
