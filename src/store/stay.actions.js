@@ -30,8 +30,8 @@ export function getActionUpdateStay(stay) {
 
 
 
-export async function loadStays() {
-    const filterBy = store.getState().stayModule.filterBy
+export async function loadStays(filterBy) {
+    // const filterBy = store.getState().stayModule.filterBy
     store.dispatch({ type: 'LOADING_START', isLoading: true })
     try {
         const stays = await stayService.query(filterBy)

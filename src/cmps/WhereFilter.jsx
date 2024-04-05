@@ -75,10 +75,20 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
     function handleSubmit(event) {
         event.preventDefault()
+        const adults = guestCounts.adults
+        const children = guestCounts.children
+        const infants = guestCounts.infants
+        const pets = guestCounts.pets
         onSetFilter.current({
-            ...filterByToEdit, loc: { country: inputValue },
-            dates: { checkIn: startDate, checkOut: endDate },
-            guests: guestCounts
+            ...filterByToEdit,
+            country: inputValue,
+            checkIn: startDate,
+            checkOut: endDate,
+            adults,
+            children,
+            infants,
+            pets
+            // guests: guestCounts
         })
         setIsOpen(false)
         setCountryModal(false)
@@ -138,7 +148,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         }
         return summary.join(', ')
     }
-
+    // const { country, city } = filterBy
+    // const { guests } = filterBy
+    // const { dates } = filterBy
     return (
 
         <form onSubmit={handleSubmit} className="search-filter">

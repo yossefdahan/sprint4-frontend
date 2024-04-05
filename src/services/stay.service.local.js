@@ -29,8 +29,8 @@ async function getCountries() {
 async function query(filterBy = getDefaultFilter()) {
   var stays = await storageService.query(STORAGE_KEY)
 
-  if (filterBy.loc.country) {
-    const regex = new RegExp(filterBy.loc.country, "i")
+  if (filterBy.country) {
+    const regex = new RegExp(filterBy.country, "i")
     stays = stays.filter((stay) => regex.test(stay.loc.country))
   }
 
@@ -82,6 +82,7 @@ async function addStayReviews(stayId) {
 
 function getDefaultFilter() {
   return {
+    country: '',
     loc: {
       country: "",
       countryCode: "",
@@ -94,24 +95,32 @@ function getDefaultFilter() {
       checkIn: '',
       checkOut: '',
     },
+    checkIn: '',
+    checkOut: '',
     guests: {},
-    amenities: [],
+    // amenities: [],
     type: "",
     capacity: 0,
-    priceRange: {
-      minPrice: 0,
-      maxPrice: Infinity,
-    },
+    // priceRange: {
+    //   minPrice: '',
+    //   maxPrice: '',
+    // },
   }
 }
 
 function getFilterFromParams(searchParams) {
   const defaultFilter = getDefaultFilter()
+
   return {
-    loc: searchParams.get("loc") || defaultFilter.loc,
-    amenities: searchParams.get("amenities") || defaultFilter.amenities,
+    country: searchParams.get("country") || defaultFilter.country,
+    checkIn: searchParams.get("checkIn") || defaultFilter.checkIn,
+    checkOut: searchParams.get("checkOut") || defaultFilter.checkOut,
+    // loc: searchParams.get("loc") || defaultFilter.loc,
+    // amenities: searchParams.get("amenities") || defaultFilter.amenities,
     type: searchParams.get("type") || defaultFilter.type,
-    priceRange: searchParams.get("priceRange") || defaultFilter.priceRange,
+    // priceRange: searchParams.get("priceRange") || defaultFilter.priceRange,
+    // guests: searchParams.get('guests') || defaultFilter.guests,
+    // dates: searchParams.get('dates') || defaultFilter.dates
   }
 }
 
