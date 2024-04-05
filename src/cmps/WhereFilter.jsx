@@ -124,7 +124,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
     const formatGuestSummary = () => {
         let summary = []
-        summary.push(guestCounts.adults + (guestCounts.adults === 1 ? ' Adult' : ' Adults'))
+        if (guestCounts.adults > 0) {
+            summary.push(guestCounts.adults + (guestCounts.adults === 1 ? ' Adult' : ' Adults'))
+        }
         if (guestCounts.children > 0) {
             summary.push(guestCounts.children + (guestCounts.children === 1 ? ' Child' : ' Children'))
         }
@@ -283,7 +285,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
             </div>
             {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search"></i> Search</button>}
-            {showGuestDropdown && <div className="input-group">
+            {showGuestDropdown && <div className="input-group guests-container">
 
                 <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                 <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
