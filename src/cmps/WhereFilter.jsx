@@ -223,6 +223,11 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             {isOpen && (
                 // <div className="date-pick">
                 <div tabIndex={0} onKeyDown={handleKeyDown}>
+                    <div className="datepicker-header">
+                        <button className="datepicker-tab">Dates</button>
+                        <button className="datepicker-tab">Months</button>
+                        <button className="datepicker-tab">Flexible</button>
+                    </div>
                     <DatePicker
                         selected={startDate}
                         onChange={(dates) => {
@@ -239,9 +244,15 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                         // onClick={() => setIsOpen(true)}
                         onFocus={() => setIsOpen(true)}
                         onBlur={() => setIsOpen(false)}
-                    />
 
+                    />
+                    <div className="datepicker-footer">
+                        <button className="datepicker-range-button">Exact dates</button>
+                        <button className="datepicker-range-button">+1 day</button>
+                        <button className="datepicker-range-button">+2 days</button>
+                    </div>
                 </div>
+
                 // </div>
             )}
             <div className="input-group">

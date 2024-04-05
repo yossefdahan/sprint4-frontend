@@ -98,6 +98,48 @@
 
 }
 
+.datepicker-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    .datepicker-tab {
+        background-color: #fff;
+        border: none;
+        padding: 8px 16px;
+        margin: 0 4px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 8px;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.datepicker-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+
+    .datepicker-range-button {
+        background-color: #f7f7f7;
+        border: none;
+        padding: 8px 16px;
+        margin: 0 4px;
+        cursor: pointer;
+        border-radius: 8px;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            background-color: #ebebeb;
+        }
+    }
+}
 
 
 .react-datepicker__input-container {
@@ -124,10 +166,150 @@
     top: 50px;
     margin-top: 30px;
     transform: translate(666.364px, 144.545px);
-
+    // padding: 100px 30px 30px 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 1px 1px 1px 1px $light-gray;
 }
 
 
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
     display: none;
+}
+
+.react-datepicker {
+    border: none;
+
+}
+
+// .react-datepicker__day {
+//     border-radius: 50%;
+//     background-color: white;
+//     margin: 7px;
+// }
+
+.react-datepicker__header {
+    background-color: white;
+}
+
+.react-datepicker__month {
+    // margin: 4rem;
+    // padding: 5px;
+}
+
+.react-datepicker__current-month {
+    font-weight: normal;
+}
+
+.react-datepicker {
+    // Match the font style and box sizing to your design
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    padding: 5px;
+    // Borders, rounded corners, shadows
+    // border: 1px solid #ccc;
+    // border-radius: 16px;
+    // box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+
+    &__header {
+        background-color: white;
+        border-bottom: none;
+    }
+
+    &__current-month {
+        font-size: 1em;
+    }
+
+    &__navigation {
+        top: 1px;
+
+        &--next,
+        &--previous {
+            cursor: pointer;
+        }
+    }
+
+    &__month {
+        margin: 0;
+    }
+
+    &__day-names,
+    &__week {
+        display: flex;
+    }
+
+    &__day-name,
+    &__day {
+        width: 40px;
+        line-height: 40px;
+        margin: 0.5em 1em;
+        text-align: center;
+    }
+
+    &__day {
+        border-radius: 50%;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+
+        &--selected,
+        &--in-range,
+        &--in-selecting-range {
+            background-color: #f2f2f2;
+        }
+    }
+
+    &__day--keyboard-selected {
+        background-color: black;
+        color: white;
+    }
+
+    &__day--outside-month {
+        color: #ccc;
+    }
+}
+
+// Add the styles for the tabs and buttons outside the date picker
+.datepicker-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    .datepicker-tab {
+        background-color: #fff;
+        border: none;
+        padding: 8px 16px;
+        margin: 0 4px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 8px;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.datepicker-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+
+    .datepicker-range-button {
+        background-color: #f7f7f7;
+        border: none;
+        padding: 8px 16px;
+        margin: 0 4px;
+        cursor: pointer;
+        border-radius: 8px;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            background-color: #ebebeb;
+        }
+    }
 }
