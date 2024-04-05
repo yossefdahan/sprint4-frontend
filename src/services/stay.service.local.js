@@ -108,11 +108,11 @@ function getDefaultFilter() {
   }
 }
 
-function getFilterFromParams(searchParams) {
+function getFilterFromParams(searchParams={}) {
   const defaultFilter = getDefaultFilter()
 
   return {
-    country: searchParams.get("country") || defaultFilter.country,
+    country:  searchParams.get("country") || defaultFilter.country,
     checkIn: searchParams.get("checkIn") || defaultFilter.checkIn,
     checkOut: searchParams.get("checkOut") || defaultFilter.checkOut,
     // loc: searchParams.get("loc") || defaultFilter.loc,
