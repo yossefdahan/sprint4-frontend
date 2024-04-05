@@ -13,7 +13,7 @@ export const orderService = {
     query,
     remove,
     emptyOrder,
-    OrderInProggres,
+    saveLocalOrder,
     getOrderPending
 
 }
@@ -54,34 +54,39 @@ async function remove(reviewId) {
     await storageService.remove('review', reviewId)
 }
 
-async function add({ txt, aboutUserId }) {
-    // const addedReview = await httpService.post(`review`, {txt, aboutUserId})
+// async function add({ txt, aboutUserId }) {
+//     // const addedReview = await httpService.post(`review`, {txt, aboutUserId})
 
-    const aboutUser = await userService.getById(aboutUserId)
+//     const aboutUser = await userService.getById(aboutUserId)
 
-    const reviewToAdd = {
-        txt,
-        byUser: userService.getLoggedinUser(),
-        aboutUser: {
-            _id: aboutUser._id,
-            fullname: aboutUser.fullname,
-            imgUrl: aboutUser.imgUrl
-        }
-    }
+//     const reviewToAdd = {
+//         txt,
+//         byUser: userService.getLoggedinUser(),
+//         aboutUser: {
+//             _id: aboutUser._id,
+//             fullname: aboutUser.fullname,
+//             imgUrl: aboutUser.imgUrl
+//         }
+//     }
 
-    reviewToAdd.byUser.score += 10
-    await userService.update(reviewToAdd.byUser)
-    const addedReview = await storageService.post('review', reviewToAdd)
-    return addedReview
+//     reviewToAdd.byUser.score += 10
+//     await userService.update(reviewToAdd.byUser)
+//     const addedReview = await storageService.post('review', reviewToAdd)
+//     return addedReview
+// }
+
+
+async function add(order) {
+    await storageService.post(STORAGE_KEY, order)
 }
+// async function OrderInProggres(order) {
+//     order._id = utilService.makeId(5)
+//     return saveLocalOrder(order)
+// }
 
-function OrderInProggres(order) {
-    order._id = utilService.makeId(5)
-    saveLocalOrder(order)
-}
-
-function saveLocalOrder(order) {
+async function saveLocalOrder(order) {
     // order = { _id: order, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score, isAdmin: user.isAdmin }
+    // order._id = utilService.makeId(5)
     sessionStorage.setItem(STORAGE_KEY_ORDER_PROCCES, JSON.stringify(order))
     return order
 }

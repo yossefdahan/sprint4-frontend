@@ -11,6 +11,7 @@ export const SET_ORDER = 'SET_ORDER'
 const initialState = {
   orders: [],
   order: orderService.getOrderPending()
+
 }
 
 export function orderReducer(state = initialState, action = {}) {

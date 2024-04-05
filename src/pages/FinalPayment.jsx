@@ -2,18 +2,22 @@ import { userService } from '../services/user.service.js'
 import { useState, useEffect } from 'react'
 
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { orderService } from '../services/order.service.js'
 import { stayService } from '../services/stay.service.local.js'
+import { SET_ORDER } from '../store/order.reducer.js'
+import { addOrder, getActionAddOrder } from '../store/order.actions.js'
 
 
 export function FinalPayment() {
     // const [order, setOrder] = useState(orderService)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const order = useSelector(storeState => storeState.orderModule.order)
     const { stayId } = useParams()
     const [stay, setStay] = useState(null)
-    // console.log(order)
+
+    console.log(order)
     // useEffect(()=>{
     //     loadOrder()
     // },[])
@@ -27,9 +31,30 @@ export function FinalPayment() {
     //     }
     // }
 
+
     useEffect(() => {
+        // if(!order)
         loadStay()
+        loadOrderProgres()
+        // navigate(0)
     }, [stayId])
+
+    async function loadOrderProgres() {
+        try {
+            const order = await orderService.getOrderPending()
+            dispatch({ type: SET_ORDER, order })
+        } catch (err) {
+            console.log('loadOrderProgree: err in orderInProgress', err)
+            throw err
+        }
+    }
+
+    function dealMade(ev) {
+        ev.preventDefault()
+        addOrder(order)
+        navigate('/')
+        console.log('complete!')
+    }
 
     async function loadStay() {
         try {
@@ -53,7 +78,7 @@ export function FinalPayment() {
     //         console.log('error saving the review :', err)
     //     }
     // }
-    if (!stay) return <div>loading...</div>
+    if (!stay || !order) return <div>loading...</div>
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
 
     return (
@@ -100,7 +125,7 @@ export function FinalPayment() {
                 <hr />
                 <div className='calltoAction'>
                     <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
-                    <button>Confirm and pay</button>
+                    <button onClick={dealMade}>Confirm and pay</button>
                 </div>
 
 
@@ -124,21 +149,21 @@ export function FinalPayment() {
                             <hr />
                             <h2>Price details</h2>
                             <section>
-                                <span>{order.stay.price}X{5}nights</span>
-                                <span>{order.stay.price * 5}$</span>
+                                <span>{order.stay.price}X{Math.floor(order.totalPrice / order.stay.price)} nights </span>
+                                <span>{order.stay.price * Math.floor(order.totalPrice / order.stay.price)}$</span>
                             </section>
                             <section>
-                                <span>Cleaning fee</span>
-                                <span>{order.stay.price / 10}$</span>
+                                <span>Cleaning fee {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span>
+                                {/* <span>{order.stay.price / 10}$</span> */}
                             </section>
                             <section>
                                 <span>Taxes</span>
-                                <span>{order.stay.price / 10}$</span>
+                                {/* <span>{order.stay.price / 10}$</span> */}
                             </section>
                             <hr />
                             <section>
-                                <h3>total(USD)</h3>
-                                <span>{order.stay.price * 5 + 2 * (order.stay.price / 10)}$</span>
+                                <h3>total(USD) </h3>
+                                <span> {order.totalPrice}$</span>
                             </section>
                             <hr />
                             <p>This property requires a ₪504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p>

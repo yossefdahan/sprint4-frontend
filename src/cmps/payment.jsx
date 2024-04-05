@@ -9,6 +9,7 @@ import { PriceModal } from "./PriceModal.jsx"
 import DatePicker from 'react-datepicker'
 import { GuestSelector } from "./GuestSelector.jsx"
 import { useSelector } from "react-redux"
+import { orderInProgress } from "../store/order.actions.js"
 
 export function Payment({ stay, filterBy }) {
     const navigate = useNavigate()
@@ -17,6 +18,7 @@ export function Payment({ stay, filterBy }) {
     const [priceModal, setPriceModal] = useState(false)
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
+    const [isSend, setSend] = useState(false)
 
     const [startDate, setStartDate] = useState(filterBy.dates.checkIn ? new Date(filterBy.dates.checkIn) : new Date())
     const [endDate, setEndDate] = useState(filterBy.dates.checkOut ? new Date(filterBy.dates.checkOut) : new Date())
@@ -63,11 +65,13 @@ export function Payment({ stay, filterBy }) {
                 ...guestCounts
             },
         }))
-    }, [startDate, endDate, guestCounts])
+    }, [filterBy, isSend])
 
     const calculateTotalPrice = () => {
         const days = (endDate - startDate) / (1000 * 3600 * 24)
-        return days * stay.price
+        const fee = (stay.price / 10) * days
+        const finalPrice = days * stay.price
+        return finalPrice + fee
     }
 
     // function handleOrderChange(ev) {
@@ -77,19 +81,23 @@ export function Payment({ stay, filterBy }) {
 
     // }
 
-    async function sendToFinalOrder(ev, order) {
+    async function sendToFinalOrder(ev) {
         ev.preventDefault()
         const totalPrice = calculateTotalPrice()
+        // order.hostId = stay.host.id
+        // order.status = 'pending'
+        // order.stay = { _id: stay._id, name: stay.name, price: stay.price }
         const finalOrder = {
             ...order,
             totalPrice,
         }
 
         try {
-            const savedOrder = await orderService.OrderInProggres(finalOrder)
-            setOrder(savedOrder)
-
+            await orderInProgress(finalOrder)
+            setSend(!isSend)
             setOrder(orderService.emptyOrder())
+            // setOrder(savedOrder)
+
             showSuccessMsg('order saved!')
             navigate(`/payment/${stay._id}`)
         } catch (err) {
@@ -108,25 +116,52 @@ export function Payment({ stay, filterBy }) {
     return (
         < section className="payment-modal" >
             <h1>${stay.price}<span> night</span></h1>
-
+            <input
+                type="text"
+                readOnly
+                // value={utilService.formatDate(startDate)}
+                placeholder="Check in"
+                onClick={() => setIsOpen(!isOpen)}
+            />
 
             <form onSubmit={sendToFinalOrder}>
-                <DatePicker
-                    selected={startDate}
-                    onChange={date => setStartDate(date)}
-                    startDate={startDate}
-                    endDate={endDate}
-                    selectsStart
+                {isOpen && (
+                    <div className="date-pick">
+                        {/* <div className="datepicker-header">
+                            <button className="dates datepicker-tab">Dates</button>
+                            <button className="datepicker-tab">Months</button>
+                            <button className="datepicker-tab">Flexible</button>
+                        </div> */}
 
-                />
-                <DatePicker
-                    selected={endDate}
-                    onChange={date => setEndDate(date)}
-                    startDate={startDate}
-                    endDate={endDate}
-                    selectsEnd
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(dates) => {
+                                const [start, end] = dates
+                                setStartDate(start)
+                                setEndDate(end)
+                            }}
+                            startDate={startDate}
+                            endDate={endDate}
+                            selectsRange
+                            // inline
+                            monthsShown={2}
+                            open={isOpen}
+                            // onClick={() => setIsOpen(true)}
+                            onFocus={() => setIsOpen(true)}
+                            onBlur={() => setIsOpen(false)}
 
-                />
+                        />
+                        <div className="datepicker-footer">
+                            <button className=" exact-date datepicker-range-button">Exact dates</button>
+                            <button className=" date-btn-search datepicker-range-button">+1 day</button>
+                            <button className="date-btn-search  datepicker-range-button">+2 days</button>
+                        </div>
+                    </div>
+
+
+
+
+                )}
 
                 {/* <div className="input-group"> */}
                 <input type="text" readOnly value={`${Object.values(guestCounts).reduce((acc, num) => acc + num, 0)} guests`} />
@@ -143,7 +178,7 @@ export function Payment({ stay, filterBy }) {
                 <h4>You won't be charged yet</h4>
 
                 <a onClick={() => setPriceModal(true)}>${stay.price} x {guestCounts.adults + guestCounts.children} guests</a>
-                <a onClick={() => setFeeModal(true)}>Airstay service fee $100</a>
+                <a onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (endDate - startDate) / (1000 * 3600 * 24)}$</a>
 
                 <h3>Total <span>${calculateTotalPrice().toFixed(2)}</span></h3>
             </form>
