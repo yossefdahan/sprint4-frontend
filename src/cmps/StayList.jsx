@@ -7,7 +7,7 @@ export function StayList({ stays, shouldShowActionBtns, onRemoveStay, onUpdateSt
 
 
     return (
-        
+
         <ul className="stay-list">
             {stays.map(stay =>
                 <StayPreview
@@ -18,6 +18,8 @@ export function StayList({ stays, shouldShowActionBtns, onRemoveStay, onUpdateSt
                     key={stay._id}
                 />)
             }
+
         </ul>
+
     )
 }

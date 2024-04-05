@@ -9,6 +9,7 @@ import { StayDetails } from './StayDetails.jsx'
 import { StayList } from '../cmps/StayList.jsx'
 import { useSearchParams } from 'react-router-dom'
 import { ScrollingFilter } from '../cmps/ScrollingFilter.jsx'
+import { AppFooter } from '../cmps/AppFooter.jsx'
 
 export function StayIndex() {
     const dispatch = useDispatch()
@@ -87,7 +88,9 @@ export function StayIndex() {
                     onRemoveStay={onRemoveStay}
                     shouldShowActionBtns={shouldShowActionBtns}
                 />
+                <button className="show-map-btn">Show map</button>
             </main>
+            {/* <AppFooter /> */}
         </div>
     )
 }

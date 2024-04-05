@@ -5,8 +5,30 @@
   padding: 0;
   grid-auto-flow: dense;
 
-  // display: grid;
-  // grid-template-columns: repeat(6, 1fr);
-  // grid-template-rows: 0;
   list-style: none;
+}
+
+.show-map-btn {
+  width: 130px;
+  font-size: 14px;
+  height: 48px;
+  transition-duration: 0.15s;
+  text-size-adjust: 100%;
+  line-height: 20px;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: $black2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($black2, 10%); // Darken on hover for feedback
+    font-weight: bold;
+  }
 }
