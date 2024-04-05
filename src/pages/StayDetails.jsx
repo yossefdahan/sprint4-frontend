@@ -23,7 +23,7 @@ export function StayDetails() {
 
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     useEffect(() => {
-        
+
         setSearchParams(filterBy)
         loadStay()
     }, [stayId])
@@ -54,7 +54,7 @@ export function StayDetails() {
             </section>
             <section className='main-details'>
                 <MainDetails stay={stay} />
-                <Payment stay={stay} searchParams={searchParams} />
+                <Payment stay={stay} filterBy={filterBy} />
 
             </section>
             <div className="details-reviews">
