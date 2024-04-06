@@ -1,6 +1,6 @@
 // import DateField from "./DateField";
 import { Link, useNavigate } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { orderService } from '../services/order.service.js'
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { set } from "date-fns"
@@ -12,7 +12,7 @@ import { useSelector } from "react-redux"
 import { orderInProgress } from "../store/order.actions.js"
 import { utilService } from "../services/util.service.js"
 
-export function Payment({ stay, filterBy }) {
+export function Payment({ stay, filterBy, onSetFilter }) {
     const navigate = useNavigate()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [order, setOrder] = useState(orderService.emptyOrder())
@@ -20,15 +20,14 @@ export function Payment({ stay, filterBy }) {
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
-
-    const [startDate, setStartDate] = useState(filterBy.checkIn ? new Date(filterBy.checkIn) : new Date())
-    const [endDate, setEndDate] = useState(filterBy.checkOut ? new Date(filterBy.checkOut) : new Date())
     const [guestCounts, setGuestCounts] = useState({
         adults: filterBy.adults || 1,
         children: filterBy.children || 0,
         infants: filterBy.infants || 0,
         pets: filterBy.pets || 0
     })
+
+    onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
 
     //    we need // const user = useSelector(storeState => storeState.userModule.loggedinUser)
     // order.stay._id = stay._id
@@ -58,8 +57,8 @@ export function Payment({ stay, filterBy }) {
                 price: stay.price,
             },
             hostId: stay.host._id,
-            startDate: startDate,
-            endDate: endDate,
+            startDate: filterBy.checkIn,
+            endDate: filterBy.checkOut,
             guests: {
                 ...guestCounts
             },
@@ -67,7 +66,7 @@ export function Payment({ stay, filterBy }) {
     }, [filterBy, isSend])
 
     const calculateTotalPrice = () => {
-        const days = (endDate - startDate) / (1000 * 3600 * 24)
+        const days = (filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)
         const fee = (stay.price / 10) * days
         const finalPrice = days * stay.price
         return finalPrice + fee
@@ -119,14 +118,14 @@ export function Payment({ stay, filterBy }) {
             <input
                 type="text"
                 readOnly
-                value={utilService.formatDate(startDate)}
+                value={utilService.formatDate(filterBy.checkIn)}
                 placeholder="Check in"
                 onClick={() => setIsOpen(!isOpen)}
             />
             <input
                 type="text"
                 readOnly
-                value={utilService.formatDate(endDate)}
+                value={utilService.formatDate(filterBy.checkOut)}
                 placeholder="Check out"
                 onClick={() => setIsOpen(true)}
             />
@@ -140,14 +139,17 @@ export function Payment({ stay, filterBy }) {
                         </div> */}
 
                         <DatePicker
-                            selected={startDate}
+                            selected={filterBy.checkIn}
                             onChange={(dates) => {
                                 const [start, end] = dates
-                                setStartDate(start)
-                                setEndDate(end)
+                                onSetFilter.current({
+                                    ...filterBy,
+                                    checkIn: start,
+                                    checkOut: end
+                                })
                             }}
-                            startDate={startDate}
-                            endDate={endDate}
+                            startDate={filterBy.checkIn}
+                            endDate={filterBy.checkOut}
                             selectsRange
                             // inline
                             monthsShown={2}
@@ -184,7 +186,7 @@ export function Payment({ stay, filterBy }) {
                 <h4>You won't be charged yet</h4>
 
                 <a onClick={() => setPriceModal(true)}>${stay.price} x {guestCounts.adults + guestCounts.children} guests</a>
-                <a onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (endDate - startDate) / (1000 * 3600 * 24)}$</a>
+                <a onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)}$</a>
 
                 <h3>Total <span>${calculateTotalPrice().toFixed(2)}</span></h3>
             </form>

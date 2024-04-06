@@ -110,11 +110,13 @@ function getDefaultFilter() {
 
 function getFilterFromParams(searchParams={}) {
   const defaultFilter = getDefaultFilter()
+  const checkIn = parseInt(searchParams.get("checkIn"))
+  const checkOut = parseInt(searchParams.get("checkOut"))
 
   return {
     country:  searchParams.get("country") || defaultFilter.country,
-    checkIn: searchParams.get("checkIn") || defaultFilter.checkIn,
-    checkOut: searchParams.get("checkOut") || defaultFilter.checkOut,
+    checkIn: checkIn ? new Date(checkIn) : defaultFilter.checkIn,
+    checkOut: checkOut ? new Date(checkOut) : defaultFilter.checkOut,
     // loc: searchParams.get("loc") || defaultFilter.loc,
     // amenities: searchParams.get("amenities") || defaultFilter.amenities,
     type: searchParams.get("type") || defaultFilter.type,

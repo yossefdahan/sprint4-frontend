@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from "react"
 // import { useParams } from 'react-router-dom'
 import { userService } from '../services/user.service.js'
+import { setFilterBy } from '../store/stay.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { stayService } from '../services/stay.service.local.js'
 import { MainDetails } from '../cmps/MainDetails.jsx'
@@ -54,7 +55,7 @@ export function StayDetails() {
             </section>
             <section className='main-details'>
                 <MainDetails stay={stay} />
-                <Payment stay={stay} filterBy={filterBy} />
+                <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
 
             </section>
             <div className="details-reviews">

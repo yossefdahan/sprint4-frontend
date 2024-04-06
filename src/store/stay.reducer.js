@@ -9,14 +9,13 @@ export const CLEAR_CART = 'CLEAR_CART'
 export const UNDO_REMOVE_STAY = 'UNDO_REMOVE_STAY'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
-// const SearchParams =
 
+const searchParams = new URLSearchParams(window.location.search)
 const initialState = {
     stays: [],
     cart: [],
     lastRemovedStay: null,
-    filterBy: stayService.getDefaultFilter()
-    // filterBy: null
+    filterBy: stayService.getFilterFromParams(searchParams)
 }
 
 export function stayReducer(state = initialState, action = {}) {

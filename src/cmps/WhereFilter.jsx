@@ -17,8 +17,6 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const [allCountries, setAllCountries] = useState([])
     const [countyModal, setCountryModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
     const datePickerRef = useRef(null)
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
@@ -27,7 +25,6 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         infants: 0,
         pets: 0
     })
-    console.log(startDate);
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
 
     useEffect(() => {
@@ -96,10 +93,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         const infants = guestCounts.infants
         const pets = guestCounts.pets
         onSetFilter.current({
-            ...filterByToEdit,
+            ...filterBy,
             country: inputValue,
-            checkIn: startDate,
-            checkOut: endDate,
             adults,
             children,
             infants,
@@ -171,14 +166,13 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     return (
 
         <form onSubmit={handleSubmit} className="search-filter">
-            <div className="input-group">
+            <div className="input-group" onClick={() => setCountryModal(!countyModal)}>
                 {/* <p>Where</p> */}
                 <input
                     placeholder="Search destination"
                     type="text"
                     value={inputValue}
                     onChange={handleChange}
-                    onClick={() => setCountryModal(!countyModal)}
                 />
             </div>
             {countyModal && !inputValue &&
@@ -242,14 +236,13 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 </ul>
             )}
 
-            <div className="input-group">
+            <div className="input-group" onClick={() => setIsOpen(true)}>
 
                 <input
                     type="text"
                     readOnly
-                    value={utilService.formatDate(startDate)}
+                    value={utilService.formatDate(filterBy.checkIn)}
                     placeholder="Check in"
-                    onClick={() => setIsOpen(true)}
                 />
             </div>
             {isOpen && (
@@ -262,14 +255,17 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                         </div>
 
                         <DatePicker
-                            selected={startDate}
+                            selected={filterBy.checkIn}
                             onChange={(dates) => {
                                 const [start, end] = dates
-                                setStartDate(start)
-                                setEndDate(end)
+                                onSetFilter.current({
+                                    ...filterBy,
+                                    checkIn: start,
+                                    checkOut: end
+                                })
                             }}
-                            startDate={startDate}
-                            endDate={endDate}
+                            startDate={filterBy.checkIn}
+                            endDate={filterBy.checkOut}
                             selectsRange
                             // inline
                             monthsShown={2}
@@ -292,24 +288,21 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
 
             )}
-            <div className="input-group">
+            <div className="input-group" onClick={() => setIsOpen(true)}>
                 <input
                     type="text"
                     readOnly
-                    value={utilService.formatDate(endDate)}
+                    value={utilService.formatDate(filterBy.checkOut)}
                     placeholder="Check out"
-                    onClick={() => setIsOpen(true)}
                 />
             </div>
 
-            <div className="input-group">
+            <div className="input-group" onClick={() => {
+                        setIsOpen(false)
+                        setShowGuestDropdown(!showGuestDropdown)}}>
                 <input type="text"
                     placeholder="Add guests"
                     value={formatGuestSummary()}
-                    onClick={() => {
-                        setIsOpen(false)
-                        setShowGuestDropdown(!showGuestDropdown)
-                    }}
                     readOnly
                 />
 
