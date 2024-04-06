@@ -9,6 +9,8 @@
     "usa greece south";
   top: 100%;
   box-shadow: 1px 1px 1px 1px $light-gray;
+  // left: 50%;
+
   border: 1px solid $light-gray;
   z-index: 1000;
   border-radius: 12px;
@@ -301,6 +303,7 @@
 /*filter need to marge */
 .search-filter {
   display: flex;
+  position: relative;
   // justify-content: space-between;
   align-items: center;
   background-color: white;
