@@ -113,84 +113,84 @@ export function Payment({ stay, filterBy }) {
 
 
     return (
-        <section className ='line-payment'>
-        < section className="payment-modal" >
-            <h1>${stay.price}<span> night</span></h1>
-            <input
-                type="text"
-                readOnly
-                value={utilService.formatDate(startDate)}
-                placeholder="Check in"
-                onClick={() => setIsOpen(!isOpen)}
-            />
-            <input
-                type="text"
-                readOnly
-                value={utilService.formatDate(endDate)}
-                placeholder="Check out"
-                onClick={() => setIsOpen(true)}
-            />
-            <form onSubmit={sendToFinalOrder}>
-                {isOpen && (
-                    <div className="date-pick">
-                        {/* <div className="datepicker-header">
+        <section className='line-payment'>
+            < section className="payment-modal" >
+                <h1>${stay.price}<span> night</span></h1>
+                <input
+                    type="text"
+                    readOnly
+                    value={utilService.formatDate(startDate)}
+                    placeholder="Check in"
+                    onClick={() => setIsOpen(!isOpen)}
+                />
+                <input
+                    type="text"
+                    readOnly
+                    value={utilService.formatDate(endDate)}
+                    placeholder="Check out"
+                    onClick={() => setIsOpen(true)}
+                />
+                <form onSubmit={sendToFinalOrder}>
+                    {isOpen && (
+                        <div className="date-pick">
+                            {/* <div className="datepicker-header">
                             <button className="dates datepicker-tab">Dates</button>
                             <button className="datepicker-tab">Months</button>
                             <button className="datepicker-tab">Flexible</button>
                         </div> */}
 
-                        <DatePicker
-                            selected={startDate}
-                            onChange={(dates) => {
-                                const [start, end] = dates
-                                setStartDate(start)
-                                setEndDate(end)
-                            }}
-                            startDate={startDate}
-                            endDate={endDate}
-                            selectsRange
-                            // inline
-                            monthsShown={2}
-                            open={isOpen}
-                            // onClick={() => setIsOpen(true)}
-                            onFocus={() => setIsOpen(true)}
-                            onBlur={() => setIsOpen(false)}
+                            <DatePicker
+                                selected={startDate}
+                                onChange={(dates) => {
+                                    const [start, end] = dates
+                                    setStartDate(start)
+                                    setEndDate(end)
+                                }}
+                                startDate={startDate}
+                                endDate={endDate}
+                                selectsRange
+                                // inline
+                                monthsShown={2}
+                                open={isOpen}
+                                // onClick={() => setIsOpen(true)}
+                                onFocus={() => setIsOpen(true)}
+                                onBlur={() => setIsOpen(false)}
 
-                        />
-                        <div className="datepicker-footer">
-                            <button className=" exact-date datepicker-range-button">Exact dates</button>
-                            <button className=" date-btn-search datepicker-range-button">+1 day</button>
-                            <button className="date-btn-search  datepicker-range-button">+2 days</button>
+                            />
+                            <div className="datepicker-footer">
+                                <button className=" exact-date datepicker-range-button">Exact dates</button>
+                                <button className=" date-btn-search datepicker-range-button">+1 day</button>
+                                <button className="date-btn-search  datepicker-range-button">+2 days</button>
+                            </div>
                         </div>
-                    </div>
 
 
 
 
-                )}
+                    )}
 
-                {/* <div className="input-group"> */}
-                <input type="text" readOnly value={`${Object.values(guestCounts).reduce((acc, num) => acc + num, 0)} guests`} />
+                    {/* <div className="input-group"> */}
+                    <input type="text" readOnly value={`${Object.values(guestCounts).reduce((acc, num) => acc + num, 0)} guests`} />
 
-                {/* <div className="input-group guests-container"> */}
+                    {/* <div className="input-group guests-container"> */}
 
-                {/* <GuestSelector guestType="adults" guestCount={guestCounts.adults} updateGuestCount={(newValue) => updateGuestCount('adults', newValue)} />
+                    {/* <GuestSelector guestType="adults" guestCount={guestCounts.adults} updateGuestCount={(newValue) => updateGuestCount('adults', newValue)} />
                 <GuestSelector guestType="children" guestCount={guestCounts.children} updateGuestCount={(newValue) => updateGuestCount('children', newValue)} />
                 <GuestSelector guestType="infants" guestCount={guestCounts.infants} updateGuestCount={(newValue) => updateGuestCount('infants', newValue)} />
                 <GuestSelector guestType="pets" guestCount={guestCounts.pets} updateGuestCount={(newValue) => updateGuestCount('pets', newValue)} /> */}
 
 
-                <button type="submit">Reserve</button>
-                <h4>You won't be charged yet</h4>
+                    <button type="submit">Reserve</button>
+                    <h4>You won't be charged yet</h4>
 
-                <div onClick={() => setPriceModal(true)}>${stay.price} x {guestCounts.adults + guestCounts.children} guests</div>
-                <div onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (endDate - startDate) / (1000 * 3600 * 24)}$</div>
+                    <div onClick={() => setPriceModal(true)}>${stay.price} x {(endDate - startDate) / (1000 * 3600 * 24)} nights <span> ${stay.price * (endDate - startDate) / (1000 * 3600 * 24)}</span></div>
+                    <div onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (endDate - startDate) / (1000 * 3600 * 24)}$</div>
 
-                <h3>Total <span>${calculateTotalPrice().toFixed(2)}</span></h3>
-            </form>
-            {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} stayDetails={stay} startDate={startDate} endDate={endDate} />}
-            {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
-        </section >
+                    <h3>Total <span>${calculateTotalPrice()}</span></h3>
+                </form>
+                {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} stayDetails={stay} startDate={startDate} endDate={endDate} />}
+                {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
+            </section >
         </section>)
 
 }
