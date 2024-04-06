@@ -20,7 +20,7 @@ export function AppHeader() {
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
 
-    useEffect(() => {
+    useEffect(() => { // back here i think here is the problem (bug with params)
         setSearchParams({
             ...filterBy,
             checkIn: filterBy.checkIn ? filterBy.checkIn.getTime() : '',
@@ -44,7 +44,7 @@ export function AppHeader() {
     return (<>
         <header className="app-header flex align-center ">
             <img onClick={backHome} className="logo-img" src={logoImg} />
-            {isPaymentRoute ?"": (<div className='stays-search  flex align-center'>
+            {isPaymentRoute ? "" : (<div className='stays-search  flex align-center'>
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>
                 <button className='experiences'>Online Experiences</button>

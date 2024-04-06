@@ -170,6 +170,10 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     // const { country, city } = filterBy
     // const { guests } = filterBy
     // const { dates } = filterBy
+    // const searchParams = new URLSearchParams(window.location.search)
+    // function backHome() {
+    //     window.location.href = `/${searchParams}`
+    // }
 
     return (
         <>
@@ -306,15 +310,15 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     />
                 </div>
 
-            <div className="input-group" onClick={() => {
-                setIsOpen(false)
-                setShowGuestDropdown(!showGuestDropdown)
-            }}>
-                <input type="text"
-                    placeholder="Add guests"
-                    value={formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : ''}
-                    readOnly
-                />
+                <div className="input-group" onClick={() => {
+                    setIsOpen(false)
+                    setShowGuestDropdown(!showGuestDropdown)
+                }}>
+                    <input type="text"
+                        placeholder="Add guests"
+                        value={formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : ''}
+                        readOnly
+                    />
 
                     {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
                 </div>
