@@ -89,14 +89,16 @@
     height: 27px;
     font-size: 13px;
     color: black;
-    margin-left: 20px;
+    margin-left: -10px;
     margin-top: -14px;
-    display: none;
+    // display: none;
+
   }
 
   .swiper-button-prev::after {
     font-size: 13px;
     color: black;
+
   }
 
   .swiper-button-prev:hover {
