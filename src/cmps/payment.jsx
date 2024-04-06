@@ -21,6 +21,7 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
+    const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
         adults: filterBy.adults || 1,
@@ -146,6 +147,15 @@ export function Payment({ stay, filterBy, onSetFilter }) {
         })
     }
 
+    const handleMouseMove = (event) => {
+        const { clientY, target } = event;
+        const { top, height } = target.getBoundingClientRect();
+        const yRatio = (clientY - top) / height;
+
+        const lightness = 40 + (20 * yRatio);
+        setButtonColor(`hsl(351, 83%, ${lightness}%)`);
+    };
+
     // const updateGuestCount = (guestType, newValue) => {
     //     setGuestCounts(prevCounts => ({
     //         ...prevCounts,
@@ -259,9 +269,11 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                         </div>}
                     </div>
                     {(filterBy.checkOut - filterBy.checkIn) >= 1 ?
-                        (<button className="reserve-btn" type="submit">Reserve</button>)
+                        (<button className="reserve-btn " type="submit" style={{ backgroundColor: buttonColor }}
+                            onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')}>Reserve</button>)
                         :
-                        (<button className="reserve-btn" type="submit">Check availability</button>)
+                        (<button className="reserve-btn " type="submit" style={{ backgroundColor: buttonColor }}
+                            onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')}>Check availability</button>)
                     }
                 </form>
                 {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <>
