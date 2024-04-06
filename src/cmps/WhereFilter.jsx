@@ -49,6 +49,21 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit, inputValue])
 
 
+    //add handle with close the map modal 
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            if (!event.target.closest('.maps-search') && !event.target.closest('.guest-selector')) {
+                setCountryModal(false);
+                setShowGuestDropdown(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, []);
+
 
     function handleChange({ target }) {
         const { value } = target
@@ -151,6 +166,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     // const { country, city } = filterBy
     // const { guests } = filterBy
     // const { dates } = filterBy
+
     return (
 
         <form onSubmit={handleSubmit} className="search-filter">
