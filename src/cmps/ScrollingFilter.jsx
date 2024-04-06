@@ -34,7 +34,7 @@ export function ScrollingFilter() {
         <Swiper
           slidesPerView={20}
           spaceBetween={0}
-          slidesPerGroup={1}
+          slidesPerGroup={10}
           loopFillGroupWithBlank={false}
           // pagination={{
           //   clickable: true,
