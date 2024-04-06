@@ -40,9 +40,9 @@ export function MainDetails({ stay }) {
             </div>
             <hr />
             <div className="more-details">
-                <div><h3>Free cancellation before</h3></div>
-                <div><h3>Dive right in</h3></div>
-                <div><h3>Highly rated Host</h3></div>
+                <div><span></span> <p>Free cancellation before</p></div>
+                <div><span className="fa-solid fa-paw"></span><p>Furry friends welcome</p></div>
+                <div><span></span><p>Great location</p></div>
             </div>
             <hr />
             <div className="details-description">

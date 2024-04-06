@@ -94,7 +94,7 @@ export function ScrollingFilter() {
     <div className="filter-main">
       <div className="carusel-filter-main">
         <Swiper
-          slidesPerView={17}
+          slidesPerView={20}
           spaceBetween={0}
           slidesPerGroup={1}
           loopFillGroupWithBlank={false}

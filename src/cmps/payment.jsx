@@ -113,6 +113,7 @@ export function Payment({ stay, filterBy }) {
 
 
     return (
+        <section className ='line-payment'>
         < section className="payment-modal" >
             <h1>${stay.price}<span> night</span></h1>
             <input
@@ -189,6 +190,7 @@ export function Payment({ stay, filterBy }) {
             </form>
             {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} stayDetails={stay} startDate={startDate} endDate={endDate} />}
             {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
-        </section >)
+        </section >
+        </section>)
 
 }
