@@ -350,6 +350,13 @@
       &:hover {
         background-color: $light-gray;
       }
+
+      &:focus {
+        box-shadow: 2px 2px 2 2px rgba(106, 105, 105, 0.552);
+        font-weight: 500;
+        background-color: $light-gray;
+        border: 1px solid rgba(238, 237, 237, 0.623);
+      }
     }
 
     .search-btn-destination {
