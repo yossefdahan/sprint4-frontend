@@ -1,0 +1,283 @@
+.line-payment {
+    position: relative;
+
+    & .payment-modal {
+        position: sticky;
+        top: 100px;
+        width: 286.66px;
+        height: 459px;
+
+        & h1 {
+            font-size: 1.23em;
+            margin: 0;
+            margin-bottom: 24px;
+
+            span {
+                font-size: 0.73em;
+                font-weight: 200;
+            }
+        }
+
+        & .payment-date-picker {
+
+            display: flex;
+            flex-direction: column;
+
+            & div {
+                display: flex;
+
+                & .in,
+                .out {
+                    width: 117.83px;
+                    z-index: 1100;
+                    border: 0.1px solid $light-gray;
+                    height: 56px;
+                }
+
+                & .in {
+                    border-radius: 8px 0 0 0;
+                    position: relative;
+
+                    & .header-label {
+                        position: absolute;
+                        top: 5px;
+                        padding: 3px 6px;
+
+                        // margin-right: 5px;
+                        font-size: 10px;
+                        font-weight: 700;
+                        color: #333;
+                        user-select: none;
+                    }
+
+                    & .start-input {
+                        border: none;
+                        outline: none;
+                        padding: 26px 12px 10px;
+
+                        font-size: 14px;
+                        font-weight: 400;
+                        background-color: transparent;
+                    }
+                }
+
+                & .out {
+                    border-radius: 0 8px 0 0;
+                    border-left: none;
+                    position: relative;
+
+                    & .header-label {
+                        position: absolute;
+                        top: 5px;
+                        padding: 3px 6px;
+
+                        // margin-right: 5px;
+                        font-size: 10px;
+                        font-weight: 700;
+                        color: #333;
+                        user-select: none;
+
+                    }
+
+                    & .end-input {
+                        border: none;
+                        padding: 26px 12px 10px;
+
+
+                        font-size: 14px;
+                        font-weight: 400;
+                        background-color: transparent;
+                    }
+                }
+
+            }
+
+            & .custom-input {
+                border: 0.1px solid $light-gray;
+                padding: 26px 36px 10px 12px;
+                position: relative;
+                border-radius: 0 0 8px 8px;
+                border-top: none;
+                height: 56px;
+
+                & .header-label {
+                    position: absolute;
+                    top: 5px;
+                    font-size: 10px;
+                    font-weight: 700;
+                    color: #333;
+                    user-select: none;
+                }
+
+                .guest-input {
+                    border: none;
+                    outline: none;
+
+
+                    font-size: 14px;
+                    font-weight: 400;
+                    background-color: transparent;
+                }
+
+                .dropdown-arrow {
+                    margin-left: auto;
+                    user-select: none;
+                    color: $main-gray;
+                    position: absolute;
+                    top: 25%;
+                    left: 90%;
+                }
+
+                .guest-input::-ms-expand {
+                    display: none;
+                }
+
+
+            }
+        }
+
+
+        & .payment-guests-count {
+            position: absolute;
+            height: 400px;
+            background-color: white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            top: 179px;
+            left: -23px;
+            width: 100%;
+            box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+            justify-content: center;
+
+            & .guest-payment {
+                display: flex;
+                height: 90px;
+            }
+        }
+
+        & .price-modal-btn,
+        .fee-modal-btn {
+            font-size: 0.9em;
+            text-decoration-line: underline;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 16px 0 0;
+
+            & .price {
+                text-decoration-line: none;
+
+            }
+
+        }
+
+        & .calendar {
+            position: absolute;
+            top: 45px;
+            left: -100px;
+            width: 272%;
+        }
+
+        & .price-modal {
+            position: absolute;
+            // width: 150px;
+            background-color: white;
+            box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+
+            top: 312px;
+            left: -260px;
+            width: 400px;
+
+            & ul {
+                list-style-type: none;
+                display: flex;
+                flex-direction: column;
+                margin: 0;
+                padding: 8px 24px 24px 24px;
+
+                & li {
+                    display: flex;
+                    justify-content: space-between;
+                    // margin: 5px 0px;
+                    padding-top: 16px;
+                    font-size: 0.889em;
+
+                }
+            }
+
+            & #price-title {
+                font-size: 0.889em;
+                text-align: center;
+                color: #222222;
+                padding: 8px 0;
+                align-items: center;
+                justify-content: center;
+                margin-top: 18px;
+            }
+
+            & .modal-exit-btn {
+                background-color: transparent;
+                border: none;
+                color: #222222;
+                font-size: 0.889em;
+                position: absolute;
+                top: 14px;
+                left: 5px;
+
+                & :hover {
+                    border-radius: 50%;
+                    background-color: $light-gray;
+                }
+            }
+
+            & div {
+                display: flex;
+                justify-content: space-between;
+                font-weight: 600;
+                color: #222222;
+                font-size: 0.889em;
+                padding: 24px;
+            }
+        }
+
+        & h4 {
+            font-size: 0.78em;
+            margin: 0;
+            margin-top: 16px;
+            width: 100%;
+            text-align: center;
+            font-weight: 200;
+        }
+
+        & h3 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9em;
+            margin: 0;
+            padding-top: 24px;
+
+        }
+
+        & hr {
+            border: none;
+            height: 1px;
+            background-color: $light-gray;
+            margin: 9px 0 0 0;
+            margin-top: 24px;
+        }
+
+        & form .reserve-btn {
+            width: 236.66px;
+            height: 48px;
+            border-radius: 8px;
+            font-size: 0.89em;
+
+        }
+    }
+
+}
