@@ -1,6 +1,32 @@
+import { useEffect } from "react";
 
 
 export function FeeModal({ feeModal, setFeeModal }) {
+
+
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            if (!feeModal) {
+                return
+            }
+            if (
+
+
+                !event.target.closest('.fee-modal')
+            ) {
+
+                if (feeModal) setFeeModal(false)
+
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+    }, [feeModal])
+
     return (
         <div className="fee-modal">
             <button onClick={() => setFeeModal(!feeModal)}>X</button>

@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 export function PriceModal({ priceModal, setPriceModal, stayDetails, startDate, endDate }) {
 
 
@@ -12,6 +14,28 @@ export function PriceModal({ priceModal, setPriceModal, stayDetails, startDate, 
 
         return dates
     }
+
+
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            if (!priceModal) {
+                return
+            }
+            if (
+                !event.target.closest('.price-modal')
+            ) {
+
+                if (priceModal) setPriceModal(false)
+
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+    }, [priceModal])
 
     const calculatePriceForDay = (date) => {
         return stayDetails.price
@@ -30,23 +54,25 @@ export function PriceModal({ priceModal, setPriceModal, stayDetails, startDate, 
     }
 
     const formatPrice = (price) => {
-        return `€ ${price.toFixed(2)}`
+        return `$ ${price.toFixed(2)}`
     }
 
     return (
         <div className="price-modal">
-            <button onClick={() => setPriceModal(!priceModal)}>X</button>
-            <h3>Base Price Breakdown</h3>
-
+            <button className="modal-exit-btn" onClick={() => setPriceModal(!priceModal)}>X</button>
+            <h3 id="price-title">Base Price Breakdown</h3>
+            <hr />
             <ul>
                 {priceBreakdown.map(({ date, price }) => (
                     <li key={+date}>
-                        {formatDate(date)} - {formatPrice(price)}
+                        <span>{formatDate(date)}</span>  <span>{formatPrice(price)}</span>
                     </li>
                 ))}
             </ul>
-            <div>Total Base Price</div>
-            <div>{formatPrice(totalPrice)}</div>
+            <hr />
+            <div>Total Base Price <span>{formatPrice(totalPrice)}</span></div>
+
+
         </div>
     )
 }

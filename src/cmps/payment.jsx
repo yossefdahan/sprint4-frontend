@@ -36,7 +36,7 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     // order.stay.price = stay.price
     // order.hostId = stay.host._id
 
-    function setGuests() {
+    const setGuests = () => {
         var guests = []
         if (guestCounts.adults > 0) {
             guests.push(guestCounts.adults + ' ' + 'Adults')
@@ -50,9 +50,30 @@ export function Payment({ stay, filterBy, onSetFilter }) {
         if (guestCounts.pets > 0) {
             guests.push(guestCounts.pets + ' ' + 'Pets')
         }
-        return guests
+        return guests.join(', ')
 
     }
+
+    useEffect(() => {
+        function handleOutsideClick(event) {
+            if (!isOpen) {
+                return
+            }
+            if (
+                !event.target.closest('.calendar')
+            ) {
+
+                if (isOpen) setIsOpen(false)
+
+            }
+        }
+
+        document.addEventListener('mousedown', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+    }, [isOpen])
 
     useEffect(() => {
 
@@ -164,26 +185,34 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     return (
         <section className='line-payment'>
             < section className="payment-modal" >
-                <h1>${stay.price}<span> night</span></h1>
-                <input
-                    type="text"
-                    readOnly
-                    value={utilService.formatDate(filterBy.checkIn)}
-                    placeholder="Check in"
-                    onClick={() => setIsOpen(!isOpen)}
-                />
-                <input
-                    type="text"
-                    readOnly
-                    value={utilService.formatDate(filterBy.checkOut)}
-                    placeholder="Check out"
-                    onClick={() => setIsOpen(true)}
-                />
+                {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <h1>  $ {stay.price}<span> night</span></h1> : <h1>Add dates for prices</h1>}
+
+
+
+                <div className="payment-date-picker">
+                    <div>
+                        <div className="in">
+                            <div className="header-label">CHECK-IN</div>
+                            <div className="start-input" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Check in"}</div>
+                        </div>
+                        <div className="out">
+                            <div className="header-label">CHECK-OUT</div>
+                            <div className="end-input" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Check out"}</div>
+                        </div>
+                    </div>
+
+
+                    <div className="custom-input" onClick={() => setShowGuestDropdown(!showGuestDropdown)}>
+                        <div className="header-label">GUESTS</div>
+                        <div className="guest-input" >{setGuests().length > 27 ? setGuests().substring(0, 27) + '...' : setGuests()}</div>
+                        <div className="dropdown-arrow">{!showGuestDropdown ? <i className="fa-solid fa-chevron-down"></i> : <i class="fa-solid fa-chevron-up"></i>}</div>
+                    </div>
+                </div>
                 <form onSubmit={sendToFinalOrder}>
 
 
                     {isOpen && (
-                        <div className="date-pick">
+                        <div className="date-pick calendar">
                             <DatePicker
                                 selected={filterBy.checkIn}
                                 onChange={(dates) => {
@@ -217,31 +246,34 @@ export function Payment({ stay, filterBy, onSetFilter }) {
 
                     )}
 
-                    {/* <div className="input-group"> */}
-                    <input type="text"
-                        readOnly
-                        value={setGuests()}
-                        onClick={() => setShowGuestDropdown(!showGuestDropdown)}
-                    />
+                    <div className="payment-guests">
 
-                    {showGuestDropdown && <div className="input-group guests-container">
 
-                        <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                        <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                        <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                        <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                        {showGuestDropdown && <div className=" payment-guests-count">
 
-                    </div>}
-                    <button type="submit">Reserve</button>
+                            <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                            <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                            <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                            <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+
+                        </div>}
+                    </div>
+                    {(filterBy.checkOut - filterBy.checkIn) >= 1 ?
+                        (<button className="reserve-btn" type="submit">Reserve</button>)
+                        :
+                        (<button className="reserve-btn" type="submit">Check availability</button>)
+                    }
+                </form>
+                {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <>
                     <h4>You won't be charged yet</h4>
 
-                    <div onClick={() => setPriceModal(true)}>${stay.price} x {(filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)} nights <span> ${stay.price * (filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)}</span></div>
-                    <div onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)}$</div>
-
+                    <div className="price-modal-btn" onClick={() => setPriceModal(!priceModal)}>${stay.price} x {(filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)} nights <span className="price">$ {stay.price * (filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)}</span></div>
+                    <div className="fee-modal-btn" onClick={() => setFeeModal(!feeModal)}>Airstay service fee <span className="price">$ {stay.price / 10 * (filterBy.checkOut - filterBy.checkIn) / (1000 * 3600 * 24)}</span></div>
+                    <hr />
                     <h3>Total <span>${calculateTotalPrice()}</span></h3>
-                </form>
-                {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} stayDetails={stay} startDate={filterBy.checkIn} endDate={filterBy.checkOut} />}
-                {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
+                    {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} stayDetails={stay} startDate={filterBy.checkIn} endDate={filterBy.checkOut} />}
+                    {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
+                </> : ''}
             </section >
         </section>)
 
