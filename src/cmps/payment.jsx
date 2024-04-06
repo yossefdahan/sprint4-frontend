@@ -10,6 +10,7 @@ import DatePicker from 'react-datepicker'
 import { GuestSelector } from "./GuestSelector.jsx"
 import { useSelector } from "react-redux"
 import { orderInProgress } from "../store/order.actions.js"
+import { utilService } from "../services/util.service.js"
 
 export function Payment({ stay, filterBy }) {
     const navigate = useNavigate()
@@ -20,8 +21,8 @@ export function Payment({ stay, filterBy }) {
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
 
-    const [startDate, setStartDate] = useState(filterBy.dates.checkIn ? new Date(filterBy.dates.checkIn) : new Date())
-    const [endDate, setEndDate] = useState(filterBy.dates.checkOut ? new Date(filterBy.dates.checkOut) : new Date())
+    const [startDate, setStartDate] = useState(filterBy.checkIn ? new Date(filterBy.checkIn) : new Date())
+    const [endDate, setEndDate] = useState(filterBy.checkOut ? new Date(filterBy.checkOut) : new Date())
     const [guestCounts, setGuestCounts] = useState({
         adults: filterBy.adults || 1,
         children: filterBy.children || 0,
@@ -34,13 +35,11 @@ export function Payment({ stay, filterBy }) {
     // order.stay.name = stay.name
     // order.stay.price = stay.price
     // order.hostId = stay.host._id
-    console.log(filterBy);
-    console.log(guestCounts.adults);
 
     useEffect(() => {
         const { checkIn, checkOut, guests } = filterBy.dates || {}
-        setStartDate(checkIn ? new Date(checkIn) : new Date())
-        setEndDate(checkOut ? new Date(checkOut) : new Date())
+        // setStartDate(checkIn ? new Date(checkIn) : new Date())
+        // setEndDate(checkOut ? new Date(checkOut) : new Date())
         setGuestCounts({
             adults: guests && guests.adults ? guests.adults : 1,
             children: guests && guests.children ? guests.children : 0,
@@ -119,11 +118,17 @@ export function Payment({ stay, filterBy }) {
             <input
                 type="text"
                 readOnly
-                // value={utilService.formatDate(startDate)}
+                value={utilService.formatDate(startDate)}
                 placeholder="Check in"
                 onClick={() => setIsOpen(!isOpen)}
             />
-
+            <input
+                type="text"
+                readOnly
+                value={utilService.formatDate(endDate)}
+                placeholder="Check out"
+                onClick={() => setIsOpen(true)}
+            />
             <form onSubmit={sendToFinalOrder}>
                 {isOpen && (
                     <div className="date-pick">
