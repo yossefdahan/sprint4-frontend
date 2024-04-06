@@ -170,6 +170,10 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     // const { country, city } = filterBy
     // const { guests } = filterBy
     // const { dates } = filterBy
+    // const searchParams = new URLSearchParams(window.location.search)
+    // function backHome() {
+    //     window.location.href = `/${searchParams}`
+    // }
 
     return (
         <>

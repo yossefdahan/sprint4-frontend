@@ -77,7 +77,9 @@ async function remove(reviewId) {
 
 
 async function add(order) {
+    order.createdAt = Date.now()
     await storageService.post(STORAGE_KEY, order)
+
 }
 // async function OrderInProggres(order) {
 //     order._id = utilService.makeId(5)
