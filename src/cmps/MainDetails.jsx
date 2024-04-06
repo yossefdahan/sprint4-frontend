@@ -1,16 +1,20 @@
 // import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Amenities } from "./Amenities"
 import Avatar from '@mui/material/Avatar';
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from "react-redux";
+import { utilService } from "../services/util.service";
 // import Stack from '@mui/material/Stack';
 
-export function MainDetails({ stay }) {
+export function MainDetails({ stay, filterBy, onSetFilter }) {
     // const [startDate, setStartDate] = useState(new Date())
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
+    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isOpen, setIsOpen] = useState(true)
+
+    onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             setIsOpen(true)
@@ -58,14 +62,17 @@ export function MainDetails({ stay }) {
             <h3>{stay.name} | 5 nights</h3>
             <div className="date-pick-details">
                 <DatePicker
-                    selected={startDate}
+                    selected={filterBy.checkIn}
                     onChange={(dates) => {
                         const [start, end] = dates
-                        setStartDate(start)
-                        setEndDate(end)
+                        onSetFilter.current({
+                            ...filterBy,
+                            checkIn: start,
+                            checkOut: end
+                        })
                     }}
-                    startDate={startDate}
-                    endDate={endDate}
+                    startDate={filterBy.checkIn}
+                    endDate={filterBy.checkOut}
                     selectsRange
                     // inline
                     monthsShown={2}

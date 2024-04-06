@@ -57,7 +57,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             ) {
                 setCountryModal(false);
                 setShowGuestDropdown(false);
-                setIsOpen(false);
+                // setIsOpen(false);
             }
         }
 
@@ -303,8 +303,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             </div>
 
             <div className="input-group" onClick={() => {
-                        setIsOpen(false)
-                        setShowGuestDropdown(!showGuestDropdown)}}>
+                setIsOpen(false)
+                setShowGuestDropdown(!showGuestDropdown)
+            }}>
                 <input type="text"
                     placeholder="Add guests"
                     value={formatGuestSummary()}

@@ -22,8 +22,8 @@ export function GuestSelector({ guestType, guestCounts, updateGuestCount }) {
             <hr></hr>
             <div className="guests-filter-btns">
                 <button type="button" className={guestCounts[guestType] <= 0 ? 'button-disabled' : ''} disabled={guestCounts[guestType] <= 0} style={{ opacity: guestCounts[guestType] <= 0 ? 1 : 1 }} onClick={(event) => {
-                    event.stopPropagation();
-                    updateGuestCount(guestType, -1);
+                    event.stopPropagation()
+                    updateGuestCount(guestType, -1)
                 }}>-</button>
                 <span>{guestCounts[guestType]}</span>
                 <button type="button" className={((guestType === 'adults' || guestType === 'children') && (guestCounts.adults + guestCounts.children >= 16) ||
@@ -38,8 +38,8 @@ export function GuestSelector({ guestType, guestCounts, updateGuestCount }) {
                         (guestType === 'infants' && guestCounts.infants >= 5) ||
                         (guestType === 'pets' && guestCounts.pets >= 5)}
                     onClick={(event) => {
-                        event.stopPropagation();
-                        updateGuestCount(guestType, 1);
+                        event.stopPropagation()
+                        updateGuestCount(guestType, 1)
                     }}>+</button>
             </div>
         </div >
