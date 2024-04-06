@@ -313,7 +313,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     <input className="search-btn-guests"
                         type="text"
                         placeholder="Add guests"
-                        value={formatGuestSummary()}
+                        value={formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : ''}
                         readOnly
                     />
                     {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
