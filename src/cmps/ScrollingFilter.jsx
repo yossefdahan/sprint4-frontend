@@ -22,7 +22,6 @@ export function ScrollingFilter() {
   const [searchParams, setSearchParams] = useSearchParams()
 
 
-  console.log(filterBy);
 
   const handleChange = (label) => {
     setSearchParams({ labels: label })

@@ -17,7 +17,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const [allCountries, setAllCountries] = useState([])
     const [countyModal, setCountryModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-    const datePickerRef = useRef(null)
+    const datePickerRef = useRef()
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
         adults: 0,
@@ -46,18 +46,20 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit, inputValue])
 
 
-
     useEffect(() => {
         function handleOutsideClick(event) {
-
+            if (isOpen && datePickerRef.current && datePickerRef.current.contains(event.target)) {
+                return;
+            }
             if (
-                !event.target.closest('.datePickerRef') &&
+                // !event.target.closest('.datePickerRef') &&
                 !event.target.closest('.maps-search') &&
                 !event.target.closest('.guest-selector')
             ) {
                 setCountryModal(false);
                 setShowGuestDropdown(false);
-                setIsOpen(false);
+                if (isOpen) setIsOpen(false);
+                // setIsOpen(false);
             }
         }
 
@@ -66,7 +68,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
-    }, [datePickerRef]);
+    }, [datePickerRef, isOpen]);
+
 
     function handleChange({ target }) {
         const { value } = target
@@ -251,7 +254,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 />
             </div>
             {isOpen && (
-                <div ref={datePickerRef} className="date-pick">
+                <div ref={datePickerRef} className="date-pick" onClick={(event) => event.stopPropagation()}>
                     <div tabIndex={0} onKeyDown={handleKeyDown}>
                         <div className="datepicker-header">
                             <button className="dates datepicker-tab">Dates</button>
@@ -303,8 +306,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             </div>
 
             <div className="input-group" onClick={() => {
-                        setIsOpen(false)
-                        setShowGuestDropdown(!showGuestDropdown)}}>
+                setIsOpen(false)
+                setShowGuestDropdown(!showGuestDropdown)
+            }}>
                 <input type="text"
                     placeholder="Add guests"
                     value={formatGuestSummary()}
