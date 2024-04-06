@@ -78,8 +78,6 @@ export function StayIndex() {
     }
 
     return (
-
-
         <main>
             <ScrollingFilter stays={stays} />
             <StayList stays={stays}

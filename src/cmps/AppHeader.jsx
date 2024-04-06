@@ -1,5 +1,5 @@
 import { Link, NavLink, useSearchParams, useNavigate } from 'react-router-dom'
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
@@ -36,7 +36,7 @@ export function AppHeader() {
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }
-    
+
     function backHome() {
         window.location.href = '/'
     }
