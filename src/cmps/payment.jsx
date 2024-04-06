@@ -13,6 +13,7 @@ import { orderInProgress } from "../store/order.actions.js"
 import { utilService } from "../services/util.service.js"
 
 export function Payment({ stay, filterBy, onSetFilter }) {
+
     const navigate = useNavigate()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [order, setOrder] = useState(orderService.emptyOrder())
@@ -20,13 +21,13 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
+    const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
         adults: filterBy.adults || 1,
         children: filterBy.children || 0,
         infants: filterBy.infants || 0,
         pets: filterBy.pets || 0
     })
-
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
 
     //    we need // const user = useSelector(storeState => storeState.userModule.loggedinUser)
@@ -35,17 +36,23 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     // order.stay.price = stay.price
     // order.hostId = stay.host._id
 
-    useEffect(() => {
-        const { checkIn, checkOut, guests } = filterBy.dates || {}
-        // setStartDate(checkIn ? new Date(checkIn) : new Date())
-        // setEndDate(checkOut ? new Date(checkOut) : new Date())
-        setGuestCounts({
-            adults: guests && guests.adults ? guests.adults : 1,
-            children: guests && guests.children ? guests.children : 0,
-            infants: guests && guests.infants ? guests.infants : 0,
-            pets: guests && guests.pets ? guests.pets : 0,
-        })
-    }, [filterBy, stay])
+    function setGuests() {
+        var guests = []
+        if (guestCounts.adults > 0) {
+            guests.push(guestCounts.adults + ' ' + 'Adults')
+        }
+        if (guestCounts.children > 0) {
+            guests.push(guestCounts.children + ' ' + 'Children')
+        }
+        if (guestCounts.infants > 0) {
+            guests.push(guestCounts.infants + ' ' + 'Infants')
+        }
+        if (guestCounts.pets > 0) {
+            guests.push(guestCounts.pets + ' ' + 'Pets')
+        }
+        return guests
+
+    }
 
     useEffect(() => {
 
@@ -103,60 +110,99 @@ export function Payment({ stay, filterBy, onSetFilter }) {
         }
     }
 
-    const updateGuestCount = (guestType, newValue) => {
-        setGuestCounts(prevCounts => ({
-            ...prevCounts,
-            [guestType]: newValue
-        }))
+    function handleChange() {
+        const adults = guestCounts.adults
+        const children = guestCounts.children
+        const infants = guestCounts.infants
+        const pets = guestCounts.pets
+
+        onSetFilter.current({
+            ...filterBy,
+            adults,
+            children,
+            infants,
+            pets
+        })
+    }
+
+    // const updateGuestCount = (guestType, newValue) => {
+    //     setGuestCounts(prevCounts => ({
+    //         ...prevCounts,
+    //         [guestType]: newValue
+    //     }))
+    // }
+    const updateGuestCount = (guestType, delta) => {
+        setGuestCounts(prevCounts => {
+
+            const newCount = Math.max(0, prevCounts[guestType] + delta)
+            switch (guestType) {
+                case 'adults':
+
+                    if (prevCounts.adults + prevCounts.children + delta > stay.capacity) return prevCounts
+                    break
+                case 'children':
+
+                    if (prevCounts.adults + prevCounts.children + delta > stay.capacity) return prevCounts
+                    break
+                case 'infants':
+
+                    if (newCount > 5) return prevCounts
+                    break
+                case 'pets':
+
+                    if (newCount > 5) return prevCounts
+                    break
+                default:
+                    break
+            }
+            return { ...prevCounts, [guestType]: newCount }
+        })
+        handleChange()
     }
 
 
     return (
-        <section className ='line-payment'>
-        < section className="payment-modal" >
-            <h1>${stay.price}<span> night</span></h1>
-            <input
-                type="text"
-                readOnly
-                value={utilService.formatDate(filterBy.checkIn)}
-                placeholder="Check in"
-                onClick={() => setIsOpen(!isOpen)}
-            />
-            <input
-                type="text"
-                readOnly
-                value={utilService.formatDate(filterBy.checkOut)}
-                placeholder="Check out"
-                onClick={() => setIsOpen(true)}
-            />
-            <form onSubmit={sendToFinalOrder}>
-                {isOpen && (
-                    <div className="date-pick">
-                        {/* <div className="datepicker-header">
-                            <button className="dates datepicker-tab">Dates</button>
-                            <button className="datepicker-tab">Months</button>
-                            <button className="datepicker-tab">Flexible</button>
-                        </div> */}
+        <section className='line-payment'>
+            < section className="payment-modal" >
+                <h1>${stay.price}<span> night</span></h1>
+                <input
+                    type="text"
+                    readOnly
+                    value={utilService.formatDate(filterBy.checkIn)}
+                    placeholder="Check in"
+                    onClick={() => setIsOpen(!isOpen)}
+                />
+                <input
+                    type="text"
+                    readOnly
+                    value={utilService.formatDate(filterBy.checkOut)}
+                    placeholder="Check out"
+                    onClick={() => setIsOpen(true)}
+                />
+                <form onSubmit={sendToFinalOrder}>
 
-                        <DatePicker
-                            selected={filterBy.checkIn}
-                            onChange={(dates) => {
-                                const [start, end] = dates
-                                onSetFilter.current({
-                                    ...filterBy,
-                                    checkIn: start,
-                                    checkOut: end
-                                })
-                            }}
-                            startDate={filterBy.checkIn}
-                            endDate={filterBy.checkOut}
-                            selectsRange
-                            // inline
-                            monthsShown={2}
-                            open={isOpen}
-                            // onClick={() => setIsOpen(true)}
-                            onFocus={() => setIsOpen(true)}
-                            onBlur={() => setIsOpen(false)}
+
+                    {isOpen && (
+                        <div className="date-pick">
+                            <DatePicker
+                                selected={filterBy.checkIn}
+                                onChange={(dates) => {
+                                    const [start, end] = dates
+                                    onSetFilter.current({
+                                        ...filterBy,
+                                        checkIn: start,
+                                        checkOut: end
+                                    })
+                                }}
+                                startDate={filterBy.checkIn}
+                                endDate={filterBy.checkOut}
+                                selectsRange
+                                // inline
+                                monthsShown={2}
+                                open={isOpen}
+                                // onClick={() => setIsOpen(true)}
+                                onFocus={() => setIsOpen(true)}
+                                onBlur={() => setIsOpen(false)}
 
                             />
                             <div className="datepicker-footer">
@@ -172,16 +218,20 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                     )}
 
                     {/* <div className="input-group"> */}
-                    <input type="text" readOnly value={`${Object.values(guestCounts).reduce((acc, num) => acc + num, 0)} guests`} />
+                    <input type="text"
+                        readOnly
+                        value={setGuests()}
+                        onClick={() => setShowGuestDropdown(!showGuestDropdown)}
+                    />
 
-                    {/* <div className="input-group guests-container"> */}
+                    {showGuestDropdown && <div className="input-group guests-container">
 
-                    {/* <GuestSelector guestType="adults" guestCount={guestCounts.adults} updateGuestCount={(newValue) => updateGuestCount('adults', newValue)} />
-                <GuestSelector guestType="children" guestCount={guestCounts.children} updateGuestCount={(newValue) => updateGuestCount('children', newValue)} />
-                <GuestSelector guestType="infants" guestCount={guestCounts.infants} updateGuestCount={(newValue) => updateGuestCount('infants', newValue)} />
-                <GuestSelector guestType="pets" guestCount={guestCounts.pets} updateGuestCount={(newValue) => updateGuestCount('pets', newValue)} /> */}
+                        <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                        <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                        <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                        <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
 
-
+                    </div>}
                     <button type="submit">Reserve</button>
                     <h4>You won't be charged yet</h4>
 
