@@ -27,7 +27,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         infants: 0,
         pets: 0
     })
-
+    console.log(startDate);
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
 
     useEffect(() => {
@@ -49,20 +49,21 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit, inputValue])
 
 
-    //add handle with close the map modal 
+
     useEffect(() => {
         function handleOutsideClick(event) {
             if (!event.target.closest('.maps-search') && !event.target.closest('.guest-selector')) {
-                setCountryModal(false);
-                setShowGuestDropdown(false);
+                setCountryModal(false)
+                setShowGuestDropdown(false)
+                // setIsOpen(false)
             }
         }
 
-        document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('mousedown', handleOutsideClick)
         return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
-        };
-    }, []);
+            document.removeEventListener('mousedown', handleOutsideClick)
+        }
+    }, [])
 
 
     function handleChange({ target }) {
