@@ -303,11 +303,12 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             </div>
 
             <div className="input-group" onClick={() => {
-                        setIsOpen(false)
-                        setShowGuestDropdown(!showGuestDropdown)}}>
+                setIsOpen(false)
+                setShowGuestDropdown(!showGuestDropdown)
+            }}>
                 <input type="text"
                     placeholder="Add guests"
-                    value={formatGuestSummary()}
+                    value={formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : ''}
                     readOnly
                 />
 

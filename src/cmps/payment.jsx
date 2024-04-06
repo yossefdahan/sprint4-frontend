@@ -112,51 +112,51 @@ export function Payment({ stay, filterBy, onSetFilter }) {
 
 
     return (
-        <section className ='line-payment'>
-        < section className="payment-modal" >
-            <h1>${stay.price}<span> night</span></h1>
-            <input
-                type="text"
-                readOnly
-                value={utilService.formatDate(filterBy.checkIn)}
-                placeholder="Check in"
-                onClick={() => setIsOpen(!isOpen)}
-            />
-            <input
-                type="text"
-                readOnly
-                value={utilService.formatDate(filterBy.checkOut)}
-                placeholder="Check out"
-                onClick={() => setIsOpen(true)}
-            />
-            <form onSubmit={sendToFinalOrder}>
-                {isOpen && (
-                    <div className="date-pick">
-                        {/* <div className="datepicker-header">
+        <section className='line-payment'>
+            < section className="payment-modal" >
+                <h1>${stay.price}<span> night</span></h1>
+                <input
+                    type="text"
+                    readOnly
+                    value={utilService.formatDate(filterBy.checkIn)}
+                    placeholder="Check in"
+                    onClick={() => setIsOpen(!isOpen)}
+                />
+                <input
+                    type="text"
+                    readOnly
+                    value={utilService.formatDate(filterBy.checkOut)}
+                    placeholder="Check out"
+                    onClick={() => setIsOpen(true)}
+                />
+                <form onSubmit={sendToFinalOrder}>
+                    {isOpen && (
+                        <div className="date-pick">
+                            {/* <div className="datepicker-header">
                             <button className="dates datepicker-tab">Dates</button>
                             <button className="datepicker-tab">Months</button>
                             <button className="datepicker-tab">Flexible</button>
                         </div> */}
 
-                        <DatePicker
-                            selected={filterBy.checkIn}
-                            onChange={(dates) => {
-                                const [start, end] = dates
-                                onSetFilter.current({
-                                    ...filterBy,
-                                    checkIn: start,
-                                    checkOut: end
-                                })
-                            }}
-                            startDate={filterBy.checkIn}
-                            endDate={filterBy.checkOut}
-                            selectsRange
-                            // inline
-                            monthsShown={2}
-                            open={isOpen}
-                            // onClick={() => setIsOpen(true)}
-                            onFocus={() => setIsOpen(true)}
-                            onBlur={() => setIsOpen(false)}
+                            <DatePicker
+                                selected={filterBy.checkIn}
+                                onChange={(dates) => {
+                                    const [start, end] = dates
+                                    onSetFilter.current({
+                                        ...filterBy,
+                                        checkIn: start,
+                                        checkOut: end
+                                    })
+                                }}
+                                startDate={filterBy.checkIn}
+                                endDate={filterBy.checkOut}
+                                selectsRange
+                                // inline
+                                monthsShown={2}
+                                open={isOpen}
+                                // onClick={() => setIsOpen(true)}
+                                onFocus={() => setIsOpen(true)}
+                                onBlur={() => setIsOpen(false)}
 
                             />
                             <div className="datepicker-footer">
