@@ -301,14 +301,14 @@
 /*filter need to marge */
 .search-filter {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   background-color: white;
   border-radius: 32px;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
   border: 1px solid $light-gray;
   height: 65px;
-  max-width: 780px;
+  max-width: 760px;
   margin: 0 auto;
   margin-bottom: 20px;
   cursor: pointer;
@@ -319,6 +319,11 @@
     align-items: center;
     cursor: pointer;
     height: 100%;
+
+    &:hover {
+      background-color: $light-gray;
+      border-radius: 32px;
+    }
 
     &:not(:last-child)::after {
       content: "";
@@ -333,8 +338,11 @@
 
     &:last-of-type {
       border-right: none;
-      margin-right: 0;
+      margin-left: 5px;
       border-radius: 32px;
+      width: 230px;
+      display: flex;
+      justify-content: space-between;
 
       &:hover {
         background-color: $light-gray;
@@ -347,10 +355,10 @@
     }
     .search-btn-dates {
       width: 140px;
+      padding-left: 10px;
     }
 
     .guests-section-search {
-      width: 280px;
       border-radius: 32px;
     }
     .search-btn-guests {
