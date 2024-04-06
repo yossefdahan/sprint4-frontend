@@ -78,19 +78,19 @@ export function StayIndex() {
     }
 
     return (
-        <div>
-            <div></div>
-            <main>
-                {/* <button onClick={onAddStay}>Add Stay</button> */}
-                <ScrollingFilter />
-                <StayList stays={stays}
-                    onUpdateStay={onUpdateStay}
-                    onRemoveStay={onRemoveStay}
-                    shouldShowActionBtns={shouldShowActionBtns}
-                />
-                <button className="show-map-btn">Show map <i class="fa-solid fa-map"></i></button>
-            </main>
-            {/* <AppFooter /> */}
-        </div>
+
+
+        <main>
+            {/* <button onClick={onAddStay}>Add Stay</button> */}
+            <ScrollingFilter />
+            <StayList stays={stays}
+                onUpdateStay={onUpdateStay}
+                onRemoveStay={onRemoveStay}
+                shouldShowActionBtns={shouldShowActionBtns}
+            />
+            <button className="show-map-btn">Show map <i class="fa-solid fa-map"></i></button>
+            <AppFooter />
+        </main>
+
     )
 }

@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router'
 
 
 import { AppHeader } from './cmps/AppHeader.jsx'
-import { AppFooter } from './cmps/AppFooter.jsx'
+// import { AppFooter } from './cmps/AppFooter.jsx'
 import { UserDetails } from './pages/UserDetails.jsx'
 import { StayDetails } from './pages/StayDetails.jsx'
 import { FinalPayment } from './pages/FinalPayment.jsx'
