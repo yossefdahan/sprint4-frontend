@@ -54,7 +54,7 @@ export function StayDetails() {
                 }
             </section>
             <section className='main-details'>
-                <MainDetails stay={stay} />
+                <MainDetails stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
                 <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
 
             </section>

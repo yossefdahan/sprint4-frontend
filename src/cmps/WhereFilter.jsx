@@ -17,7 +17,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const [allCountries, setAllCountries] = useState([])
     const [countyModal, setCountryModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-    const datePickerRef = useRef(null)
+    const datePickerRef = useRef()
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
         adults: 0,
@@ -46,18 +46,20 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit, inputValue])
 
 
-
     useEffect(() => {
         function handleOutsideClick(event) {
-
+            if (isOpen && datePickerRef.current && datePickerRef.current.contains(event.target)) {
+                return;
+            }
             if (
-                !event.target.closest('.datePickerRef') &&
+                // !event.target.closest('.datePickerRef') &&
                 !event.target.closest('.maps-search') &&
                 !event.target.closest('.guest-selector')
             ) {
                 setCountryModal(false);
                 setShowGuestDropdown(false);
-                setIsOpen(false);
+                if (isOpen) setIsOpen(false);
+                // setIsOpen(false);
             }
         }
 
@@ -66,7 +68,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
-    }, [datePickerRef]);
+    }, [datePickerRef, isOpen]);
+
 
     function handleChange({ target }) {
         const { value } = target
@@ -169,138 +172,139 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     // const { dates } = filterBy
 
     return (
+        <>
+            <form onSubmit={handleSubmit} className="search-filter">
 
-        <form onSubmit={handleSubmit} className="search-filter">
-            <div className="input-group" onClick={() => setCountryModal(!countyModal)}>
-                {/* <p>Where</p> */}
-                <input
-                    placeholder="Search destination"
-                    type="text"
-                    value={inputValue}
-                    onChange={handleChange}
-                />
-            </div>
-            {countyModal && !inputValue &&
-                <div className="maps-search" >
-
-                    <h5>Search by region</h5>
-
-                    <div className="img-flexible country-filter">
-                        <img onClick={() => {
-                            setInputValue("mexico")
-                            setIsOpen(true)
-                        }} src="src\assets\img\destination\asset 0.jpeg" alt="Im flexible" />
-                        <h4>I'm flexible</h4>
-                    </div>
-                    <div className="img-europe country-filter">
-                        <img onClick={() => {
-                            setInputValue("portugal")
-                            setIsOpen(true)
-                        }} src="src\assets\img\destination\asset 2.webp" alt="Europe" />
-                        <h4>Europe</h4>
-                    </div>
-
-                    <div className="img-italy country-filter">
-                        <img onClick={() => {
-                            setInputValue("portugal")
-                            setIsOpen(true)
-                        }} src="src\assets\img\destination\asset 3.webp" alt="Italy" />
-                        <h4>Italy</h4>
-                    </div>
-                    <div className="img-usa country-filter">
-                        <img onClick={() => {
-                            setInputValue("canada")
-                            setIsOpen(true)
-                        }} src="src\assets\img\destination\asset 4.webp" alt="United States" />
-                        <h4>United States</h4>
-                    </div>
-                    <div className="img-greece country-filter">
-                        <img onClick={() => {
-                            setInputValue("usa")
-                            setIsOpen(true)
-                        }} src="src\assets\img\destination\asset 5.webp" alt="Greece" />
-                        <h4>Greece</h4>
-                    </div>
-                    <div className="img-south country-filter">
-                        <img onClick={() => {
-                            setInputValue("portugal")
-                            setIsOpen(true)
-                        }} src="src\assets\img\destination\asset 1.webp" alt="South America" />
-                        <h4>South America</h4>
-                    </div>
+                <div className="input-group" onClick={() => setCountryModal(!countyModal)}>
+                    {/* <p>Where</p> */}
+                    <input
+                        placeholder="Search destination"
+                        type="text"
+                        value={inputValue}
+                        onChange={handleChange}
+                    />
                 </div>
-            }
+                {countyModal && !inputValue &&
+                    <div className="maps-search" >
 
-            {inputValue && suggestions.length > 0 && (
-                <ul>
-                    {suggestions.map(suggestion => (
-                        <li key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
-                            {suggestion}
-                        </li>
-                    ))}
-                </ul>
-            )}
+                        <h5>Search by region</h5>
 
-            <div className="input-group" onClick={() => setIsOpen(true)}>
-
-                <input
-                    type="text"
-                    readOnly
-                    value={utilService.formatDate(filterBy.checkIn)}
-                    placeholder="Check in"
-                />
-            </div>
-            {isOpen && (
-                <div ref={datePickerRef} className="date-pick">
-                    <div tabIndex={0} onKeyDown={handleKeyDown}>
-                        <div className="datepicker-header">
-                            <button className="dates datepicker-tab">Dates</button>
-                            <button className="datepicker-tab">Months</button>
-                            <button className="datepicker-tab">Flexible</button>
+                        <div className="img-flexible country-filter">
+                            <img onClick={() => {
+                                setInputValue("mexico")
+                                setIsOpen(true)
+                            }} src="src\assets\img\destination\asset 0.jpeg" alt="Im flexible" />
+                            <h4>I'm flexible</h4>
+                        </div>
+                        <div className="img-europe country-filter">
+                            <img onClick={() => {
+                                setInputValue("portugal")
+                                setIsOpen(true)
+                            }} src="src\assets\img\destination\asset 2.webp" alt="Europe" />
+                            <h4>Europe</h4>
                         </div>
 
-                        <DatePicker
-                            selected={filterBy.checkIn}
-                            onChange={(dates) => {
-                                const [start, end] = dates
-                                onSetFilter.current({
-                                    ...filterBy,
-                                    checkIn: start,
-                                    checkOut: end
-                                })
-                            }}
-                            startDate={filterBy.checkIn}
-                            endDate={filterBy.checkOut}
-                            selectsRange
-                            // inline
-                            monthsShown={2}
-                            open={isOpen}
-                            onFocus={() => setIsOpen(true)}
-                            onBlur={() => setIsOpen(false)}
-                            dayClassName={(date) => date < new Date() ? 'past-date' : undefined}
-
-
-                        />
+                        <div className="img-italy country-filter">
+                            <img onClick={() => {
+                                setInputValue("portugal")
+                                setIsOpen(true)
+                            }} src="src\assets\img\destination\asset 3.webp" alt="Italy" />
+                            <h4>Italy</h4>
+                        </div>
+                        <div className="img-usa country-filter">
+                            <img onClick={() => {
+                                setInputValue("canada")
+                                setIsOpen(true)
+                            }} src="src\assets\img\destination\asset 4.webp" alt="United States" />
+                            <h4>United States</h4>
+                        </div>
+                        <div className="img-greece country-filter">
+                            <img onClick={() => {
+                                setInputValue("usa")
+                                setIsOpen(true)
+                            }} src="src\assets\img\destination\asset 5.webp" alt="Greece" />
+                            <h4>Greece</h4>
+                        </div>
+                        <div className="img-south country-filter">
+                            <img onClick={() => {
+                                setInputValue("portugal")
+                                setIsOpen(true)
+                            }} src="src\assets\img\destination\asset 1.webp" alt="South America" />
+                            <h4>South America</h4>
+                        </div>
                     </div>
-                    <div className="datepicker-footer">
-                        <button className=" exact-date datepicker-range-button">Exact dates</button>
-                        <button className=" date-btn-search datepicker-range-button">+1 day</button>
-                        <button className="date-btn-search  datepicker-range-button">+2 days</button>
-                    </div>
+                }
+
+                {inputValue && suggestions.length > 0 && (
+                    <ul>
+                        {suggestions.map(suggestion => (
+                            <li key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
+                                {suggestion}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                <div className="input-group" onClick={() => setIsOpen(true)}>
+
+                    <input
+                        type="text"
+                        readOnly
+                        value={utilService.formatDate(filterBy.checkIn)}
+                        placeholder="Check in"
+                    />
                 </div>
+                {isOpen && (
+                    <div ref={datePickerRef} className="date-pick" onClick={(event) => event.stopPropagation()}>
+                        <div tabIndex={0} onKeyDown={handleKeyDown}>
+                            <div className="datepicker-header">
+                                <button className="dates datepicker-tab">Dates</button>
+                                <button className="datepicker-tab">Months</button>
+                                <button className="datepicker-tab">Flexible</button>
+                            </div>
+
+                            <DatePicker
+                                selected={filterBy.checkIn}
+                                onChange={(dates) => {
+                                    const [start, end] = dates
+                                    onSetFilter.current({
+                                        ...filterBy,
+                                        checkIn: start,
+                                        checkOut: end
+                                    })
+                                }}
+                                startDate={filterBy.checkIn}
+                                endDate={filterBy.checkOut}
+                                selectsRange
+                                // inline
+                                monthsShown={2}
+                                open={isOpen}
+                                onFocus={() => setIsOpen(true)}
+                                onBlur={() => setIsOpen(false)}
+                                dayClassName={(date) => date < new Date() ? 'past-date' : undefined}
+
+
+                            />
+                        </div>
+                        <div className="datepicker-footer">
+                            <button className=" exact-date datepicker-range-button">Exact dates</button>
+                            <button className=" date-btn-search datepicker-range-button">+1 day</button>
+                            <button className="date-btn-search  datepicker-range-button">+2 days</button>
+                        </div>
+                    </div>
 
 
 
 
-            )}
-            <div className="input-group" onClick={() => setIsOpen(true)}>
-                <input
-                    type="text"
-                    readOnly
-                    value={utilService.formatDate(filterBy.checkOut)}
-                    placeholder="Check out"
-                />
-            </div>
+                )}
+                <div className="input-group" onClick={() => setIsOpen(true)}>
+                    <input
+                        type="text"
+                        readOnly
+                        value={utilService.formatDate(filterBy.checkOut)}
+                        placeholder="Check out"
+                    />
+                </div>
 
             <div className="input-group" onClick={() => {
                 setIsOpen(false)
@@ -312,17 +316,19 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     readOnly
                 />
 
-                {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
-            </div>
-            {showGuestDropdown && <div className="input-group guests-container">
+                    {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
+                </div>
+                {showGuestDropdown && <div className="input-group guests-container">
 
-                <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-                <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                    <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
 
-            </div>}
+                </div>}
 
-        </form>
+            </form>
+            <hr className="hr-line" />
+        </>
     )
 }
