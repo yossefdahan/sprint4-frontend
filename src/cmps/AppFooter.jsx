@@ -27,7 +27,7 @@ export function AppFooter() {
                     <img className="privacy-icon" src="src/assets/img/small-icons/asset 99.svg" alt="" />
                 </div>
                 <div className="second-section-footer">
-                    <span className="lan-footer "><span className="fa-solid fa-globe"></span> English(US) </span>
+                    <p className="lan-footer "><i className="fa-solid fa-globe"></i><span> English (US)</span> </p>
                     <span className="cur-footer"> $USD </span>
                     <span className="support-footer"> Support & resources </span>
                 </div>
