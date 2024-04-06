@@ -40,8 +40,6 @@ export function StayDetails() {
         }
     }
 
-
-
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
     if (!stay) return <div>yosef we have proble!</div>
     return (

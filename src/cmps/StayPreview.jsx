@@ -22,7 +22,11 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                     imgUrls={stay.imgUrls}
                     isSaved={isSaved}
                     onSave={handleSave}
-                    stayId={stay._id} />
+                    stayId={stay._id}
+                    heartClassName={isSaved ? 'saved' : ''}
+
+                />
+
                 <div className='preview-details'>
                     <Link className="go-to-details" to={`/${stay._id}`} >
                         <div className="header-preview">

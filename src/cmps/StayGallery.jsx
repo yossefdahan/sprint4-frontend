@@ -15,23 +15,10 @@ export function StayGallery({ stayId, imgUrls, isSaved, onSave }) {
 
   const handleSaveClick = (ev) => {
     ev.stopPropagation();
-    onSave();
+    onSave(ev);
   };
 
-  // return (
-  //   <div className="stay-gallery">
-  //     <img className='img-gallery ' src={imgUrls[currentImgIndex]} alt="Stay" />
-  //     <i
-  //       className={`fa-duotone fa-heart  ${isSaved ? 'fas' : 'far'}`}
-  //       onClick={handleSaveClick}
 
-  //     ></i>
-  //     <section className='btn-preview'>
-  //       <button onClick={prevImg}>Prev</button>
-  //     <button onClick={nextImg}>Next</button>
-  //     </section>
-  //   </div>
-  // )
 
   return (
     <div className="stay-gallery">
@@ -40,7 +27,6 @@ export function StayGallery({ stayId, imgUrls, isSaved, onSave }) {
       <i
         className={`fa-duotone fa-heart  ${isSaved ? 'fas' : 'far'}`}
         onClick={handleSaveClick}
-
       ></i>
       <section className='btn-preview'>
         {imgUrls[currentImgIndex] !== imgUrls[0] ? <button className=" btn-nav-img prev" onClick={prevImg}></button> : <span></span>}
