@@ -92,7 +92,7 @@
   background-color: white;
   border: 2px solid $light-gray;
   z-index: 1000;
-  width: 750px;
+  width: 1000px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -172,10 +172,26 @@
   transform: none !important; // Removes the translation transform
 }
 
-.react-datepicker-popper .react-datepicker__triangle {
-  fill: white;
+.datepicker-tab {
+  background-color: transparent;
+  border-radius: 30px;
+  color: $black2;
+  width: 150px;
+  height: 40px;
+  font-weight: 600;
+}
+
+.dates {
   background-color: white;
-  stroke: transparent;
+  border-radius: 30px;
+  color: $black2;
+  width: 150px;
+  height: 40px;
+  font-weight: 600;
+}
+
+.react-datepicker-popper .react-datepicker__triangle {
+  display: none;
 }
 
 .react-datepicker__header {
@@ -184,9 +200,12 @@
 
 .react-datepicker__current-month {
   font-weight: normal;
+  font-size: 18px;
 }
 
 .react-datepicker {
+  display: flex;
+  justify-content: space-around;
   width: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
@@ -198,7 +217,8 @@
   }
 
   &__current-month {
-    font-size: 1em;
+    font-size: 1.2em;
+    margin-bottom: 5px;
     font-weight: bold;
   }
   &__month-container {
@@ -222,10 +242,11 @@
   &__day-names,
   &__week {
     display: flex;
+    height: 50px;
+    justify-content: space-around;
   }
 
   &_week {
-    height: 50px;
   }
 
   &__day-name,
