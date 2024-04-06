@@ -81,7 +81,6 @@ export function StayIndex() {
 
 
         <main>
-            {/* <button onClick={onAddStay}>Add Stay</button> */}
             <ScrollingFilter stays={stays} />
             <StayList stays={stays}
                 onUpdateStay={onUpdateStay}
