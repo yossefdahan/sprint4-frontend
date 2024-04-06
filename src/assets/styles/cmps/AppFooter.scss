@@ -57,7 +57,7 @@
   justify-content: space-between; // This will align children to the edges
   align-items: center;
   width: 100%;
-  padding: 10px 80px; // Adjust the padding as needed
+  padding: 10px 80px;
 
   .second-section-footer,
   .footer-main-content {
@@ -65,6 +65,7 @@
     align-items: center;
     gap: 10px;
     font-size: 0.875rem !important;
+    line-height: 20px;
 
     span,
     img.privacy-icon {

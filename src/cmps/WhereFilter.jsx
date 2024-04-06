@@ -274,9 +274,10 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             // inline
                             monthsShown={2}
                             open={isOpen}
-                            // onClick={() => setIsOpen(true)}
                             onFocus={() => setIsOpen(true)}
                             onBlur={() => setIsOpen(false)}
+                            dayClassName={(date) => date < new Date() ? 'past-date' : undefined}
+
 
                         />
                     </div>
