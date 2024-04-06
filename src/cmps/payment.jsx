@@ -182,12 +182,12 @@ export function Payment({ stay, filterBy }) {
                 <button type="submit">Reserve</button>
                 <h4>You won't be charged yet</h4>
 
-                <a onClick={() => setPriceModal(true)}>${stay.price} x {guestCounts.adults + guestCounts.children} guests</a>
-                <a onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (endDate - startDate) / (1000 * 3600 * 24)}$</a>
+                <div onClick={() => setPriceModal(true)}>${stay.price} x {guestCounts.adults + guestCounts.children} guests</div>
+                <div onClick={() => setFeeModal(true)}>Airstay service fee {stay.price / 10 * (endDate - startDate) / (1000 * 3600 * 24)}$</div>
 
                 <h3>Total <span>${calculateTotalPrice().toFixed(2)}</span></h3>
             </form>
-            {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} />}
+            {priceModal && <PriceModal setPriceModal={setPriceModal} priceModal={priceModal} stayDetails={stay} startDate={startDate} endDate={endDate} />}
             {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
         </section >)
 
