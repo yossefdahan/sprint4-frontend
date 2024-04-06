@@ -175,9 +175,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         <>
             <form onSubmit={handleSubmit} className="search-filter">
 
-                <div className="input-group" onClick={() => setCountryModal(!countyModal)}>
+                <div className="input-group " onClick={() => setCountryModal(!countyModal)}>
                     {/* <p>Where</p> */}
-                    <input
+                    <input className="search-btn-destination"
                         placeholder="Search destination"
                         type="text"
                         value={inputValue}
@@ -245,9 +245,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     </ul>
                 )}
 
-                <div className="input-group" onClick={() => setIsOpen(true)}>
+                <div className="input-group " onClick={() => setIsOpen(true)}>
 
-                    <input
+                    <input className="search-btn-dates"
                         type="text"
                         readOnly
                         value={utilService.formatDate(filterBy.checkIn)}
@@ -297,8 +297,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
 
                 )}
-                <div className="input-group" onClick={() => setIsOpen(true)}>
-                    <input
+                <div className="input-group " onClick={() => setIsOpen(true)}>
+                    <input className="search-btn-dates"
                         type="text"
                         readOnly
                         value={utilService.formatDate(filterBy.checkOut)}
@@ -306,16 +306,16 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     />
                 </div>
 
-                <div className="input-group" onClick={() => {
+                <div className=" guests-section-search input-group" onClick={() => {
                     setIsOpen(false)
                     setShowGuestDropdown(!showGuestDropdown)
                 }}>
-                    <input type="text"
+                    <input className="search-btn-guests"
+                        type="text"
                         placeholder="Add guests"
                         value={formatGuestSummary()}
                         readOnly
                     />
-
                     {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
                 </div>
                 {showGuestDropdown && <div className="input-group guests-container">
