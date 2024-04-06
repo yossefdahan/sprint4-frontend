@@ -1,26 +1,44 @@
-
-
-.payment-page{
+.payment-page {
+    position: relative;
     display: flex;
 
 }
 
-.paymentModal{
+.paymentModal {
     position: sticky;
     width: max-content;
     height: fit-content;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    img{
+
+    img {
         border-radius: 12px;
     }
 }
 
-.header-pay{
+.header-pay {
     display: flex;
-    img{
+
+    img {
         width: 150px;
         // height: 125px;
     }
+}
+
+.payment-confrim-modal {
+    .paymentModal {
+        box-shadow: rgba(0, 0, 0, 0) 0px 6px 16px;
+        border: 0px solid rgb(221, 221, 221);
+
+
+    }
+
+    display: flex;
+    position: absolute;
+    width: max-content;
+    height: fit-content;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 }

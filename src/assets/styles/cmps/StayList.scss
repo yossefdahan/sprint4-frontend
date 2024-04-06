@@ -7,6 +7,13 @@
 
   list-style: none;
 }
+.full-width-hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc; // Use the color that fits your design
+  margin-top: 0; // Adjust if necessary
+  margin-bottom: 0; // Adjust if necessary
+}
 
 .show-map-btn {
   width: 130px;

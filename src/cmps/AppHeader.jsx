@@ -1,5 +1,5 @@
 import { Link, NavLink, useSearchParams, useNavigate } from 'react-router-dom'
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
@@ -36,20 +36,20 @@ export function AppHeader() {
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }
-    
+
     function backHome() {
         window.location.href = '/'
     }
-
+    const isPaymentRoute = location.pathname.startsWith('/payment/')
     return (<>
         <header className="app-header flex align-center ">
             <img onClick={backHome} className="logo-img" src={logoImg} />
-            <div className='stays-search  flex align-center'>
+            {isPaymentRoute ?"": (<div className='stays-search  flex align-center'>
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>
                 <button className='experiences'>Online Experiences</button>
 
-            </div>
+            </div>)}
             <div className='left-section-header flex align-center'>
                 <button className='host-your-home-nav'>Airstay you home</button>
                 <button className='Languages-btn fa-solid fa-globe'></button>
@@ -77,7 +77,7 @@ export function AppHeader() {
 
         </header>
         <div className='search-container'>
-            <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            {isPaymentRoute ? <hr /> : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
         </div>
 
     </>
