@@ -1,11 +1,19 @@
 .app-header {
+  display: flex;
   margin-top: 20px;
-  padding: 10px;
   justify-content: space-between;
   cursor: pointer;
   z-index: 10;
   text-decoration: none;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+
+  .stays-search {
+    margin-left: 250px;
+
+    button {
+      width: fit-content;
+    }
+  }
 
   .logo-img {
     width: 200px;
@@ -38,7 +46,7 @@
     border-radius: 12px;
     width: 240px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     color: $main-gray;
   }
 
@@ -58,7 +66,7 @@
     color: $black2;
     width: 50px;
     height: 50px;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 30px;
 
     &:hover {
@@ -70,7 +78,7 @@
     height: fit-content;
     background-color: transparent;
     color: $black2;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .nav-icon-massages {
@@ -80,8 +88,7 @@
   .host-your-home-nav {
     background-color: transparent;
     color: $black2;
-    // margin-right: 20px;
-    font-size: 18px;
+    font-size: 16px;
     height: 50px;
     width: 180px;
 
@@ -96,8 +103,7 @@
     background-color: transparent;
     height: 40px;
     color: $main-gray;
-    // margin-right: 20px;
-    font-size: 18px;
+    font-size: 16px;
     width: 130px;
     padding: 0 20px;
 
@@ -110,5 +116,48 @@
   .israel-img {
     width: 30px;
     clip-path: circle(50% at 50% 50%);
+  }
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .app-header .stays-search {
+    margin-left: 20px;
+  }
+
+  .app-header .logo-img {
+    width: 150px;
+  }
+
+  .app-header .nav-links,
+  .app-header .side-nav {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .app-header .nav-links {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app-header .stays-search {
+    margin: 0;
+  }
+
+  .app-header .logo-img,
+  .app-header .nav-links,
+  .app-header .side-nav {
+    width: 90%;
+  }
+
+  .app-header .nav-links {
+    position: static;
   }
 }

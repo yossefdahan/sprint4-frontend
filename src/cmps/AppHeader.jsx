@@ -46,6 +46,8 @@ export function AppHeader() {
             <div className='stays-search  flex align-center'>
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>
+                <button className='experiences'>Online Experiences</button>
+
             </div>
             <div className='left-section-header flex align-center'>
                 <button className='host-your-home-nav'>Airstay you home</button>
@@ -73,9 +75,6 @@ export function AppHeader() {
             </div>
 
         </header>
-        {/* <div className='search-container'>
-            < SearchFilter />
-        </div> */}
         <div className='search-container'>
             <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
         </div>

@@ -52,19 +52,24 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
     useEffect(() => {
         function handleOutsideClick(event) {
-            if (!event.target.closest('.maps-search') && !event.target.closest('.guest-selector')) {
-                setCountryModal(false)
-                setShowGuestDropdown(false)
-                // setIsOpen(false)
+
+            if (
+                !event.target.closest('.datePickerRef') &&
+                !event.target.closest('.maps-search') &&
+                !event.target.closest('.guest-selector')
+            ) {
+                setCountryModal(false);
+                setShowGuestDropdown(false);
+                setIsOpen(false);
             }
         }
 
-        document.addEventListener('mousedown', handleOutsideClick)
-        return () => {
-            document.removeEventListener('mousedown', handleOutsideClick)
-        }
-    }, [])
+        document.addEventListener('mousedown', handleOutsideClick);
 
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [datePickerRef]);
 
     function handleChange({ target }) {
         const { value } = target
@@ -253,7 +258,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 />
             </div>
             {isOpen && (
-                <div className="date-pick">
+                <div ref={datePickerRef} className="date-pick">
                     <div tabIndex={0} onKeyDown={handleKeyDown}>
                         <div className="datepicker-header">
                             <button className="dates datepicker-tab">Dates</button>
