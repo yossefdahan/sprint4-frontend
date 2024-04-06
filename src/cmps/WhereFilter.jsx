@@ -249,7 +249,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     </ul>
                 )}
 
-                <div className="input-group " onClick={() => setIsOpen(true)}>
+                {/* <div className="input-group " onClick={() => setIsOpen(true)}>
 
                     <input className="search-btn-dates"
                         type="text"
@@ -257,7 +257,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                         value={utilService.formatDate(filterBy.checkIn)}
                         placeholder="Check in"
                     />
-                </div>
+                </div> */}
                 {isOpen && (
                     <div ref={datePickerRef} className="date-pick" onClick={(event) => event.stopPropagation()}>
                         <div tabIndex={0} onKeyDown={handleKeyDown}>
@@ -301,13 +301,26 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
 
                 )}
-                <div className="input-group " onClick={() => setIsOpen(true)}>
+                {/* <div className="input-group " onClick={() => setIsOpen(true)}>
                     <input className="search-btn-dates"
                         type="text"
                         readOnly
                         value={utilService.formatDate(filterBy.checkOut)}
                         placeholder="Check out"
                     />
+                </div> */}
+
+                <div className="pick-cal">
+                    <div>
+                        <div className="in-cal">
+                            <div className="header-label-cal">Check in</div>
+                            <div className="start-input-cal" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Add dates"}</div>
+                        </div>
+                        <div className="out-cal">
+                            <div className="header-label-cal">Check out</div>
+                            <div className="end-input-cal" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Add dates"}</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className=" guests-section-search input-group" onClick={() => {

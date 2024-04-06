@@ -211,6 +211,7 @@
   box-sizing: border-box;
   padding: 5px;
   border: none;
+
   &__header {
     background-color: white;
     border-bottom: none;
@@ -221,6 +222,7 @@
     margin-bottom: 5px;
     font-weight: bold;
   }
+
   &__month-container {
     display: inline-block;
     margin-right: 10px;
@@ -246,8 +248,7 @@
     justify-content: space-around;
   }
 
-  &_week {
-  }
+  &_week {}
 
   &__day-name,
   &__day {
@@ -296,6 +297,7 @@
     background-color: $light-gray;
   }
 }
+
 .past-date {
   color: #ccc; // The color for past dates
 }
@@ -347,9 +349,9 @@
       display: flex;
       justify-content: space-between;
 
-      &:hover {
-        background-color: $light-gray;
-      }
+      // &:hover {
+      //   background-color: white;
+      // }
 
       &:focus {
         box-shadow: 2px 2px 2 2px rgba(106, 105, 105, 0.552);
@@ -363,6 +365,7 @@
       width: 231px;
       margin-left: 20px;
     }
+
     .search-btn-dates {
       width: 140px;
       padding-left: 10px;
@@ -371,6 +374,7 @@
     .guests-section-search {
       border-radius: 32px;
     }
+
     .search-btn-guests {
       width: 140px;
       padding-left: 5px;
@@ -428,6 +432,134 @@
   }
 }
 
+.search-filter {
+  & .pick-cal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    & div {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      height: 60px;
+
+      & .in-cal {
+        display: flex;
+
+        border-radius: 32px;
+        cursor: pointer;
+        padding: 14px 24px;
+        position: relative;
+        width: 140px;
+
+
+        &:hover {
+          background-color: $light-gray;
+
+          &:hover::after {
+            content: none;
+          }
+        }
+
+
+
+        & .header-label-cal {
+          position: absolute;
+          top: -30px;
+          padding: 0 0 2px;
+          left: 24px;
+          font-size: 12px;
+          font-weight: 600;
+          color: #333;
+          user-select: none;
+
+        }
+
+        & .start-input-cal {
+          border: none;
+          outline: none;
+          color: #717171;
+          font-size: 14px;
+          font-weight: 400;
+          background-color: transparent;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 50%;
+          width: 1px;
+          background-color: $light-gray;
+        }
+
+      }
+
+      & .out-cal {
+        border-radius: 32px;
+        display: flex;
+        cursor: pointer;
+        padding: 14px 24px;
+        position: relative;
+        width: 140px;
+
+        &:hover {
+          background-color: $light-gray;
+        }
+
+        &:hover::after {
+          content: none;
+        }
+
+        &:hover+.in-cal::after {
+          content: none;
+        }
+
+        & .header-label-cal {
+          position: absolute;
+          top: -30px;
+          padding: 0 0 2px;
+          left: 24px;
+          font-size: 12px;
+          font-weight: 600;
+          color: #333;
+          user-select: none;
+
+        }
+
+        & .end-input-cal {
+          border: none;
+          outline: none;
+          color: #717171;
+          font-size: 14px;
+          font-weight: 400;
+          background-color: transparent;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 50%;
+          width: 1px;
+          background-color: $light-gray;
+        }
+
+
+      }
+
+
+    }
+  }
+}
+
+
 .hr-line {
   border: none;
   height: 1px;
@@ -437,6 +569,9 @@
   left: 0;
   margin: 0;
 }
+
+
+
 
 // search-btn-destination // 231
 // search-btn-dates // 140
