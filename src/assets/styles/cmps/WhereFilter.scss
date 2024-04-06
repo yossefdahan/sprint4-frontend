@@ -8,8 +8,9 @@
     "all spain europe"
     "usa greece south";
   top: 100%;
-  //   left: 50%;
   box-shadow: 1px 1px 1px 1px $light-gray;
+  // left: 50%;
+
   border: 1px solid $light-gray;
   z-index: 1000;
   border-radius: 12px;
@@ -18,7 +19,6 @@
   width: 500px;
   align-items: center;
   justify-content: center;
-  // gap: px;
   justify-items: center;
 
   & .country-filter {
@@ -304,34 +304,69 @@
 .search-filter {
   display: flex;
   position: relative;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   background-color: white;
   border-radius: 32px;
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
   border: 1px solid $light-gray;
   height: 65px;
-  max-width: 850px;
+  max-width: 760px;
   margin: 0 auto;
   margin-bottom: 20px;
   cursor: pointer;
 
   .input-group {
-    border-right: 1px solid $light-gray;
-    margin-right: 10px;
-    flex-grow: 1;
-    align-items: center;
+    position: relative;
     display: flex;
+    align-items: center;
     cursor: pointer;
     height: 100%;
 
+    &:hover {
+      background-color: $light-gray;
+      border-radius: 32px;
+    }
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 50%;
+      width: 1px;
+      background-color: $light-gray;
+    }
+
     &:last-of-type {
       border-right: none;
-      margin-right: 0;
+      margin-left: 5px;
+      border-radius: 32px;
+      width: 230px;
+      display: flex;
+      justify-content: space-between;
 
       &:hover {
         background-color: $light-gray;
       }
+    }
+
+    .search-btn-destination {
+      width: 231px;
+      margin-left: 20px;
+    }
+    .search-btn-dates {
+      width: 140px;
+      padding-left: 10px;
+    }
+
+    .guests-section-search {
+      border-radius: 32px;
+    }
+    .search-btn-guests {
+      width: 140px;
+      padding-left: 5px;
     }
 
     input {
@@ -341,7 +376,6 @@
       font-size: 16px;
       height: 60px;
       width: 100%;
-      text-align: center;
 
       &::placeholder {
         color: $main-gray;
@@ -372,8 +406,8 @@
     outline: none;
     width: 50px;
     height: 50px;
-    margin-left: 10px;
-    padding: 10px 15px;
+    // margin-left: 10px;
+    // padding: 10px 15px;
 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
@@ -396,3 +430,7 @@
   left: 0;
   margin: 0;
 }
+
+// search-btn-destination // 231
+// search-btn-dates // 140
+// search-btn-guests // 231

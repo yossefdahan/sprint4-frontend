@@ -7,6 +7,7 @@ import { orderService } from '../services/order.service.js'
 import { stayService } from '../services/stay.service.local.js'
 import { SET_ORDER } from '../store/order.reducer.js'
 import { addOrder, getActionAddOrder } from '../store/order.actions.js'
+import { PaymentRequest } from '../cmps/PaymentRequest.jsx'
 
 
 export function FinalPayment() {
@@ -89,91 +90,38 @@ export function FinalPayment() {
 
     return (
         <section className='payment-page'>
-            {isOpen ? (<div className='payment-confrim-modal'>
-                <section>
-                    <h1>One last step</h1>
-                    <div className='rare-to-find'>
-                        <h3>This is rare find</h3>
-                        <span>Kevin's place is usually booked.</span>
-                    </div>
-                    <h2>Your Trip</h2>
-                    <h3>dates</h3>
-                    <h3>Guests</h3>
-                    <hr />
-                    <button>close</button>
-                    <button>Approve</button>
-                </section>
-                <section className='paymentModal' >
-                    <div className='finishOrder'>
-                        <section className='title-container'>
-                            <section >
-                                <div className='header-pay'>
-                                    <img src={stay.imgUrls[0]} alt="" />
-                                    <section className='title'>
-                                        <h4>{stay.name}</h4>
-                                        <span>Entire rental unit</span>
-                                        <section className='rate-title'>
-                                        </section>
-                                        <span>★{rate / stay.reviews.length}({stay.reviews.length} reviews)</span>
-                                    </section>
-                                </div>
-                                <hr />
-                                <h2>Price details</h2>
-                                <section>
-                                    <span>{order.stay.price}X{Math.floor(order.totalPrice / order.stay.price)} nights </span>
-                                    <span>{order.stay.price * Math.floor(order.totalPrice / order.stay.price)}$</span>
-                                </section>
-                                <section>
-                                    <span>Cleaning fee {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span>
-                                    {/* <span>{order.stay.price / 10}$</span> */}
-                                </section>
-                                <section>
-                                    <span>Taxes</span>
-                                    {/* <span>{order.stay.price / 10}$</span> */}
-                                </section>
-                                <hr />
-                                <section>
-                                    <h3>total(USD) </h3>
-                                    <span> {order.totalPrice}$</span>
-                                </section>
-                                <hr />
-                                <p>This property requires a ₪504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p>
-                            </section>
-
-                        </section>
-
-                    </div>
-                </section>
-                <section>
-
-                </section>
-
-            </div>) : ''}
             <section>
-                <h1>Confirm and pay</h1>
+                {isOpen ? <PaymentRequest isOpen={isOpen} setOpen={setOpen} guests={order.guests}
+                    order={order}
+                    stay={stay} /> : ''}
+                <h1>Request to book</h1>
                 <span><Link to={`/${stayId}`}>{'<'}</Link></span>
-                <div>
-                    <span>This is rare find</span>
-                </div>
+
                 <div>
                     <h2>Your trip</h2>
                     <div>
                         <h3>Dates</h3>
-                        <a href="">Edit</a>
+                        {/* <a href="">Edit</a> */}
+
                     </div>
                     <div>
                         <h3>Guests</h3>
-                        <a href="">Edit</a>
+                        {/* <a href="">Edit</a> */}
                     </div>
                 </div>
-                <hr />
-                <div className='type-of-pay'>
-                    <h2>Choose how to pay</h2>
-                </div>
+
+
                 <hr />
                 <div>
-                    payment from ui
+                    <input type="text" />
+                    <div>
+                        <input type="text" />
+                        <input type="text" />
+                        <input type="text" />
+                    </div>
+                    <input type="text" />
                 </div>
+                <input type="text" />
                 <hr />
                 <div>
                     <h2>Cancellation policy</h2>
@@ -191,7 +139,7 @@ export function FinalPayment() {
                 <hr />
                 <div className='calltoAction'>
                     <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
-                    <button onClick={openModal}>Confirm and pay</button>
+                    <button onClick={openModal}>Request to book</button>
                 </div>
 
 
