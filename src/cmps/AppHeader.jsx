@@ -1,5 +1,5 @@
 import { Link, NavLink, useSearchParams, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect  } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
@@ -21,8 +21,11 @@ export function AppHeader() {
     const [isNavVisible, setIsNavVisible] = useState(false)
 
     useEffect(() => {
-
-        setSearchParams(filterBy)
+        setSearchParams({
+            ...filterBy,
+            checkIn: filterBy.checkIn ? filterBy.checkIn.getTime() : '',
+            checkOut: filterBy.checkOut ? filterBy.checkOut.getTime() : ''
+        })
         loadStays(filterBy)
     }, [filterBy])
 
@@ -33,16 +36,14 @@ export function AppHeader() {
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }
-    function setP() {
-        // let filterzero = stayService.getDefaultFilter()
-        setFilterBy()
-        navigate('/')
-
+    
+    function backHome() {
+        window.location.href = '/'
     }
 
     return (<>
         <header className="app-header flex align-center ">
-            <img onClick={setP} className="logo-img" src={logoImg} />
+            <img onClick={backHome} className="logo-img" src={logoImg} />
             <div className='stays-search  flex align-center'>
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>

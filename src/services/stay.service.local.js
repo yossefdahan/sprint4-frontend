@@ -16,6 +16,7 @@ export const stayService = {
   getDefaultFilter,
   getFilterFromParams,
   getCountries,
+  getLabels,
 }
 window.cs = stayService
 
@@ -24,6 +25,81 @@ async function getCountries() {
   const countries = stays.map((stay) => stay.loc.country)
   const uniqueCountries = [...new Set(countries)]
   return uniqueCountries
+}
+
+function getLabels() {
+  const labels = [
+    'beaches',
+    'trending',
+    'New',
+    'Play',
+    'Camping',
+    'Houseboats',
+    'Trulli',
+    'Treehouses',
+    'Vineyards',
+    'Skiing',
+    'Grand pianos',
+    'Lake',
+    'iconic cities',
+    'Boats',
+    'Earth homes',
+    'OMG!',
+    'Off-the-grid',
+    'Countryside',
+    'Farms',
+    'Ryokans',
+    'design',
+    'Castles',
+    'Historical homes',
+    'Caves',
+    'A-frames',
+    'National parks',
+    'Amazing views',
+    'Lakefront',
+    'Islands',
+    'Creative spaces',
+    'Dammusi',
+    'Riads',
+    'Windmills',
+    'Adapted',
+    'Towers',
+    'Barns',
+    'Minsus',
+    'Ski in out',
+    'Casas particulares',
+    'Shepherds huts',
+    'Campers',
+    'Arctic',
+    'Golfing',
+    'Domes',
+    'Rooms',
+    'Yurts',
+    'Bed & breakfasts',
+    'Chefs kitchens',
+    'Luxe',
+    'Hanoks',
+    'Top of the world',
+    'Cycladic homes',
+    'cabins',
+    'caravans',
+    'kitchens',
+    'country side',
+    'desert',
+    'Amazing pools',
+
+    'shared homes',
+    'mansions',
+    'national park',
+    'island',
+    'ski',
+    'surfing',
+    'Tiny homes',
+    'tropical',
+    'china',
+  ]
+
+  return labels
 }
 
 async function query(filterBy = getDefaultFilter()) {
@@ -38,7 +114,12 @@ async function query(filterBy = getDefaultFilter()) {
     const totalGuests = Object.values(filterBy.guests).reduce((acc, guestCount) => acc + guestCount, 0)
     stays = stays.filter(stay => stay.capacity >= totalGuests)
   }
-  console.log(stays);
+
+  if (filterBy.labels && filterBy.labels.length) {
+    const labels = Array.isArray(filterBy.labels) ? filterBy.labels : [filterBy.labels]
+    stays = stays.filter(stay => stay.labels.some(label => labels.includes(label)))
+  }
+
   return stays
 }
 
@@ -98,6 +179,7 @@ function getDefaultFilter() {
     checkIn: '',
     checkOut: '',
     guests: {},
+    labels: '',
     // amenities: [],
     type: "",
     capacity: 0,
@@ -108,13 +190,15 @@ function getDefaultFilter() {
   }
 }
 
-function getFilterFromParams(searchParams={}) {
+function getFilterFromParams(searchParams = {}) {
   const defaultFilter = getDefaultFilter()
+  const checkIn = parseInt(searchParams.get("checkIn"))
+  const checkOut = parseInt(searchParams.get("checkOut"))
 
   return {
     country:  searchParams.get("country") || defaultFilter.country,
-    checkIn: searchParams.get("checkIn") || defaultFilter.checkIn,
-    checkOut: searchParams.get("checkOut") || defaultFilter.checkOut,
+    checkIn: checkIn ? new Date(checkIn) : defaultFilter.checkIn,
+    checkOut: checkOut ? new Date(checkOut) : defaultFilter.checkOut,
     // loc: searchParams.get("loc") || defaultFilter.loc,
     // amenities: searchParams.get("amenities") || defaultFilter.amenities,
     type: searchParams.get("type") || defaultFilter.type,
