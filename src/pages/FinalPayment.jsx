@@ -8,6 +8,7 @@ import { stayService } from '../services/stay.service.local.js'
 import { SET_ORDER } from '../store/order.reducer.js'
 import { addOrder, getActionAddOrder } from '../store/order.actions.js'
 import { PaymentRequest } from '../cmps/PaymentRequest.jsx'
+import { utilService } from '../services/util.service.js'
 
 
 export function FinalPayment() {
@@ -96,60 +97,62 @@ export function FinalPayment() {
     // }
     if (!stay || !order) return <div>loading...</div>
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
-
-    return (
+    function formatDateRange(startDateStr, endDateStr) {
+        const startDate = new Date(startDateStr)
+        const endDate = new Date(endDateStr)
+        const options = { month: 'short', day: 'numeric' }
+        const formattedStartDate = startDate.toLocaleDateString('en-US', options)
+        const formattedEndDate = endDate.toLocaleDateString('en-US', options)
+        return `${formattedStartDate} – ${formattedEndDate}`
+    }
+    return (<div className='main-payment-page'>
+        <div className='main-title-container'>
+            <h1 className='main-title'>Request to book</h1>
+        </div>
         <section className='payment-page'>
-            <section>
+
+
+            <section className='lay-pay'>
                 {isOpen ? <PaymentRequest isOpen={isOpen} setOpen={setOpen} guests={order.guests}
                     order={order}
                     stay={stay} /> : ''}
-                <h1>Request to book</h1>
-                <span><Link to={`/${stayId}`}>{'<'}</Link></span>
+                <span className='back-btn'><Link to={`/${stayId}`}>{'<'}</Link></span>
 
                 <div>
-                    <h2>Your trip</h2>
-                    <div>
+                    <h2 className='trip-title'>Your trip</h2>
+                    <div className='da-title'>
                         <h3>Dates</h3>
-                        {/* <a href="">Edit</a> */}
-
+                        <h4><span>{formatDateRange(order.startDate, order.endDate)}</span></h4>
                     </div>
-                    <div>
+                    <div className='gu-title'>
                         <h3>Guests</h3>
-                        {/* <a href="">Edit</a> */}
+                        <h4><span>{Object.values(order.guests).reduce((acc, guestCount) => acc + guestCount, 0)}</span> <span>guests</span></h4>
                     </div>
+                    <hr className='payment-hr' />
                 </div>
 
-
-                <hr />
-
-                <h3>Pay with</h3>
                 <div className="credit-card-input">
-                    <div className="input-group">
-                        <label htmlFor="cardNumber"></label>
-                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
+                    <h3>Pay with</h3>
+                    <div className="inputs-group">
+                        <input type="text" className="card-number" placeholder="1234 5678 9012 3456" />
                         <div className="input-group-twice">
-                            <label htmlFor="expiryDate"></label>
-                            <input type="text" id="expiryDate" placeholder="MM/YY" />
-                            <label htmlFor="cvv"></label>
-                            <input type="text" id="cvv" placeholder="cvv" />
+                            <input type="text" className="expiry-date" placeholder="MM/YY" />
+                            <input type="text" className="cvv" placeholder="cvv" />
+                        </div>
+                        <div className="input-g">
+                            <input type="text" className="name-on-card" placeholder="Id" />
                         </div>
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="nameOnCard"></label>
-                        <input type="text" id="nameOnCard" placeholder="Id" />
-                    </div>
                 </div>
 
-
-
                 <hr />
-                <div>
+                <div className='policy-title'>
                     <h2>Cancellation policy</h2>
                     <p>Free cancellation before Apr 27. Cancel before check-in on May 2 for a partial refund. Learn more</p>
                 </div>
                 <hr />
-                <div>
-                    <h2>Ground rules</h2>
+                <div className='ground-title'>
+                    <h2 >Ground rules</h2>
                     <p>We ask every guest to remember a few simple things about what makes a great guest.</p>
                     <ul>
                         <li>Follow the house rules</li>
@@ -171,36 +174,47 @@ export function FinalPayment() {
                     <section className='title-container'>
                         <section >
                             <div className='header-pay'>
-                                <img src={stay.imgUrls[0]} alt="" />
+                                <div className='img-container'>
+                                    <img src={stay.imgUrls[0]} alt="" />
+                                </div>
                                 <section className='title'>
                                     <h4>{stay.name}</h4>
-                                    <span>Entire rental unit</span>
-                                    <section className='rate-title'>
-                                    </section>
-                                    <span>★{rate / stay.reviews.length}({stay.reviews.length} reviews)</span>
+                                    <div><span>Entire rental unit</span></div>
+                                    <div className='rate-title'>★ <span >{rate / stay.reviews.length} ({stay.reviews.length} reviews)</span> </div>
                                 </section>
                             </div>
+
                             <hr />
+
                             <h2>Price details</h2>
-                            <section>
-                                <span>{order.stay.price}X{Math.floor(order.totalPrice / order.stay.price)} nights </span>
-                                <span>{order.stay.price * Math.floor(order.totalPrice / order.stay.price)}$</span>
+
+                            <section className='flex space-between prices-final-tax'>
+                                <div>$ {order.stay.price} X {Math.floor(order.totalPrice / order.stay.price)}<span> nights</span> </div>
+                                <div>$ {order.stay.price * Math.floor(order.totalPrice / order.stay.price)}</div>
                             </section>
-                            <section>
-                                <span>Cleaning fee {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span>
+
+                            <section >
+                                <div className='flex space-between prices-final-tax'>Cleaning fee <span> $ {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span></div>
+
                                 {/* <span>{order.stay.price / 10}$</span> */}
                             </section>
-                            <section>
-                                <span>Taxes</span>
-                                {/* <span>{order.stay.price / 10}$</span> */}
-                            </section>
+
+                            {/* <section> */}
+                            {/* <span>Taxes <span></span></span> */}
+                            {/* <span>{order.stay.price / 10}$</span> */}
+                            {/* </section> */}
+
                             <hr />
-                            <section>
-                                <h3>total(USD) </h3>
-                                <span> {order.totalPrice}$</span>
+
+                            <section className='flex space-between total-price-final'>
+                                <span>total <span>(USD)</span></span>
+                                <span>$ {order.totalPrice}</span>
                             </section>
-                            <hr />
-                            <p>This property requires a ₪504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p>
+
+                            {/* <hr /> */}
+
+                            {/* <p>This property requires a $504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p> */}
+
                         </section>
 
                     </section>
@@ -208,5 +222,6 @@ export function FinalPayment() {
                 </div>
             </section>
         </section>
+    </div>
     )
 }
