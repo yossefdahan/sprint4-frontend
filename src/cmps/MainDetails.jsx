@@ -25,30 +25,43 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
     // const amenities =stay.amenities.slice(0,3)// use it in the future
     return (
         <section className='main-user-host'>
-            <h2>Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
-            <section className="flex">
-                <span>{stay.capacity}</span>-<span>{stay.type}</span>-<span></span>-<span></span>
+            <h2 className="second-title-details">Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
+            <section className=" house-details flex">
+                <span>{stay.capacity} guests</span>• <span>{stay.type}</span>•<span> 1 bedroom</span>•<span> 1bed</span>
             </section>
+
             <div className='details-user'>
                 <div className="host-things border">
-                    <section className="guest-favorite"><span>Guest favorite</span></section>
-                    <span>|</span>{rate / stay.reviews.length} <span>|</span> <section className="review-usr"><span>{stay.reviews.length}</span> <span>reviews</span> </section>
+                    <section className="guest-favorite">
+                        <img src="public/img/guest-fav.png"></img>
+                    </section>
+                    <span>|</span>
+                    <div className="reviews-details-stars">
+                        <div className="rate-details">{rate / stay.reviews.length}</div>
+                        <div className="stars-details">★★★★★ </div>
+                    </div>
+                    <span>|</span>
+                    <section className="review-usr"><span className="num-reviews">{stay.reviews.length} </span> <span className="reviews-span">Reviews</span> </section>
                 </div>
+
                 <section className="host-details">
                     <Avatar alt="Travis Howard" src={stay.host.imgUrl} />
                     <section className="host-short">
-                        <h4>Hosted by user</h4>
-                        <span>2 years hosting</span>
+                        <h4 className="host-name-details">Hosted by Travis</h4>
+                        <p>Superhost • 2 years hosting</p>
                     </section>
                 </section>
             </div>
-            <hr />
+            <hr className="hr-line-details" />
+
             <div className="more-details">
-                <div><span></span> <p>Free cancellation before</p></div>
-                <div><span className="fa-solid fa-paw"></span><p>Furry friends welcome</p></div>
-                <div><span></span><p>Great location</p></div>
+                <div className="flex"><span><i className="fa-regular fa-calendar"></i></span><p>Free cancellation for 48 hours</p></div>
+                <div className="flex"><span><i className="fa-solid fa-paw"></i></span><p>Furry friends welcome</p></div>
+                <div className="flex"><span><i class="fa-brands fa-product-hunt"></i></span><p>Park for free</p></div>
             </div>
-            <hr />
+
+            <hr className="hr-line-details" />
+
             <div className="details-description">
                 <p>{stay.summary}</p>
             </div>
@@ -57,10 +70,11 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
             <div className="details-amenities">
                 <Amenities amenities={stay.amenities} />
             </div>
-            <hr />
+            <hr className="hr-line-details" />
+
             {/* <MyDateRangePicker/> */}
-            <h3>{stay.name} | 5 nights</h3>
             <div className="date-pick-details">
+                <h3 className="title-dates-details"> 5 nights in {stay.name}  </h3>
                 <DatePicker
                     selected={filterBy.checkIn}
                     onChange={(dates) => {
@@ -74,15 +88,12 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                     startDate={filterBy.checkIn}
                     endDate={filterBy.checkOut}
                     selectsRange
-                    // inline
+
                     monthsShown={2}
                     open={isOpen}
-                // onClick={() => setIsOpen(true)}
-                // onFocus={() => setIsOpen(true)}
-                // onBlur={() => setIsOpen(false)}
 
                 />
             </div>
-        </section>
+        </section >
     )
 }

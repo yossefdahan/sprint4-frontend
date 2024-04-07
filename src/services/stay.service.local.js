@@ -319,7 +319,8 @@ function createStays() {
         type: "Cabin",
         imgUrls: [`/img/6.jpg`, `/img/4.jpeg`, `/img/5.jpeg`, `/img/11.jpg`, `/img/7.jpg`],
         price: 120.0,
-        summary: "A cozy cabin in the heart of the mountains, perfect for a weekend getaway.",
+        summary:
+          "A cozy cabin in the heart of the mountains, perfect for a weekend getaway Welcome to our cozy retreat nestled in the heart of the city! This charming home offers a tranquil oasis with its private garden, modern amenities, and stylish decor. Perfect for adventurers and families alike, it's just steps away from vibrant markets, renowned restaurants, and picturesque parks. Enjoy a seamless stay with high-speed Wi-Fi, a fully equipped kitchen, and a guide to local secrets for an unforgettable experience.",
         capacity: 4,
         amenities: ["Fireplace", "Mountain view", "Kitchen", "Pets allowed", "Hiking trails"],
         labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],

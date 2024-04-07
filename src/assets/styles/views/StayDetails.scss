@@ -96,16 +96,58 @@
   display: flex;
   justify-content: space-between;
 
+  .main-user-host {
+    flex-grow: 1;
+  }
+
+  .host-things {
+    width: 600px;
+  }
+
   .border {
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
   }
+
+  .second-title-details {
+    font-size: 22px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .house-details {
+    margin-bottom: 20px;
+    font-size: 16px;
+    span {
+      margin-left: 3px;
+      margin-right: 5px;
+    }
+  }
+
+  .reviews-details-stars {
+    text-align: center;
+    width: 100px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .stars-details {
+    font-size: 14px;
+  }
+  .num-reviews {
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .reviews-span {
+    font-weight: 500;
+    font-size: 12px;
+    text-decoration: underline;
+    font-weight: 700;
+  }
 }
 
-.main-user-host {
-  flex-grow: 1;
-}
-
+/*payment modal */
 .payment-modal {
   position: sticky;
   width: max-content;
@@ -116,15 +158,15 @@
   padding: 24px;
 }
 
+/*User modal */
+
 .details-user {
   .host-things {
-    padding: 20px 28px;
+    padding: 20px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    .guest-favorite {
-    }
+    height: 80px;
   }
 }
 
@@ -134,25 +176,100 @@
   align-items: center;
 }
 
+/*User modal */
+
 .host-details {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 24px 0px;
+  gap: 20px;
+  padding: 25px 0px;
+}
+
+.hr-line-details {
+  margin-top: 0;
+  margin-bottom: 20px;
+  margin-right: 150px;
 }
 
 .host-short {
   display: flex;
   flex-direction: column;
 
+  p {
+    font-size: 14px;
+  }
   h4 {
     margin: 0;
+    font-size: 16px;
   }
 }
 
-.review-container {
+.more-details {
+  font-weight: 500;
+  div {
+    margin-bottom: 20px;
+    span {
+      margin-right: 10px;
+    }
+    i {
+      font-size: 24px;
+    }
+  }
 }
 
+.details-description {
+  width: 600px;
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 35px;
+  padding-top: 15px;
+}
+
+/*Amenities Section*/
+
+.amenities-container {
+  padding: 48px 0;
+  .amenities-title {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+
+  .amenities-icons-section {
+    padding-bottom: 20px;
+
+    i {
+      margin-right: 10px;
+    }
+
+    p {
+      padding-bottom: 16px;
+    }
+  }
+  .fa-airbnb {
+    color: red;
+    font-size: 20px;
+  }
+
+  button {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(34, 34, 34);
+    font-weight: 600;
+    padding: 13px;
+    border-radius: 8px;
+    color: $black2;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $main-gray-hover;
+    }
+  }
+}
+
+.title-dates-details {
+  margin: 0;
+}
 .review-by {
   justify-content: space-between;
 }
@@ -185,6 +302,19 @@
 }
 
 .date-pick-details {
+  margin-top: 0px;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  transform: 0;
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid #dedede00;
+  border-radius: 16px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-right: 20px;
+
   .react-datepicker {
     font-size: 0.8rem;
     background-color: #fff;
@@ -197,19 +327,6 @@
     display: flex;
     justify-content: space-between;
   }
-
-  margin-top: 0px;
-  width: 100%;
-  top: 0%;
-  left: 0%;
-  transform: 0;
-  background-color: rgba(255, 255, 255, 0);
-  border: 2px solid #dedede00;
-  // z-index: 1000;
-  // width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
-  padding: 20px;
 }
 
 .circleRed {
