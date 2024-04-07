@@ -248,7 +248,8 @@
     justify-content: space-around;
   }
 
-  &_week {}
+  &_week {
+  }
 
   &__day-name,
   &__day {
@@ -317,6 +318,36 @@
   margin: 0 auto;
   margin-bottom: 20px;
   cursor: pointer;
+
+  .destination-txt-input {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 200px;
+    padding-top: 15px;
+    padding-left: 20px;
+    z-index: 1000;
+    position: absolute;
+    top: 100%;
+    right: 48%;
+    background-color: white;
+    border: 1px solid $light-gray;
+    border-radius: 25px;
+    cursor: pointer;
+
+    li {
+      font-weight: 500;
+      color: $black2;
+      font-size: 14px;
+      line-height: 65px;
+      width: 350px;
+
+      &:hover {
+        background-color: $light-gray;
+      }
+    }
+  }
 
   .input-group {
     position: relative;
@@ -454,7 +485,6 @@
         position: relative;
         width: 140px;
 
-
         &:hover {
           background-color: $light-gray;
 
@@ -462,8 +492,6 @@
             content: none;
           }
         }
-
-
 
         & .header-label-cal {
           position: absolute;
@@ -474,7 +502,6 @@
           font-weight: 600;
           color: #333;
           user-select: none;
-
         }
 
         & .start-input-cal {
@@ -496,7 +523,6 @@
           width: 1px;
           background-color: $light-gray;
         }
-
       }
 
       & .out-cal {
@@ -515,7 +541,7 @@
           content: none;
         }
 
-        &:hover+.in-cal::after {
+        &:hover + .in-cal::after {
           content: none;
         }
 
@@ -528,7 +554,6 @@
           font-weight: 600;
           color: #333;
           user-select: none;
-
         }
 
         & .end-input-cal {
@@ -550,15 +575,10 @@
           width: 1px;
           background-color: $light-gray;
         }
-
-
       }
-
-
     }
   }
 }
-
 
 .hr-line {
   border: none;
@@ -569,9 +589,6 @@
   left: 0;
   margin: 0;
 }
-
-
-
 
 // search-btn-destination // 231
 // search-btn-dates // 140
