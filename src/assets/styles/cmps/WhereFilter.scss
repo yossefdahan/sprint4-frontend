@@ -322,6 +322,7 @@
   .destination-txt-input {
     list-style-type: none;
     display: flex;
+
     flex-direction: column;
     width: 400px;
     height: 200px;
@@ -335,16 +336,35 @@
     border: 1px solid $light-gray;
     border-radius: 25px;
     cursor: pointer;
+    i {
+      display: flex;
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+
+      border: 1px solid $light-gray;
+      background-color: $background-clr;
+      margin-top: 5px;
+      border-radius: 12px;
+    }
 
     li {
+      display: flex;
+      justify-content: space-around;
+      justify-content: flex-start;
       font-weight: 500;
       color: $black2;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 65px;
+      gap: 10px;
       width: 350px;
+      padding-left: 10px;
 
       &:hover {
         background-color: $light-gray;
+        border-radius: 12px;
       }
     }
   }
