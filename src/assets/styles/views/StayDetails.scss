@@ -270,27 +270,51 @@
 .title-dates-details {
   margin: 0;
 }
-.review-by {
-  justify-content: space-between;
-}
 
 .guest-lover {
   display: flex;
   justify-content: center;
-}
+  flex-direction: column;
+  text-align: center;
+  width: 600px;
+  margin: auto;
 
-.review-by-user {
-  .by-details {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-
-    // padding: 24px 0px;
-    .name-user h4 {
-      margin: 0;
-    }
+  img {
+    padding-top: 20px;
+    width: 400px;
   }
 
+  h2 {
+    margin-bottom: 10px;
+    font-family: sans-serif;
+  }
+  .user-line-description {
+    padding-top: 0;
+    padding-bottom: 20px;
+  }
+}
+
+/*Reviews section */
+.review-container {
+  .review-by-user {
+    width: 600px;
+    margin-bottom: 20px;
+    p {
+      font-size: 14px;
+    }
+    .by-details {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      .name-user h4 {
+        margin: 0;
+        font-size: 16px;
+      }
+      .name-user {
+        font-size: 14px;
+      }
+    }
+  }
   .comment {
     display: flex;
     flex-direction: column;
@@ -298,6 +322,20 @@
     p {
       margin: 0;
     }
+  }
+}
+
+.review-btn-details {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(34, 34, 34);
+  font-weight: 600;
+  padding: 13px;
+  border-radius: 8px;
+  color: $black2;
+  font-size: 16px;
+
+  &:hover {
+    background-color: $main-gray-hover;
   }
 }
 
@@ -329,6 +367,17 @@
   }
 }
 
+/*map reviews*/
+.map-review-title {
+  font-size: 22px;
+  font-weight: 500;
+  font-family: sans-serif;
+}
+
+.location-map-details {
+  font-size: 16px;
+  padding-top: 20px;
+}
 .circleRed {
   background-color: $clr1;
   padding: 10px;

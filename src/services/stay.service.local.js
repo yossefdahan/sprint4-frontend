@@ -340,7 +340,7 @@ function createStays() {
         reviews: [
           {
             id: "rev202",
-            txt: "The perfect retreat from city life! The hiking trails were fantastic.",
+            txt: "The perfect retreat from city life! The hiking trails were fantastic.Great location with easy access to the subway and local attractions",
             rate: 5,
             by: {
               _id: "u204",
@@ -350,7 +350,7 @@ function createStays() {
           },
           {
             id: "rev202",
-            txt: "The perfect retreat from city life! The hiking trails were fantastic.",
+            txt: "The perfect retreat from city life! The hiking trails were fantastic.Great location with easy access to the subway and local attractions",
             rate: 5,
             by: {
               _id: "u204",
