@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {  useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { loadOrders, updateOrder } from '../store/order.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { MyChart } from '../cmps/MyChart.jsx'
@@ -13,7 +13,7 @@ export function DashBoard() {
 
     useEffect(() => {
         loadOrders()
-    }, [orderUpdateTrigger, orders])
+    }, [orders])
 
 
     async function onAproveOrder(order) {

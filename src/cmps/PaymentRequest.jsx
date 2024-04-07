@@ -21,14 +21,19 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
 
 
 
-    function dealMade(ev) {
+    async function dealMade(ev) {
         ev.preventDefault()
-        addOrder(order)
+        try {
+            await addOrder(order);
+            setSend(true)
+            backHome()
+            console.log('complete!')
+
+        } catch (err) {
+            console.log(err)
+        }
         // setOpen(false)
-        setSend(true)
-        backHome()
         // navigate('/')
-        console.log('complete!')
     }
 
     function backHome() {

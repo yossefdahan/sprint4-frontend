@@ -90,8 +90,8 @@ export function AddStay() {
                             <option value="house">House</option>
                             <option value="studio">Studio</option>
                             <option value="room">Room</option>
+                            <ImgUploader onUploaded={onUploaded} />
                         </select>
-                        <ImgUploader onUploaded={onUploaded} />
                     </div>
                     <div>
                         <button type="sumbmit">Add</button>
