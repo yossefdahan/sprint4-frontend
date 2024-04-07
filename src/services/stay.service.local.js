@@ -242,11 +242,11 @@ function getEmptyStay() {
         '',
     },
     loc: {
-      country: "" || "Portugal",
-      countryCode: "" || "PT",
-      city: "" || "Lisbon",
-      address: "" | "17 Kombo st",
-      lat: -8.61308,
+      country: "" ,
+      countryCode: "" ,
+      city: "" ,
+      address: "" ,
+      lat: 8.61308,
       lng: 41.1413,
     },
 
