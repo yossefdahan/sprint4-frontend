@@ -52,74 +52,63 @@ function getAmenities() {
 
 function getLabels() {
   const labels = [
-    'beaches',
-    'trending',
-    'New',
-    'Play',
-    'Camping',
-    'Houseboats',
-    'Trulli',
-    'Treehouses',
-    'Vineyards',
-    'Skiing',
-    'Grand pianos',
-    'Lake',
-    'iconic cities',
-    'Boats',
-    'Earth homes',
-    'OMG!',
-    'Off-the-grid',
-    'Countryside',
-    'Farms',
-    'Ryokans',
-    'design',
-    'Castles',
-    'Historical homes',
-    'Caves',
-    'A-frames',
-    'National parks',
-    'Amazing views',
-    'Lakefront',
-    'Islands',
-    'Creative spaces',
-    'Dammusi',
-    'Riads',
-    'Windmills',
-    'Adapted',
-    'Towers',
-    'Barns',
-    'Minsus',
-    'Ski in out',
-    'Casas particulares',
-    'Shepherds huts',
-    'Campers',
-    'Arctic',
-    'Golfing',
-    'Domes',
-    'Rooms',
-    'Yurts',
-    'Bed & breakfasts',
-    'Chefs kitchens',
-    'Luxe',
-    'Hanoks',
-    'Top of the world',
-    'Cycladic homes',
-    'cabins',
-    'caravans',
-    'kitchens',
-    'country side',
-    'desert',
-    'Amazing pools',
-
-    'shared homes',
-    'mansions',
-    'national park',
-    'island',
-    'ski',
-    'surfing',
-    'Tiny homes',
-    'tropical',
-    'china',
+    "beaches",
+    "trending",
+    "New",
+    "Play",
+    "Camping",
+    "Houseboats",
+    "Trulli",
+    "Treehouses",
+    "Vineyards",
+    "Skiing",
+    "Grand pianos",
+    "Lake",
+    "iconic cities",
+    "Boats",
+    "Earth homes",
+    "OMG!",
+    "Off-the-grid",
+    "Farms",
+    "Ryokans",
+    "Amazing views",
+    "design",
+    "Castles",
+    "Historical homes",
+    "Caves",
+    "A-frames",
+    "National parks",
+    "Lakefront",
+    "Islands",
+    "Creative spaces",
+    "Dammusi",
+    "Riads",
+    "Windmills",
+    "Adapted",
+    "Towers",
+    "Barns",
+    "Minsus",
+    "Ski in out",
+    "Campers",
+    "country side",
+    "Arctic",
+    "Shepherds huts",
+    "Golfing",
+    "Domes",
+    "Chefs kitchens",
+    "Rooms",
+    "Yurts",
+    "Bed & breakfasts",
+    "Luxe",
+    "Hanoks",
+    "Top of the world",
+    "desert",
+    "Amazing pools",
+    "mansions",
+    "Cycladic homes",
+    "surfing",
+    "Tiny homes",
+    "tropical",
   ]
 
   return labels
@@ -134,13 +123,16 @@ async function query(filterBy = getDefaultFilter()) {
   }
 
   if (filterBy.capacity) {
-    const totalGuests = Object.values(filterBy.guests).reduce((acc, guestCount) => acc + guestCount, 0)
-    stays = stays.filter(stay => stay.capacity >= totalGuests)
+    const totalGuests = Object.values(filterBy.guests).reduce(
+      (acc, guestCount) => acc + guestCount,
+      0
+    )
+    stays = stays.filter((stay) => stay.capacity >= totalGuests)
   }
 
   if (filterBy.labels && filterBy.labels.length) {
     const labels = Array.isArray(filterBy.labels) ? filterBy.labels : [filterBy.labels]
-    stays = stays.filter(stay => stay.labels.some(label => labels.includes(label)))
+    stays = stays.filter((stay) => stay.labels.some((label) => labels.includes(label)))
   }
 
   return stays
@@ -190,7 +182,7 @@ async function addStayReviews(stayId) {
 
 function getDefaultFilter() {
   return {
-    country: '',
+    country: "",
     loc: {
       country: "",
       countryCode: "",
@@ -200,13 +192,13 @@ function getDefaultFilter() {
       lng: 0,
     },
     dates: {
-      checkIn: '',
-      checkOut: '',
+      checkIn: "",
+      checkOut: "",
     },
-    checkIn: '',
-    checkOut: '',
+    checkIn: "",
+    checkOut: "",
     guests: {},
-    labels: '',
+    labels: "",
     // amenities: [],
     type: "",
     capacity: 0,
@@ -250,8 +242,7 @@ function getEmptyStay() {
     host: {
       _id: "",
       fullname: "",
-      imgUrl:
-        '',
+      imgUrl: "",
     },
     loc: {
       country: "" || "Portugal",
@@ -343,8 +334,8 @@ function createStays() {
             by: {
               _id: "u204",
               fullname: "Amy Wong",
-              imgUrl: "/img/users/amy.jpg"
-            }
+              imgUrl: "/img/users/amy.jpg",
+            },
           },
           {
             id: "rev202",
