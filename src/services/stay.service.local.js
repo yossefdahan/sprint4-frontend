@@ -17,6 +17,8 @@ export const stayService = {
   getFilterFromParams,
   getCountries,
   getLabels,
+  getAmenities,
+  getLatLngFromAddress,
 }
 window.cs = stayService
 
@@ -25,6 +27,27 @@ async function getCountries() {
   const countries = stays.map((stay) => stay.loc.country)
   const uniqueCountries = [...new Set(countries)]
   return uniqueCountries
+}
+
+
+async function getLatLngFromAddress(address) {
+  const apiKey = 'AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY'
+  const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`)
+  const data = await response.json();
+  if (data.results && data.results.length > 0) {
+    const { lat, lng } = data.results[0].geometry.location
+    return { lat, lng };
+  } else {
+    throw new Error('Could not find coordinates for the provided address')
+  }
+}
+
+
+
+
+function getAmenities() {
+  const amenities = ['TV', 'Wifi', 'Kitchen', 'Air conditioning', 'Heating', 'Pool', 'Free parking', 'Gym', 'Hot tub', 'Washer']
+  return amenities;
 }
 
 function getLabels() {
@@ -140,6 +163,10 @@ async function save(stay) {
     // Later, owner is set by the backend
     // stay.host = userService.getLoggedinUser()
     // stay._id = utilService.makeId(5)
+    // const address = `${stay.loc.city}, ${stay.loc.country}`
+    // const { lat, lng } = await getLatLngFromAddress(address)
+    // stay.loc.lat = lat
+    // stay.loc.lng = lng
     savedStay = await storageService.post(STORAGE_KEY, stay)
   }
   return savedStay
@@ -212,7 +239,7 @@ function getEmptyStay() {
   return {
     name: "" || "Ribeira Charming Duplex",
     type: "" || "house",
-    imgUrls: [""],
+    imgUrls: [],
     price: 0 || utilService.getRandomIntInclusive(200, 9000),
     summary: "" || utilService.makeLorem(2),
     capacity: 0 || utilService.getRandomIntInclusive(1, 10),
