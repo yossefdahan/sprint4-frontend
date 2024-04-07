@@ -63,12 +63,12 @@ export function AppHeader() {
             <img onClick={backHome} className="logo-img" src={logoImg} />
 
             {!isHouseRoute && !isPaymentRoute && showSearchContainer ? (
-                <div className='stays-search  flex align-center' style={{ transition: "1.3s" }}>
+                <div className='stays-search  flex align-center' style={{ transition: "1.s" }}>
                     <button className='stays'>Stays</button>
                     <button className='experiences'>Experiences</button>
                     <button className='experiences'>Online Experiences</button>
                 </div>) : (<div className='min-filter' style={{ transition: "1.2s" }}>
-                    <MinFilter miniClicked={miniClicked} setMiniClicked={setMiniClicked} />
+                    <MinFilter />
                 </div>)}
 
             <div className='left-section-header flex align-center'>
