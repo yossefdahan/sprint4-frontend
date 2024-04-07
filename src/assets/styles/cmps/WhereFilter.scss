@@ -34,7 +34,6 @@
   &.input-group {
     display: flex;
     flex-direction: column;
-
   }
 
   & h4 {
@@ -249,7 +248,8 @@
     justify-content: space-around;
   }
 
-  &_week {}
+  &_week {
+  }
 
   &__day-name,
   &__day {
@@ -337,13 +337,13 @@
     border-radius: 25px;
     cursor: pointer;
 
-    i {
+    img {
       display: flex;
       width: 50px;
       height: 50px;
       justify-content: center;
       align-items: center;
-      font-size: 30px;
+      padding: 10px 10px;
       border: 1px solid $light-gray;
       background-color: $background-clr;
       margin-top: 5px;
@@ -403,10 +403,8 @@
 
       &:hover {
         background-color: $light-gray;
-
       }
     }
-
 
     &:not(:last-child)::after {
       content: "";
@@ -435,16 +433,10 @@
       }
     }
 
-
-
     .search-btn-dates {
       width: 140px;
       padding-left: 10px;
     }
-
-
-
-
 
     input {
       border: none;
@@ -496,12 +488,10 @@
     & span {
       margin: 0;
       margin-left: 5px;
-
     }
 
     & i {
       font-size: 20px;
-
     }
 
     &:hover {
@@ -532,7 +522,6 @@
         position: relative;
         width: 140px;
 
-
         &:hover {
           background-color: $light-gray;
 
@@ -540,8 +529,6 @@
             content: none;
           }
         }
-
-
 
         & .header-label-cal {
           position: absolute;
@@ -552,7 +539,6 @@
           font-weight: 600;
           color: #333;
           user-select: none;
-
         }
 
         & .start-input-cal {
@@ -574,7 +560,6 @@
           width: 1px;
           background-color: $light-gray;
         }
-
       }
 
       & .out-cal {
@@ -593,7 +578,7 @@
           content: none;
         }
 
-        &:hover+.in-cal::after {
+        &:hover + .in-cal::after {
           content: none;
         }
 
@@ -606,7 +591,6 @@
           font-weight: 600;
           color: #333;
           user-select: none;
-
         }
 
         & .end-input-cal {
@@ -628,13 +612,8 @@
           width: 1px;
           background-color: $light-gray;
         }
-
-
       }
-
-
     }
-
   }
 
   & .guests-section-search {
@@ -661,11 +640,9 @@
       font-weight: 600;
       color: #333;
       user-select: none;
-
     }
 
     & .search-btn-guests {
-
       padding-left: 5px;
       font-size: 14px;
       color: $main-gray;
@@ -673,7 +650,6 @@
     }
   }
 }
-
 
 .hr-line {
   border: none;
@@ -684,9 +660,6 @@
   left: 0;
   margin: 0;
 }
-
-
-
 
 // search-btn-destination // 231
 // search-btn-dates // 140

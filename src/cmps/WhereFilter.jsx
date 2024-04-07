@@ -248,7 +248,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                         {suggestions.map(suggestion => (
                             <li key={suggestion} className="suggestion" onClick={() => handleSuggestionClick(suggestion)}>
-                                <i class="fa-solid fa-location-dot"></i>
+                                <img src="src/assets/img/small-icons/place-marker-svgrepo-com.svg" alt="" />
                                 <div>{suggestion}</div>
                             </li>
 
