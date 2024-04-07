@@ -57,7 +57,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
             <div className="more-details">
                 <div className="flex"><span><i className="fa-regular fa-calendar"></i></span><p>Free cancellation for 48 hours</p></div>
                 <div className="flex"><span><i className="fa-solid fa-paw"></i></span><p>Furry friends welcome</p></div>
-                <div className="flex"><span><i class="fa-brands fa-product-hunt"></i></span><p>Park for free</p></div>
+                <div className="flex"><span><i className="fa-brands fa-product-hunt"></i></span><p>Park for free</p></div>
             </div>
 
             <hr className="hr-line-details" />

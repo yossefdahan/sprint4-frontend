@@ -255,10 +255,10 @@ function getEmptyStay() {
       imgUrl: "",
     },
     loc: {
-      country: "" ,
-      countryCode: "" ,
-      city: "" ,
-      address: "" ,
+      country: "",
+      countryCode: "",
+      city: "",
+      address: "",
       lat: 8.61308,
       lng: 41.1413,
     },
@@ -339,7 +339,7 @@ function createStays() {
         },
         reviews: [
           {
-            id: "rev202",
+            id: "rev209",
             txt: "The perfect retreat from city life! The hiking trails were fantastic.Great location with easy access to the subway and local attractions",
             rate: 5,
             by: {
