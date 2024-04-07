@@ -1,11 +1,11 @@
 
 
-export function MinFilter({ miniClicked, setMiniClicked }) {
+export function MinFilter() {
 
 
 
     return (
-        <div className="main-min-filter" onClick={setMiniClicked(!miniClicked)}>
+        <div className="main-min-filter">
 
             <div className="where-min-filter">
                 Anywhere
