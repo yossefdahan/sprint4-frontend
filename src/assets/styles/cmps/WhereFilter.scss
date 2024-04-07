@@ -336,6 +336,7 @@
     border: 1px solid $light-gray;
     border-radius: 25px;
     cursor: pointer;
+
     i {
       display: flex;
       width: 50px;
@@ -343,7 +344,6 @@
       justify-content: center;
       align-items: center;
       font-size: 30px;
-
       border: 1px solid $light-gray;
       background-color: $background-clr;
       margin-top: 5px;
@@ -670,7 +670,7 @@
       padding-left: 5px;
       font-size: 14px;
       color: $main-gray;
-      width: 100%;
+      width: 109px;
     }
   }
 }
