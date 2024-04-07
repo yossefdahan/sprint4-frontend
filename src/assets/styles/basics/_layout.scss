@@ -1,8 +1,8 @@
 .main-container {
   display: grid;
-  grid-template-columns: 80px 1fr 80px;
+  grid-template-columns: 388.5px 1fr 388.5px;
 
-  > * {
+  >* {
     grid-column: 2;
 
     &.full {
