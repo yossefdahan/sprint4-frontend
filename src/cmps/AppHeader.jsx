@@ -37,7 +37,7 @@ export function AppHeader() {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollPos = window.pageYOffset
-            setShowSearchContainer(currentScrollPos < 10)
+            setShowSearchContainer(currentScrollPos < 1)
         }
         window.addEventListener('scroll', handleScroll)
 
@@ -62,11 +62,13 @@ export function AppHeader() {
         <header className="app-header flex align-center ">
             <img onClick={backHome} className="logo-img" src={logoImg} />
 
-            {!isHouseRoute && !isPaymentRoute && showSearchContainer && (
-                <div className='stays-search  flex align-center'>
+            {!isHouseRoute && !isPaymentRoute && showSearchContainer ? (
+                <div className='stays-search  flex align-center' style={{ transition: "1.3s" }}>
                     <button className='stays'>Stays</button>
                     <button className='experiences'>Experiences</button>
                     <button className='experiences'>Online Experiences</button>
+                </div>) : (<div className='min-filter' style={{ transition: "1.2s" }}>
+                    <MinFilter miniClicked={miniClicked} setMiniClicked={setMiniClicked} />
                 </div>)}
 
             <div className='left-section-header flex align-center'>
@@ -95,16 +97,16 @@ export function AppHeader() {
             </div>
 
         </header>
-        <div className='search-container'>
+        <div className='search-container' >
             {!isHouseRoute && !isPaymentRoute && showSearchContainer && <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
         </div>
 
 
-        {!showSearchContainer && !isHouseRoute && (
+        {/* {!showSearchContainer && !isHouseRoute && (
             <div className='min-filter'>
                 <MinFilter miniClicked={miniClicked} setMiniClicked={setMiniClicked} />
             </div>
-        )}
+        )} */}
     </section>
     )
 }

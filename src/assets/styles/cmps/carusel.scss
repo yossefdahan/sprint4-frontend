@@ -1,3 +1,10 @@
+.filter-main {
+  position: sticky;
+  top: 80px;
+  z-index: 1000;
+  background-color: white;
+}
+
 .swiper-slide {
   display: flex;
   width: 60px;
@@ -92,13 +99,11 @@
     margin-left: -10px;
     margin-top: -14px;
     // display: none;
-
   }
 
   .swiper-button-prev::after {
     font-size: 13px;
     color: black;
-
   }
 
   .swiper-button-prev:hover {
