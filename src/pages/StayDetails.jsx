@@ -43,8 +43,14 @@ export function StayDetails() {
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
     if (!stay) return <div className='loader'></div>
     return (
-        <section className='details-layout'>
-            <h1 className='stay-name-details'>{stay.name}</h1>
+        <section className='details-layout  '>
+            <div className='main-header-details flex space-between '>
+                <h1 className='stay-name-details '>{stay.name}</h1>
+                <div className='header-buttons-section'>
+                    <button> <i className="fa-solid fa-arrow-up-from-bracket"></i> <span className='share-btn'> Share</span>  </button>
+                    <button> ❤️ <span>Saved</span> </button>
+                </div>
+            </div>
             <section className='gallery'>
                 {stay.imgUrls.map((img) =>
                     <img src={img} alt="img of the photo" key={img} />
