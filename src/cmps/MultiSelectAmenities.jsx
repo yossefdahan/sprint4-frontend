@@ -3,25 +3,26 @@ import { stayService } from '../services/stay.service.local.js'
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 
-export function MultiSelect({ onSetLabel, stay }) {
+export function MultiSelectAmenities({ onSetAmenitie, stay }) {
 
     const [isOptionsModalOpen, setIsOptionsModalOpen] = useState(false)
-    const labels = stayService.getLabels()
+    const amenities = stayService.getAmenities()
 
 
     return <section className="multi-select input" onMouseLeave={() => setIsOptionsModalOpen(false)}>
-        <label >labels</label>
+        <label htmlFor="">amenities</label>
         <div className="selected-options-container" onClick={() => setIsOptionsModalOpen(prev => !prev)}>
 
-            {!!stay.labels.length && stay.labels.map(label => <div key={label}>{label},</div>)}
-            {!stay.labels.length && <div> no labels yet</div>}
+            {!!stay.amenities.length && stay.amenities.map(amenitie => <div  key={amenitie}>{amenitie},</div>)}
+            {!stay.amenities.length && <div> no amenities yet</div>}
         </div>
 
         <div className={`options-container  ${isOptionsModalOpen ? ' open' : ''}`}>
-            {labels.map(label => <div onClick={() => onSetLabel(label)} key={label}>
-                {label} {stay.labels?.includes(label) ? '🟢' : ''}
+            {amenities.map(amenitie => <div onClick={() => onSetAmenitie(amenitie)} key={amenitie}>
+                {amenitie} {stay.amenities?.includes(amenitie) ? '🟢' : ''}
             </div>
             )}
         </div>
     </section >
 }
+

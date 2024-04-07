@@ -8,11 +8,14 @@ import { WhereFilter } from './WhereFilter.jsx'
 import { loadStays, setFilterBy } from '../store/stay.actions'
 // import { SearchFilter } from './SearchFilter.jsx'
 import { stayService } from '../services/stay.service.local.js'
+import { MinFilter } from './MinFilter.jsx'
 
 
 
 export function AppHeader() {
     const [searchParams, setSearchParams] = useSearchParams()
+    const [showSearchContainer, setShowSearchContainer] = useState(true)
+    const [miniClicked, setMiniClicked] = useState(false)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const navigate = useNavigate()
 
@@ -20,7 +23,9 @@ export function AppHeader() {
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
 
-    useEffect(() => { // back here i think here is the problem (bug with params)
+
+
+    useEffect(() => {
         setSearchParams({
             ...filterBy,
             checkIn: filterBy.checkIn ? filterBy.checkIn.getTime() : '',
@@ -28,6 +33,17 @@ export function AppHeader() {
         })
         loadStays(filterBy)
     }, [filterBy])
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollPos = window.pageYOffset
+            setShowSearchContainer(currentScrollPos < 10)
+        }
+        window.addEventListener('scroll', handleScroll)
+
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
 
     const toggleNavBar = () => {
         setIsNavVisible(!isNavVisible)
@@ -41,15 +57,18 @@ export function AppHeader() {
         window.location.href = '/'
     }
     const isPaymentRoute = location.pathname.startsWith('/payment/')
-    return (<>
+    const isHouseRoute = location.pathname.startsWith('/:stayId')
+    return (<section className='main-main-header'>
         <header className="app-header flex align-center ">
             <img onClick={backHome} className="logo-img" src={logoImg} />
-            {isPaymentRoute ? "" : (<div className='stays-search  flex align-center'>
-                <button className='stays'>Stays</button>
-                <button className='experiences'>Experiences</button>
-                <button className='experiences'>Online Experiences</button>
 
-            </div>)}
+            {!isHouseRoute && !isPaymentRoute && showSearchContainer && (
+                <div className='stays-search  flex align-center'>
+                    <button className='stays'>Stays</button>
+                    <button className='experiences'>Experiences</button>
+                    <button className='experiences'>Online Experiences</button>
+                </div>)}
+
             <div className='left-section-header flex align-center'>
                 <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
                 <button className='Languages-btn fa-solid fa-globe'></button>
@@ -77,9 +96,15 @@ export function AppHeader() {
 
         </header>
         <div className='search-container'>
-            {isPaymentRoute ? <hr /> : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
+            {!isHouseRoute && !isPaymentRoute && showSearchContainer && <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
         </div>
 
-    </>
+
+        {!showSearchContainer && !isHouseRoute && (
+            <div className='min-filter'>
+                <MinFilter miniClicked={miniClicked} setMiniClicked={setMiniClicked} />
+            </div>
+        )}
+    </section>
     )
 }

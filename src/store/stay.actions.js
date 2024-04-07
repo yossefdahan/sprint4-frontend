@@ -67,6 +67,7 @@ export async function removeStay(stayId) {
 
 export async function addStay(stay) {
     try {
+        
         const savedStay = await stayService.save(stay)
         console.log('Added stay', savedStay)
         store.dispatch(getActionAddStay(savedStay))
