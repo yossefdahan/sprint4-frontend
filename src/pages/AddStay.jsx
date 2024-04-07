@@ -70,11 +70,11 @@ export function AddStay() {
                     <MultiSelect onSetLabel={onSetLabel} stay={stay} />
                 </div>
                 <label htmlFor="address">Address: </label>
-                <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.address} onChange={handleChange} />
+                <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.loc.address} onChange={handleChange} />
                 <label htmlFor="city">City: </label>
-                <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.city} onChange={handleChange} />
+                <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.loc.city} onChange={handleChange} />
                 <label htmlFor="country">Country: </label>
-                <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.country} onChange={handleChange} />
+                <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleChange} />
 
                 <div className="radio-sort input">
                     <label htmlFor="type"> Type of the Airstay</label>
