@@ -7,6 +7,20 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
     const { adults, children, infants, pets } = guests
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     const [send, setSend] = useState(false)
+    const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
+
+
+    const handleMouseMove = (event) => {
+        const { clientY, target } = event;
+        const { top, height } = target.getBoundingClientRect();
+        const yRatio = (clientY - top) / height;
+
+        const lightness = 40 + (20 * yRatio);
+        setButtonColor(`hsl(351, 83%, ${lightness}%)`);
+    };
+
+
+
     function dealMade(ev) {
         ev.preventDefault()
         addOrder(order)
@@ -97,10 +111,10 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
 
                     </div>
                 </section>
-                <section>
-                    {send ? (<button on onClick={() => backHome()}>Look for more places to stay</button>) : (<section className='flex space-between'>
-                        <button onClick={() => setOpen(!isOpen)}>close</button>
-                        <button onClick={dealMade}>Approve</button>
+                <section className='calltoAction'>
+                    {send ? (<button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} on onClick={() => backHome()}>Look for more places to stay</button>) : (<section className='flex space-between'>
+                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={() => setOpen(!isOpen)}>close</button>
+                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={dealMade}>confrim</button>
                     </section>)}
                 </section>
 

@@ -1,0 +1,26 @@
+.multi-select {
+    position: relative;
+  }
+  
+  .multi-select .selected-options-container {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .multi-select .options-container {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .multi-select .options-container.open {
+    display: unset;
+  }
+  
+  
+  .multi-select .options-container>* {
+    padding: 5px;
+    border: 1px solid black;
+    background: white;
+  }

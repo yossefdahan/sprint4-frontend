@@ -259,7 +259,7 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                     <div className="payment-guests">
 
 
-                        {showGuestDropdown && <div className=" payment-guests-count">
+                        {showGuestDropdown && <div className="payment-guests-count">
 
                             <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                             <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
