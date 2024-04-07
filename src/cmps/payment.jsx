@@ -287,6 +287,6 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                     {feeModal && < FeeModal setFeeModal={setFeeModal} feeModal={feeModal} />}
                 </> : ''}
             </section >
-        </section>)
+        </section >)
 
 }

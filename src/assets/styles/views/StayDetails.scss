@@ -1,6 +1,6 @@
 .details-layout {
   display: grid;
-  grid-template-columns: 1fr 1440px 1fr;
+  grid-template-columns: 1fr 1120px 1fr;
 
   > * {
     grid-column: 2;
@@ -220,6 +220,7 @@
 
 .line-payment {
   position: relative;
+  padding: 0;
 }
 
 /*  LOADER */
