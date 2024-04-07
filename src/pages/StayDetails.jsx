@@ -44,7 +44,7 @@ export function StayDetails() {
     if (!stay) return <div>yosef we have proble!</div>
     return (
         <section className='details-layout'>
-            <h1>{stay.name}</h1>
+            <h1 className='stay-name-details'>{stay.name}</h1>
             <section className='gallery'>
                 {stay.imgUrls.map((img) =>
                     <img src={img} alt="img of the photo" key={img} />
