@@ -1,26 +1,97 @@
-.multi-select {
-    position: relative;
-  }
+.stay-add{
+
+  // display: flex;
+  justify-content: center;
+  width: 100%;
+.addStay{
+  width: fit-content;
   
-  .multi-select .selected-options-container {
+  textarea{
+    height: 100px;
+    font-size: larger;
+    width: fit-content;
+  }
+  & input{
     display: flex;
-    gap: 5px;
-  }
+    gap: 10px;
+    height: fit-content;
+    width: fit-content;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    color: #333;
+
+    &:focus-within {
+      border-color: #FF385C;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
   
-  .multi-select .options-container {
+  }
+
+  &.location-input{
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+
+.multi-select {
+  position: relative;
+  font-family: 'Circular', sans-serif;
+
+  .input,
+  .selected-options-container {
+    display: flex;
+    gap: 10px;
+    // flex-wrap: wrap;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    color: #333;
+
+    &:focus-within {
+      border-color: #FF385C;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .options-container {
     display: none;
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 100%;
+    width: 100%;
+
+    left: 0;
+    // width: 10%;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+
+    &.open {
+      display: block;
+    }
+
+    >* {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: lighten(#f7f7f7, 3%);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
-  
-  .multi-select .options-container.open {
-    display: unset;
-  }
-  
-  
-  .multi-select .options-container>* {
-    padding: 5px;
-    border: 1px solid black;
-    background: white;
-  }
+}
+
+}

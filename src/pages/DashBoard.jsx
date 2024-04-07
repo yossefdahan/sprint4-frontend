@@ -1,18 +1,46 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadOrders } from '../store/order.actions'
+import {  useSelector } from 'react-redux'
+import { loadOrders, updateOrder } from '../store/order.actions'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { MyChart } from '../cmps/MyChart.jsx'
+
 import { NavLink } from 'react-router-dom'
 
-export function Trips() {
+export function DashBoard() {
 
     const orders = useSelector(storeState => storeState.orderModule.orders)
+    const [orderUpdateTrigger, setOrderUpdateTrigger] = useState(false)
 
     useEffect(() => {
         loadOrders()
-    }, [])
+    }, [orderUpdateTrigger, orders])
+
+
+    async function onAproveOrder(order) {
+        try {
+            order.status = 'approved'
+            const savedOrder = await updateOrder(order)
+            showSuccessMsg(`order updated : ${savedOrder.status}`)
+            setOrderUpdateTrigger(!orderUpdateTrigger)
+        } catch (err) {
+            showErrorMsg('Cannot update order')
+        }
+    }
+    async function onRejectOrder(order) {
+        try {
+            order.status = 'rejected'
+            const savedOrder = await updateOrder(order)
+            showSuccessMsg(`order updated : ${savedOrder.status}`)
+            setOrderUpdateTrigger(!orderUpdateTrigger)
+
+
+        } catch (err) {
+            showErrorMsg('Cannot update order')
+        }
+    }
+
 
     if (!orders) return <div>loading.....</div>
-    const pendingOrdersCount = orders.filter(order => order.status === "pending").length;
 
     return (
         <div className="trips-page">
@@ -25,7 +53,7 @@ export function Trips() {
             </section>
             <div className="trips-container">
 
-                <h1>Trips</h1>
+                <h1>DashBoard</h1>
                 <table>
                     <thead>
                         <tr>
@@ -39,6 +67,7 @@ export function Trips() {
                             <th>Infants</th>
                             <th>Stay Name</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,10 +83,15 @@ export function Trips() {
                                 <td>{order.guests.infants}</td>
                                 <td>{order.stay.name}</td>
                                 <td className={`status ${order.status}`}>{order.status}</td>
+                                <td><div className='actions flex'>
+                                    <button onClick={() => onAproveOrder(order)} >Aprove</button>
+                                    <button onClick={() => onRejectOrder(order)}>Reject</button>
+                                </div></td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <MyChart orders={orders} />
             </div>
         </div>
     )

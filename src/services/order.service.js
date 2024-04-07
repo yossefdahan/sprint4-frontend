@@ -14,22 +14,23 @@ export const orderService = {
     remove,
     emptyOrder,
     saveLocalOrder,
-    getOrderPending
+    getOrderPending,
+    saveOrder,
 
 }
 
 function query(filterBy) {
-    var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
+    // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
     // return httpService.get(`review${queryStr}`)
-    return storageService.query('review')
+    return storageService.query(STORAGE_KEY)
 }
 
 function emptyOrder() {
     return {
-        hostId: '',
+        hostId: '123dsfsd',
         buyer: {
-            _id: '',
-            fullname: '',
+            _id: '33342df',
+            fullname: 'yosef',
         },
         totalPrice: 0,
         startDate: '',
@@ -47,6 +48,20 @@ function emptyOrder() {
         status: "pending"
     }
 }
+
+
+
+async function saveOrder(order) {
+    var savedOrder
+    if (order._id) {
+        savedOrder = await storageService.put(STORAGE_KEY, order)
+    } else {
+        order.createdAt = Date.now()
+        savedOrder = await storageService.post(STORAGE_KEY, order)
+    }
+    return savedOrder
+}
+
 
 
 async function remove(reviewId) {
@@ -106,7 +121,7 @@ function createOrders() {
                 _id: "o1225",
                 hostId: "u102",
                 buyer: {
-                    _id: "u101",
+                    _id: "u103",
                     fullname: "User 1"
                 },
                 totalPrice: 160,
@@ -130,7 +145,7 @@ function createOrders() {
                 _id: "o1224",
                 hostId: "u102",
                 buyer: {
-                    _id: "u101",
+                    _id: "u104",
                     fullname: "User 1"
                 },
                 totalPrice: 160,

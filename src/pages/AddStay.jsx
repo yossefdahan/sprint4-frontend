@@ -37,22 +37,16 @@ export function AddStay() {
     }
 
 
-    function onSaveStay(ev) {
+    async function onSaveStay(ev) {
         ev.preventDefault()
-        navigate('/')
-        if (!stay.price) stay.price = 300
-        // const newStay = {
-        //     ...stay,
-        //     inStock: (stay.inStock === 'true') ? true : false
-        // }
-        addStay(stay)
-            .then(() => {
-                showSuccessMsg('Stay Saved!')
-            })
-            .catch(err => {
-                console.log('Had issues in Stay details', err)
-                showErrorMsg('Had issues in Stay details')
-            })
+        try {
+            await addStay(stay)
+            showSuccessMsg('Stay Saved!')
+            navigate('/')
+        } catch (error) {
+            console.error('Error saving stay:', error)
+            showErrorMsg('Had issues in Stay details')
+        }
     }
 
     function capitalizeFirstLetter(string) {
@@ -62,43 +56,47 @@ export function AddStay() {
 
 
     return (
-        <section className="stay-edit">
+        <section className="stay-add">
             <h2> Airstay your home</h2>
 
             <form onSubmit={onSaveStay}>
-                <label htmlFor="name">name of your stay: </label>
-                <input className="input" type="text" name="name" id="name" placeholder="Enter name..." value={stay.name} onChange={handleChange} />
-                <label htmlFor="summary">Summary: </label>
-                <textarea className="input" type="text" name="summary" id="summary" placeholder="Enter summary..." value={stay.summary} onChange={handleChange} />
-                <label htmlFor="price">Price : </label>
-                <input className="input" type="number" name="price" id="price" placeholder="Enter price" value={stay.price} onChange={handleChange} />
-                <label htmlFor="capacity">capacity : </label>
-                <input className="input" type="number" name="capacity" id="capacity" placeholder="Enter capacity" value={stay.capacity} onChange={handleChange} />
-                <div>
-                    <MultiSelect onSetLabel={onSetLabel} stay={stay} />
-                </div>
-                <label htmlFor="address">Address: </label>
-                <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.loc.address} onChange={handleLocChange} />
-                <label htmlFor="city">City: </label>
-                <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.loc.city} onChange={handleLocChange} />
-                <label htmlFor="country">Country: </label>
-                <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleLocChange} />
+                <div className="addStay flex column">
+                    <label htmlFor="name">name of your stay: </label>
+                    <input className="input" type="text" name="name" id="name" placeholder="Enter name..." value={stay.name} onChange={handleChange} />
+                    <label htmlFor="summary">Summary: </label>
+                    <textarea className="input" type="text" name="summary" id="summary" placeholder="Enter summary..." value={stay.summary} onChange={handleChange} />
+                    <label htmlFor="price">Price : </label>
+                    <input className="input" type="number" name="price" id="price" placeholder="Enter price" value={stay.price} onChange={handleChange} />
+                    <label htmlFor="capacity">capacity : </label>
+                    <input className="input" type="number" name="capacity" id="capacity" placeholder="Enter capacity" value={stay.capacity} onChange={handleChange} />
 
-                <div className="radio-sort input">
-                    <label htmlFor="type"> Type of the Airstay</label>
-                    <select value={stay.type} onChange={handleChange} name="type">
-                        <option value="house">House</option>
-                        <option value="studio">Studio</option>
-                        <option value="room">Room</option>
-                    </select>
-                </div>
-                <div>
-                    <MultiSelectAmenities onSetAmenitie={onSetAmenitie} stay={stay} />
-                </div>
-                <div>
-                    <ImgUploader onUploaded={onUploaded} />
-                    <button type="sumbmit">Add</button>
-                    {/* <button ><Link className="add-btn" to="/stay">Cancel</Link></button> */}
+                    <div>
+                        <MultiSelect onSetLabel={onSetLabel} stay={stay} />
+                    </div>
+                    <div>
+                        <MultiSelectAmenities onSetAmenitie={onSetAmenitie} stay={stay} />
+                    </div>
+                    <div className="location-input">
+                        <label htmlFor="address">Address: </label>
+                        <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.loc.address} onChange={handleLocChange} />
+                        <label htmlFor="city">City: </label>
+                        <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.loc.city} onChange={handleLocChange} />
+                        <label htmlFor="country">Country: </label>
+                        <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleLocChange} />
+                    </div>
+                    <div className="radio-sort input">
+                        <label htmlFor="type"> Type of the Airstay</label>
+                        <select value={stay.type} onChange={handleChange} name="type">
+                            <option value="house">House</option>
+                            <option value="studio">Studio</option>
+                            <option value="room">Room</option>
+                        </select>
+                        <ImgUploader onUploaded={onUploaded} />
+                    </div>
+                    <div>
+                        <button type="sumbmit">Add</button>
+                        {/* <button ><Link className="add-btn" to="/stay">Cancel</Link></button> */}
+                    </div>
                 </div>
             </form>
         </section>

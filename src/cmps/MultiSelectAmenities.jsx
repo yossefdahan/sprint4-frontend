@@ -6,14 +6,14 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 export function MultiSelectAmenities({ onSetAmenitie, stay }) {
 
     const [isOptionsModalOpen, setIsOptionsModalOpen] = useState(false)
-    const amenities = stayService.getAmenities()
+    const amenities = stayService.getAmenities().slice(0, 6)
 
 
     return <section className="multi-select input" onMouseLeave={() => setIsOptionsModalOpen(false)}>
         <label htmlFor="">amenities</label>
         <div className="selected-options-container" onClick={() => setIsOptionsModalOpen(prev => !prev)}>
 
-            {!!stay.amenities.length && stay.amenities.map(amenitie => <div  key={amenitie}>{amenitie},</div>)}
+            {!!stay.amenities.length && stay.amenities.map(amenitie => <div key={amenitie}>{amenitie},</div>)}
             {!stay.amenities.length && <div> no amenities yet</div>}
         </div>
 

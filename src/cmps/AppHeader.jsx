@@ -78,10 +78,10 @@ export function AppHeader() {
                         <nav className="nav-links">
 
                             <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
-                            <NavLink className=" nav-icon" to="/">Trips</NavLink>
+                            <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
                             <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
                             <div><hr /></div>
-                            <NavLink className=" nav-icon" to="/">Airstay your home</NavLink>
+                            <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
                             <NavLink className=" nav-icon" to="/">Account</NavLink>
                             <NavLink className=" nav-icon" to="/">Help center</NavLink>
                             <NavLink className=" nav-icon" to="/">Log out</NavLink>
