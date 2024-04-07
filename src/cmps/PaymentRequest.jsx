@@ -26,7 +26,7 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
         addOrder(order)
         // setOpen(false)
         setSend(true)
-
+        backHome()
         // navigate('/')
         console.log('complete!')
     }
@@ -35,90 +35,87 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
         window.location.href = '/'
     }
 
+    function formatDateRange(startDateStr) {
+        const startDate = new Date(startDateStr)
+        // const endDate = new Date(endDateStr)
+        const options = { month: 'short', day: 'numeric' }
+        const formattedStartDate = startDate.toLocaleDateString('en-US', options)
+        // const formattedEndDate = endDate.toLocaleDateString('en-US', options)
+        return `${formattedStartDate}`
+    }
+
     return (
         <section className='background-opacity'>
             <div open className='payment-confrim-modal'>
-                <section className='last-order'>
-                    <div className='rare-to-find'>
-                        <h2>{send ? 'Reservation succcess!' : 'One last step'}</h2>
-                        <section className='flex column'>
-                            <span>{send ? '' : 'Dear Guest'}</span>
-                            <span>{send ? '' : 'In order to complete your reservation , please confrim your trip details'}</span>
-                        </section>
-                    </div>
-                    <section>
-                        <h3> Your Trip</h3>
-                        <section className='flex space-between'>
-                            <span>Check-In</span>
-                            <span>{order.startDate}</span>
-                        </section>
-                        <section className='flex space-between'>
-                            <span>Check-Out</span>
-                            <span>{order.endDate}</span>
-                        </section>
-                        <section className='flex space-between'>
-                            <span>Host name:</span>
-                            <span>{stay.host.fullname}</span>
-                        </section>
+
+                <h2>One last step</h2>
+                <section className='flex column'>
+                    <span>Dear Guest</span>
+                    <span>{'In order to complete your reservation , please confrim your trip details'}</span>
+                </section>
+
+                <h3> Your Trip</h3>
+                <section>
+
+                    <section className='flex space-between'>
+                        <span>Check-In</span>
+                        <span>{formatDateRange(order.startDate)}</span>
                     </section>
 
+                    <section className='flex space-between'>
+                        <span>Check-Out</span>
+                        <span>{formatDateRange(order.endDate)}</span>
+                    </section>
+
+                    <section className='flex space-between'>
+                        <span>Host name:</span>
+                        <span>{stay.host.fullname}</span>
+                    </section>
                 </section>
-                <section className='paymentModal-end' >
-                    <div className='finishOrder-end'>
-                        <section className='title-container'>
-                            <section >
-                                <hr />
-                                <div className='flex column'>
-                                    <h3>stay details:</h3>
-                                    <section className='flex'>
-                                        <img src={stay.imgUrls[0]} alt="" />
-                                        <section className='title'>
-                                            <h4>{stay.name}</h4>
-                                            <span>Entire rental unit</span>
-                                            <section className='rate-title'>
-                                            </section>
-                                            <span>★{rate / stay.reviews.length}({stay.reviews.length} reviews)</span>
-                                        </section>
-                                    </section>
 
-                                </div>
-                                <hr />
-                                <h2>Price details</h2>
-                                <section className='flex space-between'>
-                                    <span>{order.stay.price} X {Math.floor(order.totalPrice / order.stay.price)} nights </span>
-                                    <span>{order.stay.price * Math.floor(order.totalPrice / order.stay.price)}$</span>
-                                </section >
-                                <section className='flex space-between'>
-                                    <span>Guests</span>
-                                    <span> {adults + children + infants + pets} </span>
+                <section className='title-container'>
+                    <hr />
+                    <div className='flex column'>
+                        <h3>Stay details:</h3>
+                        <section className='flex img-cont'>
+                            <img src={stay.imgUrls[0]} alt="" />
+                            <section className='title'>
+                                <h4>{stay.name}</h4>
+                                <span>Entire rental unit</span>
+                                <section className='rate-title'>
                                 </section>
-                                <section className='flex space-between'>
-                                    <span>Cleaning fee </span>
-                                    <span>{(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}$</span>
-                                </section>
-                                <section>
-
-                                </section>
-                                <hr />
-                                <section className='flex space-between'>
-                                    <h3>total(USD) </h3>
-                                    <span> {order.totalPrice}$</span>
-                                </section>
-
+                                <span>★{rate / stay.reviews.length} ({stay.reviews.length} reviews)</span>
                             </section>
-
                         </section>
 
                     </div>
-                </section>
-                <section className='calltoAction'>
-                    {send ? (<button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} on onClick={() => backHome()}>Look for more places to stay</button>) : (<section className='flex space-between'>
-                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={() => setOpen(!isOpen)}>close</button>
-                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={dealMade}>confrim</button>
-                    </section>)}
-                </section>
+                    <hr />
+                    <h3>Price details</h3>
+                    <section className='flex space-between'>
+                        <span>$ {order.stay.price} X {Math.floor(order.totalPrice / order.stay.price)} nights </span>
+                        <span>$ {order.stay.price * Math.floor(order.totalPrice / order.stay.price)}</span>
+                    </section >
+                    <section className='flex space-between'>
+                        <span>Guests</span>
+                        <span> {adults + children + infants + pets} </span>
+                    </section>
+                    <section className='flex space-between'>
+                        <span>Cleaning fee </span>
+                        <span>$ {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span>
+                    </section>
+                    <section>
 
-
+                    </section>
+                    <hr />
+                    <section className='flex space-between'>
+                        <h3>Total (USD) </h3>
+                        <span>$ {order.totalPrice}</span>
+                    </section>
+                    <section className='flex space-between close-confirm-btn'>
+                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={() => setOpen(!isOpen)}>Close</button>
+                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={dealMade}>Confirm</button>
+                    </section>
+                </section>
             </div>
         </section>
     )
