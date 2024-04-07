@@ -20,6 +20,11 @@ export function AddStay() {
         value = type === 'number' ? +value : value
         setStay((prevStay) => ({ ...prevStay, [field]: value }))
     }
+    function handleLocChange({ target }) {
+        let { value, type, name: field } = target
+        value = type === 'number' ? +value : capitalizeFirstLetter(value)
+        setStay((prevStay) => ({ ...prevStay, loc: { ...prevStay.loc, [field]: value } }))
+    }
 
     function onSetLabel(label) {
         const labels = stay.labels.includes(label) ? stay.labels.filter(l => l !== label) : [label, ...stay.labels]
@@ -36,11 +41,11 @@ export function AddStay() {
         ev.preventDefault()
         navigate('/')
         if (!stay.price) stay.price = 300
-        const newStay = {
-            ...stay,
-            inStock: (stay.inStock === 'true') ? true : false
-        }
-        addStay(newStay)
+        // const newStay = {
+        //     ...stay,
+        //     inStock: (stay.inStock === 'true') ? true : false
+        // }
+        addStay(stay)
             .then(() => {
                 showSuccessMsg('Stay Saved!')
             })
@@ -50,7 +55,10 @@ export function AddStay() {
             })
     }
 
-
+    function capitalizeFirstLetter(string) {
+        if (!string) return ''
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
 
 
     return (
@@ -70,11 +78,11 @@ export function AddStay() {
                     <MultiSelect onSetLabel={onSetLabel} stay={stay} />
                 </div>
                 <label htmlFor="address">Address: </label>
-                <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.loc.address} onChange={handleChange} />
+                <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.loc.address} onChange={handleLocChange} />
                 <label htmlFor="city">City: </label>
-                <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.loc.city} onChange={handleChange} />
+                <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.loc.city} onChange={handleLocChange} />
                 <label htmlFor="country">Country: </label>
-                <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleChange} />
+                <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleLocChange} />
 
                 <div className="radio-sort input">
                     <label htmlFor="type"> Type of the Airstay</label>
