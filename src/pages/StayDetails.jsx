@@ -41,7 +41,7 @@ export function StayDetails() {
     }
 
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
-    if (!stay) return <div>yosef we have proble!</div>
+    if (!stay) return <div className='loader'></div>
     return (
         <section className='details-layout'>
             <h1 className='stay-name-details'>{stay.name}</h1>
@@ -51,6 +51,8 @@ export function StayDetails() {
                 )
                 }
             </section>
+
+
             <section className='main-details'>
                 <MainDetails stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
                 <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
@@ -69,3 +71,5 @@ export function StayDetails() {
 
 
 }
+
+

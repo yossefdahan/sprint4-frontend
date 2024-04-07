@@ -29,25 +29,36 @@ async function getCountries() {
   return uniqueCountries
 }
 
-
 async function getLatLngFromAddress(address) {
-  const apiKey = 'AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY'
-  const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`)
-  const data = await response.json();
+  const apiKey = "AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY"
+  const response = await fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+      address
+    )}&key=${apiKey}`
+  )
+  const data = await response.json()
   if (data.results && data.results.length > 0) {
     const { lat, lng } = data.results[0].geometry.location
-    return { lat, lng };
+    return { lat, lng }
   } else {
-    throw new Error('Could not find coordinates for the provided address')
+    throw new Error("Could not find coordinates for the provided address")
   }
 }
 
-
-
-
 function getAmenities() {
-  const amenities = ['TV', 'Wifi', 'Kitchen', 'Air conditioning', 'Heating', 'Pool', 'Free parking', 'Gym', 'Hot tub', 'Washer']
-  return amenities;
+  const amenities = [
+    "TV",
+    "Wifi",
+    "Kitchen",
+    "Air conditioning",
+    "Heating",
+    "Pool",
+    "Free parking",
+    "Gym",
+    "Hot tub",
+    "Washer",
+  ]
+  return amenities
 }
 
 function getLabels() {
@@ -122,13 +133,16 @@ async function query(filterBy = getDefaultFilter()) {
   }
 
   if (filterBy.capacity) {
-    const totalGuests = Object.values(filterBy.guests).reduce((acc, guestCount) => acc + guestCount, 0)
-    stays = stays.filter(stay => stay.capacity >= totalGuests)
+    const totalGuests = Object.values(filterBy.guests).reduce(
+      (acc, guestCount) => acc + guestCount,
+      0
+    )
+    stays = stays.filter((stay) => stay.capacity >= totalGuests)
   }
 
   if (filterBy.labels && filterBy.labels.length) {
     const labels = Array.isArray(filterBy.labels) ? filterBy.labels : [filterBy.labels]
-    stays = stays.filter(stay => stay.labels.some(label => labels.includes(label)))
+    stays = stays.filter((stay) => stay.labels.some((label) => labels.includes(label)))
   }
 
   return stays
@@ -178,7 +192,7 @@ async function addStayReviews(stayId) {
 
 function getDefaultFilter() {
   return {
-    country: '',
+    country: "",
     loc: {
       country: "",
       countryCode: "",
@@ -188,13 +202,13 @@ function getDefaultFilter() {
       lng: 0,
     },
     dates: {
-      checkIn: '',
-      checkOut: '',
+      checkIn: "",
+      checkOut: "",
     },
-    checkIn: '',
-    checkOut: '',
+    checkIn: "",
+    checkOut: "",
     guests: {},
-    labels: '',
+    labels: "",
     // amenities: [],
     type: "",
     capacity: 0,
@@ -238,8 +252,7 @@ function getEmptyStay() {
     host: {
       _id: "",
       fullname: "",
-      imgUrl:
-        '',
+      imgUrl: "",
     },
     loc: {
       country: "" || "Portugal",
@@ -266,7 +279,7 @@ function createStays() {
         _id: "s101",
         name: "Ribeira Charming Duplex",
         type: "House",
-        imgUrls: [`/img/4.jpeg`, `/img/3.jpeg`, `/img/4.jpeg`],
+        imgUrls: [`/img/5.jpeg`, `/img/3.jpeg`, `/img/1.jpeg`, `/img/2.jpeg`, `/img/4.jpeg`],
         price: 80.0,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
@@ -304,7 +317,7 @@ function createStays() {
         _id: "s202",
         name: "Cozy Mountain Cabin",
         type: "Cabin",
-        imgUrls: [`/img/3.jpeg`],
+        imgUrls: [`/img/6.jpg`, `/img/4.jpeg`, `/img/5.jpeg`, `/img/11.jpg`, `/img/7.jpg`],
         price: 120.0,
         summary: "A cozy cabin in the heart of the mountains, perfect for a weekend getaway.",
         capacity: 4,
@@ -331,8 +344,8 @@ function createStays() {
             by: {
               _id: "u204",
               fullname: "Amy Wong",
-              imgUrl: "/img/users/amy.jpg"
-            }
+              imgUrl: "/img/users/amy.jpg",
+            },
           },
           {
             id: "rev202",
@@ -351,7 +364,7 @@ function createStays() {
         _id: "s203",
         name: "Urban Studio Loft",
         type: "Apartment",
-        imgUrls: [`/img/3.jpeg`],
+        imgUrls: [`/img/5.jpeg`, `/img/6.jpg`, `/img/11.jpg`, `/img/12.jpg`, `/img/4.jpeg`],
         price: 85.0,
         summary: "Modern loft in the city center, perfect for exploring the urban sights.",
         capacity: 2,
@@ -388,7 +401,7 @@ function createStays() {
         _id: "s204",
         name: "Beachfront Bungalow",
         type: "House",
-        imgUrls: [`/img/4.jpeg`],
+        imgUrls: [`/img/11.jpg`, `/img/7.jpg`, `/img/5.jpeg`, `/img/10.jpg`, `/img/12.jpg`],
         price: 130.0,
         summary:
           "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
@@ -426,7 +439,7 @@ function createStays() {
         _id: "s205",
         name: "Beachfront Bungalow",
         type: "House",
-        imgUrls: [`/img/4.jpeg`],
+        imgUrls: [`/img/2.jpeg`, `/img/4.jpeg`, `/img/5.jpeg`, `/img/9.jpg`, `/img/10.jpg`],
         price: 130.0,
         summary:
           "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
@@ -464,7 +477,7 @@ function createStays() {
         _id: "s206",
         name: "Urban Studio Loft",
         type: "Apartment",
-        imgUrls: [`/img/3.jpeg`],
+        imgUrls: [`/img/10.jpg`, `/img/9.jpg`, `/img/5.jpeg`, `/img/11.jpg`, `/img/7.jpg`],
         price: 85.0,
         summary: "Modern loft in the city center, perfect for exploring the urban sights.",
         capacity: 2,
