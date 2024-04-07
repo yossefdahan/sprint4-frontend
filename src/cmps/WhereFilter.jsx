@@ -179,14 +179,16 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         <>
             <form onSubmit={handleSubmit} className="search-filter">
 
-                <div className="input-group " onClick={() => setCountryModal(!countyModal)}>
+                <div className="input-group" onClick={() => setCountryModal(!countyModal)}>
                     {/* <p>Where</p> */}
+                    <div className="search-header-destination">Where</div>
                     <input className="search-btn-destination"
                         placeholder="Search destination"
                         type="text"
                         value={inputValue}
                         onChange={handleChange}
                     />
+
                 </div>
                 {countyModal && !inputValue &&
                     <div className="maps-search" >
@@ -323,18 +325,21 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     </div>
                 </div>
 
-                <div className=" guests-section-search input-group" onClick={() => {
+                {/* <div className=" guests-section-search input-group" onClick={() => {
+                    setIsOpen(false)
+                    setShowGuestDropdown(!showGuestDropdown)
+                }}> */}
+
+                <div className="guests-section-search" onClick={() => {
                     setIsOpen(false)
                     setShowGuestDropdown(!showGuestDropdown)
                 }}>
-                    <input className="search-btn-guests"
-                        type="text"
-                        placeholder="Add guests"
-                        value={formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : ''}
-                        readOnly
-                    />
-                    {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search">Search</i></button>}
+
+                    <div className="header-label-gues">Who</div>
+                    <div className="search-btn-guests" >{formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : 'Add guests'}</div>
                 </div>
+                {!countyModal ? < button className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button className="search-btn" type="submit"> <i className="fa fa-search"></i><span>Search</span> </button>}
+                {/* </div> */}
                 {showGuestDropdown && <div className="input-group guests-container">
 
                     <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
