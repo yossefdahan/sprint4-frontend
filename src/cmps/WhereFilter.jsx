@@ -242,11 +242,14 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 }
 
                 {inputValue && suggestions.length > 0 && (
-                    <ul className="destination-txt-input">
+                    <ul className="destination-txt-input" >
+
                         {suggestions.map(suggestion => (
-                            <li key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
-                                {suggestion}
+                            <li key={suggestion} className="suggestion" onClick={() => handleSuggestionClick(suggestion)}>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div>{suggestion}</div>
                             </li>
+
                         ))}
                     </ul>
                 )}
