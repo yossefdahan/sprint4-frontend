@@ -18,6 +18,7 @@ export function FinalPayment() {
     const { stayId } = useParams()
     const [stay, setStay] = useState(null)
     const [isOpen, setOpen] = useState(false)
+    const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
 
     console.log(order)
     // useEffect(()=>{
@@ -74,6 +75,14 @@ export function FinalPayment() {
     }
     console.log(order)
 
+    const handleMouseMove = (event) => {
+        const { clientY, target } = event;
+        const { top, height } = target.getBoundingClientRect();
+        const yRatio = (clientY - top) / height;
+
+        const lightness = 40 + (20 * yRatio);
+        setButtonColor(`hsl(351, 83%, ${lightness}%)`);
+    };
     // async function onSaveReview(ev) {
     //     ev.preventDefault()
 
@@ -112,16 +121,27 @@ export function FinalPayment() {
 
 
                 <hr />
-                <div>
-                    <input type="text" />
-                    <div>
-                        <input type="text" />
-                        <input type="text" />
-                        <input type="text" />
+
+                <h3>Pay with</h3>
+                <div className="credit-card-input">
+                    <div className="input-group">
+                        <label htmlFor="cardNumber"></label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
+                        <div className="input-group-twice">
+                            <label htmlFor="expiryDate"></label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" />
+                            <label htmlFor="cvv"></label>
+                            <input type="text" id="cvv" placeholder="cvv" />
+                        </div>
                     </div>
-                    <input type="text" />
+                    <div className="input-group">
+                        <label htmlFor="nameOnCard"></label>
+                        <input type="text" id="nameOnCard" placeholder="Id" />
+                    </div>
                 </div>
-                <input type="text" />
+
+
+
                 <hr />
                 <div>
                     <h2>Cancellation policy</h2>
@@ -139,7 +159,7 @@ export function FinalPayment() {
                 <hr />
                 <div className='calltoAction'>
                     <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
-                    <button onClick={openModal}>Request to book</button>
+                    <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openModal}>Request to book</button>
                 </div>
 
 

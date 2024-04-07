@@ -11,7 +11,7 @@ export function GuestSelector({ guestType, guestCounts, updateGuestCount }) {
 
     return (
         <div className="guest-selector guest-payment">
-            <div className="guest-title flex column">
+            <div className="guest-title flex column ">
                 <h4>{guestType.charAt(0).toUpperCase() + guestType.slice(1)}</h4>
                 <h5>{descriptions[guestType]}</h5>
                 {/* {guestType === "adults" && <h5>Ages 13 or above</h5>}

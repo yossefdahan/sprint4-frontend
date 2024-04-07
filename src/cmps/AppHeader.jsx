@@ -51,7 +51,7 @@ export function AppHeader() {
 
             </div>)}
             <div className='left-section-header flex align-center'>
-                <button className='host-your-home-nav'>Airstay you home</button>
+                <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
                 <button className='Languages-btn fa-solid fa-globe'></button>
                 <div className='side-nav flex align-center' onClick={toggleNavBar}>
                     <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>

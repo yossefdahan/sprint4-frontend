@@ -1,0 +1,44 @@
+$border-color: #ccc;
+$border-color-focus: #007bff;
+$shadow-color: rgba(0, 123, 255, .25);
+$label-color: #333;
+$input-padding: 10px;
+$font-size: 16px;
+$label-font-size: 14px;
+$border-radius: 4px;
+
+.credit-card-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    .input-group-twice {
+        width: 100%;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-bottom: 5px;
+            font-size: $label-font-size;
+            color: $label-color;
+        }
+
+        input {
+            font-size: $font-size;
+            padding: $input-padding;
+            border: 1px solid $border-color;
+            border-radius: $border-radius;
+            width: 100%;
+            
+            &:focus {
+                outline: none;
+                border-color: $border-color-focus;
+                box-shadow: 0 0 0 0.2rem $shadow-color;
+            }
+        }
+    }
+}
