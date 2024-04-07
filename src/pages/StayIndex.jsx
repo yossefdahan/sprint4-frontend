@@ -70,6 +70,8 @@ export function StayIndex() {
 
     }
 
+    if (!stays) return <div className='loader'></div>
+
     function shouldShowActionBtns(stay) {
         const user = userService.getLoggedinUser()
         if (!user) return false

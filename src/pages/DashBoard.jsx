@@ -13,7 +13,7 @@ export function DashBoard() {
 
     useEffect(() => {
         loadOrders()
-    }, [orders])
+    }, [orderUpdateTrigger])
 
 
     async function onAproveOrder(order) {
@@ -23,6 +23,7 @@ export function DashBoard() {
             showSuccessMsg(`order updated : ${savedOrder.status}`)
             setOrderUpdateTrigger(!orderUpdateTrigger)
         } catch (err) {
+            setOrderUpdateTrigger(!orderUpdateTrigger)
             showErrorMsg('Cannot update order')
         }
     }
@@ -35,12 +36,13 @@ export function DashBoard() {
 
 
         } catch (err) {
+            setOrderUpdateTrigger(!orderUpdateTrigger)
             showErrorMsg('Cannot update order')
         }
     }
 
 
-    if (!orders) return <div>loading.....</div>
+    if (!orders) return <div className='loading'>loading.....</div>
 
     return (
         <div className="trips-page">

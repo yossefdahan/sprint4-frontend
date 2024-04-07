@@ -19,7 +19,7 @@ export const orderService = {
 
 }
 
-function query(filterBy) {
+async function query() {
     // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
     // return httpService.get(`review${queryStr}`)
     return storageService.query(STORAGE_KEY)

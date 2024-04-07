@@ -38,7 +38,7 @@ export function MyChart({ orders }) {
         })
     }, [orders]);
 
-    return <div style={{ width: '20%', height: '20%' }}>
-        <Doughnut data={chartData} />
+    return <div style={{ width: '12%', height: '12%' }}>
+        <Pie data={chartData} />
     </div>
 }

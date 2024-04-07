@@ -95,7 +95,7 @@ export function FinalPayment() {
     //         console.log('error saving the review :', err)
     //     }
     // }
-    if (!stay || !order) return <div>loading...</div>
+    if (!stay || !order) return <div className='loader'></div>
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     function formatDateRange(startDateStr, endDateStr) {
         const startDate = new Date(startDateStr)
