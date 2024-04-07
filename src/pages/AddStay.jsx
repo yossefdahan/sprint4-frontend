@@ -90,9 +90,9 @@ export function AddStay() {
                             <option value="house">House</option>
                             <option value="studio">Studio</option>
                             <option value="room">Room</option>
-                            <ImgUploader onUploaded={onUploaded} />
                         </select>
                     </div>
+                            <ImgUploader onUploaded={onUploaded} />
                     <div>
                         <button type="sumbmit">Add</button>
                         {/* <button ><Link className="add-btn" to="/stay">Cancel</Link></button> */}
