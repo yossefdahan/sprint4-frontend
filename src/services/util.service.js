@@ -10,7 +10,8 @@ export const utilService = {
     formatDate,
     getStarsWithRating,
     getStars,
-    getNumOfDays
+    getNumOfDays,
+    formatIsoDateToYMD
 }
 
 function makeId(length = 6) {
@@ -143,4 +144,12 @@ function getNumOfDays(checkIn, checkOut) {
     const diffTime = Math.abs(checkOut - checkIn)
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
     return diffDays
+}
+
+function formatIsoDateToYMD(isoDateString) {
+    const date = new Date(isoDateString);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are 0-based
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}/${month}/${day}`;
 }
