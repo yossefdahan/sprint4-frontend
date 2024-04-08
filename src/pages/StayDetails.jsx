@@ -10,6 +10,7 @@ import { MainDetails } from '../cmps/MainDetails.jsx'
 import { GoogleMap } from '../cmps/GoogleMap.jsx'
 import { Reviews } from '../cmps/Reviews.jsx'
 import { Payment } from '../cmps/payment.jsx'
+import { set } from 'date-fns'
 
 
 
@@ -19,6 +20,7 @@ export function StayDetails() {
     // const filterBy = stayService.getFilterFromParams(searchParams)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [stay, setStay] = useState(null)
+    const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
     const users = useSelector(storeState => storeState.userModule.users)
 
@@ -29,6 +31,10 @@ export function StayDetails() {
         loadStay()
     }, [stayId])
 
+
+    // function openModalGallery() {
+    //     setIsOpen(!isOpen)
+    // }
 
     async function loadStay() {
         try {
@@ -53,11 +59,20 @@ export function StayDetails() {
             </div>
             <section className='gallery'>
                 {stay.imgUrls.map((img) =>
-                    <img src={img} alt="img of the photo" key={img} />
+                    <img src={img} alt="img of the photo" key={img} onClick={() => setIsOpen(!isOpen)} />
                 )
                 }
             </section>
-
+            {isOpen ? (
+                <section className='gallery-modal'>
+                    <span className="close-btn" onClick={() => setIsOpen(false)}>{'>'}</span>
+                    <section className='img-gallery-modal'>
+                        {stay.imgUrls.map((img) =>
+                            <img src={img} alt="Stay view" key={img} />
+                        )}
+                    </section>
+                </section>
+            ) : ''}
 
             <section className='main-details'>
                 <MainDetails stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
@@ -73,7 +88,7 @@ export function StayDetails() {
                 <hr />
                 <GoogleMap stay={stay} />
             </div>
-        </section>
+        </section >
     )
 
 
