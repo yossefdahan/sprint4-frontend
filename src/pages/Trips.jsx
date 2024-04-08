@@ -12,7 +12,6 @@ export function Trips() {
     }, [])
 
     if (!orders) return <div>loading.....</div>
-    const pendingOrdersCount = orders.filter(order => order.status === "pending").length;
 
     return (
         <div className="trips-page">

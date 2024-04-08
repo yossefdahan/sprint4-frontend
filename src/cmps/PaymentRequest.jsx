@@ -26,18 +26,17 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
         try {
             await addOrder(order);
             setSend(true)
-            backHome()
             console.log('complete!')
+            toUserTrips()
 
         } catch (err) {
             console.log(err)
         }
-        // setOpen(false)
-        // navigate('/')
+       
     }
 
-    function backHome() {
-        window.location.href = '/'
+    function toUserTrips() {
+        window.location.href = '/user/trips'
     }
 
     function formatDateRange(startDateStr) {
