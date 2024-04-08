@@ -74,7 +74,6 @@ export function FinalPayment() {
             navigate('/')
         }
     }
-    console.log(order)
 
     const handleMouseMove = (event) => {
         const { clientY, target } = event;
