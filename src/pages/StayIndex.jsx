@@ -11,8 +11,11 @@ import { useSearchParams } from 'react-router-dom'
 import { ScrollingFilter } from '../cmps/ScrollingFilter.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 
+import { GoogleMapList } from '../cmps/GoogleMapList.jsx'
+
 export function StayIndex() {
     const dispatch = useDispatch()
+    const [previewMap, setPreview] = useState(false)
     // const [searchParams] = useSearchParams()
     // const [filterBy, setFilterBy] = useState(searchParams.get('country'))
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -82,14 +85,17 @@ export function StayIndex() {
     return (
         <section>
             <ScrollingFilter stays={stays} />
-            <StayList stays={stays}
+            {!previewMap && <StayList stays={stays}
                 onUpdateStay={onUpdateStay}
                 onRemoveStay={onRemoveStay}
                 shouldShowActionBtns={shouldShowActionBtns}
             />
-            <button className="show-map-btn">Show map <i className="fa-solid fa-map"></i></button>
+            }
+
+            {previewMap && <GoogleMapList stays={stays} />}
+            <button className="show-map-btn" onClick={() => setPreview(!previewMap)}>Show map <i className="fa-solid fa-map"></i></button>
             {/* <AppFooter /> */}
-        </section>
+        </section >
 
     )
 }

@@ -18,7 +18,7 @@ export function Reviews({ stay, reviews }) {
             setIsExpanded(true)
         }
     }
-
+    console.log(visibleReviews);
 
     const { stars, averageRating } = utilService.getStarsWithRating(stay)
     return (
