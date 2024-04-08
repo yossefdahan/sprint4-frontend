@@ -170,6 +170,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         }
         return summary.join(', ')
     }
+
+
     // const { country, city } = filterBy
     // const { guests } = filterBy
     // const { dates } = filterBy
@@ -182,7 +184,11 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         <>
             <form onSubmit={handleSubmit} className="search-filter">
 
-                <div className="input-group" onClick={() => setCountryModal(!countyModal)}>
+                <div className="input-group" onClick={() => {
+                    setShowGuestDropdown(false)
+                    setIsOpen(false)
+                    setCountryModal(!countyModal)
+                }}>
                     <div className="search-header-destination">Where</div>
                     <input className="search-btn-destination"
                         placeholder="Search destination"
@@ -319,13 +325,21 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                 <div className="pick-cal">
                     <div>
-                        <div className="in-cal" onClick={() => setIsOpen(!isOpen)}>
+                        <div className="in-cal" onClick={() => {
+                            setShowGuestDropdown(false)
+                            setIsOpen(!isOpen)
+                            setCountryModal(false)
+                        }}>
                             <div className="header-label-cal">Check in</div>
                             <div className="start-input-cal" >{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Add dates"}</div>
                         </div>
-                        <div className="out-cal" onClick={() => setIsOpen(!isOpen)}>
+                        <div className="out-cal" onClick={() => {
+                            setShowGuestDropdown(false)
+                            setIsOpen(!isOpen)
+                            setCountryModal(false)
+                        }}>
                             <div className="header-label-cal">Check out</div>
-                            <div className="end-input-cal" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Add dates"}</div>
+                            <div className="end-input-cal" >{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Add dates"}</div>
                         </div>
                     </div>
                 </div>
@@ -338,6 +352,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 <div className="guests-section-search" onClick={() => {
                     setShowGuestDropdown(!showGuestDropdown)
                     setIsOpen(false)
+                    setCountryModal(false)
                 }}>
 
                     <div className="header-label-gues">Who</div>
@@ -354,7 +369,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                 </div>}
 
-            </form>
+            </form >
             <hr className="hr-line" />
         </>
     )

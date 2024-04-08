@@ -29,7 +29,7 @@
         & .in,
         .out {
           width: 160px;
-          z-index: 1100;
+          z-index: 10;
           border: 0.1px solid $light-gray;
           height: 56px;
         }
@@ -160,10 +160,12 @@
           padding: 8px;
           font-size: 15px;
           margin-bottom: 5px;
+
           & h4 {
             font-weight: 500;
             color: $black2;
           }
+
           & h5 {
             font-weight: 400;
             color: $main-gray;
@@ -178,6 +180,7 @@
           }
         }
       }
+
       & button {
         border-radius: 32px;
         background-color: white;
@@ -187,6 +190,7 @@
         text-align: center;
         font-size: 16px;
       }
+
       & .guest-payment {
         display: flex;
         height: 90px;

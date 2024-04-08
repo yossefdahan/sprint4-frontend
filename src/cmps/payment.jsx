@@ -57,14 +57,16 @@ export function Payment({ stay, filterBy, onSetFilter }) {
 
     useEffect(() => {
         function handleOutsideClick(event) {
-            if (!isOpen) {
+            if (isOpen && showGuestDropdown) {
                 return
             }
             if (
-                !event.target.closest('.calendar')
+                !event.target.closest('.calendar') &&
+                !event.target.closest('.list-guests')
             ) {
 
                 if (isOpen) setIsOpen(false)
+                if (showGuestDropdown) setShowGuestDropdown(false)
 
             }
         }
@@ -74,7 +76,7 @@ export function Payment({ stay, filterBy, onSetFilter }) {
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         }
-    }, [isOpen])
+    }, [isOpen, showGuestDropdown])
 
     useEffect(() => {
 
@@ -201,18 +203,27 @@ export function Payment({ stay, filterBy, onSetFilter }) {
 
                 <div className="payment-date-picker">
                     <div>
-                        <div className="in">
+                        <div className="in" onClick={() => {
+                            setShowGuestDropdown(false)
+                            setIsOpen(!isOpen)
+                        }}>
                             <div className="header-label">CHECK-IN</div>
-                            <div className="start-input" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Check in"}</div>
+                            <div className="start-input" >{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Check in"}</div>
                         </div>
-                        <div className="out">
+                        <div className="out" onClick={() => {
+                            setShowGuestDropdown(false)
+                            setIsOpen(!isOpen)
+                        }}>
                             <div className="header-label">CHECK-OUT</div>
-                            <div className="end-input" onClick={() => setIsOpen(!isOpen)}>{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Check out"}</div>
+                            <div className="end-input" >{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Check out"}</div>
                         </div>
                     </div>
 
 
-                    <div className="custom-input" onClick={() => setShowGuestDropdown(!showGuestDropdown)}>
+                    <div className="custom-input" onClick={() => {
+                        setIsOpen(false)
+                        setShowGuestDropdown(!showGuestDropdown)
+                    }}>
                         <div className="header-label">GUESTS</div>
                         <div className="guest-input" >{setGuests().length > 27 ? setGuests().substring(0, 27) + '...' : setGuests()}</div>
                         <div className="dropdown-arrow">{!showGuestDropdown ? <i className="fa-solid fa-chevron-down"></i> : <i class="fa-solid fa-chevron-up"></i>}</div>
@@ -259,7 +270,7 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                     <div className="payment-guests">
 
 
-                        {showGuestDropdown && <div className="payment-guests-count">
+                        {showGuestDropdown && <div className="payment-guests-count list-guests">
 
                             <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                             <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
