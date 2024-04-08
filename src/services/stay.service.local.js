@@ -268,20 +268,7 @@ async function getLatLngFromAddress(address) {
         lng: 41.1413,
       },
 
-    reviews: [
-      {
-        id: utilService.makeId(4),
-        txt: "its random house...",
-        rate: utilService.getRandomIntInclusive(1, 3),
-        by: {
-          _id: utilService.makeId(4),
-          fullname: "user65",
-          imgUrl: "/img/img2.jpg",
-        },
-      }
-
-
-    ],
+    reviews: [],
 
       // likedByUsers: []
     }
@@ -319,49 +306,9 @@ async function getLatLngFromAddress(address) {
           },
           reviews: [
             {
-              id: "23343",
+              id: "madeId",
               txt: "Very helpful hosts. Cooked traditional...",
               rate: 4,
-              by: {
-                _id: "u102",
-                fullname: "user2",
-                imgUrl: "/img/img2.jpg",
-              },
-            },
-            {
-              id: "4566",
-              txt: "Very helpful hosts. Cooked traditional...",
-              rate: 5,
-              by: {
-                _id: "u102",
-                fullname: "user2",
-                imgUrl: "/img/img2.jpg",
-              },
-            },
-            {
-              id: "45345",
-              txt: "Very helpful hosts. Cooked traditional...",
-              rate: 5,
-              by: {
-                _id: "u102",
-                fullname: "user2",
-                imgUrl: "/img/img2.jpg",
-              },
-            },
-            {
-              id: "2786",
-              txt: "looks great",
-              rate: 5,
-              by: {
-                _id: "u102",
-                fullname: "user2",
-                imgUrl: "/img/img2.jpg",
-              },
-            },
-            {
-              id: "5565",
-              txt: "Wow",
-              rate: 5,
               by: {
                 _id: "u102",
                 fullname: "user2",
