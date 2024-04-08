@@ -110,6 +110,13 @@ export function Payment({ stay, filterBy, onSetFilter }) {
 
     // }
 
+
+    function openCalenderModal(ev) {
+        ev.preventDefault()
+        setIsOpen(true)
+
+    }
+
     async function sendToFinalOrder(ev) {
         ev.preventDefault()
         const totalPrice = calculateTotalPrice()
@@ -283,8 +290,8 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                         (<button className="reserve-btn " type="submit" style={{ backgroundColor: buttonColor }}
                             onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')}>Reserve</button>)
                         :
-                        (<button className="reserve-btn " type="submit" style={{ backgroundColor: buttonColor }}
-                            onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')}>Check availability</button>)
+                        (<button className="reserve-btn " style={{ backgroundColor: buttonColor }}
+                            onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openCalenderModal}>Check availability</button>)
                     }
                 </form>
                 {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <>
