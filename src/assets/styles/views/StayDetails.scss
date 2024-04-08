@@ -97,10 +97,11 @@
   display: flex;
   justify-content: space-between;
 
-  .guest-favorite{
-   width: 50%; 
-   padding: 0;
+  .guest-favorite {
+    width: 50%;
+    padding: 0;
   }
+
   .main-user-host {
     flex-grow: 1;
   }
@@ -312,36 +313,46 @@
 
 /*Reviews section */
 .review-container {
-  .review-by-user {
-    width: 600px;
-    margin-bottom: 20px;
+  .review-by {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-    p {
-      font-size: 14px;
-    }
+  .review-by-user {
+    flex-basis: calc(50% - 10px);
+    margin: 5px;
+    padding: 10px;
 
     .by-details {
       display: flex;
       align-items: center;
-      gap: 24px;
-
-      .name-user h4 {
-        margin: 0;
-        font-size: 16px;
-      }
+      margin-bottom: 10px;
 
       .name-user {
-        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+
+        .user-name-review {
+          margin: 0;
+          color: #333; 
+        }
+
+        span {
+          color: #666; 
+        }
       }
     }
-  }
-
-  .comment {
-    display: flex;
-    flex-direction: column;
 
     p {
-      margin: 0;
+      color: #333; 
+      margin: 10px 0;
+    }
+
+    .comment {
+      p {
+      }
     }
   }
 }

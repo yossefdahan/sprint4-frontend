@@ -33,7 +33,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
             </section>
 
             <div className='details-user'>
-                <div className="host-things border">
+                {stay.reviews.length > 3 ? (<div className="host-things border">
                     {averageRating > 4.5 && (
                         <section className="guest-favorite">
                             <img src="public/img/guest-fav.png"></img>
@@ -50,7 +50,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                     </div>
                     <span>|</span>
                     <section className="review-usr"><span className="num-reviews">{stay.reviews.length} </span> <span className="reviews-span">Reviews</span> </section>
-                </div>
+                </div>) : <a>★{stay.reviews.length < 2 ? `1 review` : `${stay.reviews.length} reviews`} </a>}
 
                 <section className="host-details">
                     <Avatar alt="Travis Howard" src={stay.host.imgUrl} />
@@ -74,7 +74,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 <section></section>
                 <p>{stay.summary}</p>
                 <section></section>
-                <h2>Lorem, ipsum.</h2>
+                <h3>Lorem, ipsum.</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rerum, suscipit, nesciunt voluptatibus vero tenetur facere explicabo odio dolorem velit aliquid, exercitationem similique aut corrupti placeat quaerat! Rerum, tenetur ullam?</p>
             </div>
             <hr className="hr-line-details" />
