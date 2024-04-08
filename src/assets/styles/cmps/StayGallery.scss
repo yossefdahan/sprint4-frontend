@@ -112,7 +112,51 @@
   }
 }
 
-.stay-gallery:hover .btn-nav-img { // israel its works only when its here....
+.stay-gallery:hover .btn-nav-img {
+  // israel its works only when its here....
   opacity: 1;
 
+}
+
+
+//modal in details
+.gallery-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .img-gallery-modal {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+  }
 }
