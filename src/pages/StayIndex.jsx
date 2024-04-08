@@ -80,7 +80,7 @@ export function StayIndex() {
     }
 
     return (
-        <main>
+        <section>
             <ScrollingFilter stays={stays} />
             <StayList stays={stays}
                 onUpdateStay={onUpdateStay}
@@ -89,7 +89,7 @@ export function StayIndex() {
             />
             <button className="show-map-btn">Show map <i className="fa-solid fa-map"></i></button>
             {/* <AppFooter /> */}
-        </main>
+        </section>
 
     )
 }

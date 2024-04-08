@@ -1,17 +1,19 @@
 .stay-gallery {
   position: relative;
 
-  &:hover {
-    .btn-nav-img {
-      opacity: 1; // Show the buttons on hover of the gallery
-    }
-  }
+
+
+
+  // &:hover .btn-nav-img {
+  //   opacity: 1;
+
+  // }
 
   .img-gallery {
     border-radius: 12px;
-    height: 250px;
     width: 100%;
     object-fit: cover;
+    aspect-ratio: 1/0.95;
   }
 
   .btn-preview {
@@ -108,4 +110,9 @@
       transform: scale(1.1);
     }
   }
+}
+
+.stay-gallery:hover .btn-nav-img { // israel its works only when its here....
+  opacity: 1;
+
 }
