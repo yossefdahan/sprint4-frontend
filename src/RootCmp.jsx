@@ -17,7 +17,7 @@ export function RootCmp() {
     return (
         <div className='main-container' >
             <AppHeader />
-            <main >
+            <main  >
                 <Routes>
                     <Route path='/' element={<StayIndex />} />
                     <Route path='/:stayId' element={<StayDetails />} />
