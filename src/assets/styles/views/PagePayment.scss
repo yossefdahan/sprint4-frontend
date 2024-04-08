@@ -1,320 +1,303 @@
 .main-payment-page {
-    width: 1120px;
-    margin: 0 auto;
+  width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  & .main-title-container {
+    padding: 0 0 32px;
+
+    & .main-title {
+      font-size: 1.78em;
+      font-weight: 600;
+      color: #222222;
+      padding: 64px 0 16px;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  & .payment-page {
+    width: 100%;
+
+    position: relative;
     display: flex;
-    flex-direction: column;
 
-    & .main-title-container {
-        padding: 0 0 32px;
+    height: 100%;
+    padding: 0;
 
-        & .main-title {
-            font-size: 1.78em;
-            font-weight: 600;
+    & .lay-pay {
+      padding: 0;
+      width: 560px;
+
+      & .back-btn {
+        position: absolute;
+        top: -90px;
+        left: -40px;
+        font-size: 25px;
+      }
+
+      & .trip-title {
+        font-size: 1.22em;
+        font-weight: 600;
+        color: #222222;
+      }
+
+      & .da-title {
+        font-size: 0.76em;
+        padding: 0 0 24px;
+
+        & h3 {
+          margin: 0;
+          padding: 0;
+          color: #222222;
+        }
+
+        & h4 {
+          font-weight: 300;
+          margin: 8px 0 0;
+          font-size: 1.17em;
+        }
+      }
+
+      & .gu-title {
+        font-size: 0.76em;
+        padding: 0 0 24px;
+
+        & h3 {
+          margin: 0;
+          padding: 0;
+          color: #222222;
+        }
+
+        & h4 {
+          font-weight: 300;
+          margin: 8px 0 0;
+          font-size: 1.17em;
+        }
+      }
+
+      & .payment-hr {
+        border: none;
+        height: 1px;
+        background-color: $light-gray;
+        width: 50%;
+        position: absolute;
+        left: 0;
+        margin: 0;
+      }
+
+      & .policy-title {
+        padding: 32px 0 24px;
+
+        & h2 {
+          font-size: 22px;
+          color: #222222;
+          font-weight: 600;
+          margin: 18px 0;
+        }
+
+        & p {
+          color: #222222;
+          font-size: 16px;
+        }
+      }
+
+      & .ground-title {
+        padding: 32px 0 24px;
+
+        & h2 {
+          font-size: 22px;
+          color: #222222;
+        }
+
+        & p {
+          margin-bottom: 16px;
+          color: #222222;
+          font-weight: 400;
+          letter-spacing: -0.8px;
+        }
+
+        & ul {
+          padding: 0 0 0 18px;
+          list-style-type: disc;
+          font-size: 16px;
+
+          & li::marker {
+            font-size: 10px;
+          }
+
+          & li {
+            font-size: 16px;
+            margin-bottom: 0 0 8px;
             color: #222222;
-            padding: 64px 0 16px;
-            margin: 0;
-            width: 100%;
+          }
         }
-    }
+      }
 
-    & .payment-page {
-        width: 100%;
+      & .calltoAction {
+        font-size: 12px;
+        padding: 32px 0 0;
+        margin: 0 0 88px;
 
-        position: relative;
+        & p {
+          color: #222222;
+          margin: 8px 0;
+        }
+
+        & button {
+          width: 204px;
+          height: 56px;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: 600;
+          transition: background-color 0.3s;
+          text-align: center;
+          background-color: rgb(255, 56, 92);
+          color: whitesmoke;
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      & .background-opacity {
         display: flex;
-
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-        padding: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        justify-content: center;
+        align-items: center;
 
-        & .lay-pay {
-            padding: 0;
-            width: 560px;
+        & .payment-confrim-modal {
+          z-index: 1000;
+          font-size: 14px;
+          background-color: white;
+          padding: 1em;
+          border: 1px solid rgb(221, 221, 221);
+          border-radius: 12px;
+          box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+          color: #222222;
+          width: 700px;
 
-            & .back-btn {
-                position: absolute;
-                top: -90px;
-                left: -40px;
-                font-size: 25px;
+          & .img-cont {
+            & img {
+              width: 50%;
+              margin-right: 35px;
+              border-radius: 15px;
             }
+          }
 
-            & .trip-title {
-                font-size: 1.22em;
-                font-weight: 600;
-                color: #222222;
-
+          & .close-confirm-btn {
+            & button {
+              width: 170px;
+              height: 40px;
+              border-radius: 8px;
+              font-size: 18px;
+              font-weight: 600;
+              transition: background-color 0.3s;
+              text-align: center;
+              background-color: rgb(255, 56, 92);
+              color: whitesmoke;
+              padding: 0;
+              margin: 0;
             }
-
-            & .da-title {
-                font-size: 0.76em;
-                padding: 0 0 24px;
-
-                & h3 {
-
-                    margin: 0;
-                    padding: 0;
-                    color: #222222;
-                }
-
-                & h4 {
-                    font-weight: 300;
-                    margin: 8px 0 0;
-                    font-size: 1.17em;
-                }
-            }
-
-            & .gu-title {
-                font-size: 0.76em;
-                padding: 0 0 24px;
-
-                & h3 {
-
-                    margin: 0;
-                    padding: 0;
-                    color: #222222;
-                }
-
-                & h4 {
-                    font-weight: 300;
-                    margin: 8px 0 0;
-                    font-size: 1.17em;
-                }
-
-
-            }
-
-            & .payment-hr {
-                border: none;
-                height: 1px;
-                background-color: $light-gray;
-                width: 50%;
-                position: absolute;
-                left: 0;
-                margin: 0;
-            }
-
-
-            & .policy-title {
-                padding: 32px 0 24px;
-
-                & h2 {
-                    font-size: 22px;
-                    color: #222222;
-                    font-weight: 600;
-                    margin: 18px 0;
-                }
-
-                & p {
-                    color: #222222;
-                    font-size: 16px;
-                }
-            }
-
-            & .ground-title {
-                padding: 32px 0 24px;
-
-                & h2 {
-                    font-size: 22px;
-                    color: #222222;
-
-                }
-
-                & p {
-                    margin-bottom: 16px;
-                    color: #222222;
-                    font-weight: 400;
-                    letter-spacing: -0.8px;
-                }
-
-                & ul {
-                    padding: 0 0 0 18px;
-                    list-style-type: disc;
-                    font-size: 16px;
-
-                    & li::marker {
-                        font-size: 10px;
-                    }
-
-                    & li {
-                        font-size: 16px;
-                        margin-bottom: 0 0 8px;
-                        color: #222222;
-                    }
-                }
-            }
-
-            & .calltoAction {
-
-                font-size: 12px;
-                padding: 32px 0 0;
-                margin: 0 0 88px;
-
-                & p {
-                    color: #222222;
-                    margin: 8px 0;
-                }
-
-                & button {
-                    width: 204px;
-                    height: 56px;
-                    border-radius: 8px;
-                    font-size: 16px;
-                    font-weight: 600;
-                    transition: background-color 0.3s;
-                    text-align: center;
-                    background-color: rgb(255, 56, 92);
-                    color: whitesmoke;
-                    padding: 0;
-                    margin: 0;
-                }
-            }
-
-            & .background-opacity {
-                display: flex;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 10;
-                justify-content: center;
-                align-items: center;
-
-
-
-                & .payment-confrim-modal {
-                    z-index: 1000;
-                    font-size: 14px;
-                    background-color: white;
-                    padding: 1em;
-                    border: 1px solid rgb(221, 221, 221);
-                    border-radius: 12px;
-                    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-                    color: #222222;
-
-                    & .img-cont {
-                        & img {
-                            width: 50%;
-                            margin-right: 35px;
-                            border-radius: 15px;
-                        }
-                    }
-
-                    & .close-confirm-btn {
-
-                        & button {
-                            width: 170px;
-                            height: 40px;
-                            border-radius: 8px;
-                            font-size: 18px;
-                            font-weight: 600;
-                            transition: background-color 0.3s;
-                            text-align: center;
-                            background-color: rgb(255, 56, 92);
-                            color: whitesmoke;
-                            padding: 0;
-                            margin: 0;
-                        }
-                    }
-                }
-            }
+          }
         }
-
-        & .paymentModal {
-            position: sticky;
-            top: 0;
-            width: 466px;
-            padding: 0;
-            margin: 0 0 0 93.3px;
-
-            & .finishOrder {
-                position: sticky;
-                top: 150px;
-                width: 465px;
-                padding: 24px;
-                margin: 0 0 88px;
-                height: fit-content;
-                border: 1px solid rgb(221, 221, 221);
-                border-radius: 12px;
-                box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-
-                & .title-container {
-
-                    & .total-price-final {
-                        font-weight: 600;
-                        font-size: 16px;
-                    }
-
-                    & .prices-final-tax {
-                        font-size: 16px;
-                    }
-
-                    & h2 {
-                        padding: 24px 0;
-                        font-size: 22px;
-                        font-weight: 600;
-                        margin: 0;
-                        color: #222222;
-                    }
-
-                    & hr {
-                        border: none;
-                        height: 1px;
-                        background-color: $light-gray;
-                    }
-
-                    & section {
-                        color: #222222;
-                    }
-                }
-
-                & .header-pay {
-                    display: flex;
-                    align-items: center;
-                    padding: 0 0 24px;
-
-                    & .title {
-                        width: 300px;
-                        padding: 0 0 0 16px;
-
-                        & h4 {
-                            font-size: 16px;
-                            width: 100%;
-                            margin: 0;
-                            margin-bottom: 0 0 5px;
-                            color: #222222;
-                        }
-
-                        & span {
-                            color: #222222;
-                            font-size: 14px;
-                            margin: 0 0 5px;
-                        }
-
-                        & .rate-title {
-                            font-size: 14px;
-                            color: #222222;
-                        }
-
-                    }
-
-                    & .img-container {
-                        // border-radius: 12px;
-                        width: 104px;
-                        height: 110px;
-
-                        & img {
-                            border-radius: 12px;
-                            height: 100%;
-                        }
-                    }
-
-                }
-
-
-
-            }
-        }
-
+      }
     }
+
+    & .paymentModal {
+      position: sticky;
+      top: 0;
+      width: 466px;
+      padding: 0;
+      margin: 0 0 0 93.3px;
+
+      & .finishOrder {
+        position: sticky;
+        top: 150px;
+        width: 465px;
+        padding: 24px;
+        margin: 0 0 88px;
+        height: fit-content;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+
+        & .title-container {
+          & .total-price-final {
+            font-weight: 600;
+            font-size: 16px;
+          }
+
+          & .prices-final-tax {
+            font-size: 16px;
+          }
+
+          & h2 {
+            padding: 24px 0;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+            color: #222222;
+          }
+
+          & hr {
+            border: none;
+            height: 1px;
+            background-color: $light-gray;
+          }
+
+          & section {
+            color: #222222;
+          }
+        }
+
+        & .header-pay {
+          display: flex;
+          align-items: center;
+          padding: 0 0 24px;
+
+          & .title {
+            width: 300px;
+            padding: 0 0 0 16px;
+
+            & h4 {
+              font-size: 16px;
+              width: 100%;
+              margin: 0;
+              margin-bottom: 0 0 5px;
+              color: #222222;
+            }
+
+            & span {
+              color: #222222;
+              font-size: 14px;
+              margin: 0 0 5px;
+            }
+
+            & .rate-title {
+              font-size: 14px;
+              color: #222222;
+            }
+          }
+
+          & .img-container {
+            // border-radius: 12px;
+            width: 104px;
+            height: 110px;
+
+            & img {
+              border-radius: 12px;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 }

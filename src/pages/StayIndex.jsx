@@ -88,7 +88,7 @@ export function StayIndex() {
                 shouldShowActionBtns={shouldShowActionBtns}
             />
             <button className="show-map-btn">Show map <i className="fa-solid fa-map"></i></button>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </main>
 
     )

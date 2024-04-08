@@ -19,7 +19,7 @@
 
 export function AppFooter() {
     return (
-        <footer className="app-footer">
+        <footer className="app-footer full">
             <div className="footer-content">
 
                 <div className="footer-main-content">
