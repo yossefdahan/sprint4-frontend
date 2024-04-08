@@ -7,7 +7,10 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     formatDateToEng,
-    formatDate
+    formatDate,
+    getStarsWithRating,
+    getStars,
+    getNumOfDays
 }
 
 function makeId(length = 6) {
@@ -79,4 +82,65 @@ function formatDate(date) {
     const day = date.getDate(); // getDate() returns day of the month
 
     return `${monthNames[monthIndex]} ${day}`;
+}
+
+
+function getStarsWithRating(stay) {
+    if (!stay.reviews || stay.reviews.length === 0) {
+        return { stars: 'No reviews yet', averageRating: 0 }
+    }
+
+    const totalRating = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
+    const averageRating = totalRating / stay.reviews.length
+    let stars = ''
+
+    for (let i = 1; i <= Math.floor(averageRating); i++) {
+        stars += '★'
+    }
+
+    if (averageRating % 1 >= 0.25 && averageRating % 1 < 0.75) {
+        stars += '½'
+    } else if (averageRating % 1 >= 0.75) {
+        stars += '★'
+    }
+
+    while (stars.length < 5 && stars.length + 0.5 <= 5) {
+        stars += '☆'
+    }
+
+    return { stars, averageRating }
+}
+
+function getStars(stay) {
+    if (!stay.reviews || stay.reviews.length === 0) {
+        return 'No reviews yet'
+    }
+
+    const totalRating = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
+    const averageRating = totalRating / stay.reviews.length
+    let stars = ''
+
+    for (let i = 1; i <= Math.floor(averageRating); i++) {
+        stars += '★'
+    }
+
+    if (averageRating % 1 >= 0.25 && averageRating % 1 < 0.75) {
+        stars += '½'
+    } else if (averageRating % 1 >= 0.75) {
+        stars += '★'
+    }
+
+    while (stars.length < 5 && stars.length + 0.5 <= 5) {
+        stars += '☆'
+    }
+
+    return stars
+}
+
+function getNumOfDays(checkIn, checkOut) {
+    if (!checkIn || !checkOut) return 0
+
+    const diffTime = Math.abs(checkOut - checkIn)
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    return diffDays
 }

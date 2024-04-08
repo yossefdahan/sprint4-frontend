@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useState } from "react"
 // import { useParams } from 'react-router-dom'
 import { userService } from '../services/user.service.js'
@@ -64,9 +64,10 @@ export function StayDetails() {
                 <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
 
             </section>
+
             <div className="details-reviews">
                 <hr />
-                <Reviews reviews={stay.reviews} />
+                <Reviews stay={stay} reviews={stay.reviews} />
             </div>
             <div className="google-map-details">
                 <hr />

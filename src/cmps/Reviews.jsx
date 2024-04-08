@@ -1,21 +1,38 @@
 
 import Avatar from '@mui/material/Avatar';
+import { utilService } from '../services/util.service';
+import { useState } from 'react';
 
 
-export function Reviews({ reviews }) {
+export function Reviews({ stay, reviews }) {
+    const [visibleReviews, setVisibleReviews] = useState(reviews.slice(0, 6))
+    const [isExpanded, setIsExpanded] = useState(false)
 
+
+    const handleShowMoreReviews = () => {
+        if (isExpanded) {
+            setVisibleReviews(reviews.slice(0, 6))
+            setIsExpanded(false)
+        } else {
+            setVisibleReviews(reviews)
+            setIsExpanded(true)
+        }
+    }
+
+
+    const { stars, averageRating } = utilService.getStarsWithRating(stay)
     return (
         <div className="review-container">
-            <section className='guest-lover '>
+            {averageRating > 4.5 && (<section className='guest-lover '>
                 <div className='big-review-img'> <img src="public/img/reviews.png" alt="" /></div>
                 <div>
                     <div><h2>Guest favorite</h2></div>
                     <div><p className='user-line-description'>One of the most loved homes on Airbnb based <br /> on ratings, reviews, and reliability</p></div>
                 </div>
-            </section>
-            <hr />
+            </section>)}
+            {averageRating > 4.5 && (<hr />)}
             <section className='review-by flex'>
-                {reviews.map(rev => {
+                {visibleReviews.map(rev => {
                     return (
                         <div className='review-by-user' key={rev.id}>
                             <section className='by-details'>
@@ -25,7 +42,7 @@ export function Reviews({ reviews }) {
                                     <span>Italy</span>
                                 </section>
                             </section>
-                            <p> ★★★★★  <span>• 3 weeks ago</span></p>
+                            <p> {stars}  <span>• 3 weeks ago</span></p>
                             {/* <p>{rev.rate} </p> */}
                             <section className='comment'>
                                 <p>{rev.txt}</p>
@@ -34,7 +51,7 @@ export function Reviews({ reviews }) {
                     )
                 })}
             </section >
-            <button className="review-btn-details"> Show all {reviews.length} reviews</button>
+            {visibleReviews.length > 6 && <button className="review-btn-details" onClick={handleShowMoreReviews}> {isExpanded ? 'Show less' : `Show all ${reviews.length} reviews`}</button>}
         </div >
     )
 
