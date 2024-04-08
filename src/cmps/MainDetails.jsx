@@ -39,7 +39,10 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                             <img src="public/img/guest-fav.png"></img>
                         </section>
                     )}
-                    {averageRating > 4.5 && <span>|</span>}
+                    {averageRating > 4.5 && (
+                        <h1>
+                            One of the most loved homes on Airbnb, according to guests</h1>
+                    )}                    {/* {averageRating > 4.5 && <span>|</span>} */}
 
                     <div className="reviews-details-stars">
                         <div className="rate-details">{rate / stay.reviews.length}</div>
@@ -65,12 +68,16 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 <div className="flex"><span><i className="fa-brands fa-product-hunt"></i></span><p>Park for free</p></div>
             </div>
 
-            <hr className="hr-line-details" />
 
+            <hr className="hr-line-details" />
             <div className="details-description">
+                <section></section>
                 <p>{stay.summary}</p>
+                <section></section>
+                <h2>Lorem, ipsum.</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rerum, suscipit, nesciunt voluptatibus vero tenetur facere explicabo odio dolorem velit aliquid, exercitationem similique aut corrupti placeat quaerat! Rerum, tenetur ullam?</p>
             </div>
-            <hr />
+            <hr className="hr-line-details" />
 
             <div className="details-amenities">
                 <Amenities amenities={stay.amenities} />
