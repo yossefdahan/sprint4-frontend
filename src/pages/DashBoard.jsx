@@ -5,6 +5,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { MyChart } from '../cmps/MyChart.jsx'
 
 import { NavLink } from 'react-router-dom'
+import { utilService } from '../services/util.service.js'
 
 export function DashBoard() {
 
@@ -77,12 +78,12 @@ export function DashBoard() {
                             <tr key={order.buyer._id}>
                                 <td>{order.buyer.fullname}</td>
                                 <td>${order.totalPrice.toFixed(2)}</td>
-                                <td>{order.startDate}</td>
-                                <td>{order.endDate}</td>
-                                <td>{order.guests.adults}</td>
-                                <td>{order.guests.kids}</td>
-                                <td>{order.guests.pets}</td>
-                                <td>{order.guests.infants}</td>
+                                <td>{utilService.formatIsoDateToYMD(order.startDate)}</td>
+                                <td>{utilService.formatIsoDateToYMD(order.endDate)}</td>
+                                <td>{order.guests.adults ? order.guests.adults : ''}</td>
+                                <td>{order.guests.kids ? order.guests.kids : ''}</td>
+                                <td>{order.guests.pets ? order.guests.pets : ''}</td>
+                                <td>{order.guests.infants ? order.guests.infants : ''}</td>
                                 <td>{order.stay.name}</td>
                                 <td className={`status ${order.status}`}>{order.status}</td>
                                 <td><div className='actions flex'>
