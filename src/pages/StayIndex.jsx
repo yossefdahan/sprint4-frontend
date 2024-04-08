@@ -81,6 +81,7 @@ export function StayIndex() {
 
     return (
         <section>
+        <section>
             <ScrollingFilter stays={stays} />
             <StayList stays={stays}
                 onUpdateStay={onUpdateStay}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { stayService } from "../services/stay.service.local"
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
-
+import Swal from 'sweetalert2';
 import { MultiSelect } from '../cmps/MultiSelect.jsx';
 import { MultiSelectAmenities } from '../cmps/MultiSelectAmenities.jsx';
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
@@ -37,15 +37,43 @@ export function AddStay() {
     }
 
 
+    // async function onSaveStay(ev) {
+    //     ev.preventDefault()
+    //     try {
+    //         await addStay(stay)
+    //         showSuccessMsg('Stay Saved!')
+    //         navigate('/')
+    //     } catch (error) {
+    //         console.error('Error saving stay:', error)
+    //         showErrorMsg('Had issues in Stay details')
+    //     }
+    // }
+
     async function onSaveStay(ev) {
-        ev.preventDefault()
-        try {
-            await addStay(stay)
-            showSuccessMsg('Stay Saved!')
-            navigate('/')
-        } catch (error) {
-            console.error('Error saving stay:', error)
-            showErrorMsg('Had issues in Stay details')
+        ev.preventDefault();
+        // Show SweetAlert confirmation dialog
+        const result = await Swal.fire({
+            title: "You sure you want add your home?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Add my home",
+            denyButtonText: `Don't Add`,
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await addStay(stay);
+                showSuccessMsg('Stay Saved!');
+                Swal.fire("Saved!", "", "success");
+                navigate('/');
+            } catch (error) {
+                console.error('Error saving stay:', error);
+                showErrorMsg('Had issues in Stay details');
+
+                Swal.fire("Error!", "There was a problem saving your stay.", "error");
+            }
+        } else if (result.isDenied) {
+            Swal.fire("Changes are not saved", "", "info");
         }
     }
 
@@ -92,7 +120,7 @@ export function AddStay() {
                             <option value="room">Room</option>
                         </select>
                     </div>
-                            <ImgUploader onUploaded={onUploaded} />
+                    <ImgUploader onUploaded={onUploaded} />
                     <div>
                         <button type="sumbmit">Add</button>
                         {/* <button ><Link className="add-btn" to="/stay">Cancel</Link></button> */}

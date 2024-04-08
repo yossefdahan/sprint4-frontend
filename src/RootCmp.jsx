@@ -26,12 +26,6 @@ export function RootCmp() {
                     <Route path='/user/addstay' element={<AddStay />} />
                     <Route path='/user/trips' element={<Trips />} />
                     <Route path='/user/dashboard' element={<DashBoard />} />
-
-                    {/* <Route path='' element={} /> */}
-                    {/* <Route path='' element={} /> */}
-                    {/* <Route path='' element={} /> */}
-                    {/* <Route path='' element={} /> */}
-
                 </Routes>
             </main>
         </div>
