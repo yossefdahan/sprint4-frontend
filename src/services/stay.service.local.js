@@ -52,7 +52,7 @@ function getAmenities() {
     "Kitchen",
     "Air conditioning",
     "Heating",
-    "Pool",
+    "Pool table",
     "Free parking",
     "Gym",
     "Hot tub",
@@ -246,7 +246,7 @@ function getEmptyStay() {
     summary: "" || utilService.makeLorem(2),
     capacity: 0 || utilService.getRandomIntInclusive(1, 10),
 
-    amenities: [] || ["TV", "Wifi", "Kitchen", "Smoking allowed", "Pets allowed", "Cooking basics"],
+    amenities: [] || ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
 
     labels: [] || ["Top of the world", "Trending", "Play", "Tropical"],
     host: {
@@ -283,7 +283,7 @@ function createStays() {
         price: 80.0,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
-        amenities: ["TV", "Wifi", "Kitchen", "Smoking allowed", "Pets allowed", "Cooking basics"],
+        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
         labels: ["Top of the world", "Trending", "Play", "Tropical"],
         host: {
           _id: "u101",
@@ -322,7 +322,7 @@ function createStays() {
         summary:
           "A cozy cabin in the heart of the mountains, perfect for a weekend getaway Welcome to our cozy retreat nestled in the heart of the city! This charming home offers a tranquil oasis with its private garden, modern amenities, and stylish decor. Perfect for adventurers and families alike, it's just steps away from vibrant markets, renowned restaurants, and picturesque parks. Enjoy a seamless stay with high-speed Wi-Fi, a fully equipped kitchen, and a guide to local secrets for an unforgettable experience.",
         capacity: 4,
-        amenities: ["Fireplace", "Mountain view", "Kitchen", "Pets allowed", "Hiking trails"],
+        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
         labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
         host: {
           _id: "u203",
@@ -369,7 +369,7 @@ function createStays() {
         price: 85.0,
         summary: "Modern loft in the city center, perfect for exploring the urban sights.",
         capacity: 2,
-        amenities: ["Wifi", "Kitchen", "Elevator", "Washer", "Essentials", "Coffee maker"],
+        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
         labels: ["City Life", "Modern", "New listing"],
         host: {
           _id: "u205",
@@ -407,7 +407,7 @@ function createStays() {
         summary:
           "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
         capacity: 5,
-        amenities: ["Beach view", "Air conditioning", "Private beach", "Sun loungers", "BBQ grill"],
+        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
         labels: ["Beach", "Family friendly", "Sunrise view"],
         host: {
           _id: "u207",
@@ -445,7 +445,7 @@ function createStays() {
         summary:
           "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
         capacity: 5,
-        amenities: ["Beach view", "Air conditioning", "Private beach", "Sun loungers", "BBQ grill"],
+        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
         labels: ["Beach", "Family friendly", "Sunrise view"],
         host: {
           _id: "u207",
@@ -482,7 +482,7 @@ function createStays() {
         price: 85.0,
         summary: "Modern loft in the city center, perfect for exploring the urban sights.",
         capacity: 2,
-        amenities: ["Wifi", "Kitchen", "Elevator", "Washer", "Essentials", "Coffee maker"],
+        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
         labels: ["City Life", "Modern", "New listing"],
         host: {
           _id: "u205",

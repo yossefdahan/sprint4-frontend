@@ -21,24 +21,29 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
         }
     }
 
+    const { stars, averageRating } = utilService.getStarsWithRating(stay)
+
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     // const amenities =stay.amenities.slice(0,3)// use it in the future
     return (
         <section className='main-user-host'>
             <h2 className="second-title-details">Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
             <section className=" house-details flex">
-                <span>{stay.capacity} guests</span>• <span>{stay.type}</span>•<span> 1 bedroom</span>•<span> 1bed</span>
+                <span>{stay.capacity} guests</span> • <span>{stay.type}</span> • <span> 1 bedroom</span>•<span> 1bed</span>
             </section>
 
             <div className='details-user'>
                 <div className="host-things border">
-                    <section className="guest-favorite">
-                        <img src="public/img/guest-fav.png"></img>
-                    </section>
-                    <span>|</span>
+                    {averageRating > 4.5 && (
+                        <section className="guest-favorite">
+                            <img src="public/img/guest-fav.png"></img>
+                        </section>
+                    )}
+                    {averageRating > 4.5 && <span>|</span>}
+
                     <div className="reviews-details-stars">
                         <div className="rate-details">{rate / stay.reviews.length}</div>
-                        <div className="stars-details">★★★★★ </div>
+                        <div className="stars-details">{stars}</div>
                     </div>
                     <span>|</span>
                     <section className="review-usr"><span className="num-reviews">{stay.reviews.length} </span> <span className="reviews-span">Reviews</span> </section>
@@ -47,7 +52,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 <section className="host-details">
                     <Avatar alt="Travis Howard" src={stay.host.imgUrl} />
                     <section className="host-short">
-                        <h4 className="host-name-details">Hosted by Travis</h4>
+                        <h4 className="host-name-details">Hosted by {stay.host.fullname}</h4>
                         <p>Superhost • 2 years hosting</p>
                     </section>
                 </section>
@@ -74,7 +79,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
 
             {/* <MyDateRangePicker/> */}
             <div className="date-pick-details">
-                <h3 className="title-dates-details"> 5 nights in {stay.name}  </h3>
+                <h3 className="title-dates-details"> {utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut)} Nights in {stay.name}  </h3>
                 <DatePicker
                     selected={filterBy.checkIn}
                     onChange={(dates) => {
