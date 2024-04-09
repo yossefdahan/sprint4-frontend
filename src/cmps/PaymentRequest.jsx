@@ -1,6 +1,7 @@
 import { set } from 'date-fns'
 import { useState, useEffect } from 'react'
 import { addOrder, getActionAddOrder } from '../store/order.actions.js'
+import Swal from 'sweetalert2';
 
 
 export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
@@ -21,20 +22,46 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
 
 
 
+
     async function dealMade(ev) {
-        ev.preventDefault()
-        try {
-            await addOrder(order);
-            setSend(true)
-            console.log('complete!')
-            toUserTrips()
+        ev.preventDefault();
 
-        } catch (err) {
-            console.log(err)
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You one step away from your vacation! ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#ff385c',
+            confirmButtonText: 'Yes, confirm it!'
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await addOrder(order);
+                setSend(true);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Reservation sent to confirmation',
+                    text: 'Host will respond within 24 hours ',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                console.log('complete!');
+                setTimeout(() => {
+                    toUserTrips();
+                }, 3000);
+            } catch (err) {
+                console.error(err);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Something went wrong with your reservation.',
+                    icon: 'error'
+                });
+            }
         }
-       
     }
-
     function toUserTrips() {
         window.location.href = '/user/trips'
     }
