@@ -126,7 +126,7 @@ function getStars(stay) {
     }
 
     if (averageRating % 1 >= 0.25 && averageRating % 1 < 0.75) {
-        stars += '½'
+        stars += '✬'
     } else if (averageRating % 1 >= 0.75) {
         stars += '★'
     }
