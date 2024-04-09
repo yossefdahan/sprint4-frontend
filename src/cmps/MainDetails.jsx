@@ -26,7 +26,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     // const amenities =stay.amenities.slice(0,3)// use it in the future
     return (
-        <section className='main-user-host'>
+        <div className='main-user-host'>
             <h2 className="second-title-details">Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
             <section className=" house-details flex">
                 <span>{stay.capacity} guests</span> • <span>{stay.type}</span> • <span> 1 bedroom</span>•<span> 1bed</span>
@@ -106,6 +106,6 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
 
                 />
             </div>
-        </section >
+        </div >
     )
 }
