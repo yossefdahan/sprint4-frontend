@@ -1,122 +1,117 @@
 // Base styles for the whole page
 .trips-page {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #333;
-    background-color: #fff;
-    padding: 20px;
+  font-family: Montserrat;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
 
+  .navigation-links {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 20px;
 
-    .navigation-links {
-        display: flex;
-        justify-content: start;
-        margin-bottom: 20px;
+    a {
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #767676;
 
-        a {
-            padding: 10px 15px;
-            text-decoration: none;
-            color: #767676;
+      &.active {
+        color: #ff5a5f;
+        border-bottom: 4px solid #ff5a5f;
+      }
+    }
+  }
 
-            &.active {
-                color: #ff5a5f;
-                border-bottom: 4px solid #ff5a5f;
-            }
-        }
+  .status {
+    &.pending {
+      color: rgb(116, 103, 1, 0.55);
     }
 
-
-    .status {
-        &.pending {
-            color: rgb(116, 103, 1, 0.55);
-        }
-
-        &.approved {
-            color: green;
-        }
-
-        &.rejected {
-            color: red;
-        }
+    &.approved {
+      color: green;
     }
 
-    .header-summary {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 30px;
-
-        h1 {
-            font-size: 1.75rem;
-            color: #484848;
-            margin: 0;
-        }
-
-
+    &.rejected {
+      color: red;
     }
+  }
 
+  .header-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
 
-    .trips-container {
-        table {
-            width: 100%;
-            border-collapse: collapse;
-
-            th,
-            td {
-                text-align: left;
-                padding: 12px 8px;
-                border-bottom: 1px solid #ebebeb;
-            }
-
-            th {
-                background-color: #f7f7f7;
-                color: #484848;
-            }
-
-            tr {
-                &:hover {
-                    background-color: #f7f7f7;
-                }
-            }
-
-            .status-pending {
-                color: #ffa726;
-            }
-
-            .status-approved {
-                color: #66bb6a;
-            }
-
-            .status-declined {
-                color: #ef5350;
-            }
-
-            .actions {
-                button {
-                    background-color: #ff5a5f;
-                    border: none;
-                    color: #fff;
-                    padding: 8px 16px;
-                    margin: 0 4px;
-                    border-radius: 4px;
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: darken(#ff5a5f, 10%);
-                    }
-
-                    &:first-child {
-                        background-color: #008489;
-                    }
-                }
-            }
-        }
+    h1 {
+      font-size: 1.75rem;
+      color: #484848;
+      margin: 0;
     }
+  }
 
-    button {
-        outline: none;
+  .trips-container {
+    table {
+      width: 100%;
+      border-collapse: collapse;
 
-        &:focus {
-            outline: none;
-            box-shadow: none;
+      th,
+      td {
+        text-align: left;
+        padding: 12px 8px;
+        border-bottom: 1px solid #ebebeb;
+      }
+
+      th {
+        background-color: #f7f7f7;
+        color: #484848;
+      }
+
+      tr {
+        &:hover {
+          background-color: #f7f7f7;
         }
+      }
+
+      .status-pending {
+        color: #ffa726;
+      }
+
+      .status-approved {
+        color: #66bb6a;
+      }
+
+      .status-declined {
+        color: #ef5350;
+      }
+
+      .actions {
+        button {
+          background-color: #ff5a5f;
+          border: none;
+          color: #fff;
+          padding: 8px 16px;
+          margin: 0 4px;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: darken(#ff5a5f, 10%);
+          }
+
+          &:first-child {
+            background-color: #008489;
+          }
+        }
+      }
     }
+  }
+
+  button {
+    outline: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
 }

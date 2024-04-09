@@ -6,7 +6,6 @@
 // }
 
 .search-container {
-
   grid-row: 2;
   grid-column: 1/-1;
   transform: translateY(0px) scale(1, 1);
@@ -16,7 +15,6 @@
 }
 
 .search-container-minimized {
-
   transition: 0.5s;
   transform: translateY(-70px) scale(0.3, 0.6);
   grid-row: 2;
@@ -28,7 +26,6 @@
 }
 
 .search-container-details {
-
   grid-row: 2;
   grid-column: 1/-1;
   transform: translateY(0px) scale(1, 1);
@@ -38,7 +35,6 @@
 }
 
 .search-container-minimized-details {
-
   transition: 0.5s;
   transform: translateY(-70px) scale(0.3, 0.6);
   grid-row: 2;
@@ -62,12 +58,9 @@
   z-index: 10;
   text-decoration: none;
 
-
   & .left-section-header {
     justify-self: end;
   }
-
-
 
   .stays-search {
     justify-self: center;
@@ -79,7 +72,6 @@
 
   .logo-img {
     width: 200px;
-
   }
 
   .side-nav {
@@ -101,7 +93,7 @@
     right: 20%;
     display: flex;
     flex-direction: column;
-    background-color: #f2f1f1;
+    background-color: white;
     box-shadow: 3px 3px 3px 3px $light-gray;
     border: 1px solid $light-gray;
     z-index: 11;
@@ -109,13 +101,12 @@
     width: 240px;
     font-weight: bold;
     font-size: 14px;
-    color: $main-gray;
   }
 
   .nav-links a {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Montserrat;
     padding: 10px 15px;
-    color: $main-gray;
+    color: $black2;
 
     text-decoration: none;
 
@@ -133,7 +124,7 @@
     border-radius: 30px;
 
     &:hover {
-      background-color: $light-gray;
+      background-color: $main-gray-hover;
     }
   }
 
@@ -181,8 +172,6 @@
     clip-path: circle(50% at 50% 50%);
   }
 }
-
-
 
 .app-header-sticky {
   position: fixed;
@@ -204,15 +193,10 @@
   text-decoration: none;
   // font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 
-
-
-
-
   & .left-section-header {
     justify-self: end;
+    padding-right: 20px;
   }
-
-
 
   .stays-search {
     justify-self: center;
@@ -224,7 +208,6 @@
 
   .logo-img {
     width: 200px;
-
   }
 
   .side-nav {
@@ -235,37 +218,37 @@
     height: 48px;
 
     &:hover {
-      box-shadow: 1px 1px 1px 2px $light-gray;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
     }
   }
 
   .nav-links {
     position: absolute;
-    top: 150%;
+    top: 120%;
     width: 100%;
-    right: 20%;
+    right: 0%;
     display: flex;
     flex-direction: column;
-    background-color: #f2f1f1;
-    box-shadow: 3px 3px 3px 3px $light-gray;
+    background-color: $main-white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
     border: 1px solid $light-gray;
-    z-index: 11;
+    z-index: 1000;
     border-radius: 12px;
     width: 240px;
     font-weight: bold;
     font-size: 14px;
-    color: $main-gray;
+    font-weight: 500;
   }
 
   .nav-links a {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Montserrat;
     padding: 10px 15px;
-    color: $main-gray;
+    color: $black2;
 
     text-decoration: none;
 
     &:hover {
-      background-color: $light-gray;
+      background-color: $main-gray-hover;
     }
   }
 
@@ -278,7 +261,7 @@
     border-radius: 30px;
 
     &:hover {
-      background-color: $light-gray;
+      background-color: $main-gray-hover;
     }
   }
 
@@ -301,7 +284,7 @@
     width: 180px;
 
     &:hover {
-      background-color: $light-gray;
+      background-color: $main-gray-hover;
       border-radius: 30px;
     }
   }
@@ -316,7 +299,7 @@
     padding: 0 20px;
 
     &:hover {
-      background-color: $light-gray;
+      background-color: $main-gray-hover;
       border-radius: 30px;
     }
   }
@@ -324,6 +307,37 @@
   .israel-img {
     width: 30px;
     clip-path: circle(50% at 50% 50%);
+  }
+}
+
+.filter-small-scrolling {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  .filter-small-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid $light-gray;
+    font-weight: 500;
+    border-radius: 8px;
+    color: #222222;
+    font-size: 14px;
+    width: 100px;
+    height: 48px;
+    padding: 0;
+    margin-right: 0;
+
+    img {
+      width: 1.2em;
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: $main-gray-hover;
+      border: 1px solid $black2;
+    }
   }
 }
 

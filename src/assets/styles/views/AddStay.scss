@@ -47,7 +47,6 @@
       input {
         width: 100%;
         cursor: pointer;
-
       }
     }
 
@@ -70,21 +69,14 @@
     }
   }
 
-
-
-
-
   .multi-select {
     position: relative;
-    font-family: 'Circular', sans-serif;
+    font-family: Montserrat;
 
     .input,
     .selected-options-container {
       display: flex;
       cursor: pointer;
-
-
-
     }
 
     .options-container {
@@ -105,7 +97,7 @@
         display: block;
       }
 
-      >* {
+      > * {
         padding: 10px;
         border-bottom: 1px solid #eee;
         cursor: pointer;
@@ -121,5 +113,4 @@
       }
     }
   }
-
 }

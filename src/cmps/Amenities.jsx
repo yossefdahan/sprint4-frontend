@@ -20,9 +20,9 @@ export function Amenities({ amenities }) {
     return (
         <div className="amenities-container" >
             <h3 className="amenities-title">What this place offers</h3>
-            <div className="amenities-icons-section">
+            <div className="amenities-icons-section ">
                 {visibleAmenities.map((amen) => (
-                    <p key={amen}><img src={`/amenities/${amen}.svg`} style={{ width: "24px" }} alt="" /> {amen}</p>
+                    <div className="amen-p flex" key={amen}><img src={`/amenities/${amen}.svg`} style={{ width: "30px" }} alt="" /><div className="amen-txt"> {amen}</div></div>
                 ))}
             </div>
             {amenities.length > initialVisibleCount && (
