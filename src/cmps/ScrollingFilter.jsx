@@ -40,14 +40,17 @@ export function ScrollingFilter() {
     <div className="carusel-filter-main">
       {/* <hr className="hr-line" /> */}
       <Swiper
+        // observer={true}
+        // observeParents={true}
         slidesPerView={16}
         spaceBetween={0}
-        slidesPerGroup={8}
-        loopFillGroupWithBlank={false}
+        slidesPerGroup={14}
+        // loopFillGroupWithBlank={false}
         // pagination={{
         //   clickable: true,
         // }}
-        loop="true"
+
+
         navigation={true}
 
         modules={[Pagination, Navigation]}
