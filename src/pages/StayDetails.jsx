@@ -49,7 +49,7 @@ export function StayDetails() {
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
     if (!stay) return <div className='loader'></div>
     return (
-        <section className='details-layout  '>
+        <div className='details-layout  '>
             <div className='main-header-details flex space-between '>
                 <h1 className='stay-name-details '>{stay.name}</h1>
                 <div className='header-buttons-section'>
@@ -57,28 +57,28 @@ export function StayDetails() {
                     <button> ❤️ <span>Saved</span> </button>
                 </div>
             </div>
-            <section className='gallery'>
+            <div className='gallery'>
                 {stay.imgUrls.map((img) =>
                     <img src={img} alt="img of the photo" key={img} onClick={() => setIsOpen(!isOpen)} />
                 )
                 }
-            </section>
+            </div>
             {isOpen ? (
-                <section className='gallery-modal'>
+                <div className='gallery-modal'>
                     <span className="close-btn" onClick={() => setIsOpen(false)}>{'>'}</span>
-                    <section className='img-gallery-modal'>
+                    <div className='img-gallery-modal'>
                         {stay.imgUrls.map((img) =>
                             <img src={img} alt="Stay view" key={img} />
                         )}
-                    </section>
-                </section>
+                    </div>
+                </div>
             ) : ''}
 
-            <section className='main-details'>
+            <div className='main-details'>
                 <MainDetails stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
                 <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
 
-            </section>
+            </div>
 
             <div className="details-reviews">
                 <hr />
@@ -132,7 +132,7 @@ export function StayDetails() {
             </div> */}
 
 
-        </section >
+        </div >
     )
 
 

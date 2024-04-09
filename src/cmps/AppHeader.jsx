@@ -141,7 +141,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
         </div>
 
-    </header>) : (<header className="app-header-details" style={showSearch ? { transition: "0.5s" } : { transition: "0.5s" }}>
+    </header>) : (<header className="app-header-details " style={showSearch ? { transition: "0.5s" } : { transition: "0.5s" }}>
 
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
