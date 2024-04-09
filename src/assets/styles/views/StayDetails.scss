@@ -97,8 +97,12 @@
   justify-content: space-between;
 
   .guest-favorite {
-    width: 50%;
+    width: 25%;
     padding: 0;
+
+    img {
+      width: fit-content;
+    }
   }
 
   .main-user-host {
@@ -251,12 +255,16 @@
   .amenities-icons-section {
     padding-bottom: 20px;
 
-    i {
-      margin-right: 10px;
+    .amen-p {
+      margin-bottom: 15px;
+
+      .amen-txt {
+        margin-left: 10px;
+      }
     }
 
-    p {
-      padding-bottom: 16px;
+    i {
+      margin-right: 10px;
     }
   }
 
@@ -324,12 +332,13 @@
     .by-details {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
 
       .name-user {
         display: flex;
         flex-direction: column;
         margin-left: 10px;
+        font-size: 16px;
 
         .user-name-review {
           margin: 0;
@@ -338,13 +347,16 @@
 
         span {
           color: #666;
+          font-size: 14px;
         }
       }
     }
 
     p {
       color: #333;
-      margin: 10px 0;
+      margin: 2px 0;
+      margin-left: 2px;
+      font-size: 14px;
     }
 
     .comment {

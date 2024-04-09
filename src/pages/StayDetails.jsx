@@ -88,7 +88,7 @@ export function StayDetails() {
                 <hr />
                 <GoogleMap stay={stay} />
             </div>
-            <div className='footer-container-details full'>
+            {/* <div className='footer-container-details full'>
                 <div className='footer-details'>
                     <section className='footer-section'>
                         <h2 className="location-map-details">Airbnb</h2>
@@ -117,8 +117,8 @@ export function StayDetails() {
                         </ul>
                     </section>
                 </div>
-            </div>
-            <div className="app-footer full">
+            </div> */}
+            {/* <div className="app-footer full">
                 <div className="footer-content">
 
                     <div className="footer-main-content">
@@ -129,7 +129,7 @@ export function StayDetails() {
                         <p className="lan-footer "><i className="fa-solid fa-globe"></i><span> English (US)</span> </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
         </section >

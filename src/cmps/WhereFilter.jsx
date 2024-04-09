@@ -218,14 +218,14 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             <img onClick={() => {
                                 setInputValue("mexico")
                                 setIsOpen(true)
-                            }} src="src\assets\img\destination\asset 0.jpeg" alt="Im flexible" />
+                            }} src="/img/destination/asset0.jpeg" alt="Im flexible" />
                             <h4>I'm flexible</h4>
                         </div>
                         <div className="img-europe country-filter">
                             <img onClick={() => {
                                 setInputValue("portugal")
                                 setIsOpen(true)
-                            }} src="src\assets\img\destination\asset 2.webp" alt="Europe" />
+                            }} src="/img/destination/asset2.webp" alt="Europe" />
                             <h4>Europe</h4>
                         </div>
 
@@ -233,28 +233,28 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             <img onClick={() => {
                                 setInputValue("portugal")
                                 setIsOpen(true)
-                            }} src="src\assets\img\destination\asset 3.webp" alt="Italy" />
+                            }} src="/img/destination/asset3.webp" alt="Italy" />
                             <h4>Italy</h4>
                         </div>
                         <div className="img-usa country-filter">
                             <img onClick={() => {
                                 setInputValue("canada")
                                 setIsOpen(true)
-                            }} src="src\assets\img\destination\asset 4.webp" alt="United States" />
+                            }} src="/img/destination/asset4.webp" alt="United States" />
                             <h4>United States</h4>
                         </div>
                         <div className="img-greece country-filter">
                             <img onClick={() => {
                                 setInputValue("usa")
                                 setIsOpen(true)
-                            }} src="src\assets\img\destination\asset 5.webp" alt="Greece" />
+                            }} src="/img/destination/asset5.webp" alt="Greece" />
                             <h4>Greece</h4>
                         </div>
                         <div className="img-south country-filter">
                             <img onClick={() => {
                                 setInputValue("portugal")
                                 setIsOpen(true)
-                            }} src="src\assets\img\destination\asset 1.webp" alt="South America" />
+                            }} src="/img/destination/asset1.webp" alt="South America" />
                             <h4>South America</h4>
                         </div>
                     </div>

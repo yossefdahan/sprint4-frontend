@@ -24,7 +24,7 @@ export function Reviews({ stay, reviews }) {
     return (
         <div className="review-container">
             {stay.reviews.length > 2 && averageRating > 4.5 && (<section className='guest-lover '>
-                <div className='big-review-img'> <img src="public/img/reviews.png" alt="" /></div>
+                <div className='big-review-img'> <img src="/img/reviews.png" alt="" /></div>
                 <div>
                     <div><h2>Guest favorite</h2></div>
                     <div><p className='user-line-description'>One of the most loved homes on Airbnb based <br /> on ratings, reviews, and reliability</p></div>
