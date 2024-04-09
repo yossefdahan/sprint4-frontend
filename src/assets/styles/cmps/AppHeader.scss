@@ -74,17 +74,17 @@
     width: 200px;
   }
 
-  .side-nav {
-    position: relative;
-    border: 1px solid $light-gray;
-    border-radius: 30px;
-    width: 85px;
-    height: 48px;
+  // .side-nav {
+  //   position: relative;
+  //   border: 1px solid $light-gray;
+  //   border-radius: 30px;
+  //   width: 85px;
+  //   height: 48px;
 
-    &:hover {
-      box-shadow: 1px 1px 1px 2px $light-gray;
-    }
-  }
+  //   &:hover {
+  //     box-shadow: 1px 1px 1px 2px $light-gray;
+  //   }
+  // }
 
   // .nav-links {
   //   position: absolute;
@@ -195,6 +195,7 @@
 
   & .left-section-header {
     justify-self: end;
+    padding-right: 20px;
   }
 
   .stays-search {
@@ -223,15 +224,15 @@
 
   .nav-links {
     position: absolute;
-    top: 150%;
+    top: 120%;
     width: 100%;
-    right: 20%;
+    right: 0%;
     display: flex;
     flex-direction: column;
     background-color: $main-white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
     border: 1px solid $light-gray;
-    z-index: 11;
+    z-index: 1000;
     border-radius: 12px;
     width: 240px;
     font-weight: bold;
@@ -306,6 +307,37 @@
   .israel-img {
     width: 30px;
     clip-path: circle(50% at 50% 50%);
+  }
+}
+
+.filter-small-scrolling {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  .filter-small-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid $light-gray;
+    font-weight: 600;
+    border-radius: 8px;
+    color: #222222;
+    font-size: 16px;
+    width: 100px;
+    height: 50px;
+    padding: 0;
+    margin-right: 0;
+
+    img {
+      width: 1em;
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: $main-gray-hover;
+      border: 1px solid $black2;
+    }
   }
 }
 

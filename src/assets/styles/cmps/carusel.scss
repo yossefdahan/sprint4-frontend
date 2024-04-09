@@ -15,6 +15,7 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
       Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     text-wrap: nowrap;
+    font-size: 12px;
     // text-align: center;
     // justify-content: center;
   }
@@ -58,13 +59,11 @@
 
 .carusel-filter-main {
   display: inline-block;
-  width: 110rem;
+  width: 100rem;
   margin-top: 10px;
   height: 80px;
   margin: 0;
   padding: 0;
-
-
 
   .swiper-button-next {
     border: 0.5px solid rgba(0, 0, 0, 0.3);
@@ -74,7 +73,8 @@
     font-size: 13px;
     color: black;
     background-color: white;
-    margin-top: -20px;
+    top: 50px;
+    right: 0;
   }
 
   .swiper-button-next:hover {
@@ -98,9 +98,10 @@
     height: 27px;
     font-size: 13px;
     color: black;
-    margin-left: -10px;
-    margin-top: -14px;
-    // display: none;
+    // margin-left: -10px;
+    // margin-top: -14px;
+    top: 50px;
+    left: 0;
   }
 
   .swiper-button-prev::after {

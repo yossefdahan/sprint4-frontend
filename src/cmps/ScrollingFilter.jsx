@@ -29,11 +29,11 @@ export function ScrollingFilter() {
   }
 
   return (
-    <div className="filter-main">
+    <div className="filter-main flex">
       <hr className="hr-line" />
-      <div className="carusel-filter-main">
+      <div className="carusel-filter-main ">
         <Swiper
-          slidesPerView={20}
+          slidesPerView={16}
           spaceBetween={0}
           slidesPerGroup={10}
           loopFillGroupWithBlank={false}
@@ -57,6 +57,10 @@ export function ScrollingFilter() {
           ))}
         </Swiper>
       </div>
+      <div className='filter-small-scrolling'>
+        <button className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
+      </div>
     </div>
+
   )
 }
