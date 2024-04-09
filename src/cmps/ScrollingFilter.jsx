@@ -30,6 +30,7 @@ export function ScrollingFilter() {
 
   return (
     <div className="filter-main">
+      <hr className="hr-line" />
       <div className="carusel-filter-main">
         <Swiper
           slidesPerView={20}

@@ -1,23 +1,53 @@
-.main-main-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: white;
+// .main-main-header {
+//   z-index: 1;
+//   background-color: white;
+//   position: sticky;
 
+// }
+
+.search-container {
+
+  grid-row: 2;
+  grid-column: 1/-1;
+  transform: translateY(0px) scale(1, 1);
+  z-index: 100;
+  opacity: 1;
+  transition: 0.5s;
 }
 
-.app-header {
-  display: flex;
-  height: 80px;
-  justify-content: space-between;
+.search-container-minimized {
+
+  transition: 0.5s;
+  transform: translateY(-70px) scale(0.3, 0.6);
+  grid-row: 2;
+  grid-column: 1/-1;
+  // position: fixed;
+
+  z-index: 10;
+  opacity: 0;
+}
+
+.app-header-details {
+  display: grid;
+  grid-template-columns: repeat(3, 15fr);
+  grid-template-rows: auto;
+  transition: 0.5s;
+  align-items: center;
+  background-color: white;
+  width: 100%;
   cursor: pointer;
   z-index: 10;
   text-decoration: none;
-  // font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+
+
+  & .left-section-header {
+    justify-self: end;
+  }
+
 
 
   .stays-search {
-    margin-left: 100px;
+    justify-self: center;
 
     button {
       width: fit-content;
@@ -26,6 +56,152 @@
 
   .logo-img {
     width: 200px;
+
+  }
+
+  .side-nav {
+    position: relative;
+    border: 1px solid $light-gray;
+    border-radius: 30px;
+    width: 85px;
+    height: 48px;
+
+    &:hover {
+      box-shadow: 1px 1px 1px 2px $light-gray;
+    }
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 150%;
+    width: 100%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f1f1;
+    box-shadow: 3px 3px 3px 3px $light-gray;
+    border: 1px solid $light-gray;
+    z-index: 11;
+    border-radius: 12px;
+    width: 240px;
+    font-weight: bold;
+    font-size: 14px;
+    color: $main-gray;
+  }
+
+  .nav-links a {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 15px;
+    color: $main-gray;
+
+    text-decoration: none;
+
+    &:hover {
+      background-color: $light-gray;
+    }
+  }
+
+  .Languages-btn {
+    background-color: transparent;
+    color: $black2;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: $light-gray;
+    }
+  }
+
+  .side-nav-bar {
+    height: fit-content;
+    background-color: transparent;
+    color: $black2;
+    font-size: 16px;
+  }
+
+  .nav-icon-massages {
+    margin-top: 10px;
+  }
+
+  .host-your-home-nav {
+    background-color: transparent;
+    color: $black2;
+    font-size: 16px;
+    height: 50px;
+    width: 180px;
+
+    &:hover {
+      background-color: $light-gray;
+      border-radius: 30px;
+    }
+  }
+
+  .stays,
+  .experiences {
+    background-color: transparent;
+    height: 40px;
+    color: $main-gray;
+    font-size: 16px;
+    width: 130px;
+    padding: 0 20px;
+
+    &:hover {
+      background-color: $light-gray;
+      border-radius: 30px;
+    }
+  }
+
+  .israel-img {
+    width: 30px;
+    clip-path: circle(50% at 50% 50%);
+  }
+}
+
+
+
+.app-header-sticky {
+  position: fixed;
+  top: 0;
+}
+
+.app-header {
+  position: sticky;
+  top: 0px;
+  display: grid;
+  grid-template-columns: repeat(3, 15fr);
+  grid-template-rows: auto;
+  transition: 0.5s;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  cursor: pointer;
+  z-index: 10;
+  text-decoration: none;
+  // font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+
+
+
+
+
+  & .left-section-header {
+    justify-self: end;
+  }
+
+
+
+  .stays-search {
+    justify-self: center;
+
+    button {
+      width: fit-content;
+    }
+  }
+
+  .logo-img {
+    width: 200px;
+
   }
 
   .side-nav {

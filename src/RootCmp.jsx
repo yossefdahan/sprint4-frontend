@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Routes, Route } from 'react-router'
 
 
@@ -14,9 +14,31 @@ import { AddStay } from './pages/AddStay.jsx'
 
 export function RootCmp() {
 
+    const headerRef = useRef()
+    const [showSearch, setShowSearch] = useState(true)
+
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+            setShowSearch(entry.isIntersecting);
+        }, { threshold: 0.1 });
+
+        const section = headerRef.current;
+        if (section) {
+            observer.observe(section);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+
+
     return (
         <div className='main-container' >
-            <AppHeader />
+            <section ref={headerRef} style={{ padding: "1px" }}></section>
+            <AppHeader showSearch={showSearch} setShowSearch={setShowSearch} />
+
             <main  >
                 <Routes>
                     <Route path='/' element={<StayIndex />} />

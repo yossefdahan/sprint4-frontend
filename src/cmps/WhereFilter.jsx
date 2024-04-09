@@ -370,7 +370,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 </div>}
 
             </form >
-            <hr className="hr-line" />
+
         </>
     )
 }
