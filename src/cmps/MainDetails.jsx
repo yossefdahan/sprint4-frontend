@@ -36,7 +36,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 {stay.reviews.length > 2 ? (<div className="host-things border">
                     {averageRating > 4.5 && (
                         <section className="guest-favorite">
-                            <img src="public/img/guest-fav.png"></img>
+                            <img src="\img\guest-fav.png"></img>
                         </section>
                     )}
                     {averageRating > 4.5 && (
