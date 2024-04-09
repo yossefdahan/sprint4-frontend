@@ -30,8 +30,8 @@ export function Reviews({ stay, reviews }) {
                     <div><p className='user-line-description'>One of the most loved homes on Airbnb based <br /> on ratings, reviews, and reliability</p></div>
                 </div>
             </section>)}
-            {stay.reviews.length > 2 && averageRating > 4.5 && (<hr />)}
-            <section className='review-by flex'>
+            
+            <div className='review-by flex'>
                 {visibleReviews.map(rev => {
                     return (
                         <div className='review-by-user' key={rev.id}>
@@ -39,7 +39,7 @@ export function Reviews({ stay, reviews }) {
                                 <Avatar alt="A" src={rev.by.imgUrl} />
                                 <section className='name-user flex column'>
                                     <h4 className='user-name-review'>{rev.by.fullname}</h4>
-                                    <span>Italy</span>
+                                    <span>Italy , Rome</span>
                                 </section>
                             </section>
                             <p> {stars}  <span>• 3 weeks ago</span></p>
@@ -50,7 +50,7 @@ export function Reviews({ stay, reviews }) {
                         </div>
                     )
                 })}
-            </section >
+            </div >
             {visibleReviews.length > 6 && <button className="review-btn-details" onClick={handleShowMoreReviews}> {isExpanded ? 'Show less' : `Show all ${reviews.length} reviews`}</button>}
         </div >
     )

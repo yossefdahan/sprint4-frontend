@@ -16,8 +16,8 @@ export function GoogleMap({ stay }) {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', margin: '0px', flexDirection: "column" }}>
             <h2 className="map-review-title">Where you’ll be</h2>
-
-            <div style={{ height: '50vh', width: '100%', marginTop: "10px" }}>
+            <p>{stay.loc.city} ,{stay.loc.country}</p>
+            <div style={{ height: '40vh', width: '100%', marginTop: "10px" }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY" }}
                     center={coords}
