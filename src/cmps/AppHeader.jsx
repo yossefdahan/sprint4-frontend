@@ -23,7 +23,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const location = useLocation()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
-
+    const [showFilter, setShowFilter] = useState(false)
 
 
     useEffect(() => {
@@ -83,6 +83,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
     // }
 
     function handleMinFilterClick() {
+
+        setShowFilter(current => !current)
         setShowSearch(current => !current)
         if ('scrollBehavior' in document.documentElement.style) {
             window.scrollTo({
@@ -96,7 +98,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
     const isPaymentRoute = location.pathname.startsWith('/payment/')
     const detailsRout = location.pathname.startsWith('/stay')
-    if(isPaymentRoute)return
+    if (isPaymentRoute) return
     return !detailsRout ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
@@ -139,17 +141,18 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
         </div>
 
-    </header>) : (<header className="app-header-details" style={showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
+    </header>) : (<header className="app-header-details" style={showSearch ? { transition: "0.5s" } : { transition: "0.5s" }}>
+
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
-        {!showSearch ? (
-            <div className='stays-search flex align-center' >
+        {!showFilter ? (
+            <div className={showSearch ? 'min-filter' : 'min-filter-ben'} style={{ transition: "0.5s" }} onClick={() => handleMinFilterClick()}>
+                <MinFilter />
+            </div>)
+            : (<div className='stays-search flex align-center'  >
                 <button className='stays'>Stays</button>
                 <button className='experiences'>Experiences</button>
                 <button className='experiences'>Online Experiences</button>
-            </div>) : (
-            <div className={showSearch ? 'min-filter' : 'min-filter-ben'} style={{ transition: "0.5s" }} onClick={() => handleMinFilterClick()}>
-                <MinFilter />
             </div>)}
 
         <div className='left-section-header flex align-center'>
@@ -176,7 +179,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
             </div>
 
         </div>
-        <div className={!showSearch ? 'search-container' : 'search-container-minimized'}>
+        <div className={showFilter ? 'search-container-details' : 'search-container-minimized-details'}>
             <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
 
         </div>

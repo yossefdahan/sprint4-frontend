@@ -30,7 +30,7 @@ export function Reviews({ stay, reviews }) {
                     <div><p className='user-line-description'>One of the most loved homes on Airbnb based <br /> on ratings, reviews, and reliability</p></div>
                 </div>
             </section>)}
-            {stay.reviews.length > 2 &&  FaverageRating > 4.5 && (<hr />)}
+            {stay.reviews.length > 2 && averageRating > 4.5 && (<hr />)}
             <section className='review-by flex'>
                 {visibleReviews.map(rev => {
                     return (

@@ -202,7 +202,7 @@ export function Payment({ stay, filterBy, onSetFilter }) {
 
 
     return (
-        <section className='line-payment'>
+        <section className='line-payment-details'>
             < section className="payment-modal" >
                 {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <h1>  $ {stay.price}<span> night</span></h1> : <h1>Add dates for prices</h1>}
 

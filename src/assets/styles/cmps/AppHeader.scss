@@ -53,7 +53,7 @@
   position: static;
   display: grid;
   grid-template-columns: repeat(3, 15fr);
-  grid-template-rows: auto;
+  height: 125px;
   transition: 0.5s;
   align-items: center;
   background-color: white;

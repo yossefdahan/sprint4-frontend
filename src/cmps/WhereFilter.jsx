@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import { utilService } from "../services/util.service";
 import { useEffectUpdate } from "../customHooks/useEffectUpdate";
 import { stayService } from "../services/stay.service.local";
@@ -26,6 +27,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         pets: 0
     })
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function loadCountries() {
@@ -112,9 +114,18 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             pets
             // guests: guestCounts
         })
+        // const queryParams = new URLSearchParams({
+        //     country: inputValue,
+        //     adults: guestCounts.adults,
+        //     children: guestCounts.children,
+        //     infants: guestCounts.infants,
+        //     pets: guestCounts.pets
+        // }).toString()
+
         setIsOpen(false)
         setCountryModal(false)
         setShowGuestDropdown(false)
+        // navigate(`/?${queryParams}`)
     }
 
     // const updateGuestCount = (guestType, delta) => {
