@@ -104,123 +104,122 @@ export function FinalPayment() {
         const formattedEndDate = endDate.toLocaleDateString('en-US', options)
         return `${formattedStartDate} – ${formattedEndDate}`
     }
-    return (<div className='main-payment-page'>
-        <div className='main-title-container'>
-            <h1 className='main-title'>Request to book</h1>
-        </div>
-        <section className='payment-page'>
+    return (
+        <div className='main-payment-page'>
+            <div className='main-title-container'>
+                <h1 className='main-title'> Request to book</h1>
+            </div>
+            <section className='payment-page'>
 
 
-            <section className='lay-pay'>
-                {isOpen ? <PaymentRequest isOpen={isOpen} setOpen={setOpen} guests={order.guests}
-                    order={order}
-                    stay={stay} /> : ''}
-                <span className='back-btn'><Link to={`/stay/${stayId}`}>{'<'}</Link></span>
+                <section className='lay-pay'>
+                    {isOpen ? <PaymentRequest isOpen={isOpen} setOpen={setOpen} guests={order.guests}
+                        order={order}
+                        stay={stay} /> : ''}
+                    <span className='back-btn'><Link className='go-back-link-payment' to={`/stay/${stayId}`}>{'<'}</Link></span>
 
-                <div>
-                    <h2 className='trip-title'>Your trip</h2>
-                    <div className='da-title'>
-                        <h3>Dates</h3>
-                        <h4><span>{formatDateRange(order.startDate, order.endDate)}</span></h4>
-                    </div>
-                    <div className='gu-title'>
-                        <h3>Guests</h3>
-                        <h4><span>{Object.values(order.guests).reduce((acc, guestCount) => acc + guestCount, 0)}</span> <span>guests</span></h4>
-                    </div>
-                    <hr className='payment-hr' />
-                </div>
-
-                <div className="credit-card-input">
-                    <h3>Pay with</h3>
-                    <div className="inputs-group">
-                        <input type="text" className="card-number" placeholder="1234 5678 9012 3456" />
-                        <div className="input-group-twice">
-                            <input type="text" className="expiry-date" placeholder="MM/YY" />
-                            <input type="text" className="cvv" placeholder="cvv" />
+                    <div>
+                        <h2 className='trip-title'>Your trip</h2>
+                        <div className='da-title'>
+                            <h3>Dates</h3>
+                            <h4><span>{formatDateRange(order.startDate, order.endDate)}</span></h4>
                         </div>
-                        <div className="input-g">
-                            <input type="text" className="name-on-card" placeholder="Id" />
+                        <div className='gu-title'>
+                            <h3>Guests</h3>
+                            <h4><span>{Object.values(order.guests).reduce((acc, guestCount) => acc + guestCount, 0)}</span> <span>guests</span></h4>
                         </div>
                     </div>
-                </div>
 
-                <hr />
-                <div className='policy-title'>
-                    <h2>Cancellation policy</h2>
-                    <p>Free cancellation before Apr 27. Cancel before check-in on May 2 for a partial refund. Learn more</p>
-                </div>
-                <hr />
-                <div className='ground-title'>
-                    <h2 >Ground rules</h2>
-                    <p>We ask every guest to remember a few simple things about what makes a great guest.</p>
-                    <ul>
-                        <li>Follow the house rules</li>
-                        <li>Treat your Host’s home like your own</li>
-                    </ul>
-                </div>
-                <hr />
-                <div className='calltoAction'>
-                    <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
-                    <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openModal}>Request to book</button>
-                </div>
+                    <div className="credit-card-input">
+                        <h3>Pay with</h3>
+                        <div className="inputs-group">
 
-
-
-                {/* <span>{order._id}</span> */}
-            </section>
-            <section className='paymentModal' >
-                <div className='finishOrder'>
-                    <section className='title-container'>
-                        <section >
-                            <div className='header-pay'>
-                                <div className='img-container'>
-                                    <img src={stay.imgUrls[0]} alt="" />
-                                </div>
-                                <section className='title'>
-                                    <h4>{stay.name}</h4>
-                                    <div><span>Entire rental unit</span></div>
-                                    <div className='rate-title'>★ <span >{rate / stay.reviews.length} ({stay.reviews.length} reviews)</span> </div>
-                                </section>
+                            <input type="text" className="card-number " placeholder=" Card number 🔒" />
+                            <div className="input-group-twice">
+                                <input type="text" className="expiry-date" placeholder="MM/YY" />
+                                <input type="text" className="cvv" placeholder="cvv" />
                             </div>
+                            <div className="input-g">
+                                <input type="text" className="name-on-card" placeholder="Enter Id" />
+                            </div>
+                        </div>
+                    </div>
 
-                            <hr />
+                    <div className='policy-title'>
+                        <h2>Cancellation policy</h2>
+                        <p>Free cancellation before Apr 27. <br />
+                            Cancel before check-in on May 2 for a partial refund. </p>
+                    </div>
+                    <div className='ground-title'>
+                        <h2 >Ground rules</h2>
+                        <p>We ask every guest to remember a few simple things about what makes a great guest.</p>
+                        <ul>
+                            <li>Follow the house rules</li>
+                            <li>Treat your Host’s home like your own</li>
+                        </ul>
+                    </div>
 
-                            <h2>Price details</h2>
+                    <div className='calltoAction'>
+                        <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
+                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openModal}>Request to book</button>
+                    </div>
 
-                            <section className='flex space-between prices-final-tax'>
-                                <div>$ {order.stay.price} X {Math.floor(order.totalPrice / order.stay.price)}<span> nights</span> </div>
-                                <div>$ {order.stay.price * Math.floor(order.totalPrice / order.stay.price)}</div>
-                            </section>
 
+
+                    {/* <span>{order._id}</span> */}
+                </section>
+                <section className='paymentModal' >
+                    <div className='finishOrder'>
+                        <section className='title-container'>
                             <section >
-                                <div className='flex space-between prices-final-tax'>Cleaning fee <span> $ {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span></div>
+                                <div className='header-pay'>
+                                    <div className='img-container'>
+                                        <img src={stay.imgUrls[0]} alt="" />
+                                    </div>
+                                    <section className='title'>
+                                        <h4>{stay.name}</h4>
+                                        <div><span>Entire rental unit</span></div>
+                                        <div className='rate-title'>★ <span > {rate / stay.reviews.length} ({stay.reviews.length} reviews)</span> </div>
+                                    </section>
+                                </div>
 
+
+                                <h2>Price details</h2>
+
+                                <section className='flex space-between prices-final-tax'>
+                                    <div>$ {order.stay.price} X {Math.floor(order.totalPrice / order.stay.price)}<span> nights</span> </div>
+                                    <div>$ {order.stay.price * Math.floor(order.totalPrice / order.stay.price)}</div>
+                                </section>
+
+                                <section >
+                                    <div className='flex space-between prices-final-tax'>Cleaning fee <span> $ {(order.stay.price * Math.floor(order.totalPrice / order.stay.price)) / 10}</span></div>
+
+                                    {/* <span>{order.stay.price / 10}$</span> */}
+                                </section>
+
+                                {/* <section> */}
+                                {/* <span>Taxes <span></span></span> */}
                                 {/* <span>{order.stay.price / 10}$</span> */}
+                                {/* </section> */}
+
+                                <hr />
+
+                                <section className='flex space-between total-price-final'>
+                                    <span>Total <span>(USD)</span></span>
+                                    <span>$ {order.totalPrice}</span>
+                                </section>
+
+                                {/* <hr /> */}
+
+                                {/* <p>This property requires a $504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p> */}
+
                             </section>
-
-                            {/* <section> */}
-                            {/* <span>Taxes <span></span></span> */}
-                            {/* <span>{order.stay.price / 10}$</span> */}
-                            {/* </section> */}
-
-                            <hr />
-
-                            <section className='flex space-between total-price-final'>
-                                <span>total <span>(USD)</span></span>
-                                <span>$ {order.totalPrice}</span>
-                            </section>
-
-                            {/* <hr /> */}
-
-                            {/* <p>This property requires a $504.74 security deposit. It will be collected separately by the property prior to your arrival or at check-in.</p> */}
 
                         </section>
 
-                    </section>
-
-                </div>
+                    </div>
+                </section>
             </section>
-        </section>
-    </div>
+        </div>
     )
 }

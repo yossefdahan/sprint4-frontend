@@ -37,6 +37,8 @@ export function ScrollingFilter() {
           spaceBetween={0}
           slidesPerGroup={10}
           loopFillGroupWithBlank={false}
+
+
           // pagination={{
           //   clickable: true,
           // }}
@@ -44,23 +46,25 @@ export function ScrollingFilter() {
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {labels.map(label => (
-            <SwiperSlide key={label} onClick={() => handleChange(label)}>
-              <button>
-                <span>
-                  {/* Using importImage function to get image URL */}
-                  <img src={importImage(label.toLowerCase())} alt={label} />
-                </span>
-                <span className='label-name'>{label}</span>
-              </button>
-            </SwiperSlide>
-          ))}
+          {
+            labels.map(label => (
+              <SwiperSlide key={label} onClick={() => handleChange(label)}>
+                <button>
+                  <span>
+                    {/* Using importImage function to get image URL */}
+                    <img src={importImage(label.toLowerCase())} alt={label} />
+                  </span>
+                  <span className='label-name'>{label}</span>
+                </button>
+              </SwiperSlide>
+            ))
+          }
         </Swiper>
       </div>
       <div className='filter-small-scrolling'>
         <button className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
       </div>
-    </div>
+    </div >
 
   )
 }
