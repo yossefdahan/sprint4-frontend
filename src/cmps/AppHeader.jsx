@@ -98,8 +98,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
     const isPaymentRoute = location.pathname.startsWith('/payment/')
     const detailsRout = location.pathname.startsWith('/stay')
-    if (isPaymentRoute) return
-    return !detailsRout ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
+
+    return !detailsRout && !isPaymentRoute ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
         {showSearch ? (
@@ -112,7 +112,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
                 <MinFilter />
             </div>)}
 
-        <div className='left-section-header flex align-center'>
+        {isPaymentRoute ? '' : (<div className='left-section-header flex align-center'>
             <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
             <button className='Languages-btn fa-solid fa-globe'></button>
             <div className='side-nav flex align-center' onClick={toggleNavBar}>
@@ -135,9 +135,9 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
             </div>
 
-        </div>
+        </div>)}
         <div className={showSearch ? 'search-container' : 'search-container-minimized'} >
-            <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            {isPaymentRoute ? '' : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
 
         </div>
 
@@ -145,7 +145,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
-        {!showFilter ? (
+        {!isPaymentRoute && !showFilter ? (
             <div className={showSearch ? 'min-filter' : 'min-filter-ben'} style={{ transition: "0.5s" }} onClick={() => handleMinFilterClick()}>
                 <MinFilter />
             </div>)
@@ -155,7 +155,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
                 <button className='experiences'>Online Experiences</button>
             </div>)}
 
-        <div className='left-section-header flex align-center'>
+        {isPaymentRoute ? '' : (<div className='left-section-header flex align-center'>
             <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
             <button className='Languages-btn fa-solid fa-globe'></button>
             <div className='side-nav flex align-center' onClick={toggleNavBar}>
@@ -178,9 +178,9 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
             </div>
 
-        </div>
+        </div>)}
         <div className={showFilter ? 'search-container-details' : 'search-container-minimized-details'}>
-            <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            {isPaymentRoute ? '' : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
 
         </div>
 
