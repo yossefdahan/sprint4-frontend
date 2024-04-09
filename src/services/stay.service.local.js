@@ -268,20 +268,7 @@ async function getLatLngFromAddress(address) {
         lng: 41.1413,
       },
 
-    reviews: [
-      {
-        id: utilService.makeId(4),
-        txt: "its random house...",
-        rate: utilService.getRandomIntInclusive(1, 3),
-        by: {
-          _id: utilService.makeId(4),
-          fullname: "user65",
-          imgUrl: "/img/img2.jpg",
-        },
-      }
-
-
-    ],
+    reviews: [],
 
       // likedByUsers: []
     }
