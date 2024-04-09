@@ -74,66 +74,66 @@
     width: 200px;
   }
 
-  // .side-nav {
-  //   position: relative;
-  //   border: 1px solid $light-gray;
-  //   border-radius: 30px;
-  //   width: 85px;
-  //   height: 48px;
+  .side-nav {
+    position: relative;
+    border: 1px solid $light-gray;
+    border-radius: 30px;
+    width: 85px;
+    height: 48px;
 
-  //   &:hover {
-  //     box-shadow: 1px 1px 1px 2px $light-gray;
-  //   }
-  // }
+    &:hover {
+      box-shadow: 1px 1px 1px 2px $light-gray;
+    }
+  }
 
-  // .nav-links {
-  //   position: absolute;
-  //   top: 150%;
-  //   width: 100%;
-  //   right: 20%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   background-color: white;
-  //   box-shadow: 3px 3px 3px 3px $light-gray;
-  //   border: 1px solid $light-gray;
-  //   z-index: 11;
-  //   border-radius: 12px;
-  //   width: 240px;
-  //   font-weight: bold;
-  //   font-size: 14px;
-  // }
+  .nav-links {
+    position: absolute;
+    top: 150%;
+    width: 100%;
+    right: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 3px 3px 3px 3px $light-gray;
+    border: 1px solid $light-gray;
+    z-index: 11;
+    border-radius: 12px;
+    width: 240px;
+    font-weight: bold;
+    font-size: 14px;
+  }
 
-  // .nav-links a {
-  //   font-family: Arial, Helvetica, sans-serif;
-  //   padding: 10px 15px;
-  //   color: $black2;
+  .nav-links a {
+    font-family: Montserrat;
+    padding: 10px 15px;
+    color: $black2;
 
-  //   text-decoration: none;
+    text-decoration: none;
 
-  //   &:hover {
-  //     background-color: $light-gray;
-  //   }
-  // }
+    &:hover {
+      background-color: $light-gray;
+    }
+  }
 
-  // .Languages-btn {
-  //   background-color: transparent;
-  //   color: $black2;
-  //   width: 50px;
-  //   height: 50px;
-  //   font-size: 16px;
-  //   border-radius: 30px;
+  .Languages-btn {
+    background-color: transparent;
+    color: $black2;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 30px;
 
-  //   &:hover {
-  //     background-color: $main-gray-hover;
-  //   }
-  // }
+    &:hover {
+      background-color: $main-gray-hover;
+    }
+  }
 
-  // .side-nav-bar {
-  //   height: fit-content;
-  //   background-color: transparent;
-  //   color: $black2;
-  //   font-size: 16px;
-  // }
+  .side-nav-bar {
+    height: fit-content;
+    background-color: transparent;
+    color: $black2;
+    font-size: 16px;
+  }
 
   .nav-icon-massages {
     margin-top: 10px;
@@ -241,7 +241,7 @@
   }
 
   .nav-links a {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Montserrat;
     padding: 10px 15px;
     color: $black2;
 
@@ -321,17 +321,17 @@
     justify-content: center;
     background-color: rgb(255, 255, 255);
     border: 1px solid $light-gray;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 8px;
     color: #222222;
-    font-size: 16px;
+    font-size: 14px;
     width: 100px;
-    height: 50px;
+    height: 48px;
     padding: 0;
     margin-right: 0;
 
     img {
-      width: 1em;
+      width: 1.2em;
       margin-right: 5px;
     }
     &:hover {
