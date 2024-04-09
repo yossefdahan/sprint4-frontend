@@ -57,3 +57,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.sticky {
+  position: fixed;
+  top: 0;
+}

@@ -5,7 +5,7 @@ export function MinFilter() {
 
 
     return (
-        <div className="main-min-filter">
+        <div className="main-min-filter" >
 
             <div className="where-min-filter">
                 Anywhere
