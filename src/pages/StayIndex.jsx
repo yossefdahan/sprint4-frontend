@@ -83,7 +83,7 @@ export function StayIndex() {
     }
 
     return (
-        <section>
+        <>
             <ScrollingFilter stays={stays} />
             {!previewMap && <StayList stays={stays}
                 onUpdateStay={onUpdateStay}
@@ -95,7 +95,7 @@ export function StayIndex() {
             {previewMap && <GoogleMapList stays={stays} />}
             <button className="show-map-btn" onClick={() => setPreview(!previewMap)}>Show map <i className="fa-solid fa-map"></i></button>
             {/* <AppFooter /> */}
-        </section >
+        </ >
 
     )
 }
