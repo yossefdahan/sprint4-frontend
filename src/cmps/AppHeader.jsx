@@ -20,7 +20,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const [miniClicked, setMiniClicked] = useState(false)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const navigate = useNavigate()
-
+    const location = useLocation()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
 
@@ -95,8 +95,9 @@ export function AppHeader({ showSearch, setShowSearch }) {
     }
 
     const isPaymentRoute = location.pathname.startsWith('/payment/')
-    const detailsRout = location.pathname.startsWith('/:stayId')
-    return detailsRout ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
+    const detailsRout = location.pathname.startsWith('/stay')
+    if(isPaymentRoute)return
+    return !detailsRout ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
         {showSearch ? (

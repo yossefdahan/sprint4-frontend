@@ -115,7 +115,7 @@ export function FinalPayment() {
                 {isOpen ? <PaymentRequest isOpen={isOpen} setOpen={setOpen} guests={order.guests}
                     order={order}
                     stay={stay} /> : ''}
-                <span className='back-btn'><Link to={`/${stayId}`}>{'<'}</Link></span>
+                <span className='back-btn'><Link to={`/stay/${stayId}`}>{'<'}</Link></span>
 
                 <div>
                     <h2 className='trip-title'>Your trip</h2>

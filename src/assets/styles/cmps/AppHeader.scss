@@ -27,7 +27,30 @@
   opacity: 0;
 }
 
+.search-container-details {
+
+  grid-row: 2;
+  grid-column: 1/-1;
+  transform: translateY(0px) scale(1, 1);
+  z-index: 100;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.search-container-minimized-details {
+
+  transition: 0.5s;
+  transform: translateY(-70px) scale(0.3, 0.6);
+  grid-row: 2;
+  grid-column: 1/-1;
+  // position: fixed;
+
+  z-index: 10;
+  opacity: 0;
+}
+
 .app-header-details {
+  position: static;
   display: grid;
   grid-template-columns: repeat(3, 15fr);
   grid-template-rows: auto;

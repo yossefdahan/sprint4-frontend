@@ -22,7 +22,7 @@ export function StayGallery({ stayId, imgUrls, isSaved, onSave }) {
 
   return (
     <div className="stay-gallery">
-      <Link className="img-link" to={`/${stayId}`}>
+      <Link className="img-link" to={`/stay/${stayId}`}>
         <img className='img-gallery' src={imgUrls[currentImgIndex]} alt="Stay" /></Link>
       <i
         className={`fa-duotone fa-heart  ${isSaved ? 'fas' : 'far'}`}

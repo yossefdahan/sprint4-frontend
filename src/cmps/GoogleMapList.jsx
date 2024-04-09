@@ -53,7 +53,7 @@ export function GoogleMapList({ stays }) {
                         onClose={() => setSelectedStay(null)}
                         position={modalPosition}
                         content={
-                            <Link to={`/${selectedStay._id}`}>  <div>
+                            <Link to={`/stay/${selectedStay._id}`}>  <div>
                                 <img src={selectedStay.imgUrls[0]} alt={selectedStay.name} />
                                 <h3>{selectedStay.name}</h3>
                                 <p>Price: ${selectedStay.price}</p>

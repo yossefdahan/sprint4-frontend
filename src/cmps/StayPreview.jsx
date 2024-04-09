@@ -28,7 +28,7 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                 />
 
                 <div className='preview-details'>
-                    <Link className="go-to-details" to={`/${stay._id}`} >
+                    <Link className="go-to-details" to={`/stay/${stay._id}`} >
                         <div className="header-preview">
                             <h4 className="stay-location-preview"><span>{stay.loc.country}</span>, <span>{stay.loc.countryCode}</span></h4>
                             <span className="review-preview">{rate / stay.reviews.length < 4 ? '' : '★' + (rate / stay.reviews.length)}</span>
