@@ -3,7 +3,7 @@
   max-height: 500px;
   border-radius: 35px;
   background-color: white;
-  box-shadow: 1px 1px 1px 1px $light-gray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 12px 0px;
 }
 
 .search-filter .input-group.guests-container {
@@ -11,7 +11,6 @@
   flex-direction: column;
   width: 400px;
   height: 400px;
-
   justify-content: center;
   z-index: 10;
   position: absolute;
@@ -20,6 +19,7 @@
   background-color: white;
   border: 1px solid $light-gray;
   border-radius: 25px;
+  padding: 16px 24px 16px 24px;
 
   & .guest-selector {
     background-color: white;
@@ -30,6 +30,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 5px;
+    border-bottom: 1px solid $light-gray;
+    padding: 24px 4px 24px 0;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
 
     & .guest-title {
       padding: 8px;
@@ -56,38 +62,34 @@
     }
 
     & .guests-filter-btns {
-      display: flex;
       align-items: center;
 
       span {
-        padding: 5px;
+        padding: 10px;
+        display: inline-block;
+        min-width: 30px;
       }
     }
 
     & button {
       border-radius: 32px;
+      text-align: center;
       background-color: white;
       border: 1px solid $light-gray;
       color: rgb(149, 148, 148);
       border: 1px solid gray;
-      text-align: center;
-      font-size: 16px;
+      font-size: 16x;
+      width: 32px;
+      height: 32px;
 
       //   &:hover {
       //     background-color: none;
       //   }
-
-      .button-disabled {
-        color: black;
-
-        // &:hover {
-        //   background-color: none;
-        // }
-      }
     }
   }
 }
 
-// .search-filter .input-group:last-of-type:hover {
-//   background-color: white;
-// }
+.button-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

@@ -23,11 +23,12 @@
 }
 
 .stay-location-preview {
+  margin: 0;
   font-size: 14px;
   color: $black2;
 
   span {
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
@@ -41,7 +42,12 @@
 }
 
 .stay-preview-price {
+  padding-top: 5px;
   color: $black2;
+
+  & .night-preview {
+    font-weight: 500;
+  }
 
   span {
     font-weight: 700;
