@@ -304,13 +304,12 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                                 startDate={filterBy.checkIn}
                                 endDate={filterBy.checkOut}
                                 selectsRange
-                                // inline
                                 monthsShown={2}
                                 open={isOpen}
                                 onFocus={() => setIsOpen(true)}
                                 onBlur={() => setIsOpen(false)}
                                 dayClassName={(date) => date < new Date() ? 'past-date' : undefined}
-
+                                minDate={new Date()}
 
                             />
                         </div>
