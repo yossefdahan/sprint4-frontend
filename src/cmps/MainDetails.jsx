@@ -77,7 +77,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 <section></section>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rerum, suscipit, nesciunt voluptatibus vero tenetur facere explicabo odio dolorem velit aliquid, exercitationem similique aut corrupti placeat quaerat! Rerum, tenetur ullam?</p>
                 <div className="show-more-desc">
-                <span className="text-show-more">show more</span><span> {'>'}</span>
+                    <span className="text-show-more">show more</span><span> {'>'}</span>
                 </div>
             </div>
 
