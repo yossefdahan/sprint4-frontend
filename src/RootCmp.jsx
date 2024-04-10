@@ -30,7 +30,7 @@ export function RootCmp() {
         }
 
         return () => observer.disconnect();
-    }, []);
+    }, [showSearch]);
 
 
 
