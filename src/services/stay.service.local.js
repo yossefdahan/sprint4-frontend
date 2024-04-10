@@ -650,7 +650,7 @@ function createStays() {
         ],
         likedByUsers: ["urban-explorer"],
       },
-      
+
       {
         _id: "s401",
         name: "Ribeira Charming Duplex",
