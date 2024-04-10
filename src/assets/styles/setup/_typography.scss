@@ -2,31 +2,19 @@
   font-family: caveat;
   src: url(../../fonts/Caveat/Caveat-Regular.ttf);
 }
-// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @font-face {
-  font-family: airbnb-bd;
-  src: url(../../fonts/AirbnbCereal_W_Bd.otf);
-}
-@font-face {
-  font-family: airbnb-bk;
-  src: url(../../fonts/AirbnbCereal_W_Bk.otf);
+  font-family: Circular-Regular;
+  src: url(/src/assets/fonts/Circular-Regular.ttf);
 }
 
 @font-face {
-  font-family: airbnb-blk;
-  src: url(../../fonts/AirbnbCereal_W_Blk.otf);
+  font-family: Circular-bold;
+  src: url(/src/assets/fonts/Circular-Bold.ttf);
 }
+
 @font-face {
-  font-family: airbnb-lt;
-  src: url(../../fonts/AirbnbCereal_W_Lt.otf);
-}
-@font-face {
-  font-family: airbnb-mg;
-  src: url(../../fonts/AirbnbCereal_W_Md.otf);
-}
-@font-face {
-  font-family: airbnb-xbd;
-  src: url(../../fonts/AirbnbCereal_W_XBd.otf);
+  font-family: Circular-medium;
+  src: url(/src/assets/fonts/Circular-Medium.ttf);
 }
