@@ -89,14 +89,17 @@ export function ScrollingFilter() {
       >
         {
           labels.map(label => (
-            <SwiperSlide key={label} onClick={() => handleChange(label)}
-              style={{ backgroundColor: selectedLabel === label ? 'lightgrey' : 'transparent' }}>
-              <button>
+            <SwiperSlide key={label} onClick={() => handleChange(label)} >
+              <button
+                style={{
+                  borderBottom: selectedLabel === label ? '1px solid black' : '',
+                  color: selectedLabel === label ? 'black' : '',
+
+                }}>
                 <span>
-                  {/* Using importImage function to get image URL */}
                   <img src={importImage(label.toLowerCase())} alt={label} />
                 </span>
-                <span className='label-name'>{label}</span>
+                <span className='label-name ' >{label}</span>
               </button>
             </SwiperSlide>
           ))
