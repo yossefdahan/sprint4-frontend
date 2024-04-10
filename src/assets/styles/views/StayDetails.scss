@@ -235,16 +235,18 @@
 }
 
 .more-details {
-  padding: 1em 1em 1em 0px;
+  padding: 16px 16px 16px 0px;
   font-weight: 500;
   border-bottom: 1px solid $light-gray;
 
 
   div {
-    margin-bottom: 1.5em;
+    margin-bottom: 26px;
 
     span {
-      margin-right: 10px;
+      margin-right: 26px;
+      margin-left: 14px;
+
     }
 
     i {

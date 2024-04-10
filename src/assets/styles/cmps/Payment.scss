@@ -12,13 +12,13 @@
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    padding: 1.25em;
+    padding: 24px 24px 20px 24px;
 
     & h1 {
       font-size: 1.23em;
       margin: 0;
-      margin-bottom: 24px;
-      font-weight: 400;
+      margin-bottom: 22px;
+      font-weight: 450;
 
       span {
         font-size: 0.73em;
@@ -29,7 +29,7 @@
     & .payment-date-picker {
       display: flex;
       flex-direction: column;
-
+      margin-bottom: 16px;
       & div {
         display: flex;
 
@@ -60,7 +60,7 @@
           & .start-input {
             border: none;
             outline: none;
-            padding: 26px 12px 10px;
+            padding: 24px 12px 10px 6px;
 
             font-size: 14px;
             font-weight: 400;
@@ -87,7 +87,7 @@
 
           & .end-input {
             border: none;
-            padding: 26px 12px 10px;
+            padding: 24px 12px 10px 6px;
 
             font-size: 14px;
             font-weight: 400;
@@ -314,10 +314,12 @@
     }
 
     & form .reserve-btn {
-      width: 320px;
+      width: 100%;
+      margin-right:5px;
       height: 48px;
       border-radius: 8px;
-      font-size: 0.89em;
+      font-size: 1em;
+      font-weight: 500;
       transition: background-color 0.3s;
     }
   }
