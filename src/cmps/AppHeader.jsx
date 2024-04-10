@@ -82,6 +82,11 @@ export function AppHeader({ showSearch, setShowSearch }) {
     //     }
     // }
 
+
+
+
+
+
     function handleMinFilterClick() {
 
         setShowFilter(current => !current)
@@ -144,53 +149,59 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
         </div>
 
-    </header>) : (<header className="app-header-details " style={showSearch ? { transition: "0.5s" } : { transition: "0.5s" }}>
+    </header>
 
-        <img onClick={backHome} className="logo-img" src={logoImg} />
 
-        {!isPaymentRoute && !showFilter ? (
-            <div className={showSearch ? 'min-filter' : 'min-filter-ben'} style={{ transition: "0.5s" }} onClick={() => handleMinFilterClick()}>
-                <MinFilter />
-            </div>)
-            : (<div className='stays-search flex align-center'  >
-                <button className='stays'>Stays</button>
-                <button className='experiences'>Experiences</button>
-                <button className='experiences'>Online Experiences</button>
+    ) : (
+
+
+        <header className="app-header-details " style={showSearch ? { transition: "0.5s" } : { transition: "0.5s" }}>
+
+            <img onClick={backHome} className="logo-img" src={logoImg} />
+
+            {!isPaymentRoute && !showFilter ? (
+                <div className={showSearch ? 'min-filter' : 'min-filter-ben'} style={{ transition: "0.5s" }} onClick={() => handleMinFilterClick()}>
+                    <MinFilter />
+                </div>)
+                : (<div className='stays-search flex align-center'  >
+                    <button className='stays'>Stays</button>
+                    <button className='experiences'>Experiences</button>
+                    <button className='experiences'>Online Experiences</button>
+                </div>)}
+
+            {isPaymentRoute ? '' : (<div className='left-section-header flex align-center'>
+                <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
+                <button className='Languages-btn fa-solid fa-globe'></button>
+                <div className='side-nav flex align-center' onClick={toggleNavBar}>
+                    <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>
+                    {isNavVisible && (
+                        <nav className="nav-links">
+
+                            <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
+                            <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
+                            <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
+                            <div><hr /></div>
+                            <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
+                            <NavLink className=" nav-icon" to="/">Account</NavLink>
+                            <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                            <NavLink className=" nav-icon" to="/">Log out</NavLink>
+
+                        </nav>
+                    )}
+                    <img className="israel-img" src={israelImg} />
+
+                </div>
+
             </div>)}
-
-        {isPaymentRoute ? '' : (<div className='left-section-header flex align-center'>
-            <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
-            <button className='Languages-btn fa-solid fa-globe'></button>
-            <div className='side-nav flex align-center' onClick={toggleNavBar}>
-                <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>
-                {isNavVisible && (
-                    <nav className="nav-links">
-
-                        <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
-                        <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
-                        <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
-                        <div><hr /></div>
-                        <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
-                        <NavLink className=" nav-icon" to="/">Account</NavLink>
-                        <NavLink className=" nav-icon" to="/">Help center</NavLink>
-                        <NavLink className=" nav-icon" to="/">Log out</NavLink>
-
-                    </nav>
-                )}
-                <img className="israel-img" src={israelImg} />
+            <div className={showFilter ? 'search-container-details' : 'search-container-minimized-details'}>
+                {isPaymentRoute ? '' : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
 
             </div>
 
-        </div>)}
-        <div className={showFilter ? 'search-container-details' : 'search-container-minimized-details'}>
-            {isPaymentRoute ? '' : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
-
-        </div>
 
 
 
-
-    </header>
+        </header>
 
 
 
