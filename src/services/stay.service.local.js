@@ -30,8 +30,10 @@ async function getCountries() {
 }
 
 async function getLatLngFromAddress(address) {
-  const apiKey = "YOUR_API_KEY_HERE";
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+  const apiKey = "YOUR_API_KEY_HERE"
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+    address
+  )}&key=${apiKey}`
 
   try {
     const response = await fetch(url)
@@ -39,15 +41,16 @@ async function getLatLngFromAddress(address) {
 
     if (data.status === "OK" && data.results && data.results.length > 0) {
       const { lat, lng } = data.results[0].geometry.location
-      return { lat, lng };
+      return { lat, lng }
     } else {
-      throw new Error(data.status === "ZERO_RESULTS" ? "Address not found" : "Error fetching coordinates")
+      throw new Error(
+        data.status === "ZERO_RESULTS" ? "Address not found" : "Error fetching coordinates"
+      )
     }
   } catch (error) {
     console.error("Error in getLatLngFromAddress:", error)
-    throw error;
+    throw error
   }
-
 }
 function getAmenities() {
   const amenities = [
@@ -251,7 +254,18 @@ function getEmptyStay() {
     summary: "" || utilService.makeLorem(2),
     capacity: 0 || utilService.getRandomIntInclusive(1, 10),
 
-    amenities: [] || ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+    amenities: [] || [
+      "TV",
+      "Wifi",
+      "Kitchen",
+      "Washer",
+      "Hot tub",
+      "Gym",
+      "Free parking",
+      "Pool table",
+      "Heating",
+      "Air conditioning",
+    ],
 
     labels: [] || ["Top of the world", "Trending", "Play", "Tropical"],
     host: {
@@ -288,7 +302,18 @@ function createStays() {
         price: 80.0,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
-        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
         labels: ["Top of the world", "Trending", "Play", "Tropical"],
         host: {
           _id: "u101",
@@ -307,7 +332,7 @@ function createStays() {
         reviews: [
           {
             id: "123",
-            txt: "Very helpful hosts. Cooked traditional...",
+            txt: "Very helpful hosts. Cooked traditional...sadddddddddddddddddddd;ldakdasodasdaspodkasodkasopdkaspdkasdkjaspodkapodkaspodkaspodkaspodkaspodkaspodaskpodaskpodaskpodksapomdofkfdsgls[f,sdpmsdfk[pflsadfksdpofkasskds",
             rate: 5,
             by: {
               _id: "u102",
@@ -318,7 +343,7 @@ function createStays() {
           {
             id: "234",
             txt: "Very helpful hosts. Cooked traditional...",
-            rate: 5,
+            rate: 4.3,
             by: {
               _id: "u102",
               fullname: "user2",
@@ -328,7 +353,7 @@ function createStays() {
           {
             id: "2424",
             txt: "Very helpful hosts. Cooked traditional...",
-            rate: 5,
+            rate: 4.9,
             by: {
               _id: "u102",
               fullname: "user2",
@@ -367,7 +392,18 @@ function createStays() {
         summary:
           "A cozy cabin in the heart of the mountains, perfect for a weekend getaway Welcome to our cozy retreat nestled in the heart of the city! This charming home offers a tranquil oasis with its private garden, modern amenities, and stylish decor. Perfect for adventurers and families alike, it's just steps away from vibrant markets, renowned restaurants, and picturesque parks. Enjoy a seamless stay with high-speed Wi-Fi, a fully equipped kitchen, and a guide to local secrets for an unforgettable experience.",
         capacity: 4,
-        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
         labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
         host: {
           _id: "u203",
@@ -414,7 +450,18 @@ function createStays() {
         price: 85.0,
         summary: "Modern loft in the city center, perfect for exploring the urban sights.",
         capacity: 2,
-        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
         labels: ["City Life", "Modern", "New listing"],
         host: {
           _id: "u205",
@@ -452,7 +499,18 @@ function createStays() {
         summary:
           "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
         capacity: 5,
-        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
         labels: ["Beach", "Family friendly", "Sunrise view"],
         host: {
           _id: "u207",
@@ -490,7 +548,18 @@ function createStays() {
         summary:
           "Private bungalow right on the beach. Wake up to the sound of waves every morning.",
         capacity: 5,
-        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
         labels: ["Beach", "Family friendly", "Sunrise view"],
         host: {
           _id: "u207",
@@ -527,7 +596,18 @@ function createStays() {
         price: 85.0,
         summary: "Modern loft in the city center, perfect for exploring the urban sights.",
         capacity: 2,
-        amenities: ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
         labels: ["City Life", "Modern", "New listing"],
         host: {
           _id: "u205",
@@ -555,320 +635,387 @@ function createStays() {
           },
         ],
         likedByUsers: ["urban-explorer"],
-      }, 
-      {
-        "_id": "s401",
-        "name": "Ribeira Charming Duplex",
-        "type": "House",
-        "imgUrls": ["/img/5.jpeg", "/img/3.jpeg", "/img/1.jpeg", "/img/2.jpeg", "/img/4.jpeg"],
-        "price": 80,
-        "summary": "Fantastic duplex apartment...",
-        "capacity": 8,
-        "amenities": ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
-        "labels": ["Top of the world", "Trending", "Play", "Tropical"],
-        "host": {
-          "_id": "u401",
-          "fullname": "Davit Pok",
-          "imgUrl": "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small"
-        },
-        "loc": {
-          "country": "Portugal",
-          "countryCode": "PT",
-          "city": "Lisbon",
-          "address": "17 Kombo st",
-          "lat": -8.61308,
-          "lng": 41.1413
-        },
-        "reviews": [
-          {
-            "id": "r401",
-            "txt": "Very helpful hosts. Cooked traditional...",
-            "rate": 4,
-            "by": {
-              "_id": "u402",
-              "fullname": "user2",
-              "imgUrl": "/img/img2.jpg"
-            }
-          },
-          {
-            "id": "r402",
-            "txt": "Great location, beautiful views!",
-            "rate": 5,
-            "by": {
-              "_id": "u403",
-              "fullname": "user3",
-              "imgUrl": "/img/img3.jpg"
-            }
-          }
-        ],
-        "likedByUsers": ["mini-user"]
       },
       {
-        "_id": "s402",
-        "name": "Cozy Mountain Cabin",
-        "type": "Cabin",
-        "imgUrls": ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
-        "price": 120,
-        "summary": "A cozy cabin in the heart of the mountains...",
-        "capacity": 4,
-        "amenities": ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
-        "labels": ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
-        "host": {
-          "_id": "u404",
-          "fullname": "Marco Silva",
-          "imgUrl": "https://example.com/img/host/marco.jpg"
+        _id: "s401",
+        name: "Ribeira Charming Duplex",
+        type: "House",
+        imgUrls: ["/img/5.jpeg", "/img/3.jpeg", "/img/1.jpeg", "/img/2.jpeg", "/img/4.jpeg"],
+        price: 80,
+        summary: "Fantastic duplex apartment...",
+        capacity: 8,
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
+        labels: ["Top of the world", "Trending", "Play", "Tropical"],
+        host: {
+          _id: "u401",
+          fullname: "Davit Pok",
+          imgUrl:
+            "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
         },
-        "loc": {
-          "country": "Canada",
-          "countryCode": "CA",
-          "city": "Banff",
-          "address": "42 Mountain rd",
-          "lat": 51.178363,
-          "lng": -115.570769
+        loc: {
+          country: "Portugal",
+          countryCode: "PT",
+          city: "Lisbon",
+          address: "17 Kombo st",
+          lat: -8.61308,
+          lng: 41.1413,
         },
-        "reviews": [
+        reviews: [
           {
-            "id": "r403",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
+            id: "r401",
+            txt: "Very helpful hosts. Cooked traditional...",
+            rate: 4,
+            by: {
+              _id: "u402",
+              fullname: "user2",
+              imgUrl: "/img/img2.jpg",
+            },
           },
           {
-            "id": "r404",
-            "txt": "Amazing views, cozy and warm cabin.",
-            "rate": 4,
-            "by": {
-              "_id": "u406",
-              "fullname": "John Doe",
-              "imgUrl": "/img/users/john.jpg"
-            }
-          }
+            id: "r402",
+            txt: "Great location, beautiful views!",
+            rate: 5,
+            by: {
+              _id: "u403",
+              fullname: "user3",
+              imgUrl: "/img/img3.jpg",
+            },
+          },
         ],
-        "likedByUsers": ["nature-lover"]
+        likedByUsers: ["mini-user"],
       },
       {
-        "_id": "43454",
-        "name": "Cozy Mountain Cabin",
-        "type": "Cabin",
-        "imgUrls": ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
-        "price": 120,
-        "summary": "A cozy cabin in the heart of the mountains...",
-        "capacity": 4,
-        "amenities": ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
-        "labels": ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
-        "host": {
-          "_id": "u404",
-          "fullname": "Marco Silva",
-          "imgUrl": "https://example.com/img/host/marco.jpg"
+        _id: "s402",
+        name: "Cozy Mountain Cabin",
+        type: "Cabin",
+        imgUrls: ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
+        price: 120,
+        summary: "A cozy cabin in the heart of the mountains...",
+        capacity: 4,
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
+        labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
+        host: {
+          _id: "u404",
+          fullname: "Marco Silva",
+          imgUrl: "https://example.com/img/host/marco.jpg",
         },
-        "loc": {
-          "country": "Canada",
-          "countryCode": "CA",
-          "city": "Banff",
-          "address": "42 Mountain rd",
-          "lat": 51.178363,
-          "lng": -115.570769
+        loc: {
+          country: "Canada",
+          countryCode: "CA",
+          city: "Banff",
+          address: "42 Mountain rd",
+          lat: 51.178363,
+          lng: -115.570769,
         },
-        "reviews": [
+        reviews: [
           {
-            "id": "r403",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
+            id: "r403",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
           },
           {
-            "id": "r404",
-            "txt": "Amazing views, cozy and warm cabin.",
-            "rate": 4,
-            "by": {
-              "_id": "u406",
-              "fullname": "John Doe",
-              "imgUrl": "/img/users/john.jpg"
-            }
-          }
+            id: "r404",
+            txt: "Amazing views, cozy and warm cabin.",
+            rate: 4,
+            by: {
+              _id: "u406",
+              fullname: "John Doe",
+              imgUrl: "/img/users/john.jpg",
+            },
+          },
         ],
-        "likedByUsers": ["nature-lover"]
+        likedByUsers: ["nature-lover"],
       },
       {
-        "_id": "32343",
-        "name": "Cozy Mountain Cabin",
-        "type": "Cabin",
-        "imgUrls": ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
-        "price": 120,
-        "summary": "A cozy cabin in the heart of the mountains...",
-        "capacity": 4,
-        "amenities": ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
-        "labels": ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
-        "host": {
-          "_id": "u404",
-          "fullname": "Marco Silva",
-          "imgUrl": "https://example.com/img/host/marco.jpg"
+        _id: "43454",
+        name: "Cozy Mountain Cabin",
+        type: "Cabin",
+        imgUrls: ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
+        price: 120,
+        summary: "A cozy cabin in the heart of the mountains...",
+        capacity: 4,
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
+        labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
+        host: {
+          _id: "u404",
+          fullname: "Marco Silva",
+          imgUrl: "https://example.com/img/host/marco.jpg",
         },
-        "loc": {
-          "country": "Canada",
-          "countryCode": "CA",
-          "city": "Banff",
-          "address": "42 Mountain rd",
-          "lat": 51.178363,
-          "lng": -115.570769
+        loc: {
+          country: "Canada",
+          countryCode: "CA",
+          city: "Banff",
+          address: "42 Mountain rd",
+          lat: 51.178363,
+          lng: -115.570769,
         },
-        "reviews": [
+        reviews: [
           {
-            "id": "r403",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
+            id: "r403",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
           },
           {
-            "id": "r404",
-            "txt": "Amazing views, cozy and warm cabin.",
-            "rate": 4,
-            "by": {
-              "_id": "u406",
-              "fullname": "John Doe",
-              "imgUrl": "/img/users/john.jpg"
-            }
-          }
+            id: "r404",
+            txt: "Amazing views, cozy and warm cabin.",
+            rate: 4,
+            by: {
+              _id: "u406",
+              fullname: "John Doe",
+              imgUrl: "/img/users/john.jpg",
+            },
+          },
         ],
-        "likedByUsers": ["nature-lover"]
+        likedByUsers: ["nature-lover"],
       },
       {
-        "_id": "dsfsdfsd",
-        "name": "Ribeira Charming Duplex",
-        "type": "House",
-        "imgUrls": ["/img/5.jpeg", "/img/3.jpeg", "/img/1.jpeg", "/img/2.jpeg", "/img/4.jpeg"],
-        "price": 80,
-        "summary": "Fantastic duplex apartment...",
-        "capacity": 8,
-        "amenities": ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
-        "labels": ["Top of the world", "Trending", "Play", "Tropical"],
-        "host": {
-          "_id": "u401",
-          "fullname": "Davit Pok",
-          "imgUrl": "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small"
+        _id: "32343",
+        name: "Cozy Mountain Cabin",
+        type: "Cabin",
+        imgUrls: ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
+        price: 120,
+        summary: "A cozy cabin in the heart of the mountains...",
+        capacity: 4,
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
+        labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
+        host: {
+          _id: "u404",
+          fullname: "Marco Silva",
+          imgUrl: "https://example.com/img/host/marco.jpg",
         },
-        "loc": {
-          "country": "Portugal",
-          "countryCode": "PT",
-          "city": "Lisbon",
-          "address": "17 Kombo st",
-          "lat": -8.61308,
-          "lng": 41.1413
+        loc: {
+          country: "Canada",
+          countryCode: "CA",
+          city: "Banff",
+          address: "42 Mountain rd",
+          lat: 51.178363,
+          lng: -115.570769,
         },
-        "reviews": [
+        reviews: [
           {
-            "id": "r401",
-            "txt": "Very helpful hosts. Cooked traditional...",
-            "rate": 4,
-            "by": {
-              "_id": "u402",
-              "fullname": "user2",
-              "imgUrl": "/img/img2.jpg"
-            }
+            id: "r403",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
           },
           {
-            "id": "r402",
-            "txt": "Great location, beautiful views!",
-            "rate": 5,
-            "by": {
-              "_id": "u403",
-              "fullname": "user3",
-              "imgUrl": "/img/img3.jpg"
-            }
-          }
+            id: "r404",
+            txt: "Amazing views, cozy and warm cabin.",
+            rate: 4,
+            by: {
+              _id: "u406",
+              fullname: "John Doe",
+              imgUrl: "/img/users/john.jpg",
+            },
+          },
         ],
-        "likedByUsers": ["mini-user"]
+        likedByUsers: ["nature-lover"],
       },
       {
-        "_id": "4544564",
-        "name": "Cozy Mountain Cabin",
-        "type": "Cabin",
-        "imgUrls": ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
-        "price": 120,
-        "summary": "A cozy cabin in the heart of the mountains...",
-        "capacity": 4,
-        "amenities": ["TV", "Wifi", "Kitchen", "Washer", "Hot tub", "Gym", "Free parking", "Pool table", "Heating", "Air conditioning"],
-        "labels": ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
-        "host": {
-          "_id": "u404",
-          "fullname": "Marco Silva",
-          "imgUrl": "https://example.com/img/host/marco.jpg"
-        },
-        "loc": {
-          "country": "Canada",
-          "countryCode": "CA",
-          "city": "Banff",
-          "address": "42 Mountain rd",
-          "lat": 51.178363,
-          "lng": -115.570769
-        },
-        "reviews": [
-          {
-            "id": "r403",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
-          },
-          {
-            "id": "fdgdf",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
-          },
-          {
-            "id": "34534",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
-          },
-          {
-            "id": "adas",
-            "txt": "The perfect retreat from city life...",
-            "rate": 5,
-            "by": {
-              "_id": "u405",
-              "fullname": "Amy Wong",
-              "imgUrl": "/img/users/amy.jpg"
-            }
-          },
-          {
-            "id": "r404",
-            "txt": "Amazing views, cozy and warm cabin.",
-            "rate": 4,
-            "by": {
-              "_id": "u406",
-              "fullname": "John Doe",
-              "imgUrl": "/img/users/john.jpg"
-            }
-          }
+        _id: "dsfsdfsd",
+        name: "Ribeira Charming Duplex",
+        type: "House",
+        imgUrls: ["/img/5.jpeg", "/img/3.jpeg", "/img/1.jpeg", "/img/2.jpeg", "/img/4.jpeg"],
+        price: 80,
+        summary: "Fantastic duplex apartment...",
+        capacity: 8,
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
         ],
-        "likedByUsers": ["nature-lover"]
+        labels: ["Top of the world", "Trending", "Play", "Tropical"],
+        host: {
+          _id: "u401",
+          fullname: "Davit Pok",
+          imgUrl:
+            "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+        },
+        loc: {
+          country: "Portugal",
+          countryCode: "PT",
+          city: "Lisbon",
+          address: "17 Kombo st",
+          lat: -8.61308,
+          lng: 41.1413,
+        },
+        reviews: [
+          {
+            id: "r401",
+            txt: "Very helpful hosts. Cooked traditional...",
+            rate: 4,
+            by: {
+              _id: "u402",
+              fullname: "user2",
+              imgUrl: "/img/img2.jpg",
+            },
+          },
+          {
+            id: "r402",
+            txt: "Great location, beautiful views!",
+            rate: 5,
+            by: {
+              _id: "u403",
+              fullname: "user3",
+              imgUrl: "/img/img3.jpg",
+            },
+          },
+        ],
+        likedByUsers: ["mini-user"],
       },
-      
+      {
+        _id: "4544564",
+        name: "Cozy Mountain Cabin",
+        type: "Cabin",
+        imgUrls: ["/img/6.jpg", "/img/4.jpeg", "/img/5.jpeg", "/img/11.jpg", "/img/7.jpg"],
+        price: 120,
+        summary: "A cozy cabin in the heart of the mountains...",
+        capacity: 4,
+        amenities: [
+          "TV",
+          "Wifi",
+          "Kitchen",
+          "Washer",
+          "Hot tub",
+          "Gym",
+          "Free parking",
+          "Pool table",
+          "Heating",
+          "Air conditioning",
+        ],
+        labels: ["Mountain lover", "Pet friendly", "Cozy", "Great for hiking"],
+        host: {
+          _id: "u404",
+          fullname: "Marco Silva",
+          imgUrl: "https://example.com/img/host/marco.jpg",
+        },
+        loc: {
+          country: "Canada",
+          countryCode: "CA",
+          city: "Banff",
+          address: "42 Mountain rd",
+          lat: 51.178363,
+          lng: -115.570769,
+        },
+        reviews: [
+          {
+            id: "r403",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
+          },
+          {
+            id: "fdgdf",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
+          },
+          {
+            id: "34534",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
+          },
+          {
+            id: "adas",
+            txt: "The perfect retreat from city life...",
+            rate: 5,
+            by: {
+              _id: "u405",
+              fullname: "Amy Wong",
+              imgUrl: "/img/users/amy.jpg",
+            },
+          },
+          {
+            id: "r404",
+            txt: "Amazing views, cozy and warm cabin.",
+            rate: 4,
+            by: {
+              _id: "u406",
+              fullname: "John Doe",
+              imgUrl: "/img/users/john.jpg",
+            },
+          },
+        ],
+        likedByUsers: ["nature-lover"],
+      },
     ]
     utilService.saveToStorage(STORAGE_KEY, stays)
   }

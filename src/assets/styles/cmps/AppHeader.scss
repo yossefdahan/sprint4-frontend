@@ -118,10 +118,11 @@
   .Languages-btn {
     background-color: transparent;
     color: $black2;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     font-size: 16px;
     border-radius: 30px;
+    padding: 0;
 
     &:hover {
       background-color: $main-gray-hover;
@@ -144,7 +145,6 @@
     color: $black2;
     font-size: 16px;
     height: 50px;
-    width: 180px;
 
     &:hover {
       background-color: $light-gray;
@@ -197,7 +197,6 @@
   padding: 0 5em 0 5em;
   grid-column: 1/-1;
   // justify-self: center;
-
 
   & .left-section-header {
     justify-self: end;
@@ -285,9 +284,11 @@
   .host-your-home-nav {
     background-color: transparent;
     color: $black2;
-    font-size: 16px;
+    font-size: 14px;
     height: 50px;
     width: 180px;
+    padding: 0;
+    margin: 0;
 
     &:hover {
       background-color: $main-gray-hover;

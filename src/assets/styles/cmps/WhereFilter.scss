@@ -18,10 +18,8 @@
   justify-items: center;
   padding: 32px 24px 24px;
 
-
   & .country-filter {
     padding: 8px;
-
 
     &:hover {
       background-color: $light-gray;
@@ -76,7 +74,6 @@
     font-size: 0.875em;
     align-items: start;
     margin: 0 0 16px 5px;
-
   }
 }
 
@@ -130,13 +127,14 @@
 }
 
 .datepicker-range-button {
-  background-color: $background-clr;
+  background-color: rgb(255, 255, 255);
   border: 1px solid $light-gray-2;
   color: $black2;
   padding: 8px 16px;
   margin: 0 4px;
   cursor: pointer;
   border-radius: 30px;
+  font-size: 12px;
 
   &:focus,
   &:hover {
@@ -181,6 +179,7 @@
 
 .dates {
   background-color: white;
+  font-size: 0.875em;
   border-radius: 30px;
   color: $black2;
   width: 150px;
@@ -198,7 +197,7 @@
 
 .react-datepicker__current-month {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 1.125em;
 }
 
 .react-datepicker {
@@ -287,13 +286,14 @@
 
 .datepicker-footer {
   display: flex;
-  justify-content: center;
   padding-top: 16px;
   color: $black2;
+  padding-left: 65px;
 
   .exact-date {
     border: 1px solid black;
     background-color: $light-gray;
+    width: fit-content;
   }
 }
 
@@ -354,7 +354,7 @@
       justify-content: flex-start;
       font-weight: 500;
       color: $black2;
-      font-size: 16px;
+      font-size: 1em;
       line-height: 65px;
       gap: 10px;
       width: 350px;
@@ -381,7 +381,7 @@
       top: 10px;
       padding: 0 0 2px;
       left: 24px;
-      font-size: 12px;
+      font-size: 0.75em;
       font-weight: 600;
       color: #333;
       user-select: none;
@@ -395,7 +395,7 @@
       border: none;
       outline: none;
       color: #717171;
-      font-size: 14px;
+      font-size: 0.875em;
       font-weight: 400;
       background-color: transparent;
 
@@ -440,13 +440,13 @@
       border: none;
       outline: none;
       border-radius: 50px;
-      font-size: 16px;
+      font-size: 1em;
       height: 60px;
       width: 100%;
 
       &::placeholder {
         color: $main-gray;
-        font-size: 14px;
+        font-size: 0.875em;
       }
 
       &:focus {
@@ -467,7 +467,7 @@
     color: white;
     border: none;
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 1em;
     cursor: pointer;
     outline: none;
     min-width: 50px;
@@ -477,7 +477,7 @@
     z-index: 11;
     position: absolute;
     margin-right: 10px;
-    padding: 16px;
+    padding: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
@@ -576,7 +576,7 @@
           content: none;
         }
 
-        &:hover+.in-cal::after {
+        &:hover + .in-cal::after {
           content: none;
         }
 

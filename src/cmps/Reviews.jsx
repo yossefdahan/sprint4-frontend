@@ -30,7 +30,7 @@ export function Reviews({ stay, reviews }) {
                     <div><p className='user-line-description'>One of the most loved homes on Airbnb based <br /> on ratings, reviews, and reliability</p></div>
                 </div>
             </section>)}
-            
+
             <div className='review-by flex'>
                 {visibleReviews.map(rev => {
                     return (
@@ -45,13 +45,21 @@ export function Reviews({ stay, reviews }) {
                             <p> {stars}  <span>• 3 weeks ago</span></p>
                             {/* <p>{rev.rate} </p> */}
                             <section className='comment'>
-                                <p>{rev.txt}</p>
+                                <p>{rev.txt.length > 150 ? rev.txt.slice(0, 147) + '...' : rev.txt}</p>
+                                {rev.txt.length > 150 ? (
+                                    <>
+                                        <span className="text-show-more">show more</span>
+                                        <span>{'>'}</span>
+                                    </>
+                                ) : (
+                                    <span></span>
+                                )}
                             </section>
                         </div>
                     )
                 })}
             </div >
-            {visibleReviews.length > 6 && <button className="review-btn-details" onClick={handleShowMoreReviews}> {isExpanded ? 'Show less' : `Show all ${reviews.length} reviews`}</button>}
+            {visibleReviews.length >= 5 && <button className="review-btn-details" onClick={handleShowMoreReviews}> {isExpanded ? 'Show less' : `Show all ${reviews.length} reviews`}</button>}
         </div >
     )
 
