@@ -1,6 +1,7 @@
 .details-layout {
   display: grid;
   grid-template-columns: 1fr 1120px 1fr;
+  font-family: Circular-Regular;
 
   >* {
     grid-column: 2;
@@ -12,6 +13,7 @@
 
   .main-header-details {
     height: 60px;
+    margin: 0px;
   }
 
   .little-details {
@@ -19,7 +21,7 @@
   }
 
   .stay-name-details {
-    padding-left: 10px;
+    padding: 0px 0px 0px;
     font-size: 26px;
     font-weight: 600;
   }
@@ -46,6 +48,7 @@
 
   //**Gallery section  *//
   .gallery {
+    padding-top: 24px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto;
@@ -235,7 +238,7 @@
 }
 
 .more-details {
-  padding: 16px 16px 16px 0px;
+  padding: 26px 16px 16px 0px;
   font-weight: 500;
   border-bottom: 1px solid $light-gray;
 
@@ -260,14 +263,14 @@
   font-size: 16px;
   font-weight: 400;
   padding-bottom: 35px;
-  padding-top: 15px;
+  padding-top: 26px;
   border-bottom: 1px solid $light-gray;
 }
 
 /*Amenities Section*/
 
 .amenities-container {
-  padding: 1em 0 2em;
+  padding: 24px 0 48px;
   border-bottom: 1px solid $light-gray;
 
 
@@ -324,8 +327,8 @@
   text-align: center;
   width: 600px;
   margin: auto;
-  
-  
+
+
 
   img {
     padding-top: 20px;
@@ -345,23 +348,26 @@
 
 /*Reviews section */
 .review-container {
+  padding: 24px 0 48px;
+
   .review-by {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     border-top: 1px solid $light-gray;
   }
+
   border-bottom: 1px solid #dedede;
   border-top: 1px solid $light-gray;
-  
+
   .review-by-user {
-    
+    width: 41%;
     flex-basis: calc(50% - 10px);
     margin-bottom: 1.5em;
     margin-top: 1.75em;
     padding-right: 0.2em;
-    padding-: 0.2em;
-    
+    padding: 1px;
+
 
     .by-details {
       display: flex;
@@ -391,10 +397,26 @@
       margin: 2px 0;
       margin-left: 2px;
       font-size: 14px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .comment {
-      p {}
+
+      // width: 10%;
+      p {
+        padding-inline-end: 80px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      & .text-show-more {
+
+        text-decoration-line: underline;
+        cursor: pointer;
+        font-weight: 600;
+
+      }
     }
   }
 }
@@ -407,6 +429,7 @@
   border-radius: 8px;
   color: $black2;
   font-size: 16px;
+
 
   &:hover {
     background-color: $main-gray-hover;
