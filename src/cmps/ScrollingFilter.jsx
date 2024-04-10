@@ -9,6 +9,7 @@ import { stayService } from '../services/stay.service.local';
 import { setFilterBy } from '../store/stay.actions';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { FilterModal } from './FilterModal';
 
 
 const importImage = (imageName) => {
@@ -17,6 +18,7 @@ const importImage = (imageName) => {
 }
 
 export function ScrollingFilter() {
+  const [isOpen, setIsOpen] = useState(false)
   const labels = stayService.getLabels()
   const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
   const [searchParams, setSearchParams] = useSearchParams()
@@ -34,6 +36,8 @@ export function ScrollingFilter() {
       setSelectedLabel(label)
     }
   }
+
+
 
   return (
     // <div className="filter-main flex">
@@ -104,9 +108,9 @@ export function ScrollingFilter() {
       </Swiper>
 
       <div className='filter-small-scrolling'>
-        <button className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
+        <button onClick={() => setIsOpen(!isOpen)} className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
       </div>
-
+      {isOpen ? <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} filterBy={filterBy} /> : ''}
     </div >
     // </div >
 

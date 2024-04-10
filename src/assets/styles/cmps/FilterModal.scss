@@ -1,0 +1,142 @@
+.filter-modal {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+    max-width: 780px;
+    z-index: 1000;
+
+    & .type-bnb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        border-bottom: 1px solid $light-gray;
+        padding-bottom: 16px;
+        padding-top: 16px;
+
+        & .bnb-op {
+            justify-content: center;
+            width: 80%;
+            align-items: center;
+
+            display: flex;
+            gap: 70px;
+            padding: 20px;
+            border: 1px solid $light-gray;
+            border-radius: 100px;
+
+            & button {}
+        }
+
+        & .type-op {}
+    }
+
+    & .roomsbed {
+        padding-bottom: 16px;
+        padding-top: 16px;
+        border-bottom: 1px solid $light-gray;
+
+        & .btn_choose {
+            display: flex;
+           
+            width: 100%;
+            & .modal__button {
+                border: 1px solid $light-gray;
+                border-radius: 50px;
+                width: min-content;
+                padding: 16px;
+            }
+        }
+    }
+
+
+    .filter-modal__options-buttons {
+        button {
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    .filter-modal-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        
+        border-bottom: 1px solid #ddd;
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .filter-modal-content {
+        padding: 1rem;
+
+        .filter-section {
+            margin-bottom: 1rem;
+
+
+            .button-group {
+                button.toggle-btn {
+                    background: #f0f0f0;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    margin-right: 0.5rem;
+                    cursor: pointer;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0 0 0 2px #0071c2;
+                    }
+                }
+            }
+
+            .price-range {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+    .filter-modal-footer {
+        padding: 1rem;
+        border-top: 1px solid #ddd;
+
+        .show-btn {
+            width: 100%;
+            background: #171616;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+
+            &:hover {
+                background: darken(#131213, 10%);
+            }
+        }
+    }
+
+
+
+
+    .filter-modal__options-buttons {
+        button {
+            transition: background-color 0.3s ease;
+        }
+    }
+}

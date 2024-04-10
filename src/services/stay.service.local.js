@@ -214,6 +214,13 @@ function getDefaultFilter() {
     checkOut: "",
     guests: {},
     labels: "",
+    bedrooms: 0,
+    bathrooms: 0,
+    adults: 0,
+    childern: 0,
+    infants: 0,
+    pets: 0,
+
     // amenities: [],
     type: "",
     capacity: 0,
@@ -228,11 +235,18 @@ function getFilterFromParams(searchParams = {}) {
   const defaultFilter = getDefaultFilter()
   const checkIn = parseInt(searchParams.get("checkIn"))
   const checkOut = parseInt(searchParams.get("checkOut"))
+  // const adults = searchParams.get('adults')
 
   return {
     country: searchParams.get("country") || defaultFilter.country,
     checkIn: checkIn ? new Date(checkIn) : defaultFilter.checkIn,
     checkOut: checkOut ? new Date(checkOut) : defaultFilter.checkOut,
+    bedrooms: searchParams.get("bedrooms") || defaultFilter.bedrooms,
+    bathrooms: searchParams.get("bathrooms") || defaultFilter.bathrooms,
+    // adults: searchParams.get('adults') || defaultFilter.adults,
+    // childern: searchParams.get('childern') || defaultFilter.childern,
+    // infants: searchParams.get('adults') || defaultFilter.infants,
+    // pets: searchParams.get('adults') || defaultFilter.pets,
     // loc: searchParams.get("loc") || defaultFilter.loc,
     // amenities: searchParams.get("amenities") || defaultFilter.amenities,
     type: searchParams.get("type") || defaultFilter.type,
@@ -555,7 +569,7 @@ function createStays() {
           },
         ],
         likedByUsers: ["urban-explorer"],
-      }, 
+      },
       {
         "_id": "s401",
         "name": "Ribeira Charming Duplex",
@@ -868,7 +882,7 @@ function createStays() {
         ],
         "likedByUsers": ["nature-lover"]
       },
-      
+
     ]
     utilService.saveToStorage(STORAGE_KEY, stays)
   }
