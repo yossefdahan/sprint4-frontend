@@ -98,7 +98,10 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
     const isPaymentRoute = location.pathname.startsWith('/payment/')
     const detailsRout = location.pathname.startsWith('/stay')
+    if (isPaymentRoute) return <header className="app-header-payment">
+        <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
 
+    </header>
     return !detailsRout && !isPaymentRoute ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
         <img onClick={backHome} className="logo-img" src={logoImg} />
 

@@ -1,6 +1,6 @@
 $border-color: #ccc;
 $border-color-focus: #007bff;
-$shadow-color: rgba(0, 123, 255, .25);
+$shadow-color: rgba(0, 123, 255, 0.25);
 $label-color: #333;
 $input-padding: 10px;
 $font-size: 16px;
@@ -8,70 +8,72 @@ $label-font-size: 14px;
 $border-radius: 4px;
 
 .credit-card-input {
+  width: 100%;
+  padding: 32px 0 24px;
+  height: 270px;
+  margin-bottom: 0;
+  border-top: 1px solid $light-gray;
 
+  & h3 {
+    font-size: 1.22em;
+    font-weight: 600;
+    color: #222222;
+    margin: 0 0 24px;
+    letter-spacing: 0.5px;
+  }
+
+  & .input-group-twice {
     width: 100%;
-    padding: 32px 0 24px;
-    height: 270px;
-    margin-bottom: 0;
+    margin-top: -7px;
 
-    & h3 {
-        font-size: 1.22em;
-        font-weight: 600;
-        color: #222222;
-        margin: 0 0 24px;
-        letter-spacing: 0.5px;
+    & .expiry-date {
+      padding-left: 12px;
+      width: 50%;
+      border: 1px solid $main-gray;
+      height: 55px;
+      border-radius: 0 0 0 8px;
+      font-size: 16px;
     }
 
-    & .input-group-twice {
-        width: 100%;
-        margin-top: -7px;
+    & .cvv {
+      width: 50%;
+      padding-left: 12px;
 
-        & .expiry-date {
-            width: 50%;
-            border: 1px solid $main-gray;
-            height: 55px;
-            border-radius: 0 0 0 8px;
-            font-size: 16px;
-        }
-
-        & .cvv {
-            width: 50%;
-            border-radius: 0 0 8px 0;
-            border: 1px solid $main-gray;
-            height: 55px;
-            font-size: 16px;
-            border-left: none;
-        }
+      border-radius: 0 0 8px 0;
+      border: 1px solid $main-gray;
+      height: 55px;
+      font-size: 16px;
+      border-left: none;
     }
+  }
 
-    & .card-number {
-        border-radius: 8px 8px 0 0;
-        width: 100%;
-        border: 1px solid $main-gray;
-        height: 55px;
-        font-size: 16px;
+  & .card-number {
+    padding-left: 12px;
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    border: 1px solid $main-gray;
+    height: 55px;
+    font-size: 16px;
+  }
 
+  & .input-g {
+    width: 100%;
+    padding: 10px 0;
+
+    & .name-on-card {
+      border: 1px solid $main-gray;
+      padding-left: 12px;
+
+      width: 100%;
+      border-radius: 8px;
+      height: 52px;
+      font-size: 16px;
+
+      // &:focus {
+      //     outline: none;
+      //     border-color: $border-color-focus;
+      //     box-shadow: 0 0 0 0.2rem $shadow-color;
+      // }
     }
-
-
-
-    & .input-g {
-        width: 100%;
-        padding: 10px 0;
-
-
-        & .name-on-card {
-            border: 1px solid $main-gray;
-            width: 100%;
-            border-radius: 8px;
-            height: 52px;
-            font-size: 16px;
-
-            // &:focus {
-            //     outline: none;
-            //     border-color: $border-color-focus;
-            //     box-shadow: 0 0 0 0.2rem $shadow-color;
-            // }
-        }
-    }
+  }
 }

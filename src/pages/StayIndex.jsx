@@ -93,7 +93,9 @@ export function StayIndex() {
             }
 
             {previewMap && <GoogleMapList stays={stays} />}
-            <button className="show-map-btn" onClick={() => setPreview(!previewMap)}>Show map <i className="fa-solid fa-map"></i></button>
+            <button className="show-map-btn" onClick={() => setPreview(!previewMap)}>
+                {previewMap ? "Show list" : "Show map"} <i className={`fa-solid ${previewMap ? 'fa-list' : 'fa-map'}`}></i>
+            </button>
             {/* <AppFooter /> */}
         </ >
 

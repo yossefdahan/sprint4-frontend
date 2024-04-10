@@ -206,8 +206,6 @@ export function Payment({ stay, filterBy, onSetFilter }) {
             < section className="payment-modal" >
                 {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <h1>  $ {stay.price}<span> night</span></h1> : <h1>Add dates for prices</h1>}
 
-
-
                 <div className="payment-date-picker">
                     <div>
                         <div className="in" onClick={() => {
@@ -226,7 +224,6 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                         </div>
                     </div>
 
-
                     <div className="custom-input" onClick={() => {
                         setIsOpen(false)
                         setShowGuestDropdown(!showGuestDropdown)
@@ -237,7 +234,6 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                     </div>
                 </div>
                 <form onSubmit={sendToFinalOrder}>
-
 
                     {isOpen && (
                         <div className="date-pick calendar">
@@ -268,17 +264,10 @@ export function Payment({ stay, filterBy, onSetFilter }) {
                                 <button className="date-btn-search  datepicker-range-button">+2 days</button>
                             </div>
                         </div>
-
-
-
-
                     )}
 
                     <div className="payment-guests">
-
-
                         {showGuestDropdown && <div className="payment-guests-count list-guests">
-
                             <GuestSelector guestType="adults" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                             <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                             <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
