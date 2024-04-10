@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 // import { useParams } from 'react-router-dom'
 import { userService } from '../services/user.service.js'
 import { setFilterBy } from '../store/stay.actions'
@@ -11,18 +11,23 @@ import { GoogleMap } from '../cmps/GoogleMap.jsx'
 import { Reviews } from '../cmps/Reviews.jsx'
 import { Payment } from '../cmps/payment.jsx'
 import { set } from 'date-fns'
+import { utilService } from '../services/util.service.js'
 
 
 
 export function StayDetails() {
     const { stayId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
+
     // const filterBy = stayService.getFilterFromParams(searchParams)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [stay, setStay] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
     const users = useSelector(storeState => storeState.userModule.users)
+    const imgHeader = useRef()
+    const [showHeader, setShowHeader] = useState(true)
+    const [showReserveHeader, setShowReserveHeader] = useState(true)
 
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     useEffect(() => {
@@ -35,6 +40,45 @@ export function StayDetails() {
     // function openModalGallery() {
     //     setIsOpen(!isOpen)
     // }
+    // async function sendToFinalOrder(ev) {
+    //     ev.preventDefault()
+    //     const totalPrice = calculateTotalPrice()
+    //     // order.hostId = stay.host.id
+    //     // order.status = 'pending'
+    //     // order.stay = { _id: stay._id, name: stay.name, price: stay.price }
+    //     const finalOrder = {
+    //         ...order,
+    //         totalPrice,
+    //     }
+
+    //     try {
+    //         await orderInProgress(finalOrder)
+    //         setSend(!isSend)
+    //         setOrder(orderService.emptyOrder())
+    //         // setOrder(savedOrder)
+
+    //         showSuccessMsg('order saved!')
+    //         navigate(`/payment/${stay._id}`)
+    //     } catch (err) {
+    //         console.log('err cant save order', err)
+    //     }
+    // }
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+            setShowHeader(entry.isIntersecting);
+        }, { threshold: 0.1 });
+
+        const div = imgHeader.current;
+        if (div) {
+            observer.observe(div);
+        }
+
+        return () => observer.disconnect();
+    }, [showHeader, showReserveHeader]);
+
+
 
     async function loadStay() {
         try {
@@ -45,11 +89,28 @@ export function StayDetails() {
             navigate('/')
         }
     }
-
+    console.log(showHeader);
+    console.log(showReserveHeader);
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
     if (!stay) return <div className='loader'></div>
+    const { stars, averageRating } = utilService.getStarsWithRating(stay)
     return (
         <div className='details-layout  '>
+            {!showHeader && <div className='details-header-observer'>
+                <ul className='links-head'>
+                    <li> <a href="#photos">Photos</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#location">Location</a></li>
+                </ul>
+
+                {!showReserveHeader && <div className='res-head'>
+                    <p className='price-head'>$ {stay.price}<span> night</span></p>
+                    <p className='star-head'>★ {averageRating} ~ <span>{stay.reviews.length} reviews</span></p>
+                    <button>Reserve</button>
+                </div>}
+
+            </div>}
             <div className='main-header-details flex space-between '>
                 <h1 className='stay-name-details '>{stay.name}</h1>
                 <div className='header-buttons-section'>
@@ -57,16 +118,16 @@ export function StayDetails() {
                     <button> ❤️ <span>Saved</span> </button>
                 </div>
             </div>
-            <div className='gallery'>
+            <div className='gallery' ref={imgHeader}>
                 {stay.imgUrls.map((img) =>
-                    <img src={img} alt="img of the photo" key={img} onClick={() => setIsOpen(!isOpen)} />
+                    <img id='photos' src={img} alt="img of the photo" key={img} onClick={() => setIsOpen(!isOpen)} />
                 )
                 }
             </div>
             {isOpen ? (
                 <div className='gallery-modal'>
                     <span className="close-btn" onClick={() => setIsOpen(false)}>{'>'}</span>
-                    <div className='img-gallery-modal'>
+                    <div className='img-gallery-modal' >
                         {stay.imgUrls.map((img) =>
                             <img src={img} alt="Stay view" key={img} />
                         )}
@@ -74,16 +135,16 @@ export function StayDetails() {
                 </div>
             ) : ''}
 
-            <div className='main-details'>
+            <div className='main-details' id='amenities' >
                 <MainDetails stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
-                <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
+                <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} showReserveHeader={showReserveHeader} setShowReserveHeader={setShowReserveHeader} />
 
             </div>
 
-            <div className="details-reviews">
+            <div className="details-reviews" id='reviews'>
                 <Reviews stay={stay} reviews={stay.reviews} />
             </div>
-            <div className="google-map-details">
+            <div className="google-map-details" id='location'>
                 <GoogleMap stay={stay} />
             </div>
             {/* <div className='footer-container-details full'>

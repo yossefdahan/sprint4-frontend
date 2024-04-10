@@ -12,8 +12,8 @@ import { useSelector } from "react-redux"
 import { orderInProgress } from "../store/order.actions.js"
 import { utilService } from "../services/util.service.js"
 
-export function Payment({ stay, filterBy, onSetFilter }) {
-
+export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setShowReserveHeader }) {
+    const reserveHeader = useRef()
     const navigate = useNavigate()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [order, setOrder] = useState(orderService.emptyOrder())
@@ -21,6 +21,8 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
+
+
     const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
@@ -116,7 +118,9 @@ export function Payment({ stay, filterBy, onSetFilter }) {
         setIsOpen(true)
 
     }
-
+    function reserveFromHeader() {
+        sendToFinalOrder()
+    }
     async function sendToFinalOrder(ev) {
         ev.preventDefault()
         const totalPrice = calculateTotalPrice()
@@ -201,9 +205,24 @@ export function Payment({ stay, filterBy, onSetFilter }) {
     }
 
 
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+            setShowReserveHeader(entry.isIntersecting);
+        }, { threshold: 1 });
+
+        const div = reserveHeader.current;
+        if (div) {
+            observer.observe(div);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div className='line-payment-details'>
-            < section className="payment-modal" >
+        <div className='line-payment-details' >
+            < section className="payment-modal" ref={reserveHeader}>
                 {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <h1>  $ {stay.price}<span> night</span></h1> : <h1>Add dates for prices</h1>}
 
                 <div className="payment-date-picker">
