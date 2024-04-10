@@ -81,11 +81,9 @@ export function StayDetails() {
             </div>
 
             <div className="details-reviews">
-                <hr />
                 <Reviews stay={stay} reviews={stay.reviews} />
             </div>
             <div className="google-map-details">
-                <hr />
                 <GoogleMap stay={stay} />
             </div>
             {/* <div className='footer-container-details full'>

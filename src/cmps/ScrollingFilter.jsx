@@ -20,51 +20,95 @@ export function ScrollingFilter() {
   const labels = stayService.getLabels()
   const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
   const [searchParams, setSearchParams] = useSearchParams()
-
+  const [selectedLabel, setSelectedLabel] = useState(null)
 
 
   const handleChange = (label) => {
-    setSearchParams({ labels: label })
-    setFilterBy({ ...filterBy, labels: label })
+    if (selectedLabel === label) {
+      setSearchParams({})
+      setFilterBy({ ...filterBy, labels: null })
+      setSelectedLabel(null)
+    } else {
+      setSearchParams({ labels: label })
+      setFilterBy({ ...filterBy, labels: label })
+      setSelectedLabel(label)
+    }
   }
 
   return (
-    <div className="filter-main flex">
-      <hr className="hr-line" />
-      <div className="carusel-filter-main ">
-        <Swiper
-          slidesPerView={16}
-          spaceBetween={0}
-          slidesPerGroup={10}
-          loopFillGroupWithBlank={false}
+    // <div className="filter-main flex">
+    <div className="carusel-filter-main">
+      {/* <hr className="hr-line" /> */}
+      <Swiper
+        // observer={true}
+        // observeParents={true}
+        slidesPerView={16}
+        spaceBetween={0}
+        slidesPerGroup={14}
+        // loopFillGroupWithBlank={false}
+        // pagination={{
+        //   clickable: true,
+        // }}
 
 
-          // pagination={{
-          //   clickable: true,
-          // }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-        >
-          {
-            labels.map(label => (
-              <SwiperSlide key={label} onClick={() => handleChange(label)}>
-                <button>
-                  <span>
-                    {/* Using importImage function to get image URL */}
-                    <img src={importImage(label.toLowerCase())} alt={label} />
-                  </span>
-                  <span className='label-name'>{label}</span>
-                </button>
-              </SwiperSlide>
-            ))
+        navigation={true}
+
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+        breakpoints={{
+          // Adjust these values as needed for your layout
+          200: {
+            slidesPerView: 3,
+            slidesPerGroup: 1,
+          },
+          500: {
+            slidesPerView: 4,
+            slidesPerGroup: 1,
+          },
+          600: {
+            slidesPerView: 5,
+            slidesPerGroup: 2,
+          },
+          700: {
+            slidesPerView: 8,
+            slidesPerGroup: 4,
+          },
+          768: {
+            slidesPerView: 11,
+            slidesPerGroup: 5,
+          },
+          1024: {
+            slidesPerView: 14,
+            slidesPerGroup: 5,
+          },
+          1440: {
+            slidesPerView: 16,
+            slidesPerGroup: 6,
           }
-        </Swiper>
-      </div>
+        }}
+      >
+        {
+          labels.map(label => (
+            <SwiperSlide key={label} onClick={() => handleChange(label)}
+              style={{ backgroundColor: selectedLabel === label ? 'lightgrey' : 'transparent' }}>
+              <button>
+                <span>
+                  {/* Using importImage function to get image URL */}
+                  <img src={importImage(label.toLowerCase())} alt={label} />
+                </span>
+                <span className='label-name'>{label}</span>
+              </button>
+            </SwiperSlide>
+          ))
+        }
+      </Swiper>
+
       <div className='filter-small-scrolling'>
         <button className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
       </div>
+
     </div >
+    // </div >
 
   )
 }

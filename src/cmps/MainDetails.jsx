@@ -27,10 +27,12 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
     // const amenities =stay.amenities.slice(0,3)// use it in the future
     return (
         <div className='main-user-host'>
-            <h2 className="second-title-details">Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
-            <section className=" house-details flex">
-                <span>{stay.capacity} guests</span> • <span>{stay.type}</span> • <span> 1 bedroom</span>•<span> 1bed</span>
-            </section>
+            <div className="little-details">
+                <h2 className="second-title-details">Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
+                <div className=" house-details flex">
+                    <span>{stay.capacity} guests</span> • <span>{stay.type}</span> • <span> 1 bedroom</span>•<span>1 bed</span>
+                </div>
+            </div>
 
             <div className='details-user'>
                 {stay.reviews.length > 2 ? (<div className="host-things border">
@@ -57,29 +59,31 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                     </section>
                 </section>
             </div>
-            <hr className="hr-line-details" />
+            {/* <hr className="hr-line-details" /> */}
 
             <div className="more-details">
-                <div className="flex"><span><i className="fa-regular fa-calendar"></i></span><p>Free cancellation for 48 hours</p></div>
-                <div className="flex"><span><i className="fa-solid fa-paw"></i></span><p>Furry friends welcome</p></div>
-                <div className="flex"><span><i className="fa-brands fa-product-hunt"></i></span><p>Park for free</p></div>
+                <div className="flex"><span><i className="fa-regular fa-calendar"></i></span><p>Free cancellation for 48 hours</p>
+                </div>
+                <div className="flex"><span><i className="fa-solid fa-paw"></i></span><p>Furry friends welcome</p>
+                </div>
+                <div className="flex"><span><i className="fa-brands fa-product-hunt"></i></span><p>Park for free</p>
+                </div>
             </div>
 
 
-            <hr className="hr-line-details" />
             <div className="details-description">
                 <section></section>
                 <p>{stay.summary}</p>
                 <section></section>
-                <h3>Lorem, ipsum.</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rerum, suscipit, nesciunt voluptatibus vero tenetur facere explicabo odio dolorem velit aliquid, exercitationem similique aut corrupti placeat quaerat! Rerum, tenetur ullam?</p>
+                <div className="show-more-desc">
+                <span className="text-show-more">show more</span><span> {'>'}</span>
+                </div>
             </div>
-            <hr className="hr-line-details" />
 
             <div className="details-amenities">
                 <Amenities amenities={stay.amenities} />
             </div>
-            <hr className="hr-line-details" />
 
             {/* <MyDateRangePicker/> */}
             <div className="date-pick-details">
