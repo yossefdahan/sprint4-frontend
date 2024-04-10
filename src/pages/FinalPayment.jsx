@@ -21,7 +21,7 @@ export function FinalPayment() {
     const [isOpen, setOpen] = useState(false)
     const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
 
-    console.log(order)
+
     // useEffect(()=>{
     //     loadOrder()
     // },[])
