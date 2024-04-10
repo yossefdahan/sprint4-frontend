@@ -369,7 +369,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     <div className="header-label-gues">Who</div>
                     <div className="search-btn-guests" >{formatGuestSummary() ? formatGuestSummary().substring(0, 15) + '...' : 'Add guests'}</div>
                 </div>
-                {!countyModal ? < button style={{ left: "92%" }} className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button style={{ left: "85%" }} className="search-btn" type="submit"> <i className="fa fa-search"></i><span>Search</span> </button>}
+                {!countyModal && !showGuestDropdown && !isOpen ? < button style={{ left: "92%" }} className="search-btn" type="submit"> <i className="fa fa-search"></i></button> : <button style={{ left: "85%" }} className="search-btn" type="submit"> <i className="fa fa-search"></i><span>Search</span> </button>}
                 {/* </div> */}
                 {showGuestDropdown && <div className="input-group guests-container">
 

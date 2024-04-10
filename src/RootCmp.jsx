@@ -36,10 +36,10 @@ export function RootCmp() {
 
     return (
         <div className='main-container' >
-            <section ref={headerRef} style={{ padding: "1px" }}></section>
+            <section ref={headerRef} style={{ padding: "5px" }}></section>
             <AppHeader showSearch={showSearch} setShowSearch={setShowSearch} />
 
-            <main  >
+            <>
                 <Routes>
                     <Route path='/' element={<StayIndex />} />
                     <Route path='/stay/:stayId' element={<StayDetails />} />
@@ -49,8 +49,8 @@ export function RootCmp() {
                     <Route path='/user/trips' element={<Trips />} />
                     <Route path='/user/dashboard' element={<DashBoard />} />
                 </Routes>
-            </main>
-        </div>
+            </>
+        </div >
     )
 }
 

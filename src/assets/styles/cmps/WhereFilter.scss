@@ -8,22 +8,20 @@
     "all spain europe"
     "usa greece south";
   top: 100%;
-  box-shadow: 1px 1px 1px 1px $light-gray;
-  // left: 50%;
-
-  border: 1px solid $light-gray;
+  box-shadow: 0 3px 12px 0 rgb(0 0 0/0.15);
   z-index: 10;
-  border-radius: 12px;
-
+  border-radius: 32px;
   background-color: white;
-  width: 500px;
+  width: fit-content;
   align-items: center;
   justify-content: center;
   justify-items: center;
+  padding: 32px 24px 24px;
+
 
   & .country-filter {
-    margin: 5px;
     padding: 8px;
+
 
     &:hover {
       background-color: $light-gray;
@@ -37,15 +35,14 @@
   }
 
   & h4 {
-    font-size: 14px;
-    margin: 0;
+    font-size: 0.875em;
+    margin: 0 2px;
     font-family: Montserrat;
-
     font-weight: 400;
   }
 
   & img {
-    width: 120px;
+    width: 108px;
     border: 1px solid $light-gray;
     border-radius: 10px;
   }
@@ -76,9 +73,10 @@
 
   & h5 {
     grid-area: title;
-    // display: flex;
+    font-size: 0.875em;
     align-items: start;
-    margin: 20px 5px;
+    margin: 0 0 16px 5px;
+
   }
 }
 
@@ -249,8 +247,7 @@
     justify-content: space-around;
   }
 
-  &_week {
-  }
+  // &_week {}
 
   &__day-name,
   &__day {
@@ -579,7 +576,7 @@
           content: none;
         }
 
-        &:hover + .in-cal::after {
+        &:hover+.in-cal::after {
           content: none;
         }
 
