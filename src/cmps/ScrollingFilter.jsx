@@ -92,9 +92,7 @@ export function ScrollingFilter() {
             <SwiperSlide key={label} onClick={() => handleChange(label)} >
               <button
                 style={{
-                  borderBottom: selectedLabel === label ? '1px solid black' : '',
-                  color: selectedLabel === label ? 'black' : '',
-
+                  // borderBottom: selectedLabel === label ? '1px solid black' : '',
                 }}>
                 <span>
                   <img src={importImage(label.toLowerCase())} alt={label} />

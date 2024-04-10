@@ -1,9 +1,6 @@
 .stay-gallery {
   position: relative;
 
-
-
-
   // &:hover .btn-nav-img {
   //   opacity: 1;
 
@@ -48,8 +45,8 @@
 
       &::before {
         content: "";
-        width: 10px;
-        height: 10px;
+        width: 5px;
+        height: 5px;
         border-top: 2px solid black;
         border-right: 2px solid black;
         position: absolute;
@@ -113,11 +110,8 @@
 }
 
 .stay-gallery:hover .btn-nav-img {
-  // israel its works only when its here....
   opacity: 1;
-
 }
-
 
 //modal in details
 .gallery-modal {
