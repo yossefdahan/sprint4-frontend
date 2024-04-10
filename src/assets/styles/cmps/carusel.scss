@@ -1,6 +1,12 @@
 .carusel-filter-main {
   display: inline-flex;
-  width: 88vw;
+  width: 90vw;
+  position: sticky;
+  top: 70px;
+  grid-column: 2;
+
+  // left: -200px;
+  // right: -200px;
   // grid-template-columns: auto;
   // margin: 0;
   margin-top: 10px;
@@ -8,7 +14,9 @@
   padding: 0;
   // flex-flow: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.918);
 
+  z-index: 1;
 
 
   & .swiper-button-next {

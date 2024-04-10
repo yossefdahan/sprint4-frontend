@@ -22,7 +22,7 @@ export function RootCmp() {
         const observer = new IntersectionObserver((entries) => {
             const [entry] = entries;
             setShowSearch(entry.isIntersecting);
-        }, { threshold: 0.1 });
+        }, { threshold: 1 });
 
         const section = headerRef.current;
         if (section) {
@@ -38,7 +38,7 @@ export function RootCmp() {
         <div className='main-container' >
             <section ref={headerRef} style={{ padding: "5px" }}></section>
             <AppHeader showSearch={showSearch} setShowSearch={setShowSearch} />
-
+            {/* <border style={{ borderBottom: '1px solid lightgray', gridColumn: '1 / -1' }}></border> */}
             <>
                 <Routes>
                     <Route path='/' element={<StayIndex />} />

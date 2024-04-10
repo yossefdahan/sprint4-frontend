@@ -182,7 +182,7 @@
   position: sticky;
   top: 0px;
   display: grid;
-  grid-template-columns: repeat(3, 15fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   transition: 0.5s;
   align-items: center;
@@ -192,6 +192,11 @@
   z-index: 10;
   text-decoration: none;
   // font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  border-bottom: 1px solid lightgray;
+  padding: 0 5em 0 5em;
+  grid-column: 1/-1;
+  // justify-self: center;
+
 
   & .left-section-header {
     justify-self: end;
@@ -334,6 +339,7 @@
       width: 1.2em;
       margin-right: 5px;
     }
+
     &:hover {
       background-color: $main-gray-hover;
       border: 1px solid $black2;
