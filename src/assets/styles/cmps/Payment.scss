@@ -6,11 +6,19 @@
     top: 100px;
     height: max-content;
     margin-top: 20px;
+    position: sticky;
+    width: max-content;
+    height: fit-content;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    padding: 1.25em;
 
     & h1 {
       font-size: 1.23em;
       margin: 0;
       margin-bottom: 24px;
+      font-weight: 400;
 
       span {
         font-size: 0.73em;
