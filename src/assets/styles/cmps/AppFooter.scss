@@ -1,107 +1,107 @@
-// .app-footer {
-//   position: sticky;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-//     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-//   background-color: #f8f8f8;
-//   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-//   border-top: 1px solid $light-gray;
-// }
-
-// .footer-content {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   padding: 10px 80px;
-
-//   .second-section-footer,
-//   .footer-main-content {
-//     display: flex;
-//     align-items: center;
-//     gap: 10px;
-//     font-size: 0.875rem !important;
-//     line-height: 20px;
-
-//     span,
-//     img.privacy-icon {
-//       margin-right: 5px;
-//       cursor: pointer;
-//       &:hover {
-//         border-bottom: 1px solid black;
-//       }
-//     }
-//   }
-
-//   .privacy-icon {
-//     width: 20px;
-//   }
-
-//   .second-section-footer {
-//     font-weight: 400;
-//     font-size: 0.875rem !important;
-//     line-height: 1.125rem !important;
-//     color: rgb(34, 34, 34) !important;
-//   }
-// }
 .app-footer {
-  position: static;
-  display: grid;
-  grid-template-columns: 1fr 1120px 1fr;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  // font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: #f8f8f8;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   border-top: 1px solid $light-gray;
+}
 
-  .footer-content {
-    grid-column: 2 / 3;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 80px;
+
+  .second-section-footer,
+  .footer-main-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
-  }
+    gap: 10px;
+    font-size: 0.875rem !important;
+    line-height: 20px;
 
-  .footer-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    h1 {
-      margin-bottom: 1rem;
-      color: #333;
-    }
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      li {
-        margin-bottom: 0.5rem;
-
-        a {
-          color: #666;
-          text-decoration: none;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
+    span,
+    img.privacy-icon {
+      margin-right: 5px;
+      cursor: pointer;
+      &:hover {
+        border-bottom: 1px solid black;
       }
     }
   }
 
-  .airbnb-footer {
-    grid-column: 1 / -1;
-    height: 50px;
+  .privacy-icon {
+    width: 20px;
   }
 
-  img.privacy-icon {
-    max-width: 20px;
-    height: auto;
+  .second-section-footer {
+    font-weight: 400;
+    font-size: 0.875rem !important;
+    line-height: 1.125rem !important;
+    color: rgb(34, 34, 34) !important;
   }
 }
+
+// .app-footer {
+//   position: fixed;
+//   display: grid;
+//   grid-template-columns: 1fr 1120px 1fr;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: #f8f8f8;
+//   border-top: 1px solid $light-gray;
+
+//   .footer-content {
+//     grid-column: 2 / 3;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 10px 0;
+//   }
+
+//   .footer-section {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+
+//     h1 {
+//       margin-bottom: 1rem;
+//       color: #333;
+//     }
+
+//     ul {
+//       list-style: none;
+//       margin: 0;
+//       padding: 0;
+
+//       li {
+//         margin-bottom: 0.5rem;
+
+//         a {
+//           color: #666;
+//           text-decoration: none;
+
+//           &:hover {
+//             text-decoration: underline;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .airbnb-footer {
+//     grid-column: 1 / -1;
+//     height: 50px;
+//   }
+
+//   img.privacy-icon {
+//     max-width: 20px;
+//     height: auto;
+//   }
+// }

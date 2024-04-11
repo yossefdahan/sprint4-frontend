@@ -22,6 +22,7 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
             bathrooms,
             amenities: selectedAmenities,
         }
+        setIsOpen(false)
         onSetFilter(filter);
     }
 

@@ -1,6 +1,6 @@
 .stay-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 10px));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
   padding: 0;
   grid-auto-flow: dense;
@@ -23,7 +23,7 @@
   text-size-adjust: 100%;
   line-height: 20px;
   position: fixed;
-  bottom: 60px;
+  bottom: 90px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
