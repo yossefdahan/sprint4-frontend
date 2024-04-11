@@ -11,6 +11,7 @@ import { GuestSelector } from "./GuestSelector.jsx"
 import { useSelector } from "react-redux"
 import { orderInProgress } from "../store/order.actions.js"
 import { utilService } from "../services/util.service.js"
+import { setFilterBy } from "../store/stay.actions.js"
 
 export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setShowReserveHeader }) {
     const reserveHeader = useRef()
@@ -31,8 +32,10 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
         infants: filterBy.infants || 0,
         pets: filterBy.pets || 0
     })
-    onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
-
+    
+    useEffect(() => {
+        handleChange();
+    }, [guestCounts])
     //    we need // const user = useSelector(storeState => storeState.userModule.loggedinUser)
     // order.stay._id = stay._id
     // order.stay.name = stay.name
@@ -96,6 +99,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                 ...guestCounts
             },
         }))
+
     }, [filterBy, isSend])
 
     const calculateTotalPrice = () => {
@@ -151,7 +155,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
         const infants = guestCounts.infants
         const pets = guestCounts.pets
 
-        onSetFilter.current({
+        onSetFilter({
             ...filterBy,
             adults,
             children,
@@ -201,7 +205,6 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
             }
             return { ...prevCounts, [guestType]: newCount }
         })
-        handleChange()
     }
 
 
@@ -260,7 +263,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                                 selected={filterBy.checkIn}
                                 onChange={(dates) => {
                                     const [start, end] = dates
-                                    onSetFilter.current({
+                                    onSetFilter({
                                         ...filterBy,
                                         checkIn: start,
                                         checkOut: end

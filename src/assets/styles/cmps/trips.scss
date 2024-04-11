@@ -1,127 +1,3 @@
-// Base styles for the whole page
-.trips-page {
-  font-family: Montserrat;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-
-  .navigation-links {
-    display: flex;
-    justify-content: start;
-    margin-bottom: 20px;
-
-    a {
-      padding: 10px 15px;
-      text-decoration: none;
-      color: #767676;
-
-      &.active {
-        color: #ff5a5f;
-        border-bottom: 4px solid #ff5a5f;
-      }
-    }
-  }
-
-  .status {
-    width: 250px;
-    font-size: 22px;
-    text-align: center;
-    padding: 10px;
-    &.pending {
-      color: rgb(116, 103, 1, 0.55);
-    }
-
-    &.approved {
-      color: green;
-    }
-
-    &.rejected {
-      color: red;
-    }
-  }
-
-  .header-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-
-    h1 {
-      font-size: 1.75rem;
-      color: #484848;
-      margin: 0;
-    }
-  }
-
-  .dashboard-container {
-    table {
-      width: 100%;
-      border-collapse: collapse;
-
-      th,
-      td {
-        text-align: left;
-        padding: 12px 8px;
-        border-bottom: 1px solid #ebebeb;
-      }
-
-      th {
-        background-color: #f7f7f7;
-        color: #484848;
-      }
-
-      tr {
-        &:hover {
-          background-color: #f7f7f7;
-        }
-      }
-
-      .status-pending {
-        color: #ffa726;
-      }
-
-      .status-approved {
-        color: #66bb6a;
-      }
-
-      .status-declined {
-        color: #ef5350;
-      }
-
-      .actions {
-        button {
-          background-color: #ff5a5f;
-          border: none;
-          color: #fff;
-          padding: 8px 16px;
-          margin: 0 4px;
-          border-radius: 4px;
-          cursor: pointer;
-
-          &:hover {
-            background-color: darken(#ff5a5f, 10%);
-          }
-
-          &:first-child {
-            background-color: #008489;
-          }
-        }
-      }
-    }
-  }
-
-  button {
-    outline: none;
-
-    &:focus {
-      outline: none;
-      box-shadow: none;
-    }
-  }
-}
-
-//test //
-
 .trips-page {
   font-family: Montserrat;
   color: #333;
@@ -156,7 +32,7 @@
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    height: 300px;
+    height: 380px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
@@ -167,21 +43,24 @@
       border-bottom: 1px solid $light-gray;
 
       & .israel-img {
-        width: 50px;
+        width: 40px;
         clip-path: circle(50% at 50% 50%);
       }
 
       & .host-name-trips {
         padding: 10px;
+        font-size: 14px;
       }
     }
 
     & .card-trips-footer {
       border-top: 1px solid $main-red;
       padding: 20px 0 20px 0;
+      align-items: center;
 
       & .price-trips-card {
         font-size: 1.375em;
+        padding-left: 10px;
       }
 
       & span {
@@ -200,13 +79,24 @@
 
     strong {
       color: #333;
+      margin-right: 10px;
     }
 
     .details-section-trips {
+      padding: 16px 10px 16px 10px;
+
       & p {
-        padding: 5px 0 5px 0;
+        padding: 10px 0 10px 0;
         line-height: 1.5;
         color: #666;
+      }
+
+      & .img-trips {
+        & .trips-stay-img {
+          width: 200px;
+          border-radius: 8px;
+          box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        }
       }
     }
 
@@ -218,17 +108,21 @@
       width: 250px;
       font-size: 22px;
       text-align: center;
+      margin-right: 5px;
 
       &.pending {
         background-color: #ffc107; // Amber for pending orders
+        color: $main-white;
       }
 
       &.approved {
         background-color: #28a745; // Green for confirmed orders
+        color: $main-white;
       }
 
       &.cancelled {
         background-color: #dc3545; // Red for cancelled orders
+        color: $main-white;
       }
     }
   }

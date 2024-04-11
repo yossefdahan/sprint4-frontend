@@ -101,17 +101,22 @@ export function Trips() {
                                     <p className='host-name-trips'>Arik john</p>
                                 </div>
                             </div>
-                            <p><strong className='full-name-trips-card'>Full Name:</strong> {order.buyer.fullname}</p>
-                            <div className='details-section-trips'>
-                                <p><strong className='start-date-trips-card' >Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
-                                <p><strong className='end-dates-trips-card'>End Date:</strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
-                                <p><strong className='guests-trips-card'>Guests:</strong>
-                                    Adults: {order.guests.adults ? order.guests.adults : ''} |
-                                    Kids: {order.guests.kids ? order.guests.kids : ''} |
-                                    Pets: {order.guests.pets ? order.guests.pets : ''}
-                                    Infants:{order.guests.infants ? order.guests.infants : ''}
-                                </p>
-
+                            {/* <p><strong className='full-name-trips-card'>Full Name:</strong> {order.buyer.fullname}</p> */}
+                            <div className='details-section-trips flex space-between align-center'>
+                                <div >
+                                    <p><strong className='start-date-trips-card' >Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
+                                    <p><strong className='end-dates-trips-card'>End Date:</strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
+                                    <p>
+                                        <strong className='guests-trips-card'>Guests:</strong>
+                                        {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
+                                        {order.guests.kids ? ` | Kids: ${order.guests.kids}` : ''}
+                                        {order.guests.pets ? ` | Pets: ${order.guests.pets}` : ''}
+                                        {order.guests.infants ? ` | Infants: ${order.guests.infants}` : ''}
+                                    </p>
+                                </div>
+                                <div className='img-trips'>
+                                    <img className='trips-stay-img' src='/public/img/11.jpg'></img>
+                                </div>
                             </div>
                             <div className='card-trips-footer flex space-between'>
                                 <p><strong className='price-trips-card'>Total Price:</strong>  <span>${order.totalPrice.toFixed(2)}</span></p>
