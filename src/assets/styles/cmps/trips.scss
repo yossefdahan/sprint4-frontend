@@ -156,7 +156,7 @@
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    height: 300px;
+    height: 380px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
@@ -167,21 +167,24 @@
       border-bottom: 1px solid $light-gray;
 
       & .israel-img {
-        width: 50px;
+        width: 40px;
         clip-path: circle(50% at 50% 50%);
       }
 
       & .host-name-trips {
         padding: 10px;
+        font-size: 14px;
       }
     }
 
     & .card-trips-footer {
       border-top: 1px solid $main-red;
       padding: 20px 0 20px 0;
+      align-items: center;
 
       & .price-trips-card {
         font-size: 1.375em;
+        padding-left: 10px;
       }
 
       & span {
@@ -200,13 +203,24 @@
 
     strong {
       color: #333;
+      margin-right: 10px;
     }
 
     .details-section-trips {
+      padding: 16px 10px 16px 10px;
+
       & p {
-        padding: 5px 0 5px 0;
+        padding: 10px 0 10px 0;
         line-height: 1.5;
         color: #666;
+      }
+
+      & .img-trips {
+        & .trips-stay-img {
+          width: 200px;
+          border-radius: 8px;
+          box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        }
       }
     }
 
@@ -218,6 +232,7 @@
       width: 250px;
       font-size: 22px;
       text-align: center;
+      margin-right: 5px;
 
       &.pending {
         background-color: #ffc107; // Amber for pending orders
