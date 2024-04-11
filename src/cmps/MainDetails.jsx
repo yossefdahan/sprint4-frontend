@@ -49,7 +49,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                     </div>
                     <span>|</span>
                     <section className="review-usr"><span className="num-reviews">{stay.reviews.length} </span> <span className="reviews-span">Reviews</span> </section>
-                </div>) : <a>★{stay.reviews.length < 2 ? `1 review` : `${stay.reviews.length} reviews`} </a>}
+                </div>) : <a>★ {stay.reviews.length < 2 ? `1 review` : `${stay.reviews.length} reviews`} </a>}
 
                 <section className="host-details">
                     <Avatar alt="Travis Howard" src={stay.host.imgUrl} />
@@ -77,7 +77,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 <section></section>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum rerum, suscipit, nesciunt voluptatibus vero tenetur facere explicabo odio dolorem velit aliquid, exercitationem similique aut corrupti placeat quaerat! Rerum, tenetur ullam?</p>
                 <div className="show-more-desc">
-                <span className="text-show-more">show more</span><span> {'>'}</span>
+                    <span className="text-show-more">show more</span><span> {'>'}</span>
                 </div>
             </div>
 

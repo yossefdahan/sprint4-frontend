@@ -7,9 +7,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-
+    overflow-y: hidden;
     max-width: 780px;
-    z-index: 1000;
+    z-index: 20;
+
+    .filter-modal-content {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+        max-height: 60vh;
+    }
+
+    & .amenties-options {
+        gap: 10px;
+    }
 
     & .type-bnb {
         display: flex;
@@ -44,8 +54,9 @@
 
         & .btn_choose {
             display: flex;
-           
+
             width: 100%;
+
             & .modal__button {
                 border: 1px solid $light-gray;
                 border-radius: 50px;
@@ -56,9 +67,29 @@
     }
 
 
+
+
     .filter-modal__options-buttons {
         button {
             transition: background-color 0.3s ease;
+        }
+    }
+
+    .propety-type {
+        border-bottom: 1px solid $light-gray;
+        padding-bottom: 16px;
+        padding-top: 16px;
+
+        & .propety-options {
+            display: flex;
+            justify-content: space-evenly;
+
+            & .pro {
+                border: 1px solid $light-gray;
+                padding: 16px;
+                border-radius: 10px;
+            }
+
         }
     }
 
@@ -67,7 +98,7 @@
         justify-content: center;
         align-items: center;
         padding: 1rem;
-        
+
         border-bottom: 1px solid #ddd;
 
         .close-btn {
@@ -125,10 +156,19 @@
             cursor: pointer;
             border-radius: 5px;
 
+            &-clear {
+                width: 100%;
+                font-size: 1rem;
+            }
+
             &:hover {
                 background: darken(#131213, 10%);
             }
+
+
         }
+
+
     }
 
 

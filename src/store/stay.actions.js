@@ -3,7 +3,7 @@ import { userService } from '../services/user.service.js'
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { ADD_STAY, ADD_TO_CART, CLEAR_CART, REMOVE_STAY, REMOVE_FROM_CART, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_FILTER_BY } from './stay.reducer.js'
-import { SET_SCORE } from './user.reducer.js'
+// import { SET_SCORE } from './user.reducer.js'
 import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 
 // Action Creators:
@@ -67,7 +67,7 @@ export async function removeStay(stayId) {
 
 export async function addStay(stay) {
     try {
-        
+
         const savedStay = await stayService.save(stay)
         console.log('Added stay', savedStay)
         store.dispatch(getActionAddStay(savedStay))
