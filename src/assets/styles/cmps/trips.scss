@@ -162,6 +162,20 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     padding: 24px 24px 20px 24px;
 
+    & .trip-card-header {
+      align-items: center;
+      border-bottom: 1px solid $light-gray;
+
+      & .israel-img {
+        width: 50px;
+        clip-path: circle(50% at 50% 50%);
+      }
+
+      & .host-name-trips {
+        padding: 10px;
+      }
+    }
+
     & .card-trips-footer {
       border-top: 1px solid $main-red;
       padding: 20px 0 20px 0;
@@ -178,7 +192,6 @@
     & .stay-name-trips-card {
       color: $main-red;
       padding: 10px;
-      border-bottom: 1px solid $light-gray;
     }
     h2 {
       margin-top: 0;

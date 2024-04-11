@@ -68,6 +68,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadOrders } from '../store/order.actions';
 import { NavLink } from 'react-router-dom';
 import { utilService } from '../services/util.service';
+import israelImg from '../assets/Img/israel.jpg'
 
 export function Trips() {
     const orders = useSelector((storeState) => storeState.orderModule.orders);
@@ -93,7 +94,13 @@ export function Trips() {
                 <div className="trips-container ">
                     {orders.map((order) => (
                         <div key={order.buyer._id} className="trip-card ">
-                            <h2 className='stay-name-trips-card'>{order.stay.name}</h2>
+                            <div className='trip-card-header flex space-between'>
+                                <h2 className='stay-name-trips-card'>{order.stay.name}</h2>
+                                <div className='right-seciton-header-trips  flex column align-center '>
+                                    <img className="israel-img" src={israelImg} />
+                                    <p className='host-name-trips'>Arik john</p>
+                                </div>
+                            </div>
                             <p><strong className='full-name-trips-card'>Full Name:</strong> {order.buyer.fullname}</p>
                             <div className='details-section-trips'>
                                 <p><strong className='start-date-trips-card' >Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
