@@ -155,29 +155,31 @@ export function AppHeader({ showSearch, setShowSearch }) {
             <div className='side-nav flex align-center' onClick={toggleNavBar}>
                 <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>
                 {isNavVisible && (
-                    <nav className="nav-links">
+                    !user ? (
+                        <nav className="nav-links">
+                            <button className="login-ham-btn" onClick={toggleModal}>Login</button>
+                            <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
+                            <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                        </nav>
+                    ) :
+                        <nav className="nav-links">
 
-                        <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
-                        <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
-                        <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
-                        <div><hr /></div>
-                        <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
-                        <NavLink className=" nav-icon" to="/">Account</NavLink>
-                        <NavLink className=" nav-icon" to="/">Help center</NavLink>
-                        {user ? (
-                            <>
-                                {/* <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span> */}
-                                <button className='logout-btn' onClick={onLogout}>Logout</button>
-                            </>
-                        ) : (
-                            <button className="login-ham-btn" onClick={toggleModal}>
-                                Login
-                            </button>
-                        )}
+                            <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
+                            <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
+                            <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
+                            <div><hr /></div>
+                            <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
+                            <NavLink className=" nav-icon" to="/">Account</NavLink>
+                            <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                            <button className='logout-btn' onClick={onLogout}>Logout</button>
 
-                    </nav>
+                            {/* <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span> */}
+
+                        </nav>
                 )}
-                <img className="israel-img" src={user ? user.imgUrl : israelImg} />
+                <img className="israel-img" src={user ? user.imgUrl : 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'} />
+
+
 
             </div>
 
@@ -213,20 +215,30 @@ export function AppHeader({ showSearch, setShowSearch }) {
                 <div className='side-nav flex align-center' onClick={toggleNavBar}>
                     <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>
                     {isNavVisible && (
-                        <nav className="nav-links">
+                        !user ? (
+                            <nav className="nav-links">
+                                <button className="login-ham-btn" onClick={toggleModal}>Login</button>
+                                <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
+                                <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                            </nav>
+                        ) :
+                            <nav className="nav-links">
 
-                            <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
-                            <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
-                            <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
-                            <div><hr /></div>
-                            <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
-                            <NavLink className=" nav-icon" to="/">Account</NavLink>
-                            <NavLink className=" nav-icon" to="/">Help center</NavLink>
-                            <NavLink className=" nav-icon" to="/">Log out</NavLink>
+                                <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
+                                <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
+                                <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
+                                <div><hr /></div>
+                                <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
+                                <NavLink className=" nav-icon" to="/">Account</NavLink>
+                                <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                                <button className='logout-btn' onClick={onLogout}>Logout</button>
 
-                        </nav>
+                                {/* <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span> */}
+                            </nav>
                     )}
-                    <img className="israel-img" src={israelImg} />
+                    <img className="israel-img" src={user ? user.imgUrl : 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'} />
+
+
 
                 </div>
 
@@ -237,7 +249,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
             </div>
 
 
-
+            {isModalOpen && <LoginSignup onClose={toggleModal} />}
 
         </header>
 
