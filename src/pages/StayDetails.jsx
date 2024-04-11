@@ -18,9 +18,15 @@ import { utilService } from '../services/util.service.js'
 export function StayDetails() {
     const { stayId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
-
-    // const filterBy = stayService.getFilterFromParams(searchParams)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const [currentFilter, setCurrentFilter] = useState({
+        checkIn: searchParams.get('checkIn') ? new Date(parseInt(searchParams.get('checkIn'))) : filterBy.checkIn,
+        checkOut: searchParams.get('checkOut') ? new Date(parseInt(searchParams.get('checkOut'))) : filterBy.checkOut,
+        adults: parseInt(searchParams.get('adults')) || filterBy.adults || 1,
+        children: parseInt(searchParams.get('children')) || filterBy.children,
+        pets: parseInt(searchParams.get('pets')) || filterBy.pets,
+        infants: parseInt(searchParams.get('infants')) || filterBy.infants
+    })
     const [stay, setStay] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
@@ -28,13 +34,15 @@ export function StayDetails() {
     const imgHeader = useRef()
     const [showHeader, setShowHeader] = useState(true)
     const [showReserveHeader, setShowReserveHeader] = useState(true)
-
-    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    
     useEffect(() => {
-
-        setSearchParams(filterBy)
+        setSearchParams({
+            ...currentFilter,
+            checkIn: currentFilter.checkIn ? currentFilter.checkIn.getTime(): '',
+            checkOut: currentFilter.checkOut ? currentFilter.checkOut.getTime(): ''
+        }, {replace: true})
         loadStay()
-    }, [stayId])
+    }, [stayId, currentFilter])
 
 
     // function openModalGallery() {
@@ -136,8 +144,8 @@ export function StayDetails() {
             ) : ''}
 
             <div className='main-details' id='amenities' >
-                <MainDetails stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} />
-                <Payment stay={stay} filterBy={filterBy} onSetFilter={setFilterBy} showReserveHeader={showReserveHeader} setShowReserveHeader={setShowReserveHeader} />
+                <MainDetails stay={stay} filterBy={currentFilter} onSetFilter={setCurrentFilter} />
+                <Payment stay={stay} filterBy={currentFilter} onSetFilter={setCurrentFilter} showReserveHeader={showReserveHeader} setShowReserveHeader={setShowReserveHeader} />
 
             </div>
 

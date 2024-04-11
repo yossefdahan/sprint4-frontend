@@ -58,6 +58,7 @@ function getAmenities() {
     "Wifi",
     "Kitchen",
     "Air conditioning",
+    'gogo',
     "Heating",
     "Pool table",
     "Free parking",
@@ -151,6 +152,24 @@ async function query(filterBy = getDefaultFilter()) {
     const labels = Array.isArray(filterBy.labels) ? filterBy.labels : [filterBy.labels]
     stays = stays.filter((stay) => stay.labels.some((label) => labels.includes(label)))
   }
+  if (filterBy.amenities && filterBy.amenities.length) {
+    const amenities = Array.isArray(filterBy.amenities) ? filterBy.amenities : [filterBy.amenities]
+    stays = stays.filter((stay) => stay.amenities.some((amenitie) => amenities.includes(amenitie)))
+  }
+
+  if (filterBy.type && filterBy.type !== 'Any type') {
+    stays = stays.filter(stay => stay.type === filterBy.type)
+  }
+
+  // if (filterBy.bedrooms !== 'Any') {
+  //   stays = stays.filter(stay => stay.bedrooms.length >= filterBy.bedrooms)
+  // }
+
+  // if (filterBy.beds !== 'Any') {
+  //   stays = stays.filter(stay => stay.bedrooms.reduce((acc, room) => acc + room.beds.length, 0) >= filterBy.beds)
+  // }
+
+
 
   return stays
 }
@@ -210,17 +229,18 @@ function getDefaultFilter() {
       lng: 0,
     },
     dates: {
-      checkIn: "",
-      checkOut: "",
+      checkIn: 0,
+      checkOut: 0,
     },
-    checkIn: "",
-    checkOut: "",
+    checkIn: 0,
+    checkOut: 0,
     guests: {},
     labels: "",
+    amenities: "",
     bedrooms: 0,
     bathrooms: 0,
     adults: 0,
-    childern: 0,
+    children: 0,
     infants: 0,
     pets: 0,
 
@@ -238,7 +258,10 @@ function getFilterFromParams(searchParams = {}) {
   const defaultFilter = getDefaultFilter()
   const checkIn = parseInt(searchParams.get("checkIn"))
   const checkOut = parseInt(searchParams.get("checkOut"))
-  // const adults = searchParams.get('adults')
+  const adults = parseInt(searchParams.get('adults'))
+  const children = parseInt(searchParams.get('children'))
+  const infants = parseInt(searchParams.get('infants'))
+  const pets = parseInt(searchParams.get('pets'))
 
   return {
     country: searchParams.get("country") || defaultFilter.country,
@@ -246,18 +269,19 @@ function getFilterFromParams(searchParams = {}) {
     checkOut: checkOut ? new Date(checkOut) : defaultFilter.checkOut,
     bedrooms: searchParams.get("bedrooms") || defaultFilter.bedrooms,
     bathrooms: searchParams.get("bathrooms") || defaultFilter.bathrooms,
-    // adults: searchParams.get('adults') || defaultFilter.adults,
-    // childern: searchParams.get('childern') || defaultFilter.childern,
-    // infants: searchParams.get('adults') || defaultFilter.infants,
-    // pets: searchParams.get('adults') || defaultFilter.pets,
+    adults: adults ? adults : defaultFilter.adults,
+    children: children ? children : defaultFilter.children,
+    infants: infants ? infants : defaultFilter.infants,
+    pets: pets ? searchParams.get('pets') : defaultFilter.pets,
     // loc: searchParams.get("loc") || defaultFilter.loc,
-    // amenities: searchParams.get("amenities") || defaultFilter.amenities,
+    amenities: searchParams.get("amenities") || defaultFilter.amenities,
     type: searchParams.get("type") || defaultFilter.type,
     // priceRange: searchParams.get("priceRange") || defaultFilter.priceRange,
     // guests: searchParams.get('guests') || defaultFilter.guests,
     // dates: searchParams.get('dates') || defaultFilter.dates
   }
 }
+
 
 function getEmptyStay() {
   return {
@@ -327,6 +351,7 @@ function createStays() {
           "Pool table",
           "Heating",
           "Air conditioning",
+          'gogo'
         ],
         labels: ["Top of the world", "Trending", "Play", "Tropical"],
         host: {

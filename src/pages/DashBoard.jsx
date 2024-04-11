@@ -24,7 +24,7 @@ export function DashBoard() {
             showSuccessMsg(`order updated : ${savedOrder.status}`)
             setOrderUpdateTrigger(!orderUpdateTrigger)
         } catch (err) {
-            setOrderUpdateTrigger(!orderUpdateTrigger)
+            //setOrderUpdateTrigger(!orderUpdateTrigger)
             showErrorMsg('Cannot update order')
         }
     }
@@ -37,7 +37,7 @@ export function DashBoard() {
 
 
         } catch (err) {
-            setOrderUpdateTrigger(!orderUpdateTrigger)
+            //setOrderUpdateTrigger(!orderUpdateTrigger)
             showErrorMsg('Cannot update order')
         }
     }

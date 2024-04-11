@@ -36,7 +36,9 @@ export function ScrollingFilter() {
       setSelectedLabel(label)
     }
   }
-
+  function onSetFilter(filterBy) {
+    setFilterBy(filterBy)
+  }
 
 
   return (
@@ -111,7 +113,7 @@ export function ScrollingFilter() {
       <div className='filter-small-scrolling'>
         <button onClick={() => setIsOpen(!isOpen)} className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
       </div>
-      {isOpen ? <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} filterBy={filterBy} /> : ''}
+      {isOpen ? <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} filterBy={filterBy} onSetFilter={onSetFilter} /> : ''}
     </div >
     // </div >
 

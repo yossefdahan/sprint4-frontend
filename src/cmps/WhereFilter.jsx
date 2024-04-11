@@ -21,10 +21,10 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const datePickerRef = useRef()
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
-        adults: 0,
-        children: 0,
-        infants: 0,
-        pets: 0
+        adults: filterBy.adults || 0,
+        children: filterBy.children ||  0,
+        infants: filterBy.infants || 0,
+        pets: filterBy.pets || 0
     })
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
     const navigate = useNavigate()
@@ -36,6 +36,14 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         }
         loadCountries()
     }, [])
+
+    useEffect(() => {
+        window.addEventListener('popstate', updateFilter);
+
+        return () => {
+            window.removeEventListener('popstate', updateFilter);
+        };
+    }, []);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
@@ -99,8 +107,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         setIsOpen(true)
     }
 
-    function handleSubmit(event) {
-        event.preventDefault()
+    function updateFilter(){
         const adults = guestCounts.adults
         const children = guestCounts.children
         const infants = guestCounts.infants
@@ -114,18 +121,23 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             pets
             // guests: guestCounts
         })
-        // const queryParams = new URLSearchParams({
-        //     country: inputValue,
-        //     adults: guestCounts.adults,
-        //     children: guestCounts.children,
-        //     infants: guestCounts.infants,
-        //     pets: guestCounts.pets
-        // }).toString()
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        updateFilter()
+        const queryParams = new URLSearchParams({
+            country: inputValue,
+            adults: guestCounts.adults,
+            children: guestCounts.children,
+            infants: guestCounts.infants,
+            pets: guestCounts.pets
+        }).toString()
 
         setIsOpen(false)
         setCountryModal(false)
         setShowGuestDropdown(false)
-        // navigate(`/?${queryParams}`)
+        navigate(`/?${queryParams}`)
     }
 
     // const updateGuestCount = (guestType, delta) => {
