@@ -97,8 +97,6 @@ export function StayDetails() {
             navigate('/')
         }
     }
-    console.log(showHeader);
-    console.log(showReserveHeader);
     // const imgs =stay.imgUrls.slice(0,4)// use it in the future
     if (!stay) return <div className='loader'></div>
     const { stars, averageRating } = utilService.getStarsWithRating(stay)

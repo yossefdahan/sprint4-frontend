@@ -9,8 +9,11 @@ import { loadStays, setFilterBy } from '../store/stay.actions'
 // import { SearchFilter } from './SearchFilter.jsx'
 import { stayService } from '../services/stay.service.local.js'
 import { MinFilter } from './MinFilter.jsx'
-import { positions, style } from '@mui/system'
-import { height, transition } from 'dom7'
+
+
+import { loadUser, loadUsers, logout } from '../store/user.actions.js'
+import { LoginSignup } from './LoginSignup.jsx'
+import { userService } from '../services/user.service.js'
 
 
 
@@ -18,14 +21,16 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const [searchParams, setSearchParams] = useSearchParams()
     // const [showSearchContainer, setShowSearchContainer] = useState(true)
     const [miniClicked, setMiniClicked] = useState(false)
+    const user = useSelector(storeState => storeState.userModule.user)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const navigate = useNavigate()
     const location = useLocation()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
     const [showFilter, setShowFilter] = useState(false)
-
-
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const toggleModal = () => setIsModalOpen(!isModalOpen)
+    // const [user, setUser] = useState([])
     useEffect(() => {
         setSearchParams({
             ...filterBy,
@@ -35,6 +40,21 @@ export function AppHeader({ showSearch, setShowSearch }) {
         
         loadStays(filterBy)
     }, [filterBy])
+
+
+    // useEffect(() => {
+    //     loadUsers()
+    // }, [])
+
+    // async function loadUsers() {
+    //     const users = await userService.getUsers()
+    //     setUsers(users)
+    // }
+    // async function loadUser() {
+    //     const user = await userService.getUsers()
+    //     setUser(user)
+    // }
+
 
     // useEffect(() => {
     //     const handleScroll = () => {
@@ -84,7 +104,16 @@ export function AppHeader({ showSearch, setShowSearch }) {
     // }
 
 
-
+    function onLogout() {
+        logout()
+            .then(() => {
+                showSuccessMsg('logout successfully')
+            })
+            .catch((err) => {
+                showErrorMsg('OOPs try again')
+            })
+        navigate('/')
+    }
 
 
 
@@ -136,11 +165,20 @@ export function AppHeader({ showSearch, setShowSearch }) {
                         <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
                         <NavLink className=" nav-icon" to="/">Account</NavLink>
                         <NavLink className=" nav-icon" to="/">Help center</NavLink>
-                        <NavLink className=" nav-icon" to="/">Log out</NavLink>
+                        {user ? (
+                            <>
+                                {/* <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span> */}
+                                <button className='logout-btn' onClick={onLogout}>Logout</button>
+                            </>
+                        ) : (
+                            <button className="login-ham-btn" onClick={toggleModal}>
+                                Login
+                            </button>
+                        )}
 
                     </nav>
                 )}
-                <img className="israel-img" src={israelImg} />
+                <img className="israel-img" src={user ? user.imgUrl : israelImg} />
 
             </div>
 
@@ -149,7 +187,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
             {isPaymentRoute ? '' : <WhereFilter filterBy={filterBy} onSetFilter={onSetFilter} />}
 
         </div>
-
+        {isModalOpen && <LoginSignup onClose={toggleModal} />}
     </header>
 
 

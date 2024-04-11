@@ -1,0 +1,58 @@
+.login-page,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: em(300px);
+    margin: auto;
+    padding: 1rem;
+}
+
+.login-form input,
+.login-form button {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid $clr7;
+    font-size: 1rem;
+}
+
+.login-form button {
+    background-color: $clr3;
+    color: wheat;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $clr4;
+    }
+}
+
+.btns a {
+    color: $clr3;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $light-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+
+}
+
+.login-signup-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px $light-gray;
+    z-index: 1001;
+    width: 90%;
+    max-width: 400px;
+}
