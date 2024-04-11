@@ -40,7 +40,8 @@ export async function orderInProgress(orderInProgress) {
 export async function updateOrder(order) {
   try {
     const updatedOrder = await orderService.saveOrder(order)
-    store.dispatch({ type: UPDATE_ORDER, updatedOrder })
+    store.dispatch({ type: UPDATE_ORDER, order: updatedOrder })
+    return updatedOrder
   } catch (err) {
     console.log('orderActions: err in addorder', err)
     throw err

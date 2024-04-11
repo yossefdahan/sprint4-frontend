@@ -33,8 +33,8 @@ export function DashBoard() {
             setOrderUpdateTrigger(!orderUpdateTrigger)
             showSuccessMsg(`order updated : ${savedOrder.status}`)
         } catch (err) {
-            setOrderUpdateTrigger(!orderUpdateTrigger)
-            showErrorMsg('Cannot Aprove order')
+            //setOrderUpdateTrigger(!orderUpdateTrigger)
+            showErrorMsg('Cannot update order')
         }
     }
     async function onRejectOrder(order) {
@@ -46,7 +46,7 @@ export function DashBoard() {
 
 
         } catch (err) {
-            setOrderUpdateTrigger(!orderUpdateTrigger)
+            //setOrderUpdateTrigger(!orderUpdateTrigger)
             showErrorMsg('Cannot update order')
         }
     }

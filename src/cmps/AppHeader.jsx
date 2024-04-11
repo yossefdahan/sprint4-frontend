@@ -36,7 +36,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
             ...filterBy,
             checkIn: filterBy.checkIn ? filterBy.checkIn.getTime() : '',
             checkOut: filterBy.checkOut ? filterBy.checkOut.getTime() : ''
-        })
+        }, {replace: true})
+        
         loadStays(filterBy)
     }, [filterBy])
 
