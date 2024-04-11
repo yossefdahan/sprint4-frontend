@@ -70,7 +70,7 @@ export function FinalPayment() {
             const stay = await stayService.getById(stayId)
             setStay(stay)
         } catch (err) {
-            showErrorMsg('Cant load ')
+            // showErrorMsg('Cant load ')
             navigate('/')
         }
     }

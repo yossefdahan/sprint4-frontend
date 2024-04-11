@@ -32,7 +32,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
         infants: filterBy.infants || 0,
         pets: filterBy.pets || 0
     })
-    
+
     useEffect(() => {
         handleChange();
     }, [guestCounts])
@@ -142,7 +142,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
             setOrder(orderService.emptyOrder())
             // setOrder(savedOrder)
 
-            showSuccessMsg('order saved!')
+            // showSuccessMsg('order saved!')
             navigate(`/payment/${stay._id}`)
         } catch (err) {
             console.log('err cant save order', err)

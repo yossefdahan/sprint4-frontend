@@ -34,13 +34,13 @@ export function StayDetails() {
     const imgHeader = useRef()
     const [showHeader, setShowHeader] = useState(true)
     const [showReserveHeader, setShowReserveHeader] = useState(true)
-    
+
     useEffect(() => {
         setSearchParams({
             ...currentFilter,
-            checkIn: currentFilter.checkIn ? currentFilter.checkIn.getTime(): '',
-            checkOut: currentFilter.checkOut ? currentFilter.checkOut.getTime(): ''
-        }, {replace: true})
+            checkIn: currentFilter.checkIn ? currentFilter.checkIn.getTime() : '',
+            checkOut: currentFilter.checkOut ? currentFilter.checkOut.getTime() : ''
+        }, { replace: true })
         loadStay()
     }, [stayId, currentFilter])
 
@@ -93,7 +93,7 @@ export function StayDetails() {
             const stay = await stayService.getById(stayId)
             setStay(stay)
         } catch (err) {
-            showErrorMsg('Cant load ')
+            // showErrorMsg('Cant load ')
             navigate('/')
         }
     }
