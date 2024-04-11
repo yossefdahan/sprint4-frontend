@@ -54,9 +54,9 @@ export function DashBoard() {
             <section>
                 <h1></h1>
             </section>
-            <div className="trips-container">
+            <div className="dashboard-container">
 
-                <h1>DashBoard</h1>
+                {/* <h1>DashBoard</h1> */}
                 <table>
                     <thead>
                         <tr>

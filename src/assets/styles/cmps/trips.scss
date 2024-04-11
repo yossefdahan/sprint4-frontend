@@ -23,6 +23,10 @@
   }
 
   .status {
+    width: 250px;
+    font-size: 22px;
+    text-align: center;
+    padding: 10px;
     &.pending {
       color: rgb(116, 103, 1, 0.55);
     }
@@ -49,7 +53,7 @@
     }
   }
 
-  .trips-container {
+  .dashboard-container {
     table {
       width: 100%;
       border-collapse: collapse;
@@ -112,6 +116,107 @@
     &:focus {
       outline: none;
       box-shadow: none;
+    }
+  }
+}
+
+//test //
+
+.trips-page {
+  font-family: Montserrat;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+
+  .navigation-links {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 20px;
+
+    a {
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #767676;
+
+      &.active {
+        color: #ff5a5f;
+        border-bottom: 4px solid #ff5a5f;
+      }
+    }
+  }
+
+  .trips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 20px;
+  }
+
+  .trip-card {
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    height: 300px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    padding: 24px 24px 20px 24px;
+
+    & .card-trips-footer {
+      border-top: 1px solid $main-red;
+      padding: 20px 0 20px 0;
+
+      & .price-trips-card {
+        font-size: 1.375em;
+      }
+
+      & span {
+        font-size: 22px;
+      }
+    }
+
+    & .stay-name-trips-card {
+      color: $main-red;
+      padding: 10px;
+      border-bottom: 1px solid $light-gray;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    strong {
+      color: #333;
+    }
+
+    .details-section-trips {
+      & p {
+        padding: 5px 0 5px 0;
+        line-height: 1.5;
+        color: #666;
+      }
+    }
+
+    .status {
+      display: inline-block;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #fff;
+      width: 250px;
+      font-size: 22px;
+      text-align: center;
+
+      &.pending {
+        background-color: #ffc107; // Amber for pending orders
+      }
+
+      &.approved {
+        background-color: #28a745; // Green for confirmed orders
+      }
+
+      &.cancelled {
+        background-color: #dc3545; // Red for cancelled orders
+      }
     }
   }
 }
