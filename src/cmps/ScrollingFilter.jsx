@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../assets/styles/cmps/carusel.scss";
 import { Navigation, Pagination } from 'swiper';
-import { stayService } from '../services/stay.service.local';
+import { stayService } from '../services/stay.service';
 import { setFilterBy } from '../store/stay.actions';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';

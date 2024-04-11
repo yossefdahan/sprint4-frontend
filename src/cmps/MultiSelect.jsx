@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 
 export function MultiSelect({ onSetLabel, stay }) {
 
     const [isOptionsModalOpen, setIsOptionsModalOpen] = useState(false)
-    const labels = stayService.getLabels().slice(0,6)
+    const labels = stayService.getLabels().slice(0, 6)
 
 
     return <section className="multi-select input" onMouseLeave={() => setIsOptionsModalOpen(false)}>

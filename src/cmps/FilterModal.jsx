@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { stayService } from "../services/stay.service.local";
+import { stayService } from "../services/stay.service";
 
 
 

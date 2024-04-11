@@ -7,7 +7,7 @@ import israelImg from '../assets/Img/israel.jpg'
 import { WhereFilter } from './WhereFilter.jsx'
 import { loadStays, setFilterBy } from '../store/stay.actions'
 // import { SearchFilter } from './SearchFilter.jsx'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { MinFilter } from './MinFilter.jsx'
 
 
@@ -36,8 +36,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
             ...filterBy,
             checkIn: filterBy.checkIn ? filterBy.checkIn.getTime() : '',
             checkOut: filterBy.checkOut ? filterBy.checkOut.getTime() : ''
-        }, {replace: true})
-        
+        }, { replace: true })
+
         loadStays(filterBy)
     }, [filterBy])
 

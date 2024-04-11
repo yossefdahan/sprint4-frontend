@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { userService } from '../services/user.service.js'
 import { setFilterBy } from '../store/stay.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { MainDetails } from '../cmps/MainDetails.jsx'
 import { GoogleMap } from '../cmps/GoogleMap.jsx'
 import { Reviews } from '../cmps/Reviews.jsx'
@@ -34,13 +34,13 @@ export function StayDetails() {
     const imgHeader = useRef()
     const [showHeader, setShowHeader] = useState(true)
     const [showReserveHeader, setShowReserveHeader] = useState(true)
-    
+
     useEffect(() => {
         setSearchParams({
             ...currentFilter,
-            checkIn: currentFilter.checkIn ? currentFilter.checkIn.getTime(): '',
-            checkOut: currentFilter.checkOut ? currentFilter.checkOut.getTime(): ''
-        }, {replace: true})
+            checkIn: currentFilter.checkIn ? currentFilter.checkIn.getTime() : '',
+            checkOut: currentFilter.checkOut ? currentFilter.checkOut.getTime() : ''
+        }, { replace: true })
         loadStay()
     }, [stayId, currentFilter])
 

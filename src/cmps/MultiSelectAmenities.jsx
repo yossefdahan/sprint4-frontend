@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 

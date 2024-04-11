@@ -23,7 +23,7 @@ export function Reviews({ stay, reviews }) {
     const { stars, averageRating } = utilService.getStarsWithRating(stay)
     return (
         <div className="review-container">
-            {stay.reviews.length > 2 && averageRating > 4.5 && (<section className='guest-lover '>
+            {stay.reviews.length > 2 && averageRating > 4.2 && (<section className='guest-lover '>
                 <div className='big-review-img'> <img src="/img/reviews.png" alt="" /></div>
                 <div>
                     <div><h2>Guest favorite</h2></div>
