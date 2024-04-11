@@ -3,6 +3,7 @@ import { userService } from '../services/user.service'
 import { ImgUploader } from './ImgUploader'
 import { LoginForm } from './LoginForm'
 import { login, signup } from '../store/user.actions'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function LoginSignup({ onClose }) {
     // const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })

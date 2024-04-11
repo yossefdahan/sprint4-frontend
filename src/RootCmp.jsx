@@ -11,6 +11,7 @@ import { StayIndex } from './pages/StayIndex.jsx'
 import { Trips } from './pages/Trips.jsx'
 import { DashBoard } from './pages/DashBoard.jsx'
 import { AddStay } from './pages/AddStay.jsx'
+import { UserMsg } from './cmps/UserMsg.jsx'
 
 export function RootCmp() {
 
@@ -50,6 +51,7 @@ export function RootCmp() {
                     <Route path='/user/dashboard' element={<DashBoard />} />
                 </Routes>
             </>
+            <UserMsg />
         </div >
     )
 }
