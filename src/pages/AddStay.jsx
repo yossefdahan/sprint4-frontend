@@ -89,14 +89,18 @@ export function AddStay() {
 
             <form onSubmit={onSaveStay}>
                 <div className="addStay flex column">
-                    <label htmlFor="name">name of your stay: </label>
+                    <label htmlFor="name">Name of your stay: </label>
                     <input className="input" type="text" name="name" id="name" placeholder="Enter name..." value={stay.name} onChange={handleChange} />
                     <label htmlFor="summary">Summary: </label>
                     <textarea className="input" type="text" name="summary" id="summary" placeholder="Enter summary..." value={stay.summary} onChange={handleChange} />
                     <label htmlFor="price">Price : </label>
                     <input className="input" type="number" name="price" id="price" placeholder="Enter price" value={stay.price} onChange={handleChange} />
-                    <label htmlFor="capacity">capacity : </label>
+                    <label htmlFor="capacity">Capacity : </label>
                     <input className="input" type="number" name="capacity" id="capacity" placeholder="Enter capacity" value={stay.capacity} onChange={handleChange} />
+                    <label htmlFor="bedrooms">Bedrooms : </label>
+                    <input className="input" type="number" name="bedrooms" id="bedrooms" placeholder="Enter bedrooms" value={stay.bedrooms} onChange={handleChange} />
+                    <label htmlFor="bathrooms">Bathrooms : </label>
+                    <input className="input" type="number" name="bathrooms" id="bathrooms" placeholder="Enter bathrooms" value={stay.bathrooms} onChange={handleChange} />
 
                     <div>
                         <MultiSelect onSetLabel={onSetLabel} stay={stay} />
@@ -111,15 +115,26 @@ export function AddStay() {
                         <input className="input" type="text" name="city" id="city" placeholder="Enter city..." value={stay.loc.city} onChange={handleLocChange} />
                         <label htmlFor="country">Country: </label>
                         <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleLocChange} />
+                        <label htmlFor="region">Region:</label>
+                        <select name="region" id="region" value={stay.region} onChange={handleChange} className="input">
+                            <option value="">Select Region</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Europe">Europe</option>
+                            <option value="United States">United States</option>
+                            <option value="Greece">Greece</option>
+                            <option value="South America">South America</option>
+                        </select>
                     </div>
                     <div className="radio-sort input">
                         <label htmlFor="type"> Type of the Airstay</label>
-                        <select value={stay.type} onChange={handleChange} name="type">
+                        <select value={stay.roomType} onChange={handleChange} name="type">
                             <option value="house">House</option>
                             <option value="studio">Studio</option>
                             <option value="room">Room</option>
                         </select>
+
                     </div>
+
                     <ImgUploader onUploaded={onUploaded} />
                     <div>
                         <button type="sumbmit">Add</button>

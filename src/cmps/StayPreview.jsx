@@ -7,8 +7,9 @@ import { StayGallery } from "./StayGallery"
 export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdateStay }) {
     const [isSaved, setIsSaved] = useState(false);
 
-    const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
-
+    const rate = stay.reviews && stay.reviews.length > 0
+        ? stay.reviews.reduce((acc, review) => acc + review.rate, 0) / stay.reviews.length
+        : 0
     const handleSave = (ev) => {
         ev.stopPropagation();
         setIsSaved(!isSaved);
