@@ -11,6 +11,7 @@ import { StayIndex } from './pages/StayIndex.jsx'
 import { Trips } from './pages/Trips.jsx'
 import { DashBoard } from './pages/DashBoard.jsx'
 import { AddStay } from './pages/AddStay.jsx'
+import { AddStayPreview } from './pages/AddStayPreview.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 
 export function RootCmp() {
@@ -46,6 +47,8 @@ export function RootCmp() {
                     <Route path='/stay/:stayId' element={<StayDetails />} />
                     <Route path='/payment/:stayId' element={<FinalPayment />} />
                     <Route path='/user/:userId' element={<UserDetails />} />
+
+                    <Route path='/AddStayPreview' element={<AddStayPreview />} />
                     <Route path='/user/addstay' element={<AddStay />} />
                     <Route path='/user/trips' element={<Trips />} />
                     <Route path='/user/dashboard' element={<DashBoard />} />

@@ -48,7 +48,7 @@ export function ScrollingFilter() {
       <Swiper
         // observer={true}
         // observeParents={true}
-        slidesPerView={20}
+        slidesPerView={26}
         spaceBetween={0}
         slidesPerGroup={14}
         // loopFillGroupWithBlank={false}
@@ -88,7 +88,7 @@ export function ScrollingFilter() {
             slidesPerGroup: 5,
           },
           1440: {
-            slidesPerView: 16,
+            slidesPerView: 20,
             slidesPerGroup: 6,
           }
         }}
