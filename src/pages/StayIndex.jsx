@@ -78,7 +78,7 @@ export function StayIndex() {
 
     }
 
-    if (!stays) return <div className='loader'></div>
+
 
     function shouldShowActionBtns(stay) {
         const user = userService.getLoggedinUser()
@@ -86,7 +86,7 @@ export function StayIndex() {
         if (user.isAdmin) return true
         return stay.host?._id === user._id
     }
-
+    if (!stays) return <div className='loader'></div>
     return (
         <>
             <ScrollingFilter stays={stays} />
