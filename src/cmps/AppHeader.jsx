@@ -180,8 +180,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
                             <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
                             <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
                             <div><hr /></div>
-                            <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
-                            <NavLink className=" nav-icon" to="/">Account</NavLink>
+                            <NavLink className=" nav-icon" to="/AddStayPreview">Airstay your home</NavLink>
+                            <NavLink className=" nav-icon" to="/user/dashboard">Dashboard</NavLink>
                             <NavLink className=" nav-icon" to="/">Help center</NavLink>
                             <button className='logout-btn' onClick={onLogout}>Logout</button>
 

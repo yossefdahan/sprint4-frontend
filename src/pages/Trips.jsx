@@ -24,6 +24,10 @@ export function Trips() {
                 <NavLink to="/user/trips" activeClassName="active">Trips</NavLink>
                 <NavLink to="/user/dashboard" activeClassName="active">Dashboard</NavLink>
             </div>
+
+            <div className="social-icons-container">
+                <SocialIconsTrips />
+            </div>
             <section>
                 <section>
                     <h1></h1>
@@ -65,9 +69,7 @@ export function Trips() {
                     ))}
                 </div>
             </div>
-            <div className="social-icons-container">
-                <SocialIconsTrips />
-            </div>
+
         </div>
     );
 }
