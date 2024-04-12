@@ -95,7 +95,7 @@ function getStarsWithRating(stay) {
 
     const totalRating = stay.reviews.reduce((acc, review) => acc + review.rate, 0);
     // Calculate the average and round to 3 decimal places, then convert back to number
-    const averageRating = Number((totalRating / stay.reviews.length).toFixed(3));
+    const averageRating = Number((totalRating / stay.reviews.length).toFixed(2));
     let stars = '';
 
     for (let i = 1; i <= Math.floor(averageRating); i++) {
