@@ -12,8 +12,8 @@ export function GoogleMapList({ stays }) {
     const [selectedStay, setSelectedStay] = useState(null)
 
     const zoom = 1
-    const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
-    console.log(modalPosition.left);
+    const [modalPosition, setModalPosition] = useState({ top: 1, left: 1 })
+
     const AnyReactComponent = ({ stay, onOpenModal }) => (
 
 
@@ -21,13 +21,13 @@ export function GoogleMapList({ stays }) {
             <div className="price-bubble" style={{ backgroundColor: selectedStay && selectedStay._id === stay._id ? 'black' : '#FF5A5F' }}>$ {stay.price}</div>
         </div>
     )
-    const handleStayClick = (event, stay) => {
-        const buttonElement = event.currentTarget
-        const buttonPosition = buttonElement.getBoundingClientRect()
-        setModalPosition({ top: buttonPosition.top + 15, left: buttonPosition.left })
-        setSelectedStay(stay)
+    // const handleStayClick = (event, stay) => {
+    //     const buttonElement = event.currentTarget
+    //     const buttonPosition = buttonElement.getBoundingClientRect()
+    //     setModalPosition({ top: buttonPosition.top + 15, left: buttonPosition.left })
+    //     setSelectedStay(stay)
 
-    }
+    // }
 
     function getRate(selectedStay) {
         if (!selectedStay) return
@@ -72,8 +72,12 @@ export function GoogleMapList({ stays }) {
                         content={
                             <Link to={`/stay/${selectedStay._id}`} style={{ textDecoration: "none", color: "black" }}>  <div>
                                 <img src={selectedStay.imgUrls[0]} alt={selectedStay.name} />
-                                <h3>{selectedStay.name} <span>{'★'} {getRate(selectedStay) / selectedStay.reviews.length}</span></h3>
-                                <p><span className="price-tag">$ {selectedStay.price}</span> <span className="night-tag">night</span></p>
+                                <h3>{selectedStay.name}</h3>
+                                <p> <span>
+                                    {!getRate(selectedStay) ? "Not rated yet" : `  ★ ${(getRate(selectedStay) / selectedStay.reviews.length).toFixed(2)}`}
+                                </span></p>
+                                <p><span className="price-tag">$ {selectedStay.price}</span> <span className="night-tag">night   </span>
+                                </p>
                             </div></Link>
                         }
                     />

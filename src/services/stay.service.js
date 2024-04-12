@@ -17,16 +17,24 @@ export const stayService = {
     getLabels,
     getAmenities,
     getFilterFromParams,
-    getCountries,
+    // getCountries,
     getLatLngFromAddress
 }
 window.cs = stayService
 
 
 async function query(filterBy) {
-    console.log(filterBy);
+
     return httpService.get(BASE_URL, { params: { filterBy } })
 }
+
+
+// async function getCountries(stays) {
+
+//     const countries = stays.map((stay) => stay.loc.country)
+//     const uniqueCountries = [...new Set(countries)]
+//     return uniqueCountries
+// }
 
 function getById(stayId) {
     return httpService.get(`stay/${stayId}`)
@@ -36,7 +44,7 @@ async function remove(stayId) {
     return httpService.delete(`stay/${stayId}`)
 }
 async function save(stay) {
-    console.log(stay);
+
     var savedStay
     if (stay._id) {
         savedStay = await httpService.put(`stay/${stay._id}`, stay)
@@ -163,12 +171,7 @@ function getFilterFromParams(searchParams = {}) {
     }
 }
 
-async function getCountries() {
-    const stays = await httpService.get(BASE_URL)
-    const countries = stays.map((stay) => stay.loc.country)
-    const uniqueCountries = [...new Set(countries)]
-    return uniqueCountries
-}
+
 
 async function getLatLngFromAddress(address) {
     const apiKey = "YOUR_API_KEY_HERE"
