@@ -11,10 +11,10 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
         ev.stopPropagation();
         setIsSaved(!isSaved);
     };
-    
+
     const correctedLng = ((394.891562 % 360) + 360) % 360
     const myLoc = { lat: 31.829550, lng: correctedLng }
-    if(!stay)return <div className='loading'>loading....</div>
+    if (!stay) return <div className='loading'>loading....</div>
     const distanceInKm = utilService.haversineDistance(myLoc, stay.loc)
     const { checkOut, checkIn } = utilService.formatStayDateRange(stay)
     const { stars, averageRating } = utilService.getStarsWithRating(stay)
