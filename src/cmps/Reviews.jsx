@@ -19,8 +19,8 @@ export function Reviews({ stay, reviews }) {
         }
     }
 
-
     const { stars, averageRating } = utilService.getStarsWithRating(stay)
+    // if (!reviews.length) return <div>Not have reviews yes</div>
     return (
         <div className="review-container">
             {stay.reviews.length > 2 && averageRating > 4.2 && (<section className='guest-lover '>
@@ -31,7 +31,7 @@ export function Reviews({ stay, reviews }) {
                 </div>
             </section>)}
 
-            <div className='review-by flex'>
+            {!!reviews.length && <div className='review-by flex'>
                 {visibleReviews.map(rev => {
                     return (
                         <div className='review-by-user' key={rev.id}>
@@ -58,8 +58,10 @@ export function Reviews({ stay, reviews }) {
                         </div>
                     )
                 })}
-            </div >
+            </div >}
             {visibleReviews.length >= 5 && <button className="review-btn-details" onClick={handleShowMoreReviews}> {isExpanded ? 'Show less' : `Show all ${reviews.length} reviews`}</button>}
+
+
         </div >
     )
 

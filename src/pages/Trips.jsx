@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadOrders } from '../store/order.actions';
 import { NavLink } from 'react-router-dom';
 import { utilService } from '../services/util.service';
+import { SocialIconsTrips } from '../cmps/SocialIconsTrips'
 import israelImg from '../assets/Img/israel.jpg'
 
 
@@ -19,16 +20,6 @@ export function Trips() {
 
     return (
         <div className="trips-page">
-
-            {/* <iframe
-                src="https://chat.socialintents.com/c/chat-1712853373760"
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    minHeight: "300px",
-                    border: "0",
-                }}
-            ></iframe> */}
             <div className="navigation-links">
                 <NavLink to="/user/trips" activeClassName="active">Trips</NavLink>
                 <NavLink to="/user/dashboard" activeClassName="active">Dashboard</NavLink>
@@ -39,6 +30,7 @@ export function Trips() {
                 </section>
             </section>
             <div className='dashboard-container'>
+
                 <div className="trips-container ">
                     {orders.map((order) => (
                         <div key={order.buyer._id} className="trip-card ">
@@ -49,7 +41,6 @@ export function Trips() {
                                     <p className='host-name-trips'>Arik john</p>
                                 </div>
                             </div>
-                            {/* <p><strong className='full-name-trips-card'>Full Name:</strong> {order.buyer.fullname}</p> */}
                             <div className='details-section-trips flex space-between align-center'>
                                 <div >
                                     <p><strong className='start-date-trips-card' >Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
@@ -74,7 +65,9 @@ export function Trips() {
                     ))}
                 </div>
             </div>
-
+            <div className="social-icons-container">
+                <SocialIconsTrips />
+            </div>
         </div>
     );
 }

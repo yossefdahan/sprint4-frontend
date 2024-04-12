@@ -10,7 +10,7 @@ export function MultiSelect({ onSetLabel, stay }) {
 
 
     return <section className="multi-select input" onMouseLeave={() => setIsOptionsModalOpen(false)}>
-        <label >labels</label>
+        <label >Labels</label>
         <div className="selected-options-container" onClick={() => setIsOptionsModalOpen(prev => !prev)}>
 
             {!!stay.labels.length && stay.labels.map(label => <div key={label}>{label},</div>)}
