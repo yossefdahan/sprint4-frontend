@@ -30,7 +30,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
             <div className="little-details">
                 <h2 className="second-title-details">Entire rental Unit {stay.loc.country},{stay.loc.city}</h2>
                 <div className=" house-details flex">
-                    <span>{stay.capacity} guests</span> • <span>{stay.type}</span> • <span> 1 bedroom</span>•<span>1 bed</span>
+                    <span>{stay.capacity} guests</span> • <span>{stay.roomType}</span> • <span> {stay.bedrooms} bedrooms</span>•<span> {stay.bathrooms} bathrooms</span>
                 </div>
             </div>
 
@@ -49,13 +49,13 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                     </div>
                     <span>|</span>
                     <section className="review-usr"><span className="num-reviews">{stay.reviews.length} </span> <span className="reviews-span">Reviews</span> </section>
-                </div>) : <a>★ {stay.reviews.length < 2 ? `1 review` : `${stay.reviews.length} reviews`} </a>}
+                </div>) : <a>★ {stay.reviews.length < 1 ? `Not rated yet` : `${stay.reviews.length} reviews`} </a>}
 
                 <section className="host-details">
-                    <Avatar alt="Travis Howard" src={stay.host.imgUrl} />
+                    <Avatar alt="Travis Howard" src={stay.host.pictureUrl} />
                     <section className="host-short">
                         <h4 className="host-name-details">Hosted by {stay.host.fullname}</h4>
-                        <p>Superhost • 2 years hosting</p>
+                        <p>{stay.host.isSuperhost ? "Superhost" : ""} • 2 years hosting</p>
                     </section>
                 </section>
             </div>
@@ -87,7 +87,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
 
             {/* <MyDateRangePicker/> */}
             <div className="date-pick-details">
-                <h3 className="title-dates-details"> {utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut)} Nights in {stay.name}  </h3>
+                <h3 className="title-dates-details"> {!utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut) ? "" : utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut)} {!utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut) ? "Add dates" : "Nights in"} {stay.name}  </h3>
                 <DatePicker
                     selected={filterBy.checkIn}
                     onChange={(dates) => {
@@ -104,7 +104,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
 
                     monthsShown={2}
                     open={isOpen}
-
+                    minDate={new Date()}
                 />
             </div>
         </div >

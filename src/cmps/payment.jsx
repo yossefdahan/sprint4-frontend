@@ -278,7 +278,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                                 // onClick={() => setIsOpen(true)}
                                 onFocus={() => setIsOpen(true)}
                                 onBlur={() => setIsOpen(false)}
-
+                                minDate={new Date()}
                             />
                             <div className="datepicker-footer">
                                 <button className=" exact-date datepicker-range-button">Exact dates</button>

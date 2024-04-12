@@ -36,6 +36,7 @@ async function remove(stayId) {
     return httpService.delete(`stay/${stayId}`)
 }
 async function save(stay) {
+    console.log(stay);
     var savedStay
     if (stay._id) {
         savedStay = await httpService.put(`stay/${stay._id}`, stay)
@@ -55,12 +56,17 @@ async function addStayMsg(stayId, txt) {
 function getEmptyStay() {
     return {
         name: "" || "Ribeira Charming Duplex",
-        type: "" || "house",
+        roomType: "" || "house",
         imgUrls: [],
-        price: 0 || utilService.getRandomIntInclusive(200, 9000),
+        price: 0 || utilService.getRandomIntInclusive(200, 2000),
         summary: "" || utilService.makeLorem(2),
         capacity: 0 || utilService.getRandomIntInclusive(1, 10),
-
+        bedrooms: 0 || utilService.getRandomIntInclusive(1, 10),
+        bathrooms: 0 || utilService.getRandomIntInclusive(1, 10),
+        dates: {
+            checkIn: Date.now(),
+            checkOut: Date.now(),
+        },
         amenities: [] || [
             "TV",
             "Wifi",
@@ -68,19 +74,16 @@ function getEmptyStay() {
             "Washer",
             "Hot tub",
             "Gym",
-            "Free parking",
-            "Pool table",
-            "Heating",
-            "Air conditioning",
         ],
 
-        labels: [] || ["Top of the world", "Trending", "Play", "Tropical"],
+        labels: [] || ["Play"],
         host: {
             _id: "",
             fullname: "",
             imgUrl: "",
         },
         loc: {
+            region: "",
             country: "",
             countryCode: "",
             city: "",
@@ -109,7 +112,7 @@ function getDefaultFilter() {
             lng: 0,
             region: '',
         },
-        available_dates: {
+        dates: {
             checkIn: 0,
             checkOut: 0,
         },
@@ -124,8 +127,6 @@ function getDefaultFilter() {
         children: 0,
         infants: 0,
         pets: 0,
-
-        amenities: "",
         roomType: "",
         capacity: 0,
         price: 0,
