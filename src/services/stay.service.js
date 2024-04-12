@@ -137,7 +137,8 @@ function getDefaultFilter() {
         pets: 0,
         roomType: "",
         capacity: 0,
-        price: 0,
+        minPrice: '',
+        maxPrice: '',
     }
 }
 
@@ -165,7 +166,8 @@ function getFilterFromParams(searchParams = {}) {
         labels: searchParams.get("labels") || defaultFilter.labels,
         amenities: searchParams.get("amenities") || defaultFilter.amenities,
         roomType: searchParams.get("roomType") || defaultFilter.roomType,
-        price: searchParams.get("price") || defaultFilter.price,
+        minPrice: searchParams.get("minPrice") || defaultFilter.minPrice,
+        maxPrice: searchParams.get("maxPrice") || defaultFilter.maxPrice,
         city: searchParams.get('city') || defaultFilter.city,
         // dates: searchParams.get('dates') || defaultFilter.dates
     }

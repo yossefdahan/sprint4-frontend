@@ -8,7 +8,9 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
         bedrooms: 'Any',
         beds: 'Any',
         bathrooms: 'Any',
-        amenities: []
+        amenities: [],
+        minPrice: '',
+        maxPrice: '',
     });
 
     function handleSubmit(ev) {
@@ -18,6 +20,13 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
             ...localFilter
         });
         setIsOpen(false)
+    }
+
+    function handlePriceChange(priceType, value) {
+        setLocalFilter(prevState => ({
+            ...prevState,
+            [priceType]: value
+        }))
     }
 
     function handleAmenityChange(e) {
@@ -64,6 +73,27 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                                 ))}
                             </div>
                         </div>
+
+                        <div className="filter-modal__options-row">
+                            <h4 className="filter-modal__options-title">Price Range</h4>
+                            <div className="price-range-inputs">
+                                <input
+                                    type="number"
+                                    placeholder="Min Price ($)"
+                                    value={localFilter.minPrice}
+                                    onChange={(e) => handlePriceChange('minPrice', e.target.value)}
+                                    className="modal__input"
+                                />
+                                <input
+                                    type="number"
+                                    placeholder="Max Price ($)"
+                                    value={localFilter.maxPrice}
+                                    onChange={(e) => handlePriceChange('maxPrice', e.target.value)}
+                                    className="modal__input"
+                                />
+                            </div>
+                        </div>
+
                         <div className="roomsbed">
                             <h3 className="filter-modal__section-title">Rooms and beds</h3>
                             <div className="filter-modal__options">
