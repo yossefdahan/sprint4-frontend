@@ -1,43 +1,47 @@
-
 import { useEffect, useState } from "react";
 import { stayService } from "../services/stay.service";
 
-
-
 export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
-    const [type, setType] = useState('Any type')
-    const [priceRange, setPriceRange] = useState({ min: 40, max: 930 });
-    const [bedrooms, setBedrooms] = useState('Any');
-    const [beds, setBeds] = useState('Any');
-    const [bathrooms, setBathrooms] = useState('Any');
-    const [selectedAmenities, setSelectedAmenities] = useState([]);
+
+    const [localFilter, setLocalFilter] = useState({
+        roomType: 'Any type',
+        bedrooms: 'Any',
+        beds: 'Any',
+        bathrooms: 'Any',
+        amenities: []
+    });
 
     function handleSubmit(ev) {
         ev.preventDefault();
-        const filter = {
+        onSetFilter({
             ...filterBy,
-            type,
-            bedrooms,
-            beds,
-            bathrooms,
-            amenities: selectedAmenities,
-        }
+            ...localFilter
+        });
         setIsOpen(false)
-        onSetFilter(filter);
     }
 
     function handleAmenityChange(e) {
         const value = e.target.value;
-        setSelectedAmenities(
-            e.target.checked
-                ? [...selectedAmenities, value]
-                : selectedAmenities.filter((amenity) => amenity !== value)
-        )
+        const updatedAmenities = e.target.checked
+            ? [...localFilter.amenities, value]
+            : localFilter.amenities.filter((amenity) => amenity !== value)
+
+        setLocalFilter(prevState => ({
+            ...prevState,
+            amenities: updatedAmenities
+        }))
     }
 
+    function handleChange(filterName, value) {
+        setLocalFilter(prevState => ({
+            ...prevState,
+            [filterName]: value
+        }))
+    }
 
     const amenities = stayService.getAmenities()
-    const amenitiesPreview = amenities.slice(0, 6)
+    const amenitiesPreview = amenities.slice(0, 6);
+
     return (
         <div className="filter-modal">
             <form onSubmit={handleSubmit}>
@@ -53,24 +57,21 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                         <p>Search rooms, entire homes, or any type of place</p>
                         <div className="type-bnb">
                             <div className="bnb-op">
-                                {['Any type', 'Room', 'Entire home'].map((t) => (
-                                    <button key={t} type="button" onClick={() => setType(t)} className={`modal__button ${t === type ? 'filter-modal__button--active' : ''}`}>
-                                        {t}
+                                {['Any type', 'Private room', 'Entire home/apt'].map((t) => (
+                                    <button key={t} type="button" onClick={() => handleChange('roomType', t)} className={`modal__button ${localFilter.roomType === t ? 'filter-modal__button--active' : ''}`}>
+                                        {t === 'Entire home/apt' ? 'Entire home' : t === 'Private room' ? 'Room' : t === 'Any type' ? 'Any type' : ''}
                                     </button>
                                 ))}
                             </div>
                         </div>
-
-
-                        <div className=" roomsbed">
+                        <div className="roomsbed">
                             <h3 className="filter-modal__section-title">Rooms and beds</h3>
-
                             <div className="filter-modal__options">
                                 <div className="filter-modal__options-row">
                                     <h4 className="filter-modal__options-title">Bedrooms</h4>
                                     <div className="btn_choose">
-                                        {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number, index) => (
-                                            <button key={index} onClick={() => setBedrooms(number)} className={`modal__button ${number === '2' ? 'filter-modal__button--active' : ''}`}>
+                                        {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number) => (
+                                            <button key={number} onClick={() => handleChange('bedrooms', number)} className={`modal__button ${localFilter.bedrooms === number ? 'filter-modal__button--active' : ''}`}>
                                                 {number}
                                             </button>
                                         ))}
@@ -79,8 +80,8 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                                 <div className="filter-modal__options-row">
                                     <h4 className="filter-modal__options-title">Beds</h4>
                                     <div className="btn_choose">
-                                        {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number, index) => (
-                                            <button key={index} onClick={() => setBeds(number)} className={`modal__button ${number === 'Any' ? 'filter-modal__button--active' : ''}`}>
+                                        {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number) => (
+                                            <button key={number} onClick={() => handleChange('beds', number)} className={`modal__button ${localFilter.beds === number ? 'filter-modal__button--active' : ''}`}>
                                                 {number}
                                             </button>
                                         ))}
@@ -89,22 +90,13 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                                 <div className="filter-modal__options-row">
                                     <h4 className="filter-modal__options-title">Bathrooms</h4>
                                     <div className="btn_choose">
-                                        {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number, index) => (
-                                            <button key={index} onClick={() => setBathrooms(number)} className={`modal__button ${number === 'Any' ? 'filter-modal__button--active' : ''}`}>
+                                        {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number) => (
+                                            <button key={number} onClick={() => handleChange('bathrooms', number)} className={`modal__button ${localFilter.bathrooms === number ? 'filter-modal__button--active' : ''}`}>
                                                 {number}
                                             </button>
                                         ))}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="propety-type">
-                            <h3 className="filter-modal__section-title">Property type</h3>
-                            <div className="propety-options">
-                                <div className="pro house">House</div>
-                                <div className="pro Aprt">Apartment</div>
-                                <div className="pro Guest">Guesthouse</div>
-                                <div className="pro hotel">Hotel</div>
                             </div>
                         </div>
                         <div className="amenties-filter">
@@ -113,8 +105,8 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                                 <h4 className="filter-modal__section-title">Essentials</h4>
                                 <div className="amenties-options flex column">
                                     {amenitiesPreview.map((a, idx) =>
-                                        <label key={idx} >
-                                            <input type="checkbox" name={a} value={a} onChange={handleAmenityChange} />
+                                        <label key={idx}>
+                                            <input type="checkbox" name={a} value={a} onChange={handleAmenityChange} checked={localFilter.amenities.includes(a)} />
                                             {a}
                                         </label>
                                     )}
@@ -126,7 +118,6 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div className="filter-modal-footer flex">
                         <button type="reset" className="show-btn-clear" >clear all</button>
@@ -135,5 +126,5 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                 </div>
             </form>
         </div>
-    )
+    );
 }

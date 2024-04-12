@@ -4,11 +4,11 @@ import { userService } from "./user.service"
 import { utilService } from "./util.service"
 const STORAGE_KEY_ORDER_PROCCES = "orderInProcess"
 const STORAGE_KEY = "orders"
-const BASE_URL = 'order/'
 
-// createOrders()
+createOrders()
 
 export const orderService = {
+  add,
   query,
   remove,
   emptyOrder,
@@ -19,8 +19,8 @@ export const orderService = {
 
 async function query() {
   // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
-  return httpService.get(BASE_URL)
-  // return storageService.query(STORAGE_KEY)
+  // return httpService.get(`review${queryStr}`)
+  return storageService.query(STORAGE_KEY)
 }
 
 function emptyOrder() {
@@ -50,17 +50,17 @@ function emptyOrder() {
 async function saveOrder(order) {
   var savedOrder
   if (order._id) {
-    savedOrder = await httpService.put(`order/${order._id}`, order)
+    savedOrder = await storageService.put(STORAGE_KEY, order)
   } else {
     order.createdAt = Date.now()
-    savedOrder = await httpService.post(`order`, order)
+    savedOrder = await storageService.post(STORAGE_KEY, order)
   }
   return savedOrder
 }
 
 async function remove(reviewId) {
-  await httpService.delete(`order/${reviewId}`)
-  // await storageService.remove("review", reviewId)
+  // await httpService.delete(`review/${reviewId}`)
+  await storageService.remove("review", reviewId)
 }
 
 // async function add({ txt, aboutUserId }) {
@@ -84,10 +84,10 @@ async function remove(reviewId) {
 //     return addedReview
 // }
 
-// async function add(order) {
-//   order.createdAt = Date.now()
-//   await storageService.post(STORAGE_KEY, order)
-// }
+async function add(order) {
+  order.createdAt = Date.now()
+  await storageService.post(STORAGE_KEY, order)
+}
 // async function OrderInProggres(order) {
 //     order._id = utilService.makeId(5)
 //     return saveLocalOrder(order)
