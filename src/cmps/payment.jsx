@@ -13,7 +13,7 @@ import { orderInProgress } from "../store/order.actions.js"
 import { utilService } from "../services/util.service.js"
 import { setFilterBy } from "../store/stay.actions.js"
 
-export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setShowReserveHeader }) {
+export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setShowReserveHeader, triggerReservation, setTriggerReservation, setTriggerCalender, triggerCalender }) {
     const reserveHeader = useRef()
     const navigate = useNavigate()
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -22,7 +22,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
-
+    const paymentScroll = useRef(null)
 
     const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
@@ -32,6 +32,52 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
         infants: filterBy.infants || 0,
         pets: filterBy.pets || 0
     })
+
+    useEffect(() => {
+        if (triggerReservation) {
+            sendToFinalOrderFromFather()
+            setTriggerReservation(false)
+        }
+    }, [triggerReservation, setTriggerReservation])
+
+    useEffect(() => {
+        if (triggerCalender) {
+            openCalenderModalFromFather()
+            setTriggerCalender(false)
+        }
+    }, [triggerCalender, setTriggerCalender])
+
+    function openCalenderModalFromFather() {
+        if (paymentScroll.current) {
+            paymentScroll.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            setIsOpen(true)
+        }
+
+    }
+
+
+    async function sendToFinalOrderFromFather() {
+        const totalPrice = calculateTotalPrice()
+        // order.hostId = stay.host.id
+        // order.status = 'pending'
+        // order.stay = { _id: stay._id, name: stay.name, price: stay.price }
+        const finalOrder = {
+            ...order,
+            totalPrice,
+        }
+
+        try {
+            await orderInProgress(finalOrder)
+            setSend(!isSend)
+            setOrder(orderService.emptyOrder())
+            // setOrder(savedOrder)
+
+            // showSuccessMsg('order saved!')
+            navigate(`/payment/${stay._id}`)
+        } catch (err) {
+            console.log('err cant save order', err)
+        }
+    }
 
     useEffect(() => {
         handleChange();
@@ -224,11 +270,11 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
     }, []);
 
     return (
-        <div className='line-payment-details' >
+        <div className='line-payment-details' ref={paymentScroll}>
             < section className="payment-modal" ref={reserveHeader}>
                 {(filterBy.checkOut - filterBy.checkIn) >= 1 ? <h1>  $ {stay.price}<span> night</span></h1> : <h1>Add dates for prices</h1>}
 
-                <div className="payment-date-picker">
+                <div className="payment-date-picker" >
                     <div>
                         <div className="in" onClick={() => {
                             setShowGuestDropdown(false)
