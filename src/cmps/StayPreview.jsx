@@ -7,19 +7,19 @@ import { StayGallery } from "./StayGallery"
 export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdateStay }) {
     const [isSaved, setIsSaved] = useState(false);
 
-    const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
-
+    
     const handleSave = (ev) => {
         ev.stopPropagation();
         setIsSaved(!isSaved);
     };
-
+    
     const correctedLng = ((394.891562 % 360) + 360) % 360
     const myLoc = { lat: 31.829550, lng: correctedLng }
-
+    if(!stay)return <div>loading....</div>
     const distanceInKm = utilService.haversineDistance(myLoc, stay.loc)
     const { checkOut, checkIn } = utilService.formatStayDateRange(stay)
     const { stars, averageRating } = utilService.getStarsWithRating(stay)
+    const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     return (
         <section className='stay-card' >
             <div className="stay-preview" >
