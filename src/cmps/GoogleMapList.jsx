@@ -13,6 +13,7 @@ export function GoogleMapList({ stays }) {
 
     const zoom = 1
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+    console.log(modalPosition.left);
     const AnyReactComponent = ({ stay, onOpenModal }) => (
 
 
@@ -36,7 +37,7 @@ export function GoogleMapList({ stays }) {
         }
 
     }
-
+    if (!stays) return <div>Loading map</div>
     return (
         <div className="full" style={{ margin: 'auto' }}>
 
@@ -47,7 +48,8 @@ export function GoogleMapList({ stays }) {
                     defaultZoom={zoom}
                 >
                     {stays.map(stay => (
-                        <AnyReactComponent
+
+                        < AnyReactComponent
                             key={stay._id}
                             lat={stay.loc.lat}
                             lng={stay.loc.lng}

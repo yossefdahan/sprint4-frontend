@@ -40,8 +40,8 @@ async function getLatLngFromAddress(address) {
     const data = await response.json()
 
     if (data.status === "OK" && data.results && data.results.length > 0) {
-      const { lat, lan } = data.results[0].geometry.location
-      return { lat, lan }
+      const { lat, lng } = data.results[0].geometry.location
+      return { lat, lng }
     } else {
       throw new Error(
         data.status === "ZERO_RESULTS" ? "Address not found" : "Error fetching coordinates"
@@ -226,9 +226,10 @@ function getDefaultFilter() {
       city: "",
       address: "",
       lat: 0,
-      lan: 0,
+      lng: 0,
+      region: '',
     },
-    dates: {
+    available_dates: {
       checkIn: 0,
       checkOut: 0,
     },
@@ -244,13 +245,10 @@ function getDefaultFilter() {
     infants: 0,
     pets: 0,
 
-    // amenities: [],
-    type: "",
+    amenities: "",
+    roomType: "",
     capacity: 0,
-    // priceRange: {
-    //   minPrice: '',
-    //   maxPrice: '',
-    // },
+    price: 0,
   }
 }
 
@@ -263,8 +261,10 @@ function getFilterFromParams(searchParams = {}) {
   const infants = parseInt(searchParams.get('infants'))
   const pets = parseInt(searchParams.get('pets'))
 
+
   return {
     country: searchParams.get("country") || defaultFilter.country,
+    region: searchParams.get("region") || defaultFilter.region,
     checkIn: checkIn ? new Date(checkIn) : defaultFilter.checkIn,
     checkOut: checkOut ? new Date(checkOut) : defaultFilter.checkOut,
     bedrooms: searchParams.get("bedrooms") || defaultFilter.bedrooms,
@@ -273,10 +273,10 @@ function getFilterFromParams(searchParams = {}) {
     children: children ? children : defaultFilter.children,
     infants: infants ? infants : defaultFilter.infants,
     pets: pets ? searchParams.get('pets') : defaultFilter.pets,
-    // loc: searchParams.get("loc") || defaultFilter.loc,
+    labels: searchParams.get("labels") || defaultFilter.labels,
     amenities: searchParams.get("amenities") || defaultFilter.amenities,
-    type: searchParams.get("type") || defaultFilter.type,
-    // priceRange: searchParams.get("priceRange") || defaultFilter.priceRange,
+    roomType: searchParams.get("roomType") || defaultFilter.roomType,
+    price: searchParams.get("price") || defaultFilter.price,
     // guests: searchParams.get('guests') || defaultFilter.guests,
     // dates: searchParams.get('dates') || defaultFilter.dates
   }
@@ -317,7 +317,7 @@ function getEmptyStay() {
       city: "",
       address: "",
       lat: 8.61308,
-      lan: 41.1413,
+      lng: 41.1413,
     },
 
     reviews: [],
@@ -366,7 +366,7 @@ function createStays() {
           city: "Lisbon",
           address: "17 Kombo st",
           lat: -8.61308,
-          lan: 41.1413,
+          lng: 41.1413,
         },
         reviews: [
           {
@@ -455,7 +455,7 @@ function createStays() {
           city: "Banff",
           address: "42 Mountain rd",
           lat: 51.178363,
-          lan: -115.570769,
+          lng: -115.570769,
         },
         reviews: [
           {
@@ -513,7 +513,7 @@ function createStays() {
           city: "New York",
           address: "233 Liberty St",
           lat: 40.712776,
-          lan: -74.005974,
+          lng: -74.005974,
         },
         reviews: [
           {
@@ -562,7 +562,7 @@ function createStays() {
           city: "Cancun",
           address: "10 Playa Rd",
           lat: 21.161908,
-          lan: -86.851528,
+          lng: -86.851528,
         },
         reviews: [
           {
@@ -611,7 +611,7 @@ function createStays() {
           city: "Cancun",
           address: "10 Playa Rd",
           lat: 21.161908,
-          lan: -86.851528,
+          lng: -86.851528,
         },
         reviews: [
           {
@@ -659,7 +659,7 @@ function createStays() {
           city: "New York",
           address: "233 Liberty St",
           lat: 40.712776,
-          lan: -74.005974,
+          lng: -74.005974,
         },
         reviews: [
           {
@@ -709,7 +709,7 @@ function createStays() {
           city: "Lisbon",
           address: "17 Kombo st",
           lat: -8.61308,
-          lan: 41.1413,
+          lng: 41.1413,
         },
         reviews: [
           {
@@ -767,7 +767,7 @@ function createStays() {
           city: "Banff",
           address: "42 Mountain rd",
           lat: 51.178363,
-          lan: -115.570769,
+          lng: -115.570769,
         },
         reviews: [
           {
@@ -825,7 +825,7 @@ function createStays() {
           city: "Banff",
           address: "42 Mountain rd",
           lat: 51.178363,
-          lan: -115.570769,
+          lng: -115.570769,
         },
         reviews: [
           {
@@ -883,7 +883,7 @@ function createStays() {
           city: "Banff",
           address: "42 Mountain rd",
           lat: 51.178363,
-          lan: -115.570769,
+          lng: -115.570769,
         },
         reviews: [
           {
@@ -942,7 +942,7 @@ function createStays() {
           city: "Lisbon",
           address: "17 Kombo st",
           lat: -8.61308,
-          lan: 41.1413,
+          lng: 41.1413,
         },
         reviews: [
           {
@@ -1000,7 +1000,7 @@ function createStays() {
           city: "Banff",
           address: "42 Mountain rd",
           lat: 51.178363,
-          lan: -115.570769,
+          lng: -115.570769,
         },
         reviews: [
           {

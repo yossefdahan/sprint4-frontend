@@ -11,7 +11,9 @@ export const utilService = {
     getStarsWithRating,
     getStars,
     getNumOfDays,
-    formatIsoDateToYMD
+    formatIsoDateToYMD,
+    formatStayDateRange,
+    haversineDistance
 }
 
 function makeId(length = 6) {
@@ -91,25 +93,26 @@ function getStarsWithRating(stay) {
         return { stars: 'No reviews yet', averageRating: 0 }
     }
 
-    const totalRating = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
-    const averageRating = totalRating / stay.reviews.length
-    let stars = ''
+    const totalRating = stay.reviews.reduce((acc, review) => acc + review.rate, 0);
+    // Calculate the average and round to 3 decimal places, then convert back to number
+    const averageRating = Number((totalRating / stay.reviews.length).toFixed(3));
+    let stars = '';
 
     for (let i = 1; i <= Math.floor(averageRating); i++) {
-        stars += '★'
+        stars += '★';
     }
 
     if (averageRating % 1 >= 0.25 && averageRating % 1 < 0.75) {
-        stars += '✬'
+        stars += '✬';
     } else if (averageRating % 1 >= 0.75) {
-        stars += '★'
+        stars += '★';
     }
 
     while (stars.length < 5 && stars.length + 0.5 <= 5) {
-        stars += '☆'
+        stars += '☆';
     }
 
-    return { stars, averageRating }
+    return { stars, averageRating };
 }
 
 function getStars(stay) {
@@ -152,4 +155,40 @@ function formatIsoDateToYMD(isoDateString) {
     const month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are 0-based
     const day = ('0' + date.getDate()).slice(-2);
     return `${year}/${month}/${day}`;
+}
+
+function formatStayDateRange(stay) {
+
+    const checkInDate = new Date(stay.dates.checkIn);
+    const checkOutDate = new Date(stay.dates.checkOut);
+
+    const checkInMonth = checkInDate.toLocaleDateString('en-US', { month: 'short' });
+    const checkInDay = checkInDate.getDate();
+
+    const checkOutMonth = checkOutDate.toLocaleDateString('en-US', { month: 'short' });
+    const checkOutDay = checkOutDate.getDate();
+
+    return {
+        checkIn: `${checkInMonth} ${checkInDay}`,
+        checkOut: `${checkOutDay}`
+    };
+}
+
+function haversineDistance(coords1, { lat, lng }, isMiles = false) {
+    function toRad(x) {
+        return x * Math.PI / 180;
+    }
+
+    var R = 6371; // Earth's radius in km
+    var dLat = toRad(lat - coords1.lat);
+    var dLon = toRad(lng - coords1.lng);
+    var lat1 = toRad(coords1.lat);
+    var lat2 = toRad(lat);
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+
+    return isMiles ? d * 0.621371 : d; // Return distance in miles if isMiles is true, otherwise return in kilometers
 }

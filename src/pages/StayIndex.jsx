@@ -16,11 +16,12 @@ import { GoogleMapList } from '../cmps/GoogleMapList.jsx'
 export function StayIndex() {
     const dispatch = useDispatch()
     const [previewMap, setPreview] = useState(false)
+
     // const [searchParams] = useSearchParams()
     // const [filterBy, setFilterBy] = useState(searchParams.get('country'))
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const stays = useSelector(storeState => storeState.stayModule.stays)
-
+    const [hasMore, setHasMore] = useState(true)
     // useEffect(() => {
     // setSearchParams(filterBy, false)
     // loadStays(filterBy)
@@ -34,6 +35,10 @@ export function StayIndex() {
             showErrorMsg('Cannot remove stay')
         }
     }
+
+
+
+
 
     async function onAddStay() {
         const stay = stayService.getEmptyStay()
@@ -85,12 +90,16 @@ export function StayIndex() {
     return (
         <>
             <ScrollingFilter stays={stays} />
-            {!previewMap && <StayList stays={stays}
-                onUpdateStay={onUpdateStay}
-                onRemoveStay={onRemoveStay}
-                shouldShowActionBtns={shouldShowActionBtns}
-            />
+
+            {!previewMap &&
+                <StayList stays={stays}
+                    onUpdateStay={onUpdateStay}
+                    onRemoveStay={onRemoveStay}
+                    shouldShowActionBtns={shouldShowActionBtns}
+                />
             }
+
+
 
             {previewMap && <GoogleMapList stays={stays} />}
             <button className="show-map-btn" onClick={() => setPreview(!previewMap)}>

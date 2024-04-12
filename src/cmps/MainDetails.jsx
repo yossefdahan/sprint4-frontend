@@ -44,7 +44,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
 
 
                     <div className="reviews-details-stars">
-                        <div className="rate-details">{rate / stay.reviews.length}</div>
+                        <div className="rate-details">{averageRating}</div>
                         <div className="stars-details">{stars}</div>
                     </div>
                     <span>|</span>

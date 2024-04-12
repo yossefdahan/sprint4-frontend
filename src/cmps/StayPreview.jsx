@@ -14,6 +14,12 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
         setIsSaved(!isSaved);
     };
 
+    const correctedLng = ((394.891562 % 360) + 360) % 360
+    const myLoc = { lat: 31.829550, lng: correctedLng }
+
+    const distanceInKm = utilService.haversineDistance(myLoc, stay.loc)
+    const { checkOut, checkIn } = utilService.formatStayDateRange(stay)
+    const { stars, averageRating } = utilService.getStarsWithRating(stay)
     return (
         <section className='stay-card' >
             <div className="stay-preview" >
@@ -31,10 +37,10 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                     <Link className="go-to-details" to={`/stay/${stay._id}`} >
                         <div className="header-preview">
                             <h4 className="stay-location-preview"><span>{stay.loc.country}</span>, <span>{stay.loc.countryCode}</span></h4>
-                            {!!rate && <span className="review-preview"> {rate / stay.reviews.length < 4 ? '' : ' ★ ' + (rate / stay.reviews.length)} </span>}
+                            {!!rate && <span className="review-preview">{!averageRating ? 'Not rated yet' : (averageRating > 3.9) ? `★ ${averageRating}` : ''}</span>}
                         </div>
-                        <p className="km-away">2,138 kilometers away</p>
-                        <p className="date-stay-preview"><span>Apr</span> <span>7-12</span></p>
+                        <p className="km-away">{distanceInKm.toFixed(0)} kilometers away</p>
+                        <p className="date-stay-preview">{checkIn}-{checkOut}</p>
                         <p className="stay-preview-price"><span>${stay.price}</span> <span className='night-preview'>night</span> </p>
                     </Link>
                 </div>
