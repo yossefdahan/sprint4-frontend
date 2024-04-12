@@ -4,7 +4,7 @@ import { utilService } from "../services/util.service";
 import { useEffectUpdate } from "../customHooks/useEffectUpdate";
 import { stayService } from "../services/stay.service";
 import DatePicker from 'react-datepicker'
-
+import { useDispatch, useSelector } from 'react-redux'
 import 'react-datepicker/dist/react-datepicker.css';
 import { GuestSelector } from "./GuestSelector";
 
@@ -28,14 +28,18 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     })
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
     const navigate = useNavigate()
+    const stays = useSelector(storeState => storeState.stayModule.stays)
+
 
     useEffect(() => {
         async function loadCountries() {
-            const countries = await stayService.getCountries()
-            setAllCountries(countries)
+
+            const countries = stays.map(stay => stay.loc.country)
+            const uniqueCountries = [...new Set(countries)]
+            setAllCountries(uniqueCountries)
         }
         loadCountries()
-    }, [])
+    }, [stays])
 
     useEffect(() => {
         window.addEventListener('popstate', updateFilter);
