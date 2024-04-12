@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import logoImg from '../assets/Img/logo.png'
+import logoBlack from '../assets/Img/logo-black.png'
 import israelImg from '../assets/Img/israel.jpg'
 import { WhereFilter } from './WhereFilter.jsx'
 import { loadStays, setFilterBy } from '../store/stay.actions'
@@ -14,7 +15,7 @@ import { MinFilter } from './MinFilter.jsx'
 import { loadUser, loadUsers, logout } from '../store/user.actions.js'
 import { LoginSignup } from './LoginSignup.jsx'
 import { userService } from '../services/user.service.js'
-
+import { AddStayPreview } from '../pages/AddStayPreview.jsx'
 
 
 export function AppHeader({ showSearch, setShowSearch }) {
@@ -36,8 +37,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
             ...filterBy,
             checkIn: filterBy.checkIn ? filterBy.checkIn.getTime() : '',
             checkOut: filterBy.checkOut ? filterBy.checkOut.getTime() : ''
-        }, {replace: true})
-        
+        }, { replace: true })
+
         loadStays(filterBy)
     }, [filterBy])
 
@@ -133,10 +134,19 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
     const isPaymentRoute = location.pathname.startsWith('/payment/')
     const detailsRout = location.pathname.startsWith('/stay')
+    const stayyourhome = location.pathname.startsWith('/AddStayPreview')
+
     if (isPaymentRoute) return <header className="app-header-payment">
         <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
 
     </header>
+    if (stayyourhome) return <header className="app-header-addstay flex space-between align-center">
+        <img onClick={backHome} className="logo-img logo-img-payment" src={logoBlack} />
+        <button onClick={backHome} className='go-back-addstay' > Exit without saving</button>
+    </header>
+
+
+
     return !detailsRout && !isPaymentRoute ? (<header className="app-header" style={!showSearch ? { height: "80px", transition: "0.5s" } : { transition: "0.5s" }}>
         <img onClick={backHome} className="logo-img" src={logoImg} />
 
@@ -151,7 +161,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
             </div>)}
 
         {isPaymentRoute ? '' : (<div className='left-section-header flex align-center'>
-            <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button>
+            {/* <button onClick={() => navigate('/user/AddStay')} className='host-your-home-nav'>Airstay you home</button> */}
+            <button onClick={() => navigate('/AddStayPreview')} className='host-your-home-nav'>Airstay you home</button>
             <button className='Languages-btn fa-solid fa-globe'></button>
             <div className='side-nav flex align-center' onClick={toggleNavBar}>
                 <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>

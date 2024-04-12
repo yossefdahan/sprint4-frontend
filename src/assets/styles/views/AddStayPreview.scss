@@ -1,0 +1,130 @@
+.app-header-addstay {
+  & .go-back-addstay {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    border: 2px solid #dddddd;
+    background-color: transparent;
+    outline: none;
+    color: #222;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 40px;
+    width: fit-content;
+    border-radius: 32px;
+    justify-content: center;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+  }
+}
+
+.welcome-container {
+  padding: 50px 0 50px 0;
+
+  & .addstay-details-section {
+    max-width: 700px;
+
+    & .addstay-preview-title,
+    .addstay-preview-second {
+      font-size: 50px;
+    }
+
+    & .addstay-preview-description {
+      font-size: 20px;
+    }
+
+    & h3 {
+      font-size: 1.5em;
+    }
+  }
+
+  .video-container {
+    overflow: hidden;
+    position: relative;
+
+    & video {
+      max-width: 600px;
+      max-height: 600px;
+      display: block;
+      height: auto;
+      object-fit: cover;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .addstay-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+
+    & .footer-loader {
+      position: fixed;
+      height: 8px;
+      bottom: 80px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-color: #9e9e9e52;
+
+      & .addstay-loader {
+        position: absolute !important;
+        z-index: 999;
+        left: 0;
+        bottom: -4px;
+
+        background-color: #222;
+        transition: all 0.3s ease-in-out;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    & .footer-btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-inline-start: 45px;
+      margin-inline-end: 45px;
+
+      & .addstay-back-btn {
+        font-family: Montserrat;
+        cursor: not-allowed;
+        text-decoration: underline;
+        color: #e5e5e5;
+        background-color: transparent;
+        border: none;
+        outline: none;
+
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        line-height: 1.5rem;
+      }
+
+      & .addstay-next-btn {
+        background-color: #222;
+        color: #fff;
+        padding: 14px 32px;
+        margin: 0;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: 600;
+        line-height: 1.25rem;
+        font-size: 1rem;
+
+        transition: all 0.4s ease-in-out;
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { loadOrders, updateOrder } from '../store/order.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { MyChart } from '../cmps/MyChart.jsx'
+import { SalesChart } from '../cmps/SalesChart.jsx'
 
 import { NavLink } from 'react-router-dom'
 import { utilService } from '../services/util.service.js'
@@ -64,14 +65,15 @@ export function DashBoard() {
             <div className='stat-section flex space-between '>
                 <div className='chart'>
                     <MyChart orders={orders} />
-
                 </div>
                 <div className='total-sales flex column '>
                     <h2><strong>Total Sales:</strong></h2>
                     <p className='total-sales-income'> ${totalSales.toFixed(2)}</p>
                 </div>
 
-                <div className='chart4'>test</div>
+                <div className='sales-chart'>
+                    <SalesChart orders={orders} />
+                </div>
                 <div className='chart5'>test2</div>
             </div>
 
