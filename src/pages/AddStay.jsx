@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { stayService } from "../services/stay.service.local"
+import { stayService } from "../services/stay.service"
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
 import Swal from 'sweetalert2';
 import { MultiSelect } from '../cmps/MultiSelect.jsx';

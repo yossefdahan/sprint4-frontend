@@ -4,7 +4,7 @@ import { loadStays, addStay, updateStay, removeStay, addToCart } from '../store/
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { StayDetails } from './StayDetails.jsx'
 import { StayList } from '../cmps/StayList.jsx'
 import { useSearchParams } from 'react-router-dom'

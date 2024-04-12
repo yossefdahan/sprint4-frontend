@@ -5,21 +5,26 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 
-const STORAGE_KEY = 'stay'
-
+// const BASE_URL = 'stay/'
+const BASE_URL = 'stay/'
 export const stayService = {
     query,
     getById,
     save,
     remove,
     getEmptyStay,
-    addStayMsg
+    addStayMsg,
+    getLabels,
+    getAmenities,
+    getFilterFromParams,
+    getCountries,
+    getLatLngFromAddress
 }
 window.cs = stayService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
-    return httpService.get(STORAGE_KEY, filterBy)
+async function query() {
+    return httpService.get(BASE_URL)
 }
 
 function getById(stayId) {
@@ -48,12 +53,235 @@ async function addStayMsg(stayId, txt) {
 
 function getEmptyStay() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        name: "" || "Ribeira Charming Duplex",
+        type: "" || "house",
+        imgUrls: [],
+        price: 0 || utilService.getRandomIntInclusive(200, 9000),
+        summary: "" || utilService.makeLorem(2),
+        capacity: 0 || utilService.getRandomIntInclusive(1, 10),
+
+        amenities: [] || [
+            "TV",
+            "Wifi",
+            "Kitchen",
+            "Washer",
+            "Hot tub",
+            "Gym",
+            "Free parking",
+            "Pool table",
+            "Heating",
+            "Air conditioning",
+        ],
+
+        labels: [] || ["Top of the world", "Trending", "Play", "Tropical"],
+        host: {
+            _id: "",
+            fullname: "",
+            imgUrl: "",
+        },
+        loc: {
+            country: "",
+            countryCode: "",
+            city: "",
+            address: "",
+            lat: 8.61308,
+            lan: 41.1413,
+        },
+
+        reviews: [],
+
+        // likedByUsers: []
+    }
+}
+
+function getDefaultFilter() {
+    return {
+        country: "",
+        loc: {
+            country: "",
+            countryCode: "",
+            city: "",
+            address: "",
+            lat: 0,
+            lan: 0,
+        },
+        dates: {
+            checkIn: 0,
+            checkOut: 0,
+        },
+        checkIn: 0,
+        checkOut: 0,
+        guests: {},
+        labels: "",
+        amenities: "",
+        bedrooms: 0,
+        bathrooms: 0,
+        adults: 0,
+        children: 0,
+        infants: 0,
+        pets: 0,
+
+        // amenities: [],
+        type: "",
+        capacity: 0,
+        // priceRange: {
+        //   minPrice: '',
+        //   maxPrice: '',
+        // },
+    }
+}
+
+function getFilterFromParams(searchParams = {}) {
+    const defaultFilter = getDefaultFilter()
+    const checkIn = parseInt(searchParams.get("checkIn"))
+    const checkOut = parseInt(searchParams.get("checkOut"))
+    const adults = parseInt(searchParams.get('adults'))
+    const children = parseInt(searchParams.get('children'))
+    const infants = parseInt(searchParams.get('infants'))
+    const pets = parseInt(searchParams.get('pets'))
+
+    return {
+        country: searchParams.get("country") || defaultFilter.country,
+        checkIn: checkIn ? new Date(checkIn) : defaultFilter.checkIn,
+        checkOut: checkOut ? new Date(checkOut) : defaultFilter.checkOut,
+        bedrooms: searchParams.get("bedrooms") || defaultFilter.bedrooms,
+        bathrooms: searchParams.get("bathrooms") || defaultFilter.bathrooms,
+        adults: adults ? adults : defaultFilter.adults,
+        children: children ? children : defaultFilter.children,
+        infants: infants ? infants : defaultFilter.infants,
+        pets: pets ? searchParams.get('pets') : defaultFilter.pets,
+        // loc: searchParams.get("loc") || defaultFilter.loc,
+        amenities: searchParams.get("amenities") || defaultFilter.amenities,
+        type: searchParams.get("type") || defaultFilter.type,
+        // priceRange: searchParams.get("priceRange") || defaultFilter.priceRange,
+        // guests: searchParams.get('guests') || defaultFilter.guests,
+        // dates: searchParams.get('dates') || defaultFilter.dates
     }
 }
 
 
+async function getCountries() {
+    const stays = await httpService.get(BASE_URL)
+    const countries = stays.map((stay) => stay.loc.country)
+    const uniqueCountries = [...new Set(countries)]
+    return uniqueCountries
+}
 
+async function getLatLngFromAddress(address) {
+    const apiKey = "YOUR_API_KEY_HERE"
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        address
+    )}&key=${apiKey}`
 
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
 
+        if (data.status === "OK" && data.results && data.results.length > 0) {
+            const { lat, lan } = data.results[0].geometry.location
+            return { lat, lan }
+        } else {
+            throw new Error(
+                data.status === "ZERO_RESULTS" ? "Address not found" : "Error fetching coordinates"
+            )
+        }
+    } catch (error) {
+        console.error("Error in getLatLngFromAddress:", error)
+        throw error
+    }
+}
+function getAmenities() {
+    const amenities = [
+        "TV",
+        "Wifi",
+        "Kitchen",
+        "Air conditioning",
+        'gogo',
+        "Heating",
+        "Pool table",
+        "Free parking",
+        "Gym",
+        "Hot tub",
+        "Washer",
+    ]
+    return amenities
+}
+
+function getLabels() {
+    const labels = [
+        "beaches",
+        "trending",
+        "New",
+        "Play",
+        "Camping",
+        "Houseboats",
+        "Trulli",
+        "Treehouses",
+        "Vineyards",
+        "Skiing",
+        "Grand pianos",
+        "Lake",
+        "iconic cities",
+        "Boats",
+        "Earth homes",
+        "OMG!",
+        "Off-the-grid",
+        "Farms",
+        "Ryokans",
+        "Amazing views",
+        "design",
+        "Castles",
+        "Historical homes",
+        "Caves",
+        "A-frames",
+        "National parks",
+        "Lakefront",
+        "Islands",
+        "Creative spaces",
+        "Dammusi",
+        "Riads",
+        "Windmills",
+        "Adapted",
+        "Towers",
+        "Barns",
+        "Minsus",
+        "Ski in out",
+        "Campers",
+        "country side",
+        "Arctic",
+        "Shepherds huts",
+        "Golfing",
+        "Domes",
+        "Chefs kitchens",
+        "Rooms",
+        "Yurts",
+        "Bed & breakfasts",
+        "Luxe",
+        "Hanoks",
+        "Top of the world",
+        "desert",
+        "Amazing pools",
+        "mansions",
+        "Cycladic homes",
+        "surfing",
+        "Tiny homes",
+        "tropical",
+    ]
+    return labels
+}
+
+async function addStayReviews(stayId) {
+    // Later, this is all done by the backend
+    const stay = await getById(stayId)
+    if (!stay.reviews) stay.reviews = []
+
+    const review = {
+        id: utilService.makeId(),
+        by: userService.getLoggedinUser(),
+        txt,
+    }
+    stay.reviews.push(review)
+    await storageService.put(STORAGE_KEY, stay)
+
+    return stay
+}

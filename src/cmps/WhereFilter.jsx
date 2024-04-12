@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { utilService } from "../services/util.service";
 import { useEffectUpdate } from "../customHooks/useEffectUpdate";
-import { stayService } from "../services/stay.service.local";
+import { stayService } from "../services/stay.service";
 import DatePicker from 'react-datepicker'
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,7 +22,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
         adults: filterBy.adults || 0,
-        children: filterBy.children ||  0,
+        children: filterBy.children || 0,
         infants: filterBy.infants || 0,
         pets: filterBy.pets || 0
     })
@@ -107,7 +107,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         setIsOpen(true)
     }
 
-    function updateFilter(){
+    function updateFilter() {
         const adults = guestCounts.adults
         const children = guestCounts.children
         const infants = guestCounts.infants
