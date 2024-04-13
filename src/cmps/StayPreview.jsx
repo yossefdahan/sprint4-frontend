@@ -40,7 +40,7 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                 <div className='preview-details'>
                     <Link className="go-to-details" to={`/stay/${stay._id}`} >
                         <div className="header-preview">
-                            <h4 className="stay-location-preview"><span>{stay.loc.country}</span>, <span>{stay.loc.countryCode}</span></h4>
+                            <h4 className="stay-location-preview"><span>{stay.loc.city}</span>, <span>{stay.loc.country}</span></h4>
                             {!!rate && <span className="review-preview">{!averageRating ? 'Not rated yet' : (averageRating > 3.9) ? `★ ${averageRating}` : ''}</span>}
                         </div>
                         <p className="km-away">{distanceInKm.toFixed(0)} kilometers away</p>

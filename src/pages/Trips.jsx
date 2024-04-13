@@ -22,20 +22,20 @@ export function Trips() {
         loadUsers()
         // loadStays()
     }, [])
-    console.log(stays);
-    console.log(orders);
-    console.log(users);
-    console.log(loggedinUser);
+
     if (!orders || !users || !loggedinUser || !stays) return <div>No orders founds..</div>
     const filteredOrders = orders.filter(order => {
         const stay = stays.find(stay => stay._id === order.stay._id)
         return stay && loggedinUser._id === order.buyer._id
     })
+
+
+
     return (
         <div className="trips-page">
             <div className="navigation-links">
                 <NavLink to="/user/trips" activeClassName="active">Trips</NavLink>
-                <NavLink to="/user/dashboard" activeClassName="active">Dashboard</NavLink>
+                {/* {  <NavLink to="/user/dashboard" activeClassName="active">Dashboard</NavLink>} */}
             </div>
 
             <div className="social-icons-container">
@@ -53,7 +53,7 @@ export function Trips() {
                     {filteredOrders.map((order) => {
                         const stay = stays.find(stay => stay._id === order.stay._id)
                         // if (!stay) return null
-                        console.log(stay);
+
                         return (
                             <div key={order._id} className="trip-card">
                                 <div className='trip-card-header flex space-between'>
@@ -76,7 +76,8 @@ export function Trips() {
                                         </p>
                                     </div>
                                     <div className='img-trips'>
-                                        <img className='trips-stay-img' src='/public/img/11.jpg' alt="Stay" />
+
+                                        <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />
                                     </div>
                                 </div>
                                 <div className='card-trips-footer flex space-between'>

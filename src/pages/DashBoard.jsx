@@ -12,20 +12,34 @@ export function DashBoard() {
 
     const orders = useSelector(storeState => storeState.orderModule.orders)
     const [orderUpdateTrigger, setOrderUpdateTrigger] = useState(false)
-    const [totalSales, setTotalSales] = useState(0);
-
+    const user = userService.getLoggedinUser()
+    const [totalSales, setTotalSales] = useState(0)
 
     useEffect(() => {
         loadOrders()
     }, [orderUpdateTrigger])
 
-    useEffect(() => {
-        if (orders) {
-            const total = orders.reduce((acc, order) => acc + order.totalPrice, 0);
-            setTotalSales(total);
-        }
-    }, [orders]);
+    const filteredOrders = orders.filter(order => order.hostId === user._id)
 
+    useEffect(() => {
+
+        const hostOrders = orders.filter(order => order.hostId === user._id)
+
+        const total = hostOrders.reduce((acc, order) => acc + order.totalPrice, 0)
+        setTotalSales(total)
+    }, [orders, user._id])
+
+
+    // async function handleOrderStatusChange(order, newStatus) {
+    //     try {
+    //         const updatedOrder = { ...order, status: newStatus }
+    //         await dispatch(updateOrder(updatedOrder))
+    //         setOrderUpdateTrigger(!orderUpdateTrigger)
+    //         showSuccessMsg(`Order updated: ${updatedOrder.status}`)
+    //     } catch (err) {
+    //         showErrorMsg('Cannot update order')
+    //     }
+    // }
 
     async function onAproveOrder(order) {
         try {
@@ -53,7 +67,7 @@ export function DashBoard() {
     }
 
 
-    if (!orders) return <div className='loading'>loading.....</div>
+    if (!orders || orders.length === 0) return <div className='loading'>No orders yet...</div>;
 
     return (
         <div className="trips-page">
@@ -64,7 +78,7 @@ export function DashBoard() {
 
             <div className='stat-section flex space-between '>
                 <div className='chart'>
-                    <MyChart orders={orders} />
+                    <MyChart orders={orders.filter(order => order.hostId === user._id)} />
                 </div>
                 <div className='total-sales flex column '>
                     <h2><strong>Total Sales:</strong></h2>
@@ -72,7 +86,7 @@ export function DashBoard() {
                 </div>
 
                 <div className='sales-chart'>
-                    <SalesChart orders={orders} />
+                    <SalesChart orders={orders.filter(order => order.hostId === user._id)} />
                 </div>
                 <div className='chart5'>test2</div>
             </div>
@@ -98,7 +112,7 @@ export function DashBoard() {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order) => (
+                        {filteredOrders.map((order) => (
                             <tr key={order.buyer._id}>
                                 <td>{order.buyer.fullname}</td>
                                 <td>${order.totalPrice.toFixed(2)}</td>
@@ -117,10 +131,20 @@ export function DashBoard() {
                                 <td>{order.guests.infants ? order.guests.infants : ''}</td> */}
                                 <td>{order.stay.name}</td>
                                 <td className={`status ${order.status}`}>{order.status}</td>
-                                <td><div className='actions flex'>
-                                    <button onClick={() => onAproveOrder(order)} >Aprove</button>
-                                    <button onClick={() => onRejectOrder(order)}>Reject</button>
-                                </div></td>
+                                <td>
+                                    {order.status === "approved" ?
+                                        <div>
+                                            <button>Send massages to guest</button>
+                                        </div> :
+                                        <div className='actions flex'>
+                                            <button onClick={() => onAproveOrder(order)} >Aprove</button>
+                                            <button onClick={() => onRejectOrder(order)}>Reject</button>
+                                        </div>}
+                                    {/* <div className='actions flex'>
+                                            <button onClick={() => handleOrderStatusChange(order, 'approved')} >Aprove</button>
+                                            <button onClick={() => handleOrderStatusChange(order, 'rejected')}>Reject</button>
+                                        </div>} */}
+                                </td>
                             </tr>
                         ))}
                     </tbody>

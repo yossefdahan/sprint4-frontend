@@ -22,6 +22,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const [searchParams, setSearchParams] = useSearchParams()
     // const [showSearchContainer, setShowSearchContainer] = useState(true)
     const [miniClicked, setMiniClicked] = useState(false)
+    const stays = useSelector(storeState => storeState.stayModule.stays)
     const user = useSelector(storeState => storeState.userModule.user)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const navigate = useNavigate()
@@ -42,10 +43,10 @@ export function AppHeader({ showSearch, setShowSearch }) {
         loadStays(filterBy)
     }, [filterBy])
 
-
-    // useEffect(() => {
-    //     loadUsers()
-    // }, [])
+    const isUserAHost = stays.some(stay => stay.host._id === user?._id)
+    useEffect(() => {
+        // loadUsers()
+    }, [user])
 
     // async function loadUsers() {
     //     const users = await userService.getUsers()
@@ -181,7 +182,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
                             <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
                             <div><hr /></div>
                             <NavLink className=" nav-icon" to="/AddStayPreview">Airstay your home</NavLink>
-                            <NavLink className=" nav-icon" to="/user/dashboard">Dashboard</NavLink>
+                            {isUserAHost && <NavLink className=" nav-icon" to="/user/dashboard">Dashboard</NavLink>}
                             <NavLink className=" nav-icon" to="/">Help center</NavLink>
                             <button className='logout-btn' onClick={onLogout}>Logout</button>
 
