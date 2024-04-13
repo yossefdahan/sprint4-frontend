@@ -5,37 +5,35 @@ export function SocialIconsTrips() {
   return (
     <ul className='example-2'>
       <li className='icon-content'>
-        <li className='icon-content'>
-          <a
-            href="https://www.tripadvisor.com/"
-            aria-label="TripAdvisor"
-            data-social="TripAdvisor"
-            target="_blank"
-            rel="noopener noreferrer"
+        <a
+          href="https://www.getyourguide.com/"
+          aria-label="getyourguide"
+          data-social="getyourguide"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="filled"></div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            className="bi bi-plate"
+            viewBox="0 0 16 16"
           >
-            <div className="filled"></div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              fill="currentColor"
-              className="bi bi-plate"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 1C3.589 1 0 4.58 0 9s3.589 8 8 8 8-3.58 8-8-3.589-8-8-8zm0 14c-..." />
-              <path d="M7.001 6.001h2V8h-2V6.001z" />
-            </svg>
-          </a>
-          <div className="tooltip">Plate</div>
-        </li>
-
-
+            <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        </a>
+        <div className="tooltip">Guides</div>
       </li>
+
+
+
       <li className='icon-content'>
         <a
           href="https://www.skyscanner.co.il/"
-          aria-label="Flight"
-          data-social="flight"
+          aria-label="skyscanner"
+          data-social="skyscanner"
           target="_blank"
           rel="noopener noreferrer">
           <div className="filled"></div>
@@ -43,7 +41,7 @@ export function SocialIconsTrips() {
             <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Z"></path>
           </svg>
         </a>
-        <div className="tooltip">Flight</div>
+        <div className="tooltip">skyscanner</div>
       </li>
       <li className='icon-content'>
         <a
