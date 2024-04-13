@@ -21,6 +21,9 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
     const rate = stay.reviews && stay.reviews.length > 0
         ? stay.reviews.reduce((acc, review) => acc + review.rate, 0) / stay.reviews.length
         : 0
+
+
+
     return (
         <section className='stay-card' >
             <div className="stay-preview" >
