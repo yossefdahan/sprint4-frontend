@@ -179,7 +179,7 @@ export function FinalPayment() {
                                     <section className='title'>
                                         <h4>{stay.name}</h4>
                                         <div><span>Entire rental unit</span></div>
-                                        <div className='rate-title'>★ <span > {rate / stay.reviews.length} ({stay.reviews.length} reviews)</span> </div>
+                                        <div className='rate-title'>★ <span > {(rate / stay.reviews.length).toFixed(2)} ({stay.reviews.length} reviews)</span> </div>
                                     </section>
                                 </div>
 
