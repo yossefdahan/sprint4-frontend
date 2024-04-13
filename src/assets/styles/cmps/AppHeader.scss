@@ -46,6 +46,7 @@
 }
 
 .app-header-details {
+
   position: static;
   display: grid;
   grid-template-columns: repeat(3, 15fr);
@@ -57,6 +58,10 @@
   cursor: pointer;
   z-index: 10;
   text-decoration: none;
+  justify-self: center;
+  border-bottom: 1px solid $light-gray;
+  max-width: 1120px;
+  grid-column: 1/-1;
 
   & .left-section-header {
     justify-self: end;

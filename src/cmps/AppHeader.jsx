@@ -267,6 +267,5 @@ export function AppHeader({ showSearch, setShowSearch }) {
         </header>
 
 
-
     )
 }

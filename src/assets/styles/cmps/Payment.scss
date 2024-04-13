@@ -34,12 +34,15 @@
       & div {
         display: flex;
 
+
+
         & .in,
         .out {
           width: 160px;
           z-index: 11;
           border: 0.1px solid $light-gray;
           height: 56px;
+
         }
 
         & .in {
@@ -223,7 +226,7 @@
       position: absolute;
       top: 45px;
       left: -100px;
-      width: 272%;
+      width: 300%;
     }
 
     & .price-modal {
@@ -323,6 +326,20 @@
       font-weight: 500;
       transition: background-color 0.3s;
       color: white;
+    }
+  }
+
+}
+
+@media (max-width: 1200px) {
+
+  .payment-date-picker {
+    & div {
+
+      & .out,
+      .in {
+        max-width: 130px;
+      }
     }
   }
 }

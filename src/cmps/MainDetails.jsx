@@ -107,6 +107,27 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                     minDate={new Date()}
                 />
             </div>
+            <div className="date-pick-details-one-month">
+                <h3 className="title-dates-details"> {!utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut) ? "" : utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut)} {!utilService.getNumOfDays(filterBy.checkIn, filterBy.checkOut) ? "Add dates" : "Nights in"} {stay.name}  </h3>
+                <DatePicker
+                    selected={filterBy.checkIn}
+                    onChange={(dates) => {
+                        const [start, end] = dates
+                        onSetFilter.current({
+                            ...filterBy,
+                            checkIn: start,
+                            checkOut: end
+                        })
+                    }}
+                    startDate={filterBy.checkIn}
+                    endDate={filterBy.checkOut}
+                    selectsRange
+
+                    monthsShown={1}
+                    open={isOpen}
+                    minDate={new Date()}
+                />
+            </div>
         </div >
     )
 }
