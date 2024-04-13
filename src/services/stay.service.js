@@ -24,7 +24,7 @@ window.cs = stayService
 
 
 async function query(filterBy) {
-
+    console.log(filterBy);
     return httpService.get(BASE_URL, { params: { filterBy } })
 }
 
@@ -153,6 +153,7 @@ function getFilterFromParams(searchParams = {}) {
 
 
     return {
+        city: searchParams.get('city') || defaultFilter.city,
         country: searchParams.get("country") || defaultFilter.country,
         region: searchParams.get("region") || defaultFilter.region,
         checkIn: checkIn ? new Date(checkIn) : defaultFilter.checkIn,
@@ -168,7 +169,7 @@ function getFilterFromParams(searchParams = {}) {
         roomType: searchParams.get("roomType") || defaultFilter.roomType,
         minPrice: searchParams.get("minPrice") || defaultFilter.minPrice,
         maxPrice: searchParams.get("maxPrice") || defaultFilter.maxPrice,
-        city: searchParams.get('city') || defaultFilter.city,
+
         // dates: searchParams.get('dates') || defaultFilter.dates
     }
 }

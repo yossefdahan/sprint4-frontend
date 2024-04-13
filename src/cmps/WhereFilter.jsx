@@ -15,6 +15,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     const [inputValue, setInputValue] = useState("")
     const [suggestions, setSuggestions] = useState([])
+    const [allCities, setAllCities] = useState([])
+    const [allRegions, setAllRegions] = useState([])
     const [allCountries, setAllCountries] = useState([])
     const [countyModal, setCountryModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -33,12 +35,27 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
     useEffect(() => {
         async function loadCountries() {
-
             const countries = stays.map(stay => stay.loc.country)
             const uniqueCountries = [...new Set(countries)]
             setAllCountries(uniqueCountries)
         }
         loadCountries()
+    }, [stays])
+    useEffect(() => {
+        async function loadCities() {
+            const cities = stays.map(stay => stay.loc.city)
+            const uniqueCities = [...new Set(cities)]
+            setAllCities(uniqueCities)
+        }
+        loadCities()
+    }, [stays])
+    useEffect(() => {
+        async function loadRegions() {
+            const regions = stays.map(stay => stay.loc.region)
+            const uniqueRegions = [...new Set(regions)]
+            setAllRegions(uniqueRegions)
+        }
+        loadRegions()
     }, [stays])
 
     useEffect(() => {
@@ -89,21 +106,34 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
 
     function handleChange({ target }) {
-        const { value } = target
-        setInputValue(value)
+        const { value } = target;
+        setInputValue(value);
         if (!value) {
-            setSuggestions([])
+            setSuggestions([]);
+            setFilterByToEdit(prevFilter => ({
+                ...prevFilter,
+                loc: { ...prevFilter.loc, region: '', country: '', city: '' }
+            }));
         } else {
+            const filteredRegions = allRegions.filter(region =>
+                region.toLowerCase().startsWith(value.toLowerCase())
+            )
             const filteredCountries = allCountries.filter(country =>
                 country.toLowerCase().startsWith(value.toLowerCase())
             )
-            setSuggestions(filteredCountries)
+            const filteredCities = allCities.filter(city =>
+                city.toLowerCase().startsWith(value.toLowerCase())
+            )
+
+            const combinedSuggestions = [...filteredRegions, ...filteredCountries, ...filteredCities];
+            setSuggestions(combinedSuggestions);
+            setFilterByToEdit(prevFilter => ({
+                ...prevFilter,
+                loc: { ...prevFilter.loc, region: value, country: value, city: value }
+            }));
         }
-        setFilterByToEdit(prevFilter => ({
-            ...prevFilter,
-            loc: { ...prevFilter.loc, country: value }
-        }))
     }
+
 
     function handleSuggestionClick(suggestion) {
         setInputValue(suggestion)
@@ -116,22 +146,35 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         const children = guestCounts.children
         const infants = guestCounts.infants
         const pets = guestCounts.pets
+        const parts = inputValue.split(',')
+
+        const region = parts[0] ? parts[0].trim() : ''
+        const country = parts[1] ? parts[1].trim() : ''
+        const city = parts[2] ? parts[2].trim() : ''
         onSetFilter.current({
             ...filterBy,
-            country: inputValue,
+            country: country,
+            city: city,
+            region: region,
             adults,
             children,
             infants,
             pets
-            // guests: guestCounts
         })
     }
 
     function handleSubmit(event) {
         event.preventDefault()
         updateFilter()
+        const parts = inputValue.split(',')
+        const region = parts[0] ? parts[0].trim() : ''
+        const country = parts[1] ? parts[1].trim() : ''
+        const city = parts[2] ? parts[2].trim() : ''
+
         const queryParams = new URLSearchParams({
-            country: inputValue,
+            city: city,
+            region: region,
+            country: country,
             adults: guestCounts.adults,
             children: guestCounts.children,
             infants: guestCounts.infants,
@@ -206,7 +249,11 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     // function backHome() {
     //     window.location.href = `/${searchParams}`
     // }
-
+    function getRandomRegion() {
+        const regions = ["South America", "Greece", "United States", "Italy", "Europe"];
+        const randomIndex = Math.floor(Math.random() * regions.length);
+        return regions[randomIndex];
+    }
     return (
         <>
             <form onSubmit={handleSubmit} className="search-filter">
@@ -232,14 +279,14 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                         <div className="img-flexible country-filter">
                             <img onClick={() => {
-                                setInputValue("mexico")
+                                setInputValue(getRandomRegion())
                                 setIsOpen(true)
                             }} src="/img/destination/asset0.jpeg" alt="Im flexible" />
                             <h4>I'm flexible</h4>
                         </div>
                         <div className="img-europe country-filter">
                             <img onClick={() => {
-                                setInputValue("portugal")
+                                setInputValue("Europe")
                                 setIsOpen(true)
                             }} src="/img/destination/asset2.webp" alt="Europe" />
                             <h4>Europe</h4>
@@ -247,28 +294,28 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                         <div className="img-italy country-filter">
                             <img onClick={() => {
-                                setInputValue("portugal")
+                                setInputValue("Italy")
                                 setIsOpen(true)
                             }} src="/img/destination/asset3.webp" alt="Italy" />
                             <h4>Italy</h4>
                         </div>
                         <div className="img-usa country-filter">
                             <img onClick={() => {
-                                setInputValue("canada")
+                                setInputValue("United States")
                                 setIsOpen(true)
                             }} src="/img/destination/asset4.webp" alt="United States" />
                             <h4>United States</h4>
                         </div>
                         <div className="img-greece country-filter">
                             <img onClick={() => {
-                                setInputValue("usa")
+                                setInputValue("Greece")
                                 setIsOpen(true)
                             }} src="/img/destination/asset5.webp" alt="Greece" />
                             <h4>Greece</h4>
                         </div>
                         <div className="img-south country-filter">
                             <img onClick={() => {
-                                setInputValue("portugal")
+                                setInputValue("South America")
                                 setIsOpen(true)
                             }} src="/img/destination/asset1.webp" alt="South America" />
                             <h4>South America</h4>
