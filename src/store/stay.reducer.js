@@ -19,7 +19,7 @@ const initialState = {
 }
 
 export function stayReducer(state = initialState, action = {}) {
-
+    let stays
 
 
     switch (action.type) {

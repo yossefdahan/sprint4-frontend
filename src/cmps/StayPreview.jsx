@@ -2,15 +2,26 @@ import { useState } from 'react';
 import { Link } from "react-router-dom"
 import { utilService } from "../services/util.service"
 import { StayGallery } from "./StayGallery"
+import { updateStay } from '../store/stay.actions';
+import { useSelector } from 'react-redux';
 
 
 export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdateStay }) {
     const [isSaved, setIsSaved] = useState(false);
+    const user = useSelector(storeState => storeState.userModule.user)
 
-    const handleSave = (ev) => {
+    async function handleSave(ev) {
         ev.stopPropagation();
-        setIsSaved(!isSaved);
-    };
+        const stayToSave = { ...stay, likedByUsers: [...stay.likedByUsers, user._id] }
+        try {
+            const savedStay = await updateStay(stayToSave)
+            setIsSaved(!isSaved);
+            console.log(savedStay, 'is saved!!')
+        } catch (err) {
+            console.log(err, 'israel and his shit')
+        }
+
+    }
 
     const correctedLng = ((394.891562 % 360) + 360) % 360
     const myLoc = { lat: 31.829550, lng: correctedLng }
@@ -34,6 +45,8 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
                     onSave={handleSave}
                     stayId={stay._id}
                     heartClassName={isSaved ? 'saved' : ''}
+                    user={user}
+                    stay={stay}
 
                 />
 
