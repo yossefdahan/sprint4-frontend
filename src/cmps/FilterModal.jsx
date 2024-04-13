@@ -13,6 +13,9 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
         maxPrice: '',
     });
 
+
+
+
     function handleSubmit(ev) {
         ev.preventDefault();
         onSetFilter({
@@ -41,7 +44,8 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
         }))
     }
 
-    function handleChange(filterName, value) {
+    function handleChange(filterName, value, ev) {
+        ev.preventDefault()
         setLocalFilter(prevState => ({
             ...prevState,
             [filterName]: value
@@ -55,7 +59,7 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
         <div className="filter-modal">
             <form onSubmit={handleSubmit}>
                 <div className="filter-modal-header">
-                    <button className="filter-modal__close-btn" onClick={() => setIsOpen(!isOpen)}>x</button>
+                    <button className="__close-btn" onClick={() => setIsOpen(!isOpen)}>x</button>
                     <h2 className="filter-modal__title">Filters</h2>
                 </div>
                 <div className="contact-details">
@@ -67,7 +71,7 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                         <div className="type-bnb">
                             <div className="bnb-op">
                                 {['Any type', 'Private room', 'Entire home/apt'].map((t) => (
-                                    <button key={t} type="button" onClick={() => handleChange('roomType', t)} className={`modal__button ${localFilter.roomType === t ? 'filter-modal__button--active' : ''}`}>
+                                    <button key={t} type="button" onClick={(e) => handleChange('roomType', t, e)} className={`modal__button ${localFilter.roomType === t ? 'modal__button--active' : ''}`}>
                                         {t === 'Entire home/apt' ? 'Entire home' : t === 'Private room' ? 'Room' : t === 'Any type' ? 'Any type' : ''}
                                     </button>
                                 ))}
@@ -101,27 +105,27 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
                                     <h4 className="filter-modal__options-title">Bedrooms</h4>
                                     <div className="btn_choose">
                                         {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number) => (
-                                            <button key={number} onClick={() => handleChange('bedrooms', number)} className={`modal__button ${localFilter.bedrooms === number ? 'filter-modal__button--active' : ''}`}>
+                                            <button key={number} onClick={(e) => handleChange('bedrooms', number, e)} className={`modal__button ${localFilter.bedrooms === number ? 'modal__button--active' : ''}`}>
                                                 {number}
                                             </button>
                                         ))}
                                     </div>
                                 </div>
-                                <div className="filter-modal__options-row">
+                                {/* <div className="filter-modal__options-row">
                                     <h4 className="filter-modal__options-title">Beds</h4>
                                     <div className="btn_choose">
                                         {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number) => (
-                                            <button key={number} onClick={() => handleChange('beds', number)} className={`modal__button ${localFilter.beds === number ? 'filter-modal__button--active' : ''}`}>
+                                            <button key={number} onClick={() => handleChange('beds', number)} className={`modal__button ${localFilter.beds === number ? 'modal__button--active' : ''}`}>
                                                 {number}
                                             </button>
                                         ))}
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="filter-modal__options-row">
                                     <h4 className="filter-modal__options-title">Bathrooms</h4>
                                     <div className="btn_choose">
                                         {['Any', '1', '2', '3', '4', '5', '6', '7', '8+'].map((number) => (
-                                            <button key={number} onClick={() => handleChange('bathrooms', number)} className={`modal__button ${localFilter.bathrooms === number ? 'filter-modal__button--active' : ''}`}>
+                                            <button key={number} onClick={(e) => handleChange('bathrooms', number, e)} className={`modal__button ${localFilter.bathrooms === number ? 'modal__button--active' : ''}`}>
                                                 {number}
                                             </button>
                                         ))}
