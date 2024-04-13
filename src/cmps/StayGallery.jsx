@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 
-export function StayGallery({ stayId, imgUrls, isSaved, onSave }) {
+export function StayGallery({ stayId, imgUrls, isSaved, onSave, user, stay }) {
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
 
   const nextImg = (ev) => {
@@ -47,12 +47,14 @@ export function StayGallery({ stayId, imgUrls, isSaved, onSave }) {
       ></path>
     </svg>
   );
-
+  // if(!stay)return <div>bulbul</div>
+  // const isLikedByUser = stay && stay.likedByUsers ? stay.likedByUsers.some(like => user.id === like) : false;
+  // console.log(isLikedByUser)
   return (
     <div className="stay-gallery">
       <Link className="img-link" to={`/stay/${stayId}`}>
         <img className='img-gallery' src={imgUrls[currentImgIndex]} alt="Stay" /></Link>
-      < i onClick={handleSaveClick} >{isSaved ? <HeartFillIcon /> : <HeartOutlineIcon />}</i>
+      < i onClick={handleSaveClick} >{isSaved  ? <HeartFillIcon /> : <HeartOutlineIcon />}</i>
 
       <section className='btn-preview'>
         {imgUrls[currentImgIndex] !== imgUrls[0] ? <button className=" btn-nav-img prev" onClick={prevImg}></button> : <span></span>}
