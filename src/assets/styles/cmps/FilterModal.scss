@@ -11,6 +11,26 @@
     max-width: 780px;
     z-index: 20;
 
+    & .modal__button {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        align-items: center;
+        flex-direction: column;
+        gap: 70px;
+        padding: 30px;
+        border: 1px solid $light-gray;
+        border-radius: 100px;
+
+        &--active {
+            background: black;
+            // border-radius: 100px;
+
+            color: white;
+        }
+
+    }
+
     .filter-modal-content {
         max-height: calc(100vh - 200px);
         overflow-y: auto;
@@ -31,17 +51,11 @@
         padding-top: 16px;
 
         & .bnb-op {
-            justify-content: center;
-            width: 80%;
-            align-items: center;
-
             display: flex;
-            gap: 70px;
-            padding: 20px;
             border: 1px solid $light-gray;
             border-radius: 100px;
 
-            & button {}
+
         }
 
         & .type-op {}
@@ -95,13 +109,13 @@
 
     .filter-modal-header {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        align-items: baseline;
         padding: 1rem;
-
         border-bottom: 1px solid #ddd;
 
-        .close-btn {
+        & .__close-btn {
+
+            margin-right: 40%;
             background: none;
             border: none;
             font-size: 2rem;
