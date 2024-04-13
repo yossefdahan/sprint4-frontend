@@ -12,6 +12,7 @@ import { Reviews } from '../cmps/Reviews.jsx'
 import { Payment } from '../cmps/payment.jsx'
 import { set } from 'date-fns'
 import { utilService } from '../services/util.service.js'
+import { orderService } from '../services/order.service.js'
 
 
 
@@ -34,6 +35,17 @@ export function StayDetails() {
     const imgHeader = useRef()
     const [showHeader, setShowHeader] = useState(true)
     const [showReserveHeader, setShowReserveHeader] = useState(true)
+    const [triggerReservation, setTriggerReservation] = useState(false);
+    const [triggerCalender, setTriggerCalender] = useState(false);
+
+
+
+    const handleReserveClick = () => {
+        setTriggerReservation(true)
+    }
+    const handleCalenderClick = () => {
+        setTriggerCalender(true)
+    }
 
     useEffect(() => {
         setSearchParams({
@@ -44,33 +56,6 @@ export function StayDetails() {
         loadStay()
     }, [stayId, currentFilter])
 
-
-    // function openModalGallery() {
-    //     setIsOpen(!isOpen)
-    // }
-    // async function sendToFinalOrder(ev) {
-    //     ev.preventDefault()
-    //     const totalPrice = calculateTotalPrice()
-    //     // order.hostId = stay.host.id
-    //     // order.status = 'pending'
-    //     // order.stay = { _id: stay._id, name: stay.name, price: stay.price }
-    //     const finalOrder = {
-    //         ...order,
-    //         totalPrice,
-    //     }
-
-    //     try {
-    //         await orderInProgress(finalOrder)
-    //         setSend(!isSend)
-    //         setOrder(orderService.emptyOrder())
-    //         // setOrder(savedOrder)
-
-    //         showSuccessMsg('order saved!')
-    //         navigate(`/payment/${stay._id}`)
-    //     } catch (err) {
-    //         console.log('err cant save order', err)
-    //     }
-    // }
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -93,11 +78,11 @@ export function StayDetails() {
             const stay = await stayService.getById(stayId)
             setStay(stay)
         } catch (err) {
-            // showErrorMsg('Cant load ')
+
             navigate('/')
         }
     }
-    // const imgs =stay.imgUrls.slice(0,4)// use it in the future
+
     if (!stay) return <div className='loader'></div>
     const { stars, averageRating } = utilService.getStarsWithRating(stay)
     return (
@@ -113,7 +98,11 @@ export function StayDetails() {
                 {!showReserveHeader && <div className='res-head'>
                     <p className='price-head'>$ {stay.price}<span> night</span></p>
                     <p className='star-head'>★ {averageRating} ~ <span>{stay.reviews.length} reviews</span></p>
-                    <button>Reserve</button>
+                    {currentFilter.checkOut ?
+                        (<button onClick={handleReserveClick}>Reserve</button>)
+                        :
+                        (<button onClick={handleCalenderClick}>Check availability</button>)
+                    }
                 </div>}
 
             </div>}
@@ -143,7 +132,7 @@ export function StayDetails() {
 
             <div className='main-details' id='amenities' >
                 <MainDetails stay={stay} filterBy={currentFilter} onSetFilter={setCurrentFilter} />
-                <Payment stay={stay} filterBy={currentFilter} onSetFilter={setCurrentFilter} showReserveHeader={showReserveHeader} setShowReserveHeader={setShowReserveHeader} />
+                <Payment triggerCalender={triggerCalender} setTriggerCalender={setTriggerCalender} triggerReservation={triggerReservation} setTriggerReservation={setTriggerReservation} stay={stay} filterBy={currentFilter} onSetFilter={setCurrentFilter} showReserveHeader={showReserveHeader} setShowReserveHeader={setShowReserveHeader} />
 
             </div>
 
