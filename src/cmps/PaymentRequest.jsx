@@ -132,7 +132,7 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
                             <span>Entire rental unit</span>
                             <section className='rate-title'>
                             </section>
-                            <span>★ {(rate / stay.reviews.length).toFixed(2)} ({stay.reviews.length} reviews)</span>
+                            {!stay.reviews.length ? "Not rated yet" : <span>★ {(rate / stay.reviews.length).toFixed(2)} ({stay.reviews.length} reviews)</span>}
                         </section>
                     </section>
 

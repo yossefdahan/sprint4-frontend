@@ -97,7 +97,7 @@ export function StayDetails() {
 
                 {!showReserveHeader && <div className='res-head'>
                     <p className='price-head'>$ {stay.price}<span> night</span></p>
-                    <p className='star-head'>★ {averageRating} ~ <span>{stay.reviews.length} reviews</span></p>
+                    {!averageRating ? "Not rated yet" : <p className='star-head'>★ {averageRating} ~ <span>{stay.reviews.length} reviews</span></p>}
                     {currentFilter.checkOut ?
                         (<button onClick={handleReserveClick}>Reserve</button>)
                         :
