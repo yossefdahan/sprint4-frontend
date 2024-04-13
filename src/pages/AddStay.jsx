@@ -116,7 +116,7 @@ export function AddStay() {
                         <label htmlFor="country">Country: </label>
                         <input className="input" type="text" name="country" id="country" placeholder="Enter country..." value={stay.loc.country} onChange={handleLocChange} />
                         <label htmlFor="region">Region:</label>
-                        <select name="region" id="region" value={stay.region} onChange={handleChange} className="input">
+                        <select name="region" id="region" value={stay.loc.region} onChange={handleChange} className="input">
                             <option value="">Select Region</option>
                             <option value="Italy">Italy</option>
                             <option value="Europe">Europe</option>

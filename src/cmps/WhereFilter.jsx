@@ -115,15 +115,15 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 loc: { ...prevFilter.loc, region: '', country: '', city: '' }
             }));
         } else {
-            const filteredCountries = allCountries.filter(country =>
-                country.toLowerCase().startsWith(value.toLowerCase())
-            );
-            const filteredCities = allCities.filter(city =>
-                city.toLowerCase().startsWith(value.toLowerCase())
-            );
             const filteredRegions = allRegions.filter(region =>
                 region.toLowerCase().startsWith(value.toLowerCase())
-            );
+            )
+            const filteredCountries = allCountries.filter(country =>
+                country.toLowerCase().startsWith(value.toLowerCase())
+            )
+            const filteredCities = allCities.filter(city =>
+                city.toLowerCase().startsWith(value.toLowerCase())
+            )
 
             const combinedSuggestions = [...filteredRegions, ...filteredCountries, ...filteredCities];
             setSuggestions(combinedSuggestions);
@@ -148,9 +148,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         const pets = guestCounts.pets
         const parts = inputValue.split(',')
 
-        const region = parts[0].trim()
-        const country = parts[1].trim()
-        const city = parts[2].trim()
+        const region = parts[0] ? parts[0].trim() : ''
+        const country = parts[1] ? parts[1].trim() : ''
+        const city = parts[2] ? parts[2].trim() : ''
         onSetFilter.current({
             ...filterBy,
             country: country,
@@ -160,7 +160,6 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             children,
             infants,
             pets
-            // guests: guestCounts
         })
     }
 
@@ -168,9 +167,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         event.preventDefault()
         updateFilter()
         const parts = inputValue.split(',')
-        const region = parts[0].trim()
-        const country = parts[1].trim()
-        const city = parts[2].trim()
+        const region = parts[0] ? parts[0].trim() : ''
+        const country = parts[1] ? parts[1].trim() : ''
+        const city = parts[2] ? parts[2].trim() : ''
 
         const queryParams = new URLSearchParams({
             city: city,
