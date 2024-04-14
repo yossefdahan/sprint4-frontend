@@ -164,7 +164,7 @@ export function Trips() {
 
         const startTime = 'T000000';
         const endTime = 'T235959';
-        const details = encodeURIComponent(`Stay at ${stay.name} with ${order.guests.adults} adults, ${order.guests.kids || 0} kids.`);
+        const details = encodeURIComponent(`Stay at ${stay.name}`);
         const location = encodeURIComponent(`${stay.loc.city}, ${stay.loc.country}`);
         const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=Trip to ${stay.name}&dates=${startDate}${startTime}/${endDate}${endTime}&details=${details}&location=${location}&sf=true&output=xml`;
 
@@ -253,7 +253,13 @@ export function Trips() {
                                         <p><strong className='room-type-trips-card'>Stay Type:</strong> {stay.roomType}</p>
                                         <p><strong className='start-date-trips-card'>Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
                                         <p><strong className='end-dates-trips-card'>End Date:</strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
-                                        <p><strong className='guests-trips-card'>Guests:</strong> {`Adults: ${order.guests.adults} | Kids: ${order.guests.children || 0} | Pets: ${order.guests.pets || 0} | Infants: ${order.guests.infants || 0}`}</p>
+                                        <p>
+                                            <strong className='guests-trips-card'>Guests:</strong>
+                                            {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
+                                            {order.guests.children ? ` | Kids: ${order.guests.children}` : ''}
+                                            {order.guests.pets ? ` | Pets: ${order.guests.pets}` : ''}
+                                            {order.guests.infants ? ` | Infants: ${order.guests.infants}` : ''}
+                                        </p>
                                     </div>
                                     <div className='img-trips'>
                                         <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />

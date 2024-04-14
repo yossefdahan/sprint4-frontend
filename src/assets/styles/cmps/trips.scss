@@ -14,7 +14,7 @@
   position: relative;
   width: 90px;
   height: 103px;
-  /* Adjust the height to accommodate the "h4" span */
+  z-index: 1;
 }
 
 .loader-trips div {
@@ -50,7 +50,7 @@
   width: 4px;
   height: 0%;
   background: #053146;
-  z-index: 999999;
+  z-index: 1;
 }
 
 .h1 {

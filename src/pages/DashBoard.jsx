@@ -22,12 +22,14 @@ export function DashBoard() {
     const filteredOrders = orders.filter(order => order.hostId === user._id)
 
     useEffect(() => {
+        const approvedOrders = orders.filter(order => order.status === 'approved' && order.hostId === user._id);
 
-        const hostOrders = orders.filter(order => order.hostId === user._id)
+        const totalSalesValue = approvedOrders.reduce((acc, order) => {
+            return acc + order.totalPrice;
+        }, 0);
 
-        const total = hostOrders.reduce((acc, order) => acc + order.totalPrice, 0)
-        setTotalSales(total)
-    }, [orders, user._id])
+        setTotalSales(totalSalesValue);
+    }, [orders, user._id]);
 
 
     // async function handleOrderStatusChange(order, newStatus) {
@@ -88,7 +90,6 @@ export function DashBoard() {
                 <div className='sales-chart'>
                     <SalesChart orders={orders.filter(order => order.hostId === user._id)} />
                 </div>
-                <div className='chart5'>test2</div>
             </div>
 
             <div className="dashboard-container">
