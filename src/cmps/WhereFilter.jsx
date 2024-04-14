@@ -115,22 +115,15 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 loc: { ...prevFilter.loc, region: '', country: '', city: '' }
             }));
         } else {
-            const filteredRegions = allRegions.filter(region =>
-                region.toLowerCase().startsWith(value.toLowerCase())
-            )
-            const filteredCountries = allCountries.filter(country =>
-                country.toLowerCase().startsWith(value.toLowerCase())
-            )
-            const filteredCities = allCities.filter(city =>
-                city.toLowerCase().startsWith(value.toLowerCase())
-            )
+            const filteredCities = allCities.filter(city => city.toLowerCase().includes(value.toLowerCase()));
+            const filteredRegions = allRegions.filter(region => region.toLowerCase().includes(value.toLowerCase()));
+            const filteredCountries = allCountries.filter(country => country.toLowerCase().includes(value.toLowerCase()));
+            setSuggestions([...new Set([...filteredCities, ...filteredRegions, ...filteredCountries])]);
 
-            const combinedSuggestions = [...filteredRegions, ...filteredCountries, ...filteredCities];
-            setSuggestions(combinedSuggestions);
-            setFilterByToEdit(prevFilter => ({
-                ...prevFilter,
-                loc: { ...prevFilter.loc, region: value, country: value, city: value }
-            }));
+            // setFilterByToEdit(prevFilter => ({
+            //     ...prevFilter,
+            //     loc: { ...prevFilter.loc, region: value, country: value, city: value }
+            // }));
         }
     }
 
@@ -147,15 +140,18 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         const infants = guestCounts.infants
         const pets = guestCounts.pets
         const parts = inputValue.split(',')
-
-        const region = parts[0] ? parts[0].trim() : ''
-        const country = parts[1] ? parts[1].trim() : ''
-        const city = parts[2] ? parts[2].trim() : ''
+        const checkIn = filterByToEdit.checkIn
+        const checkOut = filterByToEdit.checkOut
+        // const region = parts[0] ? parts[0].trim() : ''
+        // const country = parts[1] ? parts[1].trim() : ''
+        // const city = parts[2] ? parts[2].trim() : ''
         onSetFilter.current({
             ...filterBy,
-            country: country,
-            city: city,
-            region: region,
+            checkIn,
+            checkOut,
+            city: allCities.find(city => city.toLowerCase() === inputValue.toLowerCase()),
+            region: allRegions.find(region => region.toLowerCase() === inputValue.toLowerCase()),
+            country: allCountries.find(country => country.toLowerCase() === inputValue.toLowerCase()),
             adults,
             children,
             infants,
@@ -172,6 +168,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         const city = parts[2] ? parts[2].trim() : ''
 
         const queryParams = new URLSearchParams({
+            checkIn: filterByToEdit.checkIn,
+            checkOut: filterByToEdit.checkOut,
             city: city,
             region: region,
             country: country,
@@ -355,17 +353,17 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             </div>
 
                             <DatePicker
-                                selected={filterBy.checkIn}
+                                selected={filterByToEdit.checkIn}
                                 onChange={(dates) => {
-                                    const [start, end] = dates
-                                    onSetFilter.current({
-                                        ...filterBy,
+                                    const [start, end] = dates;
+                                    setFilterByToEdit(prevState => ({
+                                        ...prevState,
                                         checkIn: start,
                                         checkOut: end
-                                    })
+                                    }))
                                 }}
-                                startDate={filterBy.checkIn}
-                                endDate={filterBy.checkOut}
+                                startDate={filterByToEdit.checkIn}
+                                endDate={filterByToEdit.checkOut}
                                 selectsRange
                                 monthsShown={2}
                                 open={isOpen}
