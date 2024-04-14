@@ -253,7 +253,7 @@ export function Trips() {
                                         <p><strong className='room-type-trips-card'>Stay Type:</strong> {stay.roomType}</p>
                                         <p><strong className='start-date-trips-card'>Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
                                         <p><strong className='end-dates-trips-card'>End Date:</strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
-                                        <p><strong className='guests-trips-card'>Guests:</strong> {`Adults: ${order.guests.adults} | Kids: ${order.guests.kids || 0} | Pets: ${order.guests.pets || 0} | Infants: ${order.guests.infants || 0}`}</p>
+                                        <p><strong className='guests-trips-card'>Guests:</strong> {`Adults: ${order.guests.adults} | Kids: ${order.guests.children || 0} | Pets: ${order.guests.pets || 0} | Infants: ${order.guests.infants || 0}`}</p>
                                     </div>
                                     <div className='img-trips'>
                                         <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />
