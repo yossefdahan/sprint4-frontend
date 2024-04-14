@@ -58,10 +58,15 @@
       & button {
         grid-column: 2;
         grid-row: 1/-1;
-        border-radius: 8px;
-        height: 45px;
-        font-weight: 600;
         letter-spacing: 0.08em;
+        width: 100%;
+        margin-right: 5px;
+        height: 48px;
+        border-radius: 8px;
+        font-size: 1em;
+        font-weight: 500;
+        color: white;
+        background-color: #ff385c;
       }
 
       & .price-head {
@@ -274,7 +279,7 @@
 
 .details-user {
   .host-things {
-    width: 600px;
+    width: 90%;
     padding: 0.75em;
     display: flex;
     align-items: center;

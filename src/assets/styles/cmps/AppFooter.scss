@@ -29,6 +29,7 @@
     img.privacy-icon {
       margin-right: 5px;
       cursor: pointer;
+
       &:hover {
         border-bottom: 1px solid black;
       }
@@ -44,6 +45,22 @@
     font-size: 0.875rem !important;
     line-height: 1.125rem !important;
     color: rgb(34, 34, 34) !important;
+  }
+}
+
+@media(max-width:870px) {
+  .app-footer {
+    grid-column: 1/-1;
+    padding: 0;
+  }
+
+  .footer-main-content {
+    flex-wrap: wrap;
+    width: 50%;
+  }
+
+  .footer-content {
+    padding: 13px 40px 14px;
   }
 }
 
