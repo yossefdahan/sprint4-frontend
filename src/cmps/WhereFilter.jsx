@@ -33,6 +33,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
 
+
+    
+
     useEffect(() => {
         async function loadCountries() {
             const countries = stays.map(stay => stay.loc.country)
@@ -73,6 +76,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }
 
     useEffectUpdate(() => {
+        
 
     }, [filterByToEdit, inputValue])
 
@@ -132,6 +136,17 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         setInputValue(suggestion)
         setSuggestions([])
         setIsOpen(true)
+    }
+
+    
+    const handleDateChange = (dates) => {
+        const [start, end] = dates;
+        setFilterByToEdit((prev) => ({
+            ...prev,
+            checkIn: start,
+            checkOut: end
+        }));
+      
     }
 
     function updateFilter() {
@@ -354,14 +369,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
                             <DatePicker
                                 selected={filterByToEdit.checkIn}
-                                onChange={(dates) => {
-                                    const [start, end] = dates;
-                                    setFilterByToEdit(prevState => ({
-                                        ...prevState,
-                                        checkIn: start,
-                                        checkOut: end
-                                    }))
-                                }}
+                                onChange={handleDateChange}
                                 startDate={filterByToEdit.checkIn}
                                 endDate={filterByToEdit.checkOut}
                                 selectsRange
@@ -402,7 +410,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             setCountryModal(false)
                         }}>
                             <div className="header-label-cal">Check in</div>
-                            <div className="start-input-cal" >{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Add dates"}</div>
+                            <div className="start-input-cal" >{utilService.formatDate(filterByToEdit.checkIn) ? utilService.formatDate(filterByToEdit.checkIn) : "Add dates"}</div>
                         </div>
                         <div className="out-cal" onClick={() => {
                             setShowGuestDropdown(false)
@@ -410,7 +418,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             setCountryModal(false)
                         }}>
                             <div className="header-label-cal">Check out</div>
-                            <div className="end-input-cal" >{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Add dates"}</div>
+                            <div className="end-input-cal" >{utilService.formatDate(filterByToEdit.checkOut) ? utilService.formatDate(filterByToEdit.checkOut) : "Add dates"}</div>
                         </div>
                     </div>
                 </div>
