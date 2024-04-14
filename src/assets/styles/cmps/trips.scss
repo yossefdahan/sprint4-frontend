@@ -1,3 +1,177 @@
+.trips-page {
+  font-family: Montserrat;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+
+  .navigation-links {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 20px;
+
+    a {
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #767676;
+
+      &.active {
+        color: #ff5a5f;
+        border-bottom: 4px solid #ff5a5f;
+      }
+    }
+  }
+
+  .trips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 20px;
+  }
+
+  .trip-card {
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    padding: 24px 24px 20px 24px;
+
+    & .add-to-calender {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 9px 12px;
+      gap: 8px;
+      height: 35px;
+      width: 201px;
+      border: none;
+      background: #ff342b;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 0 auto;
+
+      & .lable {
+        line-height: 22px;
+        font-size: 16px;
+        color: #fff;
+        font-family: sans-serif;
+        letter-spacing: 1px;
+      }
+
+      & .add-to-calender:hover {
+        background: #e52e26;
+      }
+
+      & .add-to-calender:hover .svg-icon {
+        animation: slope 1s linear infinite;
+      }
+
+      @keyframes slope {
+        0% {
+        }
+
+        50% {
+          transform: rotate(10deg);
+        }
+
+        100% {
+        }
+      }
+    }
+    & .trip-card-header {
+      align-items: center;
+      border-bottom: 1px solid $light-gray;
+
+      & .israel-img {
+        width: 40px;
+        clip-path: circle(50% at 50% 50%);
+      }
+
+      & .host-name-trips {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+
+    & .card-trips-footer {
+      border-top: 1px solid $main-red;
+      padding: 20px 0 20px 0;
+      align-items: center;
+
+      & .price-trips-card {
+        font-size: 1.375em;
+        padding-left: 10px;
+      }
+
+      & span {
+        font-size: 22px;
+      }
+    }
+    & .location-trips-card {
+      padding-left: 10px;
+    }
+    & .stay-name-trips-card {
+      color: $main-red;
+      padding: 10px;
+    }
+    h2 {
+      margin: 0;
+      color: #333;
+    }
+
+    strong {
+      color: #333;
+      margin-right: 10px;
+    }
+
+    .details-section-trips {
+      padding: 16px 10px 16px 10px;
+
+      & p {
+        padding: 10px 0 10px 0;
+        line-height: 1.5;
+        color: #666;
+      }
+
+      & .img-trips {
+        & .trips-stay-img {
+          width: 200px;
+          border-radius: 8px;
+          box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        }
+      }
+    }
+
+    .status {
+      display: inline-block;
+      padding: 2px 5px;
+      border-radius: 4px;
+      color: #fff;
+      width: 250px;
+      font-size: 22px;
+      text-align: center;
+      margin-right: 5px;
+
+      &.pending {
+        background-color: #ffc107; // Amber for pending orders
+        color: $main-white;
+      }
+
+      &.approved {
+        background-color: #28a745; // Green for confirmed orders
+        color: $main-white;
+      }
+
+      &.cancelled {
+        background-color: #dc3545; // Red for cancelled orders
+        color: $main-white;
+      }
+    }
+  }
+}
+
+/** loading page **/
 .loading-bar {
   margin: 100px auto;
   & .loading-trips-title {
@@ -222,177 +396,4 @@
     height: 0;
   }
   /*   91.6666667%{top:0;height:0%;} */
-}
-
-.trips-page {
-  font-family: Montserrat;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-
-  .navigation-links {
-    display: flex;
-    justify-content: start;
-    margin-bottom: 20px;
-
-    a {
-      padding: 10px 15px;
-      text-decoration: none;
-      color: #767676;
-
-      &.active {
-        color: #ff5a5f;
-        border-bottom: 4px solid #ff5a5f;
-      }
-    }
-  }
-
-  .trips-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    gap: 20px;
-  }
-
-  .trip-card {
-    border-radius: 5px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    padding: 24px 24px 20px 24px;
-
-    & .add-to-calender {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 9px 12px;
-      gap: 8px;
-      height: 35px;
-      width: 201px;
-      border: none;
-      background: #ff342b;
-      border-radius: 20px;
-      cursor: pointer;
-      margin: 0 auto;
-
-      & .lable {
-        line-height: 22px;
-        font-size: 16px;
-        color: #fff;
-        font-family: sans-serif;
-        letter-spacing: 1px;
-      }
-
-      & .add-to-calender:hover {
-        background: #e52e26;
-      }
-
-      & .add-to-calender:hover .svg-icon {
-        animation: slope 1s linear infinite;
-      }
-
-      @keyframes slope {
-        0% {
-        }
-
-        50% {
-          transform: rotate(10deg);
-        }
-
-        100% {
-        }
-      }
-    }
-    & .trip-card-header {
-      align-items: center;
-      border-bottom: 1px solid $light-gray;
-
-      & .israel-img {
-        width: 40px;
-        clip-path: circle(50% at 50% 50%);
-      }
-
-      & .host-name-trips {
-        padding: 10px;
-        font-size: 14px;
-      }
-    }
-
-    & .card-trips-footer {
-      border-top: 1px solid $main-red;
-      padding: 20px 0 20px 0;
-      align-items: center;
-
-      & .price-trips-card {
-        font-size: 1.375em;
-        padding-left: 10px;
-      }
-
-      & span {
-        font-size: 22px;
-      }
-    }
-    & .location-trips-card {
-      padding-left: 10px;
-    }
-    & .stay-name-trips-card {
-      color: $main-red;
-      padding: 10px;
-    }
-    h2 {
-      margin: 0;
-      color: #333;
-    }
-
-    strong {
-      color: #333;
-      margin-right: 10px;
-    }
-
-    .details-section-trips {
-      padding: 16px 10px 16px 10px;
-
-      & p {
-        padding: 10px 0 10px 0;
-        line-height: 1.5;
-        color: #666;
-      }
-
-      & .img-trips {
-        & .trips-stay-img {
-          width: 200px;
-          border-radius: 8px;
-          box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-        }
-      }
-    }
-
-    .status {
-      display: inline-block;
-      padding: 2px 5px;
-      border-radius: 4px;
-      color: #fff;
-      width: 250px;
-      font-size: 22px;
-      text-align: center;
-      margin-right: 5px;
-
-      &.pending {
-        background-color: #ffc107; // Amber for pending orders
-        color: $main-white;
-      }
-
-      &.approved {
-        background-color: #28a745; // Green for confirmed orders
-        color: $main-white;
-      }
-
-      &.cancelled {
-        background-color: #dc3545; // Red for cancelled orders
-        color: $main-white;
-      }
-    }
-  }
 }
