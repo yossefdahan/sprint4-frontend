@@ -46,7 +46,7 @@
       height: 35px;
       width: 201px;
       border: none;
-      background: #ff342b;
+      background: #ff385c;
       border-radius: 20px;
       cursor: pointer;
       margin: 0 auto;
@@ -55,15 +55,15 @@
         line-height: 22px;
         font-size: 16px;
         color: #fff;
-        font-family: sans-serif;
+        font-family: Montserrat;
         letter-spacing: 1px;
       }
 
-      & .add-to-calender:hover {
-        background: #e52e26;
+      &:hover {
+        transform: scale(1.03);
       }
 
-      & .add-to-calender:hover .svg-icon {
+      &:hover .svg-icon {
         animation: slope 1s linear infinite;
       }
 
@@ -79,6 +79,7 @@
         }
       }
     }
+
     & .trip-card-header {
       align-items: center;
       border-bottom: 1px solid $light-gray;
