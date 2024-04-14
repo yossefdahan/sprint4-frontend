@@ -11,25 +11,42 @@
 .login-form input,
 .login-form button {
     padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid $clr7;
+    border-radius: 8px;
+    border: 1px solid $main-gray;
     font-size: 1rem;
 }
 
 .login-form button {
-    background-color: $clr3;
-    color: wheat;
+    background-color: $main-red;
+    color: $main-white;
     cursor: pointer;
 
+
     &:hover {
-        background-color: $clr4;
+        scale: 1.05;
     }
 }
 
-.btns a {
-    color: $clr3;
-    cursor: pointer;
-    text-decoration: underline;
+.btns {
+
+    & a {
+        color: $main-gray;
+        cursor: pointer;
+        text-decoration: underline;
+
+    }
+}
+
+#imgUpload {
+    width: 100%;
+
+}
+
+.upload-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-backdrop {
@@ -55,4 +72,5 @@
     z-index: 1001;
     width: 90%;
     max-width: 400px;
+    text-align: center;
 }
