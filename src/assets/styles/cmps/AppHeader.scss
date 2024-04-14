@@ -427,3 +427,12 @@
     position: static;
   }
 }
+
+.logout-btn,
+.login-ham-btn {
+  background-color: initial;
+  border: none;
+  width: fit-content;
+  font-size: 1em;
+  font-weight: 500;
+}
