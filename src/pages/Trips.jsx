@@ -256,7 +256,7 @@ export function Trips() {
                                         <p>
                                             <strong className='guests-trips-card'>Guests:</strong>
                                             {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
-                                            {order.guests.kids ? ` | Kids: ${order.guests.children}` : ''}
+                                            {order.guests.children ? ` | Kids: ${order.guests.children}` : ''}
                                             {order.guests.pets ? ` | Pets: ${order.guests.pets}` : ''}
                                             {order.guests.infants ? ` | Infants: ${order.guests.infants}` : ''}
                                         </p>
