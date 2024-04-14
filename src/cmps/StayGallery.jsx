@@ -46,15 +46,25 @@ export function StayGallery({ stayId, imgUrls, isSaved, onSave, user, stay }) {
         d='m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z'
       ></path>
     </svg>
-  );
-  // if(!stay)return <div>bulbul</div>
-  // const isLikedByUser = stay && stay.likedByUsers ? stay.likedByUsers.some(like => user.id === like) : false;
-  // console.log(isLikedByUser)
+  )
+
+  function likedbyUsers() {
+    if (user) {
+      const isLikedByUser = stay && stay.likedByUsers ? stay.likedByUsers.some(like => user._id === like) : false;
+      return isLikedByUser
+    }
+    else {
+      return ''
+    }
+  }
+
+
+
   return (
     <div className="stay-gallery">
       <Link className="img-link" to={`/stay/${stayId}`}>
         <img className='img-gallery' src={imgUrls[currentImgIndex]} alt="Stay" /></Link>
-      < i onClick={handleSaveClick} >{isSaved  ? <HeartFillIcon /> : <HeartOutlineIcon />}</i>
+      <i onClick={handleSaveClick} >{likedbyUsers() ? <HeartFillIcon /> : <HeartOutlineIcon />}</i>
 
       <section className='btn-preview'>
         {imgUrls[currentImgIndex] !== imgUrls[0] ? <button className=" btn-nav-img prev" onClick={prevImg}></button> : <span></span>}

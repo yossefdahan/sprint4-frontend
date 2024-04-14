@@ -11,6 +11,18 @@
     max-width: 780px;
     z-index: 20;
 
+    & .rc-slider-track {
+        background-color: #131213;
+    }
+
+    & .rc-slider-handle {
+        border: solid 1px black;
+        & :active{
+            border-color: #131213;
+            box-shadow: #131213;
+        } 
+    }
+
     & .modal__button {
         display: flex;
         justify-content: space-between;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { stayService } from "../services/stay.service";
-
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
 
     const [localFilter, setLocalFilter] = useState({
@@ -25,11 +26,12 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
         setIsOpen(false)
     }
 
-    function handlePriceChange(priceType, value) {
+    function handlePriceChange(values) {
         setLocalFilter(prevState => ({
             ...prevState,
-            [priceType]: value
-        }))
+            minPrice: values[0],
+            maxPrice: values[1]
+        }));
     }
 
     function handleAmenityChange(e) {
@@ -80,22 +82,17 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
 
                         <div className="filter-modal__options-row">
                             <h4 className="filter-modal__options-title">Price Range</h4>
-                            <div className="price-range-inputs">
-                                <input
-                                    type="number"
-                                    placeholder="Min Price ($)"
-                                    value={localFilter.minPrice}
-                                    onChange={(e) => handlePriceChange('minPrice', e.target.value)}
-                                    className="modal__input"
-                                />
-                                <input
-                                    type="number"
-                                    placeholder="Max Price ($)"
-                                    value={localFilter.maxPrice}
-                                    onChange={(e) => handlePriceChange('maxPrice', e.target.value)}
-                                    className="modal__input"
-                                />
-                            </div>
+                          
+                        <div>
+                            <Slider
+                                range
+                                min={0}
+                                max={1000}
+                                value={[localFilter.minPrice, localFilter.maxPrice]}
+                                onChange={handlePriceChange}
+                            />
+                            <div>Price range: ${localFilter.minPrice} - ${localFilter.maxPrice}</div>
+                        </div>
                         </div>
 
                         <div className="roomsbed">
