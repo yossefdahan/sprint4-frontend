@@ -49,7 +49,7 @@
   position: static;
   display: grid;
   grid-template-columns: repeat(3, 15fr);
-  height: 125px;
+  height: 80px;
   transition: 0.5s;
   align-items: center;
   background-color: white;
@@ -64,6 +64,8 @@
 
   & .left-section-header {
     justify-self: end;
+    position: relative;
+    left: 4px;
   }
 
   .stays-search {
@@ -76,6 +78,8 @@
 
   .logo-img {
     width: 150px;
+    position: relative;
+    right: 16px;
   }
 
   .side-nav {
