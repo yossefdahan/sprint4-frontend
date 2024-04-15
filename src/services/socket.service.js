@@ -52,7 +52,7 @@ function createSocketService() {
       socket = null
     },
     updateOrderSoket(buyerId) {
-      socket.emit(SOCKET_EVENT_ORDER_STATUS, buyerId)
+      socket.on(SOCKET_EVENT_ORDER_STATUS, buyerId)
     }
 
   }
