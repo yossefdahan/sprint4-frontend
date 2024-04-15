@@ -18,8 +18,8 @@ export function UserMsg() {
       timeoutIdRef.current = setTimeout(closeMsg, 3000)
     })
 
-    socketService.on(SOCKET_EVENT_ORDER_STATUS, (order) => {
-      showSuccessMsg(order)
+    socketService.on(SOCKET_EVENT_ORDER_STATUS, (msg) => {
+      showSuccessMsg(msg)
     })
 
     return () => {
