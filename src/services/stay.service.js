@@ -72,8 +72,8 @@ function getEmptyStay() {
         bedrooms: 0 || utilService.getRandomIntInclusive(1, 10),
         bathrooms: 0 || utilService.getRandomIntInclusive(1, 10),
         dates: {
-            checkIn: Date.now(),
-            checkOut: Date.now(),
+            checkIn: '',
+            checkOut: '',
         },
         amenities: [] || [
             "TV",

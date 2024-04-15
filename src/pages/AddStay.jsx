@@ -36,6 +36,20 @@ export function AddStay() {
         setStay(prevStay => ({ ...prevStay, amenities }))
     }
 
+    function handleDateChange({ target }) {
+        const { value, name } = target;
+        const [category, key] = name.split('.')
+
+        setStay(prevStay => ({
+            ...prevStay,
+            [category]: {
+                ...prevStay[category],
+                [key]: value
+            }
+        }))
+    }
+
+
 
     // async function onSaveStay(ev) {
     //     ev.preventDefault()
@@ -59,6 +73,7 @@ export function AddStay() {
             confirmButtonText: "Add my home",
             denyButtonText: `Don't Add`,
         });
+        console.log(stay)
 
         if (result.isConfirmed) {
             try {
@@ -133,6 +148,27 @@ export function AddStay() {
                             <option value="room">Room</option>
                         </select>
 
+                    </div>
+
+                    <div className="date-inputs">
+                        <label htmlFor="checkIn">Check-in Date: </label>
+                        <input
+                            className="input"
+                            type="date"
+                            name="dates.checkIn"
+                            id="checkIn"
+                            value={stay.dates.checkIn}
+                            onChange={handleDateChange}
+                        />
+                        <label htmlFor="checkOut">Check-out Date: </label>
+                        <input
+                            className="input"
+                            type="date"
+                            name="dates.checkOut"
+                            id="checkOut"
+                            value={stay.dates.checkOut}
+                            onChange={handleDateChange}
+                        />
                     </div>
 
                     <ImgUploader onUploaded={onUploaded} />
