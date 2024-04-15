@@ -10,6 +10,7 @@ import { loadStays, setFilterBy } from '../store/stay.actions'
 // import { SearchFilter } from './SearchFilter.jsx'
 import { stayService } from '../services/stay.service.js'
 import { MinFilter } from './MinFilter.jsx'
+import Avatar from '@mui/material/Avatar';
 
 
 import { loadUser, loadUsers, logout } from '../store/user.actions.js'
@@ -190,7 +191,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
 
                         </nav>
                 )}
-                <img className="israel-img" src={user ? user.imgUrl : 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'} />
+                <Avatar style={{ height: '30px' }} alt={user ? user.imgUrl : ''} className="israel-img" src={user ? user.imgUrl : ''} />
 
 
 
@@ -249,7 +250,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
                                 {/* <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span> */}
                             </nav>
                     )}
-                    <img className="israel-img" src={user ? user.imgUrl : 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'} />
+                    <Avatar className="israel-img" src={user ? user.imgUrl : 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'} />
 
 
 
