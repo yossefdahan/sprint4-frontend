@@ -148,6 +148,14 @@
   //   width: auto;
 }
 
+.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
+  background-color: black;
+}
+
+.react-datepicker__day--selected, .react-datepicker__day--in-range{
+
+}
+
 .react-datepicker__day {
   width: 48px; // Increase size for larger hit area
   line-height: 48px; // Center text vertically
@@ -576,7 +584,7 @@
           content: none;
         }
 
-        &:hover + .in-cal::after {
+        &:hover+.in-cal::after {
           content: none;
         }
 

@@ -96,7 +96,7 @@ export function ScrollingFilter() {
         {
           labels.map(label => (
             <SwiperSlide key={label} onClick={() => handleChange(label)} >
-              <button>
+              <button className={selectedLabel === label ? 'active' : ''}>
                 <span>
                   <img src={importImage(label.toLowerCase())} />
                 </span>

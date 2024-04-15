@@ -33,6 +33,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
 
+
+    
+
     useEffect(() => {
         async function loadCountries() {
             const countries = stays.map(stay => stay.loc.country)
@@ -73,6 +76,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }
 
     useEffectUpdate(() => {
+        
 
     }, [filterByToEdit, inputValue])
 
@@ -115,22 +119,15 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 loc: { ...prevFilter.loc, region: '', country: '', city: '' }
             }));
         } else {
-            const filteredRegions = allRegions.filter(region =>
-                region.toLowerCase().startsWith(value.toLowerCase())
-            )
-            const filteredCountries = allCountries.filter(country =>
-                country.toLowerCase().startsWith(value.toLowerCase())
-            )
-            const filteredCities = allCities.filter(city =>
-                city.toLowerCase().startsWith(value.toLowerCase())
-            )
+            const filteredCities = allCities.filter(city => city.toLowerCase().includes(value.toLowerCase()));
+            const filteredRegions = allRegions.filter(region => region.toLowerCase().includes(value.toLowerCase()));
+            const filteredCountries = allCountries.filter(country => country.toLowerCase().includes(value.toLowerCase()));
+            setSuggestions([...new Set([...filteredCities, ...filteredRegions, ...filteredCountries])]);
 
-            const combinedSuggestions = [...filteredRegions, ...filteredCountries, ...filteredCities];
-            setSuggestions(combinedSuggestions);
-            setFilterByToEdit(prevFilter => ({
-                ...prevFilter,
-                loc: { ...prevFilter.loc, region: value, country: value, city: value }
-            }));
+            // setFilterByToEdit(prevFilter => ({
+            //     ...prevFilter,
+            //     loc: { ...prevFilter.loc, region: value, country: value, city: value }
+            // }));
         }
     }
 
@@ -141,21 +138,35 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         setIsOpen(true)
     }
 
+    
+    const handleDateChange = (dates) => {
+        const [start, end] = dates;
+        setFilterByToEdit((prev) => ({
+            ...prev,
+            checkIn: start,
+            checkOut: end
+        }));
+      
+    }
+
     function updateFilter() {
         const adults = guestCounts.adults
         const children = guestCounts.children
         const infants = guestCounts.infants
         const pets = guestCounts.pets
         const parts = inputValue.split(',')
-
-        const region = parts[0] ? parts[0].trim() : ''
-        const country = parts[1] ? parts[1].trim() : ''
-        const city = parts[2] ? parts[2].trim() : ''
+        const checkIn = filterByToEdit.checkIn
+        const checkOut = filterByToEdit.checkOut
+        // const region = parts[0] ? parts[0].trim() : ''
+        // const country = parts[1] ? parts[1].trim() : ''
+        // const city = parts[2] ? parts[2].trim() : ''
         onSetFilter.current({
             ...filterBy,
-            country: country,
-            city: city,
-            region: region,
+            checkIn,
+            checkOut,
+            city: allCities.find(city => city.toLowerCase() === inputValue.toLowerCase()),
+            region: allRegions.find(region => region.toLowerCase() === inputValue.toLowerCase()),
+            country: allCountries.find(country => country.toLowerCase() === inputValue.toLowerCase()),
             adults,
             children,
             infants,
@@ -172,6 +183,8 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         const city = parts[2] ? parts[2].trim() : ''
 
         const queryParams = new URLSearchParams({
+            checkIn: filterByToEdit.checkIn,
+            checkOut: filterByToEdit.checkOut,
             city: city,
             region: region,
             country: country,
@@ -355,17 +368,10 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             </div>
 
                             <DatePicker
-                                selected={filterBy.checkIn}
-                                onChange={(dates) => {
-                                    const [start, end] = dates
-                                    onSetFilter.current({
-                                        ...filterBy,
-                                        checkIn: start,
-                                        checkOut: end
-                                    })
-                                }}
-                                startDate={filterBy.checkIn}
-                                endDate={filterBy.checkOut}
+                                selected={filterByToEdit.checkIn}
+                                onChange={handleDateChange}
+                                startDate={filterByToEdit.checkIn}
+                                endDate={filterByToEdit.checkOut}
                                 selectsRange
                                 monthsShown={2}
                                 open={isOpen}
@@ -404,7 +410,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             setCountryModal(false)
                         }}>
                             <div className="header-label-cal">Check in</div>
-                            <div className="start-input-cal" >{utilService.formatDate(filterBy.checkIn) ? utilService.formatDate(filterBy.checkIn) : "Add dates"}</div>
+                            <div className="start-input-cal" >{utilService.formatDate(filterByToEdit.checkIn) ? utilService.formatDate(filterByToEdit.checkIn) : "Add dates"}</div>
                         </div>
                         <div className="out-cal" onClick={() => {
                             setShowGuestDropdown(false)
@@ -412,7 +418,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             setCountryModal(false)
                         }}>
                             <div className="header-label-cal">Check out</div>
-                            <div className="end-input-cal" >{utilService.formatDate(filterBy.checkOut) ? utilService.formatDate(filterBy.checkOut) : "Add dates"}</div>
+                            <div className="end-input-cal" >{utilService.formatDate(filterByToEdit.checkOut) ? utilService.formatDate(filterByToEdit.checkOut) : "Add dates"}</div>
                         </div>
                     </div>
                 </div>
