@@ -103,7 +103,7 @@ export function AddStay() {
             <h2> Airstay your home</h2>
 
             <form onSubmit={onSaveStay}>
-                <div className="addStay flex column">
+                <div className="addStay1">
                     <label htmlFor="name">Name of your stay: </label>
                     <input className="input" type="text" name="name" id="name" placeholder="Enter name..." value={stay.name} onChange={handleChange} />
                     <label htmlFor="summary">Summary: </label>
@@ -117,12 +117,10 @@ export function AddStay() {
                     <label htmlFor="bathrooms">Bathrooms : </label>
                     <input className="input" type="number" name="bathrooms" id="bathrooms" placeholder="Enter bathrooms" value={stay.bathrooms} onChange={handleChange} />
 
-                    <div>
-                        <MultiSelect onSetLabel={onSetLabel} stay={stay} />
-                    </div>
-                    <div>
-                        <MultiSelectAmenities onSetAmenitie={onSetAmenitie} stay={stay} />
-                    </div>
+
+                </div>
+
+                <div className="addStay2">
                     <div className="location-input">
                         <label htmlFor="address">Address: </label>
                         <input className="input" type="text" name="address" id="address" placeholder="Enter address..." value={stay.loc.address} onChange={handleLocChange} />
@@ -140,15 +138,17 @@ export function AddStay() {
                             <option value="South America">South America</option>
                         </select>
                     </div>
-                    <div className="radio-sort input">
-                        <label htmlFor="type"> Type of the Airstay</label>
-                        <select value={stay.roomType} onChange={handleChange} name="type">
-                            <option value="house">House</option>
-                            <option value="studio">Studio</option>
-                            <option value="room">Room</option>
-                        </select>
 
-                    </div>
+
+                    {/* <div className="radio-sort input"> */}
+                    <label htmlFor="type"> Type of the Airstay</label>
+                    <select value={stay.roomType} onChange={handleChange} name="type">
+                        <option value="house">House</option>
+                        <option value="studio">Studio</option>
+                        <option value="room">Room</option>
+                    </select>
+
+                    {/* </div> */}
 
                     <div className="date-inputs">
                         <label htmlFor="checkIn">Check-in Date: </label>
@@ -170,14 +170,20 @@ export function AddStay() {
                             onChange={handleDateChange}
                         />
                     </div>
+                </div>
 
-                    <ImgUploader onUploaded={onUploaded} />
-                    <div>
-                        <button type="sumbmit">Add</button>
-                        {/* <button ><Link className="add-btn" to="/stay">Cancel</Link></button> */}
+                {/* <button ><Link className="add-btn" to="/stay">Cancel</Link></button> */}
+                <div className="form-footer">
+                    <MultiSelect onSetLabel={onSetLabel} stay={stay} />
+                    <MultiSelectAmenities onSetAmenitie={onSetAmenitie} stay={stay} />
+
+                    <div style={{ padding: "20px", maxWidth: "200px" }}>
+                        <ImgUploader onUploaded={onUploaded} />
                     </div>
+                    <button type="sumbmit">Add</button>
                 </div>
             </form>
+
         </section>
     );
 }
