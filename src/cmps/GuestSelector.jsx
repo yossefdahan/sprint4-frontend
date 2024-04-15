@@ -24,7 +24,7 @@ export function GuestSelector({ guestType, guestCounts, updateGuestCount }) {
                 <button type="button" className={guestCounts[guestType] <= 0 ? 'button-disabled' : ''} disabled={guestCounts[guestType] <= 0} style={{ opacity: guestCounts[guestType] <= 0 ? 0.3 : 1 }} onClick={(event) => {
                     event.stopPropagation()
                     updateGuestCount(guestType, -1)
-                }}>-</button>
+                }}> - </button>
                 <span>{guestCounts[guestType]}</span>
                 <button type="button" className={((guestType === 'adults' || guestType === 'children') && (guestCounts.adults + guestCounts.children >= 16) ||
                     (guestType === 'infants' && guestCounts.infants >= 5) ||
