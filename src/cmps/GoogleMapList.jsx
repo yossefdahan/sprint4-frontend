@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 
 export function GoogleMapList({ stays }) {
-    const defaultCoords = { lat: 38.606140, lng: -99.284834 }
+    const defaultCoords = { lat: 33.803, lng: 8.474 }
     const [selectedStay, setSelectedStay] = useState(null)
 
-    const zoom = 1
+    const zoom = 3
     const [modalPosition, setModalPosition] = useState({ top: 1, left: 1 })
 
     const AnyReactComponent = ({ stay, onOpenModal }) => (
@@ -41,7 +41,7 @@ export function GoogleMapList({ stays }) {
     return (
         <div className="full" style={{ margin: 'auto' }}>
 
-            <div style={{ height: '75vh', width: '100vw', marginTop: "0" }}>
+            <div style={{ height: '75vh', width: '99vw', marginTop: "0" }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY" }}
                     defaultCenter={defaultCoords}
