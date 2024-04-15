@@ -52,7 +52,7 @@ export function MainDetails({ stay, filterBy, onSetFilter }) {
                 </div>) : <a>★ {stay.reviews.length < 1 ? `Not rated yet` : `${stay.reviews.length} reviews`} </a>}
 
                 <section className="host-details">
-                    <Avatar alt="Travis Howard" src={stay.host.pictureUrl} />
+                    <Avatar alt="Travis Howard" src={stay.host.imgUrl} />
                     <section className="host-short">
                         <h4 className="host-name-details">Hosted by {stay.host.fullname}</h4>
                         <p>{stay.host.isSuperhost ? "Superhost" : ""} • 2 years hosting</p>
