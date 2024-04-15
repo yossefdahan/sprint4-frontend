@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { stayService } from "../services/stay.service";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -14,6 +14,20 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
         maxPrice: '',
     });
 
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
 
 
 
@@ -58,7 +72,7 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
     const amenitiesPreview = amenities.slice(0, 6);
 
     return (
-        <div className="filter-modal">
+        <div className="filter-modal" ref={modalRef}>
             <form onSubmit={handleSubmit}>
                 <div className="filter-modal-header">
                     <button className="__close-btn" onClick={() => setIsOpen(!isOpen)}>x</button>
@@ -82,17 +96,17 @@ export function FilterModal({ setIsOpen, isOpen, filterBy, onSetFilter }) {
 
                         <div className="filter-modal__options-row">
                             <h4 className="filter-modal__options-title">Price Range</h4>
-                          
-                        <div>
-                            <Slider
-                                range
-                                min={0}
-                                max={1000}
-                                value={[localFilter.minPrice, localFilter.maxPrice]}
-                                onChange={handlePriceChange}
-                            />
-                            <div>Price range: ${localFilter.minPrice} - ${localFilter.maxPrice}</div>
-                        </div>
+
+                            <div>
+                                <Slider
+                                    range
+                                    min={0}
+                                    max={1000}
+                                    value={[localFilter.minPrice, localFilter.maxPrice]}
+                                    onChange={handlePriceChange}
+                                />
+                                <div>Price range: ${localFilter.minPrice} - ${localFilter.maxPrice}</div>
+                            </div>
                         </div>
 
                         <div className="roomsbed">
