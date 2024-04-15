@@ -51,7 +51,7 @@
       grid-column: 3;
       grid-template-rows: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-      align-items:center;
+      align-items: center;
       width: 320px;
       height: 48px;
       padding-right: 40px;
@@ -611,9 +611,27 @@
 }
 
 .circleRed {
-  background-color: $clr1;
-  padding: 10px;
+  box-shadow: 1px 1px 1px 30px #f6788f78;
+  background-color: #ff385c;
+  padding: 15px 14px;
   border-radius: 50px;
+  // transition: 1s;
+
+  &:hover {
+    transition: 1s;
+    animation: flip 0.5s ease-in-out;
+  }
+
+  @keyframes flip {
+    from {
+      transform: rotateY(0deg);
+    }
+
+    to {
+      transform: rotateY(180deg);
+    }
+  }
+
 }
 
 .line-payment {
