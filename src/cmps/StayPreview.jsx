@@ -12,15 +12,26 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
 
     async function handleSave(ev) {
         ev.stopPropagation();
-        const stayToSave = { ...stay, likedByUsers: [...stay.likedByUsers, user._id] }
+        if (!user) {
+            setError('You must be logged in to save stays.')
+            return;
+        }
+
+        const alreadyLiked = isSaved
+        const updatedLikedByUsers = alreadyLiked
+            ? stay.likedByUsers.filter(id => id !== user._id)
+            : [...stay.likedByUsers, user._id]
+
+        const stayToSave = { ...stay, likedByUsers: updatedLikedByUsers }
+
         try {
             const savedStay = await updateStay(stayToSave)
             setIsSaved(!isSaved);
             console.log(savedStay, 'is saved!!')
         } catch (err) {
-            console.log(err, 'israel and his shit')
+            console.error(err)
+            setError('Failed to save the stay. Please try again later.')
         }
-
     }
 
     const correctedLng = ((394.891562 % 360) + 360) % 360
