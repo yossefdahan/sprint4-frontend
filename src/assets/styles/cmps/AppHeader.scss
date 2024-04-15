@@ -64,6 +64,8 @@
 
   & .left-section-header {
     justify-self: end;
+    position: relative;
+    left: 4px;
   }
 
   .stays-search {
@@ -76,6 +78,8 @@
 
   .logo-img {
     width: 150px;
+    position: relative;
+    right: 16px;
   }
 
   .side-nav {

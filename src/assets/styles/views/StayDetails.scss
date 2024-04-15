@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     background-color: white;
-    height: 80px;
+    height: 100px;
     align-items: center;
     // justify-content: space-;
     z-index: 5;
@@ -51,6 +51,7 @@
       grid-column: 3;
       grid-template-rows: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
+      align-items:center;
       width: 320px;
       height: 48px;
       padding-right: 40px;
@@ -61,10 +62,10 @@
         letter-spacing: 0.08em;
         width: 100%;
         margin-right: 5px;
-        height: 48px;
+        height: 100%;
         border-radius: 8px;
         font-size: 1em;
-        font-weight: 500;
+        font-weight: 600;
         color: white;
         background-color: #ff385c;
       }
@@ -83,9 +84,10 @@
       }
 
       & .star-head {
+        display: flex;
         font-size: 0.75em;
         font-weight: 500;
-        width: 110px;
+        width: 120px;
 
         & span {
           font-weight: 400;
@@ -98,6 +100,7 @@
   .main-header-details {
     height: 60px;
     margin: 0px;
+    margin-top: 10px
   }
 
   .little-details {
