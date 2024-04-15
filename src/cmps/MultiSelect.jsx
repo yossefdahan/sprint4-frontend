@@ -19,7 +19,7 @@ export function MultiSelect({ onSetLabel, stay }) {
 
         <div className={`options-container  ${isOptionsModalOpen ? ' open' : ''}`}>
             {labels.map(label => <div onClick={() => onSetLabel(label)} key={label}>
-                {label} {stay.labels?.includes(label) ? '🟢' : ''}
+                {label} {stay.labels?.includes(label) ? '✔' : ''}
             </div>
             )}
         </div>

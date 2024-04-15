@@ -1,115 +1,124 @@
+$airbnb-red: #FF5A5F;
+$airbnb-light-gray: #EBEBEB;
+$airbnb-dark-gray: #484848;
+$background-color: #fff;
+$font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
 .stay-add {
-  max-width: 600px;
+  max-width: 1200px;
+  min-width: 800px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: $background-color;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: $font-family-base;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center-align the child elements
+  border-radius: 12px;
 
   h2 {
     text-align: center;
-    color: #333;
+    color: $airbnb-red;
     margin-bottom: 30px;
+    width: 100%; // Ensure the title spans the full width
   }
 
-  .addStay {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  form {
+    width: 100%; // Ensure the form spans the full width
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // Two columns for the addStay1 and addStay2
+    column-gap: 20px; // Space between the form columns
+
+    .addStay1 {
+      order: 2; // Place addStay1 on the right
+    }
+
+    .addStay2 {
+      order: 1; // Place addStay2 on the left
+    }
+
+    .form-footer {
+      grid-column: 1 / -1; // Span footer across all columns
+      display: flex;
+      flex-direction: column;
+      align-items: center; // Center-align footer content
+      width: 100%; // Ensure footer spans the full width
+      order: 3; // Place footer below the addStay sections
+    }
 
     .input,
     select {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 100%;
+      width: 100%; // Inputs take full width of the column
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid $airbnb-light-gray;
+      border-radius: 4px;
 
       &:focus {
-        border-color: #007bff;
+        border-color: $airbnb-red;
         outline: none;
       }
     }
 
-    textarea.input {
-      height: 100px;
-      resize: vertical;
-    }
-
     label {
-      font-weight: bold;
+      display: block;
+      color: $airbnb-dark-gray;
       margin-bottom: 5px;
+      font-weight: 600;
     }
 
+    .multi-select,
     .location-input,
+    .date-inputs,
     .radio-sort {
-      display: flex;
-      flex-direction: column;
-
-      input {
-        width: 100%;
-        cursor: pointer;
-      }
+      position: relative;
     }
 
-    .radio-sort select {
-      margin-top: 10px;
+    select,
+    .multi-select div,
+    .radio-sort {
+      cursor: pointer;
+      position: relative;
+
+      // &:after {
+      //   content: '▼';
+      //   position: absolute;
+      //   right: 10px;
+      //   top: 50%;
+      //   transform: translateY(-50%);
+      // }
+    }
+
+    .selected-options-container {
+      display: flex;
+    }
+
+    .options-container {
+      display: none;
+      position: absolute;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid $airbnb-light-gray;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+
+      &.open {
+        display: block;
+        position: absolute;
+      }
     }
 
     button {
       padding: 10px 20px;
-      background-color: #007bff;
+      background-color: $airbnb-red;
       color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
 
       &:hover {
-        background-color: darken(#007bff, 5%);
-        cursor: pointer;
-      }
-    }
-  }
-
-  .multi-select {
-    position: relative;
-    font-family: Montserrat;
-
-    .input,
-    .selected-options-container {
-      display: flex;
-      cursor: pointer;
-    }
-
-    .options-container {
-      display: none;
-      position: absolute;
-      top: 100%;
-      width: 100%;
-
-      left: 0;
-      // width: 10%;
-      background-color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-      z-index: 10;
-
-      &.open {
-        display: block;
-      }
-
-      >* {
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
-        transition: background-color 0.2s;
-
-        &:hover {
-          cursor: pointer;
-        }
-
-        &:last-child {
-          border-bottom: none;
-        }
+        background-color: darken($airbnb-red, 10%);
       }
     }
   }
