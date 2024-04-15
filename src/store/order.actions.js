@@ -1,6 +1,7 @@
 import { orderService } from '../services/order.service.js'
 import { store } from './store.js'
 import { ADD_ORDER, REMOVE_ORDER, SET_ORDER, SET_ORDERS, UPDATE_ORDER } from './order.reducer.js'
+import { socketService } from '../services/socket.service.js'
 // import { SET_SCORE, SET_WATCHED_USER} from './user.reducer.js'
 
 // Action Creators
@@ -39,8 +40,10 @@ export async function orderInProgress(orderInProgress) {
 
 export async function updateOrder(order) {
   try {
+    console.log('try', order)
     const updatedOrder = await orderService.saveOrder(order)
     store.dispatch({ type: UPDATE_ORDER, order: updatedOrder })
+    socketService.updateOrderSoket(order.buyer._id)
     return updatedOrder
   } catch (err) {
     console.log('orderActions: err in addorder', err)
