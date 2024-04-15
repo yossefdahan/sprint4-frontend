@@ -51,9 +51,7 @@ function createSocketService() {
     terminate() {
       socket = null
     },
-    updateOrderSoket(buyerId) {
-      socket.on(SOCKET_EVENT_ORDER_STATUS, buyerId)
-    }
+  
 
   }
   return socketService

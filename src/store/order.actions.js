@@ -42,7 +42,6 @@ export async function updateOrder(order) {
   try {
     console.log('try', order)
     const updatedOrder = await orderService.saveOrder(order)
-    socketService.updateOrderSoket(order.buyer._id)
     store.dispatch({ type: UPDATE_ORDER, order: updatedOrder })
     return updatedOrder
   } catch (err) {
