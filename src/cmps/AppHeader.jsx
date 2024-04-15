@@ -95,16 +95,6 @@ export function AppHeader({ showSearch, setShowSearch }) {
         window.location.href = '/'
     }
 
-    // function getHeader() {
-    //     const route = location.pathname
-
-    //     switch (route) {
-    //         case '/:stayId'
-    //         return(
-
-    //         )
-    //     }
-    // }
 
 
     function onLogout() {
@@ -137,11 +127,54 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const isPaymentRoute = location.pathname.startsWith('/payment/')
     const detailsRout = location.pathname.startsWith('/stay')
     const stayyourhome = location.pathname.startsWith('/AddStayPreview')
+    const tripspage = location.pathname.startsWith('/user/trips')
+
+
+    if (tripspage)
+        return <header className=" app-header-trips flex space-between">
+
+            <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
+            <div className='left-section-header flex align-center'>
+                <button onClick={() => navigate('/AddStayPreview')} className='host-your-home-nav'>Airstay you home</button>
+                <button className='Languages-btn fa-solid fa-globe'></button>
+                <div className='side-nav-trips flex align-center' onClick={toggleNavBar}>
+                    <button className='side-nav-bar'><i className="fa-solid fa-bars" onClick={toggleNavBar}></i></button>
+                    {isNavVisible && (
+                        !user ? (
+                            <nav className="nav-links-trips">
+                                <button className="login-ham-btn" onClick={toggleModal}>Login</button>
+                                <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
+                                <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                            </nav>
+                        ) :
+                            <nav className="nav-links-trips">
+
+                                <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
+                                <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
+                                <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
+                                <div><hr /></div>
+                                <NavLink className=" nav-icon" to="/AddStayPreview">Airstay your home</NavLink>
+                                {isUserAHost && <NavLink className=" nav-icon" to="/user/dashboard">Dashboard</NavLink>}
+                                <NavLink className=" nav-icon" to="/">Help center</NavLink>
+                                <button className='logout-btn' onClick={onLogout}>Logout</button>
+
+                                {/* <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span> */}
+
+                            </nav>
+                    )}
+                    <Avatar style={{ height: '30px' }} alt={user ? user.imgUrl : ''} className="israel-img" src={user ? user.imgUrl : ''} />
+
+
+
+                </div>
+
+            </div>
+        </header>
 
     if (isPaymentRoute) return <header className="app-header-payment">
         <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
-
     </header>
+
     if (stayyourhome) return <header className="app-header-addstay flex space-between align-center">
         <img onClick={backHome} className="logo-img logo-img-payment" src={logoBlack} />
         <button onClick={backHome} className='go-back-addstay' > Exit without saving</button>
