@@ -1,13 +1,7 @@
-$mobile-breakpoint: 480px; // Mobile devices
-$narrow-breakpoint: 768px; // Tablets in portrait mode
-$normal-breakpoint: 1024px; // Tablets in landscape mode
-$wide-breakpoint: 1200px; // Desktops and larger devices
-
 .app-header-trips {
   position: sticky;
   top: 0px;
   display: flex;
-  // grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   transition: 0.5s;
   align-items: center;
@@ -16,14 +10,13 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
   cursor: pointer;
   z-index: 10;
   text-decoration: none;
-
   border-bottom: 1px solid lightgray;
-  padding: 0 5em 0 5em;
+  padding: 0 5em;
   grid-column: 1/-1;
+  transition: 0.5s;
 
   & .left-section-header {
     justify-self: end;
-    // padding-right: 20px;
   }
 
   .stays-search {
@@ -140,6 +133,8 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
   }
 }
 
+/*trips main page */
+
 .trips-page {
   font-family: Montserrat;
   color: #333;
@@ -165,20 +160,33 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
 
   .trips-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
     gap: 20px;
   }
 
   .trip-card {
     border-radius: 5px;
-    padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    padding: 24px 24px 20px 24px;
+    // padding: 24px 24px 20px 24px;
+    padding-bottom: 0;
+    padding-top: 0;
+    max-width: 800px;
 
+    & .location-details-trips {
+      border-left: 1px solid $light-gray;
+      padding-left: 10px;
+      margin: 0;
+      width: 250px;
+
+      & .location-details-trips-card {
+        font-size: 0.875em;
+        color: $main-gray;
+        padding: 0;
+      }
+    }
     & .add-to-calender {
       display: flex;
       justify-content: center;
@@ -224,7 +232,7 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
 
     & .trip-card-header {
       align-items: center;
-      border-bottom: 1px solid $light-gray;
+      margin-left: 15px;
 
       & .israel-img {
         width: 40px;
@@ -238,26 +246,35 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
     }
 
     & .card-trips-footer {
-      border-top: 1px solid $main-red;
+      border-top: 1px solid $light-gray;
       padding: 20px 0 20px 0;
       align-items: center;
+      height: 50px;
 
       & .price-trips-card {
-        font-size: 1.375em;
+        font-size: 1em;
         padding-left: 10px;
+        width: 200px;
       }
 
       & span {
-        font-size: 22px;
+        font-size: 1em;
       }
     }
-    & .location-trips-card {
+
+    & .head-section {
+      padding-top: 20px;
       padding-left: 10px;
+      border-bottom: 1px solid $light-gray;
     }
+
     & .stay-name-trips-card {
-      color: $main-red;
-      padding: 10px;
+      color: $main-gray;
+      padding-bottom: 10px;
+      padding-top: 5px;
+      font-weight: 400;
     }
+
     h2 {
       margin: 0;
       color: #333;
@@ -269,20 +286,22 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
     }
 
     .details-section-trips {
-      padding: 16px 10px 16px 10px;
+      // padding: 16px 10px 16px 10px;
 
       & p {
-        padding: 10px 0 10px 0;
+        // padding: 10px 0 10px 0;
         line-height: 1.5;
         color: #666;
       }
+    }
 
-      & .img-trips {
-        & .trips-stay-img {
-          width: 200px;
-          border-radius: 8px;
-          box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-        }
+    & .img-trips {
+      & .trips-stay-img {
+        width: 100%; /* This will make the image fill the width of its container */
+        height: auto; /* This maintains the aspect ratio */
+        display: block; /* This removes any extra space below the image */
+        border-radius: 8px; /* Keeps the border radius if desired */
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px; /* Keeps the shadow if desired */
       }
     }
 
@@ -292,7 +311,7 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
       border-radius: 4px;
       color: #fff;
       width: 250px;
-      font-size: 22px;
+      font-size: 1em;
       text-align: center;
       margin-right: 5px;
 
@@ -544,61 +563,117 @@ $wide-breakpoint: 1200px; // Desktops and larger devices
   /*   91.6666667%{top:0;height:0%;} */
 }
 
-@include for-mobile-layout {
-  .trips-container {
-    grid-template-columns: 1fr; // Make grid single column for mobile
-  }
+// @media (max-width > 1024px) {
+//   .app-header-trips {
+//     padding: 0 1em;
+//     flex-direction: column;
+//   }
 
-  .trip-card {
-    padding: 10px; // Reduce padding
-  }
+//   .app-header-trips .logo-img {
+//     width: 100px;
+//   }
 
-  .navigation-links {
-    flex-direction: column; // Stack navigation links vertically
-    align-items: center;
+//   .app-header-trips .nav-links-trips {
+//     position: static;
+//     display: block;
+//     width: auto;
+//   }
 
-    a {
-      padding: 8px; // Reduce padding
-      margin-bottom: 5px; // Add space between links
-    }
-  }
+//   .app-header-trips .nav-links-trips a {
+//     display: block;
+//   }
+// }
 
-  .loader-trips {
-    width: 70px; // Scale down loader for mobile
-    height: 78px;
-  }
-}
+// @media (max-width > 768px) {
+//   .app-header-trips {
+//     flex-direction: column;
+//     padding: 0.5em;
+//   }
 
-@include for-narrow-layout {
-  .trips-container {
-    grid-template-columns: repeat(2, 1fr); // 2 columns for tablets
-  }
+//   .app-header-trips .side-nav-trips,
+//   .app-header-trips .nav-links-trips {
+//     display: none;
+//   }
+// }
 
-  .navigation-links {
-    justify-content: space-around; // Distribute navigation links evenly
-  }
-}
+// /* Trips Page Layout */
 
-@include for-normal-layout {
-  .trips-container {
-    grid-template-columns: repeat(3, 1fr); // 3 columns for small desktops
-  }
-}
+// a.active {
+//   display: none;
+// }
 
-@include for-wide-layout {
-  .trips-container {
-    grid-template-columns: repeat(4, 1fr); // 4 columns for wide screens
-  }
-}
+// .trips-page {
+//   padding: 5px;
+// }
 
-.trip-card {
-  @include hover-supported {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 8px 16px; // Enhanced shadow on hover for non-touch devices
-  }
+// .trips-page .trips-container {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 
-  .add-to-calendar {
-    @include hover-supported {
-      transform: scale(1.05); // Subtle grow effect on hover
-    }
-  }
-}
+//   gap: 20px;
+// }
+
+// .trip-card {
+//   border: 1px solid #ddd;
+//   border-radius: 12px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//   padding: 10px;
+
+//   & .trip-card-header {
+//     margin-top: 20px;
+//   }
+
+//   & .add-to-calender {
+//     margin-bottom: 20px;
+//     width: 20px;
+//   }
+// }
+
+// .trip-card:hover {
+//   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+// }
+
+// /* Simplify Loader for Consistency */
+// .loader-trips {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+//   width: 90px;
+//   height: 90px;
+//   z-index: 1;
+// }
+
+// .loader-trips div {
+//   position: absolute;
+//   width: 40px;
+//   height: 40px;
+//   transform-origin: center;
+// }
+
+// .loader-trips div div span {
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   background: #053146;
+// }
+
+// @keyframes loadingAnimation {
+//   0%,
+//   100% {
+//     height: 0%;
+//   }
+//   50% {
+//     height: 100%;
+//   }
+// }
+
+// .loader-trips div:nth-of-type(1) span {
+//   animation: loadingAnimation 3.2s ease infinite;
+// }
+// .loader-trips div:nth-of-type(2) span {
+//   animation: loadingAnimation 3.2s ease 0.4s infinite;
+// }
+// .loader-trips div:nth-of-type(3) span {
+//   animation: loadingAnimation 3.2s ease 0.8s infinite;
+// }

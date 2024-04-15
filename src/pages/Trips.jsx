@@ -9,7 +9,9 @@ import { loadUsers } from '../store/user.actions';
 import { userService } from '../services/user.service';
 import { loadStays } from '../store/stay.actions';
 
-export function Trips() {
+
+
+export function Trips(stay) {
 
     const orders = useSelector((storeState) => storeState.orderModule.orders);
     const users = useSelector(storeState => storeState.userModule.users);
@@ -38,9 +40,6 @@ export function Trips() {
         sortedOrders = [...filteredOrders].sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
     }
 
-    if (sortedOrders.length === 0) {
-        return <div>No orders found.</div>;
-    }
 
     function handleAddToCalendar(order, stay) {
         if (!stay) {
@@ -52,7 +51,6 @@ export function Trips() {
         const endDateFormatted = utilService.formatIsoDateToYMD(order.endDate);
         const startDate = startDateFormatted.replace(/\//g, '');
         const endDate = endDateFormatted.replace(/\//g, '');
-
         const startTime = 'T000000';
         const endTime = 'T235959';
         const details = encodeURIComponent(`Stay at ${stay.name}`);
@@ -120,7 +118,7 @@ export function Trips() {
 
                             return (
                                 <div key={order._id} className="trip-card">
-                                    <div>
+                                    {/* <div>
                                         <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 width="24" viewBox="0 0 24 24"
@@ -132,43 +130,48 @@ export function Trips() {
                                                     <path d="m8 3v4"></path><path d="m16 3v4"></path>
                                                     <path d="m4 11h16"></path></g></svg>
                                             <span className="lable"></span></button>
-                                    </div>
-                                    <div className='trip-card-header flex space-between'>
-                                        <div>
-                                            <h2><strong className='location-trips-card'>{stay.loc.city}, {stay.loc.country}</strong></h2>
-                                            <p className='stay-name-trips-card'>{stay.name}</p>
+                                    </div> */}
+                                    <div className='flex'>
+                                        <div className='trip-card-header ' style={{ width: "500px" }}>
+                                            <div className="head-section" style={{ borderBottom: "1px solid $light-gray" }}>
+                                                <h2><strong className='location-trips-card'>{stay.loc.city}, {stay.loc.country}</strong></h2>
+                                                <p className='stay-name-trips-card'> {stay.roomType} hosted by {stay.host.fullname}</p>
+                                                {/* <p className='stay-name-trips-card'>{stay.name}</p> */}
+                                            </div>
+
+                                            <div className="details-section-trips flex space-between" style={{ width: "400px", padding: "10px 0 10px 0" }}>
+                                                <div style={{ marginRight: "20px" }}>
+                                                    <p><strong className='start-date-trips-card'></strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
+                                                    <p><strong className='end-dates-trips-card'></strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
+                                                </div>
+                                                <div className='location-details-trips' style={{ paddingLeft: "10px", margin: "0", fontSize: "0.875em", width: "250px" }}>
+                                                    <p><strong className='location-details-trips-card'>{stay.loc.address} </strong></p>
+                                                    <p><strong className='location-details-trips-card'>{stay.loc.city}</strong></p>
+                                                    <p><strong className='location-details-trips-card'>{stay.loc.country}</strong></p>
+                                                </div>
+
+
+                                            </div>
+                                            <div className='card-trips-footer flex'>
+                                                <p className="price-trips-card"><strong>Total price:</strong> <span>${order.totalPrice.toFixed(2)}</span></p>
+                                                <p className={`status ${order.status}`}><strong>Status:</strong> {order.status}</p>
+                                            </div>
+
                                         </div>
-                                        <div className='right-section-header-trips flex column align-center'>
-                                            <img className="israel-img" src={stay.host.imgUrl} alt="Host" />
-                                            <p className='host-name-trips'>{stay.host.fullname}</p>
-                                        </div>
-                                    </div>
-                                    <div className='details-section-trips flex space-between align-center'>
-                                        <div>
-                                            <p><strong className='room-type-trips-card'>Stay Type:</strong> {stay.roomType}</p>
-                                            <p><strong className='start-date-trips-card'>Start Date:</strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
-                                            <p><strong className='end-dates-trips-card'>End Date:</strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
-                                            <p>
-                                                <strong className='guests-trips-card'>Guests:</strong>
-                                                {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
-                                                {order.guests.children ? ` , Kids: ${order.guests.children}` : ''}
-                                                {order.guests.pets ? ` , Pets: ${order.guests.pets}` : ''}
-                                                {order.guests.infants ? ` , Infants: ${order.guests.infants}` : ''}
-                                            </p>
-                                        </div>
+
+
                                         <div className='img-trips'>
                                             <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />
                                         </div>
+
+
                                     </div>
-                                    <div className='card-trips-footer flex space-between'>
-                                        <p><strong className='price-trips-card'>Total Price:</strong> <span>${order.totalPrice.toFixed(2)}</span></p>
-                                        <p className={`status ${order.status}`}><strong>Status:</strong> {order.status}</p>
-                                    </div>
+
                                 </div>
                             );
                         })}
                     </div >
-                </div>
+                </div >
             </div >
         </>
     );
