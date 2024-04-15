@@ -131,12 +131,12 @@ export function Trips() {
                                                     <rect y="5" x="4" width="16" rx="2" height="16"></rect>
                                                     <path d="m8 3v4"></path><path d="m16 3v4"></path>
                                                     <path d="m4 11h16"></path></g></svg>
-                                            <span className="lable">Add to Calendar</span></button>
+                                            <span className="lable"></span></button>
                                     </div>
                                     <div className='trip-card-header flex space-between'>
                                         <div>
-                                            <h2 className='stay-name-trips-card'>{stay.name}</h2>
-                                            <p><strong className='location-trips-card'>{stay.loc.city}, {stay.loc.country}</strong></p>
+                                            <h2><strong className='location-trips-card'>{stay.loc.city}, {stay.loc.country}</strong></h2>
+                                            <p className='stay-name-trips-card'>{stay.name}</p>
                                         </div>
                                         <div className='right-section-header-trips flex column align-center'>
                                             <img className="israel-img" src={stay.host.imgUrl} alt="Host" />
@@ -151,9 +151,9 @@ export function Trips() {
                                             <p>
                                                 <strong className='guests-trips-card'>Guests:</strong>
                                                 {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
-                                                {order.guests.children ? ` | Kids: ${order.guests.children}` : ''}
-                                                {order.guests.pets ? ` | Pets: ${order.guests.pets}` : ''}
-                                                {order.guests.infants ? ` | Infants: ${order.guests.infants}` : ''}
+                                                {order.guests.children ? ` , Kids: ${order.guests.children}` : ''}
+                                                {order.guests.pets ? ` , Pets: ${order.guests.pets}` : ''}
+                                                {order.guests.infants ? ` , Infants: ${order.guests.infants}` : ''}
                                             </p>
                                         </div>
                                         <div className='img-trips'>

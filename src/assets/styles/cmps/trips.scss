@@ -155,18 +155,21 @@
       margin-right: 5px;
 
       &.pending {
-        background-color: #ffc107; // Amber for pending orders
+        // background-color: #ffc107;
         color: $main-white;
+        color: #ffc107;
       }
 
       &.approved {
-        background-color: #28a745; // Green for confirmed orders
+        // background-color: #28a745;
         color: $main-white;
+        color: #28a745;
       }
 
       &.cancelled {
-        background-color: #dc3545; // Red for cancelled orders
+        // background-color: #dc3545;
         color: $main-white;
+        color: #ff385c;
       }
     }
   }
