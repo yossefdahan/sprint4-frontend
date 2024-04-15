@@ -19,7 +19,7 @@ export function MultiSelectAmenities({ onSetAmenitie, stay }) {
 
         <div className={`options-container  ${isOptionsModalOpen ? ' open' : ''}`}>
             {amenities.map(amenitie => <div onClick={() => onSetAmenitie(amenitie)} key={amenitie}>
-                {amenitie} {stay.amenities?.includes(amenitie) ? '🟢' : ''}
+                {amenitie} {stay.amenities?.includes(amenitie) ? '✔' : ''}
             </div>
             )}
         </div>
