@@ -23,7 +23,6 @@ export function DashBoard() {
 
     useEffect(() => {
         const approvedOrders = orders.filter(order => order.status === 'approved' && order.hostId === user._id);
-
         const totalSalesValue = approvedOrders.reduce((acc, order) => {
             return acc + order.totalPrice;
         }, 0);
