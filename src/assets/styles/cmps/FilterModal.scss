@@ -1,208 +1,255 @@
+.filter-modal-container {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .filter-modal {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    overflow-y: hidden;
-    max-width: 780px;
-    z-index: 20;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  overflow-y: hidden;
+  max-width: 780px;
+  z-index: 20;
 
-    & .rc-slider-track {
-        background-color: #131213;
+  & .rc-slider-track {
+    background-color: #131213;
+  }
+
+  & .rc-slider-handle {
+    border: solid 1px black;
+    & :active {
+      border-color: #131213;
+      box-shadow: #131213;
+    }
+  }
+
+  & .modal__button {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    background-color: transparent;
+    align-items: center;
+    flex-direction: column;
+    gap: 70px;
+    font-size: 1em;
+    font-weight: 600;
+    border-left: 1px solid $light-gray;
+    // border-radius: 12px;
+    height: 50px;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+
+    &--active {
+      background: black;
+      color: white;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+  }
+
+  & .filter-modal__options-row-price {
+    padding-bottom: 20px;
+    border-bottom: 1px solid $light-gray;
+
+    & .filter-modal__options-title {
+      font-size: 1em;
+      font-weight: 400;
+    }
+  }
+
+  .filter-modal-content {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    max-height: 60vh;
+
+    & .filter-modal__section-title {
+      font-size: 1.375em;
+      margin: 0;
+      padding-bottom: 10px;
     }
 
-    & .rc-slider-handle {
-        border: solid 1px black;
-        & :active{
-            border-color: #131213;
-            box-shadow: #131213;
-        } 
+    & p {
+      padding-bottom: 10px;
+    }
+  }
+
+  & .amenties-options {
+    gap: 10px;
+  }
+
+  & .type-bnb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-bottom: 1px solid $light-gray;
+    padding-bottom: 16px;
+    padding-top: 16px;
+
+    & .bnb-op {
+      display: flex;
+      border: 1px solid $light-gray;
+      border-radius: 12px;
     }
 
-    & .modal__button {
-        display: flex;
-        justify-content: space-between;
-        width: 70%;
-        align-items: center;
-        flex-direction: column;
-        gap: 70px;
-        padding: 30px;
+    & .type-op {
+    }
+  }
+
+  & .roomsbed {
+    padding-bottom: 24px;
+    padding-top: 24px;
+    border-bottom: 1px solid $light-gray;
+
+    & .btn_choose {
+      display: flex;
+
+      width: 100%;
+
+      & .modal__button {
         border: 1px solid $light-gray;
-        border-radius: 100px;
+        border-radius: 50px;
+        width: min-content;
+        padding: 16px;
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+    }
+  }
 
-        &--active {
-            background: black;
-            // border-radius: 100px;
+  .filter-modal__options-buttons {
+    button {
+      transition: background-color 0.3s ease;
+    }
+  }
 
-            color: white;
+  .propety-type {
+    border-bottom: 1px solid $light-gray;
+    padding-bottom: 16px;
+    padding-top: 16px;
+
+    & .propety-options {
+      display: flex;
+      justify-content: space-evenly;
+
+      & .pro {
+        border: 1px solid $light-gray;
+        padding: 16px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .filter-modal-header {
+    display: flex;
+    align-items: baseline;
+    font-size: 14px;
+    // padding: 1rem;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+
+    & .__close-btn {
+      margin-right: 40%;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .filter-modal-content {
+    padding: 1rem;
+
+    .filter-section {
+      margin-bottom: 1rem;
+
+      .button-group {
+        button.toggle-btn {
+          background: #f0f0f0;
+          border: none;
+          padding: 0.5rem 1rem;
+          margin-right: 0.5rem;
+          cursor: pointer;
+
+          &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #0071c2;
+          }
         }
+      }
 
+      .price-range {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
     }
+  }
 
-    .filter-modal-content {
-        max-height: calc(100vh - 200px);
-        overflow-y: auto;
-        max-height: 60vh;
-    }
+  .filter-modal-footer {
+    padding: 1rem;
+    border-top: 1px solid #ddd;
 
-    & .amenties-options {
-        gap: 10px;
-    }
+    .show-btn {
+      width: 200px;
+      background: #171616;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: 600;
 
-    & .type-bnb {
+      &-clear {
+        width: 100%;
+        font-size: 1rem;
+        background-color: transparent;
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 100%;
-        border-bottom: 1px solid $light-gray;
-        padding-bottom: 16px;
-        padding-top: 16px;
+        font-weight: 500;
+      }
 
-        & .bnb-op {
-            display: flex;
-            border: 1px solid $light-gray;
-            border-radius: 100px;
+      &:hover {
+        background: darken(#131213, 10%);
+      }
+    }
+  }
 
+  .filter-modal__options-buttons {
+    button {
+      transition: background-color 0.3s ease;
+    }
+  }
 
-        }
+  .amenties-filter {
+    padding-top: 24px;
+    padding-bottom: 24px;
 
-        & .type-op {}
+    & .filter-modal__section-title-amenities {
+      margin-top: 16px;
     }
 
-    & .roomsbed {
-        padding-bottom: 16px;
-        padding-top: 16px;
-        border-bottom: 1px solid $light-gray;
+    & label {
+      display: flex;
+      font-size: 1.2em;
+      align-items: center;
+      font-weight: 500;
 
-        & .btn_choose {
-            display: flex;
-
-            width: 100%;
-
-            & .modal__button {
-                border: 1px solid $light-gray;
-                border-radius: 50px;
-                width: min-content;
-                padding: 16px;
-            }
-        }
+      & input {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+      }
     }
-
-
-
-
-    .filter-modal__options-buttons {
-        button {
-            transition: background-color 0.3s ease;
-        }
-    }
-
-    .propety-type {
-        border-bottom: 1px solid $light-gray;
-        padding-bottom: 16px;
-        padding-top: 16px;
-
-        & .propety-options {
-            display: flex;
-            justify-content: space-evenly;
-
-            & .pro {
-                border: 1px solid $light-gray;
-                padding: 16px;
-                border-radius: 10px;
-            }
-
-        }
-    }
-
-    .filter-modal-header {
-        display: flex;
-        align-items: baseline;
-        padding: 1rem;
-        border-bottom: 1px solid #ddd;
-
-        & .__close-btn {
-
-            margin-right: 40%;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        h2 {
-            margin: 0;
-        }
-    }
-
-    .filter-modal-content {
-        padding: 1rem;
-
-        .filter-section {
-            margin-bottom: 1rem;
-
-
-            .button-group {
-                button.toggle-btn {
-                    background: #f0f0f0;
-                    border: none;
-                    padding: 0.5rem 1rem;
-                    margin-right: 0.5rem;
-                    cursor: pointer;
-
-                    &:focus {
-                        outline: none;
-                        box-shadow: 0 0 0 2px #0071c2;
-                    }
-                }
-            }
-
-            .price-range {
-                width: 100%;
-                margin-top: 0.5rem;
-            }
-        }
-    }
-
-    .filter-modal-footer {
-        padding: 1rem;
-        border-top: 1px solid #ddd;
-
-        .show-btn {
-            width: 100%;
-            background: #171616;
-            color: white;
-            border: none;
-            padding: 1rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-
-            &-clear {
-                width: 100%;
-                font-size: 1rem;
-            }
-
-            &:hover {
-                background: darken(#131213, 10%);
-            }
-
-
-        }
-
-
-    }
-
-
-
-
-    .filter-modal__options-buttons {
-        button {
-            transition: background-color 0.3s ease;
-        }
-    }
+  }
 }
