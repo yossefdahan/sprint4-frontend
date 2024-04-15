@@ -225,8 +225,11 @@
     & .calendar {
       position: absolute;
       top: 45px;
-      left: -100px;
-      width: 300%;
+      left: 0px;
+      width: 200%;
+      margin-top: 10px;
+      padding-top: 60px;
+      
     }
 
     & .price-modal {

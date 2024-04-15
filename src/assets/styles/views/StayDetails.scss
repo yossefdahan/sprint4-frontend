@@ -611,14 +611,14 @@
 }
 
 .circleRed {
-  box-shadow: 1px 1px 1px 30px #f6788f78;
+  box-shadow: 1px 1px 1px 25px #f6788f4a;
   background-color: #ff385c;
   padding: 15px 14px;
   border-radius: 50px;
   // transition: 1s;
 
   &:hover {
-    transition: 1s;
+    // transition: 1s;
     animation: flip 0.5s ease-in-out;
   }
 
