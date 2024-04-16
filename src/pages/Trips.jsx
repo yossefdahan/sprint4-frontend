@@ -94,11 +94,11 @@ export function Trips(stay) {
         return (
             <footer className="app-footer">
                 <nav className="footer-nav">
-                    <Link href="/" className="footer-nav-link">Explore <i class="fa-solid fa-magnifying-glass"></i></Link>
-                    <Link href="/" className="footer-nav-link">Plan Trip <i class="fa-regular fa-heart"></i></Link>
-                    <Link href="/user/trips" className="footer-nav-link">Trips <i class="fa-brands fa-airbnb"></i></Link>
-                    <Link href="/user/addstay" className="footer-nav-link">Add Stay <i class="fa-solid fa-house-flag"></i></Link>
-                    <Link href="/user/dashboard" className="footer-nav-link">Dashboard <i class="fa-solid fa-chart-line"></i></Link>
+                    <Link href="/" className="footer-nav-link">Explore <i className="fa-solid fa-magnifying-glass"></i></Link>
+                    <Link href="/" className="footer-nav-link">Plan Trip <i className="fa-regular fa-heart"></i></Link>
+                    <Link href="/user/trips" className="footer-nav-link">Trips <i className="fa-brands fa-airbnb"></i></Link>
+                    <Link href="/user/addstay" className="footer-nav-link">Add Stay <i className="fa-solid fa-house-flag"></i></Link>
+                    <Link href="/user/dashboard" className="footer-nav-link">Dashboard <i className="fa-solid fa-chart-line"></i></Link>
                 </nav>
 
             </footer>
@@ -109,28 +109,28 @@ export function Trips(stay) {
     if (filteredOrders.length === 0) {
         return <div className='loading-bar flex align-center'>
             <div className='loading-trips-title'>Loading..</div>
-            <section class="loader-trips">
+            <section className="loader-trips">
                 <div>
                     <div>
-                        <span class="one h6"></span>
-                        <span class="two h3"></span>
+                        <span className="one h6"></span>
+                        <span className="two h3"></span>
                     </div>
                 </div>
 
                 <div>
                     <div>
-                        <span class="one h1"></span>
+                        <span className="one h1"></span>
                     </div>
                 </div>
 
                 <div>
                     <div>
-                        <span class="two h2"></span>
+                        <span className="two h2"></span>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <span class="one h4"></span>
+                        <span className="one h4"></span>
                     </div>
                 </div>
             </section>
