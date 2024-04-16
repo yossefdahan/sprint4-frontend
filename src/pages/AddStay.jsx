@@ -159,6 +159,7 @@ export function AddStay() {
                             id="checkIn"
                             value={stay.dates.checkIn}
                             onChange={handleDateChange}
+                            min={new Date().toISOString().split('T')[0]}
                         />
                         <label htmlFor="checkOut">Check-out Date: </label>
                         <input
@@ -168,6 +169,7 @@ export function AddStay() {
                             id="checkOut"
                             value={stay.dates.checkOut}
                             onChange={handleDateChange}
+                            min={stay.dates.checkIn ? stay.dates.checkIn : undefined}
                         />
                     </div>
                 </div>
