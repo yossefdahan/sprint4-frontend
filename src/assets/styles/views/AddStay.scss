@@ -14,42 +14,46 @@ $font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-family: $font-family-base;
   display: flex;
   flex-direction: column;
-  align-items: center; // Center-align the child elements
+  align-items: center;
   border-radius: 12px;
 
   h2 {
     text-align: center;
     color: $airbnb-red;
     margin-bottom: 30px;
-    width: 100%; // Ensure the title spans the full width
+    width: 100%;
   }
 
   form {
-    width: 100%; // Ensure the form spans the full width
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); // Two columns for the addStay1 and addStay2
-    column-gap: 20px; // Space between the form columns
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
 
     .addStay1 {
-      order: 2; // Place addStay1 on the right
+      order: 2;
+
+      & textarea {
+        min-height: 108px;
+      }
     }
 
     .addStay2 {
-      order: 1; // Place addStay2 on the left
+      order: 1;
     }
 
     .form-footer {
-      grid-column: 1 / -1; // Span footer across all columns
+      grid-column: 1 / -1;
       display: flex;
       flex-direction: column;
-      align-items: center; // Center-align footer content
-      width: 100%; // Ensure footer spans the full width
-      order: 3; // Place footer below the addStay sections
+      align-items: center;
+      width: 100%;
+      order: 3;
     }
 
     .input,
     select {
-      width: 100%; // Inputs take full width of the column
+      width: 100%;
       padding: 8px;
       margin-bottom: 10px;
       border: 1px solid $airbnb-light-gray;
@@ -81,13 +85,6 @@ $font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       cursor: pointer;
       position: relative;
 
-      // &:after {
-      //   content: '▼';
-      //   position: absolute;
-      //   right: 10px;
-      //   top: 50%;
-      //   transform: translateY(-50%);
-      // }
     }
 
     .selected-options-container {
