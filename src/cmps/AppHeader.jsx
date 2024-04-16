@@ -45,9 +45,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
     }, [filterBy])
 
     const isUserAHost = stays.some(stay => stay.host._id === user?._id)
-    useEffect(() => {
-        // loadUsers()
-    }, [user])
+ 
 
     // async function loadUsers() {
     //     const users = await userService.getUsers()

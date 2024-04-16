@@ -30,7 +30,7 @@ function createSocketService() {
     setup() {
       socket = io(baseUrl)
       const user = userService.getLoggedinUser()
-      if (user) this.login(user._id)
+      if (user) this.login(user)
     },
     on(eventName, cb) {
       socket.on(eventName, cb)
@@ -43,8 +43,8 @@ function createSocketService() {
     emit(eventName, data) {
       socket.emit(eventName, data)
     },
-    login(userId) {
-      socket.emit(SOCKET_EMIT_LOGIN, userId)
+    login(user) {
+      socket.emit(SOCKET_EMIT_LOGIN, user._id)
     },
     updateStatus(userId) {
       socket.emit(SOCKET_EVENT_ORDER_Update, userId)
