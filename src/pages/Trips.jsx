@@ -168,13 +168,13 @@ export function Trips(stay) {
                                                 {/* <p className='stay-name-trips-card'>{stay.name}</p> */}
                                             </div>
 
-                                            <div className="details-section-trips flex space-between" style={{ width: "400px", padding: "10px 0 10px 0" }}>
+                                            <div className="details-section-trips flex space-between" style={{ padding: "10px 0 10px 0" }}>
                                                 <div style={{ marginRight: "20px" }}>
                                                     {/* <p><strong className='start-date-trips-card'></strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
                                                     <p><strong className='end-dates-trips-card'></strong> {utilService.formatIsoDateToYMD(order.endDate)}</p> */}
                                                     <p>{formatDateRange(order.startDate, order.endDate)}</p>
                                                 </div>
-                                                <div className='location-details-trips' style={{ paddingLeft: "10px", margin: "0", fontSize: "0.875em", width: "250px" }}>
+                                                <div className='location-details-trips' style={{ paddingLeft: "10px", margin: "0", fontSize: "0.875em", width: "350px" }}>
                                                     <p><strong className='location-details-trips-card'>{stay.loc.address} </strong></p>
                                                     <p><strong className='location-details-trips-card'>{stay.loc.city}</strong></p>
                                                     <p><strong className='location-details-trips-card'>{stay.loc.country}</strong></p>
