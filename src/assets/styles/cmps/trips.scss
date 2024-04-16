@@ -141,6 +141,11 @@
   background-color: #fff;
   padding: 20px;
 
+  & .main-card-section {
+    display: flex;
+    flex-direction: row;
+  }
+
   .navigation-links {
     display: flex;
     justify-content: start;
@@ -165,12 +170,12 @@
   }
 
   .trip-card {
+    position: relative;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    // padding: 24px 24px 20px 24px;
     padding-bottom: 0;
     padding-top: 0;
     max-width: 800px;
@@ -179,7 +184,6 @@
       border-left: 1px solid $light-gray;
       padding-left: 10px;
       margin: 0;
-      width: 250px;
 
       & .location-details-trips-card {
         font-size: 0.875em;
@@ -187,19 +191,24 @@
         padding: 0;
       }
     }
+
     & .add-to-calender {
       display: flex;
+      position: absolute;
       justify-content: center;
       align-items: center;
-      padding: 9px 12px;
+      padding-right: 5px;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+      // margin-left: 740px;
+      z-index: 9999;
       gap: 8px;
-      height: 35px;
-      width: 201px;
+      height: 50px;
+      width: 50px;
+      right: 0;
       border: none;
       background: #ff385c;
-      border-radius: 20px;
+      border-radius: 50px;
       cursor: pointer;
-      margin: 0 auto;
 
       & .lable {
         line-height: 22px;
@@ -218,21 +227,22 @@
       }
 
       @keyframes slope {
-        0% {
-        }
+        0% {}
 
         50% {
           transform: rotate(10deg);
         }
 
-        100% {
-        }
+        100% {}
       }
     }
 
     & .trip-card-header {
       align-items: center;
-      margin-left: 15px;
+      // margin-left: 15px;
+      max-width: 500px;
+      min-width: 200px;
+      width: 100%;
 
       & .israel-img {
         width: 40px;
@@ -286,7 +296,8 @@
     }
 
     .details-section-trips {
-      // padding: 16px 10px 16px 10px;
+      max-width: 400px;
+      min-width: 200px;
 
       & p {
         // padding: 10px 0 10px 0;
@@ -297,11 +308,15 @@
 
     & .img-trips {
       & .trips-stay-img {
-        width: 100%; /* This will make the image fill the width of its container */
-        height: auto; /* This maintains the aspect ratio */
-        display: block; /* This removes any extra space below the image */
-        border-radius: 8px; /* Keeps the border radius if desired */
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px; /* Keeps the shadow if desired */
+        width: 100%;
+        min-width: 150px;
+        height: auto;
+        display: block;
+        /* This removes any extra space below the image */
+        border-radius: 8px;
+        /* Keeps the border radius if desired */
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        /* Keeps the shadow if desired */
       }
     }
 
@@ -339,12 +354,14 @@
 /** loading page **/
 .loading-bar {
   margin: 100px auto;
+
   & .loading-trips-title {
     font-size: 50px;
     // margin: 100px auto;
     color: #ff5a5f;
   }
 }
+
 .loader-trips {
   display: flex;
   justify-content: center;
@@ -444,6 +461,7 @@
     top: 0;
     height: 0;
   }
+
   /*   91.6666667%{top:0;height:0%;} */
 }
 
@@ -467,6 +485,7 @@
     bottom: 0;
     height: 0;
   }
+
   /*   91.6666667%{bottom:0;height:0%} */
 }
 
@@ -490,6 +509,7 @@
     bottom: 0;
     height: 0;
   }
+
   /*   91.6666667%{bottom:0;height:0%;} */
 }
 
@@ -514,6 +534,7 @@
     bottom: 0;
     height: 0;
   }
+
   /*   91.6666667%{bottom:0;height:0%;} */
 }
 
@@ -537,6 +558,7 @@
     top: 0;
     height: 0;
   }
+
   /*   91.6666667%{top:0;height:0%;} */
 }
 
@@ -560,120 +582,177 @@
     top: 0;
     height: 0;
   }
-  /*   91.6666667%{top:0;height:0%;} */
 }
 
-// @media (max-width > 1024px) {
-//   .app-header-trips {
-//     padding: 0 1em;
-//     flex-direction: column;
+/* Footer */
+
+.app-footer {
+  display: none;
+
+  .footer-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+    text-align: center;
+    // Other styling
+  }
+
+  .footer-nav-link {
+    text-decoration: none;
+    color: #333;
+    // Other styling
+  }
+}
+
+@media (max-width: 860px) {
+  .app-header-trips {
+    padding: 0;
+
+    & .left-section-header {
+      display: none;
+
+    }
+  }
+
+  .past-trips {
+    flex-direction: column;
+
+    &>* {
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  .trips-page {
+    & .social-header-trips {
+      padding: 0;
+    }
+
+    & .upcoming-trips-title {
+      text-align: center;
+      font-size: 1.3em;
+      // padding-bottom: 20px;
+      padding: 0;
+      // border-top: 1px solid $light-gray;
+    }
+
+    & .trips-container {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+      & .trip-card {
+        max-width: 800px;
+
+        & .main-card-section {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+// @media (max-width: 860px) {
+//   .main-container {
+//     grid-template-columns: 20px 600px 20px;
+
+//     & .app-header-trips {
+//       display: flex;
+//       justify-content: center;
+//       padding: 0 30px;
+//       height: 50px;
+
+//       & .logo-img {
+//         width: 100px;
+//         margin: 0;
+//       }
+
+//       .stays-search,
+//       .side-nav-trips,
+//       .nav-links-trips,
+//       .Languages-btn,
+//       .side-nav-bar,
+//       .host-your-home-nav,
+//       .stays,
+//       .experiences {
+//         display: none;
+//       }
+//     }
+
+//     .trips-container {
+//       display: grid;
+//       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+//       margin: 0 auto;
+//       gap: 20px;
+//     }
+
+//     .trips-page {
+//       padding: 5px; /* Reduced padding */
+//       display: grid;
+
+//       & .navigation-links {
+//         display: none;
+//       }
+
+//       & .main-card-section {
+//         display: flex;
+//         flex-direction: column;
+//         & .img-trips {
+//           grid-area: img; /* Image takes the 'img' area */
+//           margin-top: 10px; /* Space above the image */
+
+//           .trips-stay-img {
+//             border-radius: 0; /* Remove border radius */
+//             box-shadow: none; /* Remove box shadow */
+//             width: 200px;
+//           }
+//         }
+
+//         & .trip-card {
+//           display: grid;
+//           grid-template-areas:
+//             "header"
+//             "img"
+//             "details";
+//           gap: 5px; /* Add gaps between grid items for spacing */
+
+//           & .trip-card-header {
+//             grid-area: header; /* Place header in the 'header' area */
+//           }
+
+//           & .details-section-trips {
+//             grid-area: details; /* Details in 'details' area */
+//           }
+
+//           & .location-details-trips {
+//             border-left: none; /* Remove border since it's now a vertical layout */
+//           }
+//         }
+//       }
+
+//       .social-icons-container {
+//         display: grid;
+//         justify-content: start;
+//         padding-left: 20px;
+
+//         & .social-header-trips {
+//           display: none;
+//         }
+//       }
+
+//       .loader-trips {
+//         width: 50px; /* Adjust size for mobile */
+//         height: 56px;
+//       }
+
+//       .past-trips-section {
+//         padding: 10px; /* Consistent padding */
+//         .past-trips {
+//           flex-direction: column; /* Vertical stacking */
+//           .last-trip-card {
+//             padding: 10px 0; /* Space between cards */
+//           }
+//         }
+//       }
+//     }
 //   }
-
-//   .app-header-trips .logo-img {
-//     width: 100px;
-//   }
-
-//   .app-header-trips .nav-links-trips {
-//     position: static;
-//     display: block;
-//     width: auto;
-//   }
-
-//   .app-header-trips .nav-links-trips a {
-//     display: block;
-//   }
-// }
-
-// @media (max-width > 768px) {
-//   .app-header-trips {
-//     flex-direction: column;
-//     padding: 0.5em;
-//   }
-
-//   .app-header-trips .side-nav-trips,
-//   .app-header-trips .nav-links-trips {
-//     display: none;
-//   }
-// }
-
-// /* Trips Page Layout */
-
-// a.active {
-//   display: none;
-// }
-
-// .trips-page {
-//   padding: 5px;
-// }
-
-// .trips-page .trips-container {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-
-//   gap: 20px;
-// }
-
-// .trip-card {
-//   border: 1px solid #ddd;
-//   border-radius: 12px;
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//   padding: 10px;
-
-//   & .trip-card-header {
-//     margin-top: 20px;
-//   }
-
-//   & .add-to-calender {
-//     margin-bottom: 20px;
-//     width: 20px;
-//   }
-// }
-
-// .trip-card:hover {
-//   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-// }
-
-// /* Simplify Loader for Consistency */
-// .loader-trips {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-//   width: 90px;
-//   height: 90px;
-//   z-index: 1;
-// }
-
-// .loader-trips div {
-//   position: absolute;
-//   width: 40px;
-//   height: 40px;
-//   transform-origin: center;
-// }
-
-// .loader-trips div div span {
-//   width: 100%;
-//   height: 100%;
-//   position: absolute;
-//   background: #053146;
-// }
-
-// @keyframes loadingAnimation {
-//   0%,
-//   100% {
-//     height: 0%;
-//   }
-//   50% {
-//     height: 100%;
-//   }
-// }
-
-// .loader-trips div:nth-of-type(1) span {
-//   animation: loadingAnimation 3.2s ease infinite;
-// }
-// .loader-trips div:nth-of-type(2) span {
-//   animation: loadingAnimation 3.2s ease 0.4s infinite;
-// }
-// .loader-trips div:nth-of-type(3) span {
-//   animation: loadingAnimation 3.2s ease 0.8s infinite;
 // }
