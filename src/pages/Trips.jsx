@@ -13,7 +13,7 @@ import { socketService } from '../services/socket.service';
 
 
 export function Trips(stay) {
-
+    const dispatch = useDispatch()
     const orders = useSelector((storeState) => storeState.orderModule.orders);
     const users = useSelector(storeState => storeState.userModule.users);
     const stays = useSelector(storeState => storeState.stayModule.stays);
@@ -25,12 +25,18 @@ export function Trips(stay) {
         loadUsers();
         loadStays();
 
-        // socketService.on('order-status', (order) => {
-        //     dispatch(getActionUpdateOrder(order))
-        // })
-
     }, []);
 
+    useEffect(() => {
+        socketService.on('order-status', (updatedOrder) => {
+            console.log('Order updated via socket:', updatedOrder);
+            loadOrders()
+        });
+
+        return () => {
+            socketService.off('order-status');
+        };
+    }, []);
 
     const filteredOrders = orders.filter(order => {
         const stay = stays.find(stay => stay._id === order.stay._id);
