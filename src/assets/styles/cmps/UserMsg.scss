@@ -3,10 +3,11 @@
     padding: 10px;
     font-size: 1.4em;
     position: fixed;
-    top: 120px;
-    right: 0;
+    bottom: 100px;
+    left: 50px;
     background-color: grey;
     z-index: 10;
+    box-shadow: 1px 1px 1px 2px $light-gray;
 }
 
 .user-msg button {
