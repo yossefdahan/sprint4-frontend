@@ -67,7 +67,7 @@ function getEmptyStay() {
         roomType: "" || "house",
         imgUrls: [],
         price: 0 || utilService.getRandomIntInclusive(200, 2000),
-        summary: "" || utilService.makeLorem(2),
+        summary: "" || "Step into style with this elegantly designed rental. Featuring modern amenities and high-quality finishes, this property offers a serene and inviting space for your getaway.",
         capacity: 0 || utilService.getRandomIntInclusive(1, 10),
         bedrooms: 0 || utilService.getRandomIntInclusive(1, 10),
         bathrooms: 0 || utilService.getRandomIntInclusive(1, 10),
