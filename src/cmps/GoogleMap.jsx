@@ -29,7 +29,7 @@ export function GoogleMap({ stay }) {
             <p>{stay.loc.city}, {stay.loc.country}</p>
             <div style={{ height: '40vh', width: '100%', marginTop: "10px" }}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: "AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY" }}
+                    bootstrapURLKeys={{ key: "AIzaSyDpQLH-jeyCxrhaCOaPgN6eSwM7seybvSI" }}
                     center={coords}
                     defaultZoom={zoom}
                 >

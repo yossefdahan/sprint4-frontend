@@ -34,7 +34,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
 
 
 
-    
+
 
     useEffect(() => {
         async function loadCountries() {
@@ -76,7 +76,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
     }
 
     useEffectUpdate(() => {
-        
+
 
     }, [filterByToEdit, inputValue])
 
@@ -138,7 +138,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
         setIsOpen(true)
     }
 
-    
+
     const handleDateChange = (dates) => {
         const [start, end] = dates;
         setFilterByToEdit((prev) => ({
@@ -146,7 +146,7 @@ export function WhereFilter({ filterBy, onSetFilter }) {
             checkIn: start,
             checkOut: end
         }));
-      
+
     }
 
     function updateFilter() {
@@ -294,14 +294,14 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             <img onClick={() => {
                                 setInputValue(getRandomRegion())
                                 setIsOpen(true)
-                            }} src="/img/destination/asset0.jpeg" alt="Im flexible" />
+                            }} src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713285036/at39qpsyvldvzsmp2usb.jpg" alt="Im flexible" />
                             <h4>I'm flexible</h4>
                         </div>
                         <div className="img-europe country-filter">
                             <img onClick={() => {
                                 setInputValue("Europe")
                                 setIsOpen(true)
-                            }} src="/img/destination/asset2.webp" alt="Europe" />
+                            }} src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713285037/wciko6nwq3da1xycmcn0.webp" alt="Europe" />
                             <h4>Europe</h4>
                         </div>
 
@@ -309,28 +309,28 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                             <img onClick={() => {
                                 setInputValue("Italy")
                                 setIsOpen(true)
-                            }} src="/img/destination/asset3.webp" alt="Italy" />
+                            }} src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713285036/wzzoemppuje1purqqulk.webp" alt="Italy" />
                             <h4>Italy</h4>
                         </div>
                         <div className="img-usa country-filter">
                             <img onClick={() => {
                                 setInputValue("United States")
                                 setIsOpen(true)
-                            }} src="/img/destination/asset4.webp" alt="United States" />
+                            }} src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713285036/lhzijaiju4xrxp7j2xoq.webp" alt="United States" />
                             <h4>United States</h4>
                         </div>
                         <div className="img-greece country-filter">
                             <img onClick={() => {
                                 setInputValue("Greece")
                                 setIsOpen(true)
-                            }} src="/img/destination/asset5.webp" alt="Greece" />
+                            }} src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713285036/wtoiztwdkxz4lh68w5cm.webp" alt="Greece" />
                             <h4>Greece</h4>
                         </div>
                         <div className="img-south country-filter">
                             <img onClick={() => {
                                 setInputValue("South America")
                                 setIsOpen(true)
-                            }} src="/img/destination/asset1.webp" alt="South America" />
+                            }} src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713285036/vloxob5h0ndj3gqe6oum.webp" alt="South America" />
                             <h4>South America</h4>
                         </div>
                     </div>
