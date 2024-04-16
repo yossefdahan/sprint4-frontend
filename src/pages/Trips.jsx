@@ -60,6 +60,35 @@ export function Trips(stay) {
         window.open(googleCalendarUrl, '_blank');
     }
 
+    const formatDateRange = (startDate, endDate) => {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const month = start.toLocaleString('en-US', { month: 'short' }); // Ensure English month
+        const dateRange = `${start.getDate()} – ${end.getDate()}`;
+        const year = start.getFullYear();
+        return (
+            <div style={{ paddingLeft: "10px", fontSize: "14px" }}>
+                <div>{month}</div>
+                <div>{dateRange}</div>
+                <div>{year}</div>
+            </div>
+        );
+        // return `${start.toLocaleString('default', { month: 'short' })} ${start.getDate()} - ${end.getDate()}, ${start.getFullYear()}`;
+    };
+
+
+    /*hard coded past-trips */
+    const pastTrips = [
+        {
+            location: 'Funchal',
+            description: 'Hosted by An Island',
+            dateRange: 'Aug 31 - Sep 4, 2023',
+            imgUrl: '/path-to-your-image.jpg', // replace with your image path
+        },
+        // Add more past trips here
+    ];
+
+
     if (filteredOrders.length === 0) {
         return <div className='loading-bar flex align-center'>
             <div className='loading-trips-title'>Loading..</div>
@@ -118,19 +147,19 @@ export function Trips(stay) {
 
                             return (
                                 <div key={order._id} className="trip-card">
-                                    {/* <div>
-                                        <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                width="24" viewBox="0 0 24 24"
-                                                height="24"
-                                                fill="none"
-                                                className="svg-icon">
-                                                <g stroke-width="2" stroke-linecap="round" stroke="#fff">
-                                                    <rect y="5" x="4" width="16" rx="2" height="16"></rect>
-                                                    <path d="m8 3v4"></path><path d="m16 3v4"></path>
-                                                    <path d="m4 11h16"></path></g></svg>
-                                            <span className="lable"></span></button>
-                                    </div> */}
+
+                                    <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            width="24" viewBox="0 0 24 24"
+                                            height="24"
+                                            fill="none"
+                                            className="svg-icon">
+                                            <g stroke-width="2" stroke-linecap="round" stroke="#fff">
+                                                <rect y="5" x="4" width="16" rx="2" height="16"></rect>
+                                                <path d="m8 3v4"></path><path d="m16 3v4"></path>
+                                                <path d="m4 11h16"></path></g></svg>
+                                        <span className="lable"></span></button>
+
                                     <div className='flex'>
                                         <div className='trip-card-header ' style={{ width: "500px" }}>
                                             <div className="head-section" style={{ borderBottom: "1px solid $light-gray" }}>
@@ -141,8 +170,9 @@ export function Trips(stay) {
 
                                             <div className="details-section-trips flex space-between" style={{ width: "400px", padding: "10px 0 10px 0" }}>
                                                 <div style={{ marginRight: "20px" }}>
-                                                    <p><strong className='start-date-trips-card'></strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
-                                                    <p><strong className='end-dates-trips-card'></strong> {utilService.formatIsoDateToYMD(order.endDate)}</p>
+                                                    {/* <p><strong className='start-date-trips-card'></strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
+                                                    <p><strong className='end-dates-trips-card'></strong> {utilService.formatIsoDateToYMD(order.endDate)}</p> */}
+                                                    <p>{formatDateRange(order.startDate, order.endDate)}</p>
                                                 </div>
                                                 <div className='location-details-trips' style={{ paddingLeft: "10px", margin: "0", fontSize: "0.875em", width: "250px" }}>
                                                     <p><strong className='location-details-trips-card'>{stay.loc.address} </strong></p>
@@ -166,12 +196,46 @@ export function Trips(stay) {
 
 
                                     </div>
-
                                 </div>
                             );
                         })}
                     </div >
                 </div >
+            </div >
+            <div className="past-trips-section" style={{ paddingLeft: "20px" }}>
+                <h2>Where you've been</h2>
+                <section className='flex' >
+                    <div className='flex align-center' style={{ paddingRight: "30px" }}>
+                        <div style={{ paddingRight: "10px" }} >
+                            <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436453/ndl8odasqgnyquvsbalp.jpg" style={{ width: "105px", borderRadius: "12px" }} />
+                        </div>
+                        <div>
+                            <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>New York</h4>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by israel jon</p>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>May 10 - May 28, 2023</p>
+                        </div>
+                    </div>
+                    <div className='flex align-center' style={{ paddingRight: "30px" }}>
+                        <div style={{ paddingRight: "10px" }} >
+                            <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg" style={{ width: "105px", borderRadius: "12px" }} />
+                        </div>
+                        <div >
+                            <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>Barcelona</h4>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by yan kon</p>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Apr 1 - Apr 6, 2024</p>
+                        </div>
+                    </div>
+                    <div className='flex align-center'>
+                        <div style={{ paddingRight: "10px" }} >
+                            <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436287/my8eunlgiiflc2ohslgx.jpg" style={{ width: "105px", borderRadius: "12px" }} />
+                        </div>
+                        <div >
+                            <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>Amsterdam</h4>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by Alex welt</p>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>jun 8 - jun 15, 2022</p>
+                        </div>
+                    </div>
+                </section >
             </div >
         </>
     );
