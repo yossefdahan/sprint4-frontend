@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadOrders } from '../store/order.actions';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { utilService } from '../services/util.service';
 import { SocialIconsTrips } from '../cmps/SocialIconsTrips';
 import { loadUsers } from '../store/user.actions';
@@ -89,6 +89,23 @@ export function Trips(stay) {
     ];
 
 
+    /*footer */
+    const Footer = () => {
+        return (
+            <footer className="app-footer">
+                <nav className="footer-nav">
+                    <Link href="/" className="footer-nav-link">Explore <i class="fa-solid fa-magnifying-glass"></i></Link>
+                    <Link href="/" className="footer-nav-link">Plan Trip <i class="fa-regular fa-heart"></i></Link>
+                    <Link href="/user/trips" className="footer-nav-link">Trips <i class="fa-brands fa-airbnb"></i></Link>
+                    <Link href="/user/addstay" className="footer-nav-link">Add Stay <i class="fa-solid fa-house-flag"></i></Link>
+                    <Link href="/user/dashboard" className="footer-nav-link">Dashboard <i class="fa-solid fa-chart-line"></i></Link>
+                </nav>
+
+            </footer>
+        );
+    };
+
+    /*loading */
     if (filteredOrders.length === 0) {
         return <div className='loading-bar flex align-center'>
             <div className='loading-trips-title'>Loading..</div>
@@ -135,87 +152,84 @@ export function Trips(stay) {
                 </div>
                 <h2 className='upcoming-trips-title'> Upcoming Reservitions</h2>
 
-                <div className='dashboard-container'>
+                {/* <div className='dashboard-container'> */}
 
-                    <div className="trips-container">
-                        {/* {filteredOrders.map((order) => {
-                            const stay = stays.find(stay => stay._id === order.stay._id);
-                            if (!stay) return null; */}
-                        {sortedOrders.map((order) => {
-                            const stay = stays.find(stay => stay._id === order.stay._id);
-                            if (!stay) return null;
+                <div className="trips-container">
 
-                            return (
-                                <div key={order._id} className="trip-card">
+                    {sortedOrders.map((order) => {
+                        const stay = stays.find(stay => stay._id === order.stay._id);
+                        if (!stay) return null;
 
-                                    <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" viewBox="0 0 24 24"
-                                            height="24"
-                                            fill="none"
-                                            className="svg-icon">
-                                            <g stroke-width="2" stroke-linecap="round" stroke="#fff">
-                                                <rect y="5" x="4" width="16" rx="2" height="16"></rect>
-                                                <path d="m8 3v4"></path><path d="m16 3v4"></path>
-                                                <path d="m4 11h16"></path></g></svg>
-                                        <span className="lable"></span></button>
+                        return (
+                            <div key={order._id} className="trip-card">
 
-                                    <div className='flex'>
-                                        <div className='trip-card-header ' style={{ width: "500px" }}>
-                                            <div className="head-section" style={{ borderBottom: "1px solid $light-gray" }}>
-                                                <h2><strong className='location-trips-card'>{stay.loc.city}, {stay.loc.country}</strong></h2>
-                                                <p className='stay-name-trips-card'> {stay.roomType} hosted by {stay.host.fullname}</p>
-                                                {/* <p className='stay-name-trips-card'>{stay.name}</p> */}
-                                            </div>
+                                <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" viewBox="0 0 24 24"
+                                        height="24"
+                                        fill="none"
+                                        className="svg-icon">
+                                        <g stroke-width="2" stroke-linecap="round" stroke="#fff">
+                                            <rect y="5" x="4" width="16" rx="2" height="16"></rect>
+                                            <path d="m8 3v4"></path><path d="m16 3v4"></path>
+                                            <path d="m4 11h16"></path></g></svg>
+                                    <span className="lable"></span></button>
 
-                                            <div className="details-section-trips flex space-between" style={{ padding: "10px 0 10px 0" }}>
-                                                <div style={{ marginRight: "20px" }}>
-                                                    {/* <p><strong className='start-date-trips-card'></strong> {utilService.formatIsoDateToYMD(order.startDate)}</p>
-                                                    <p><strong className='end-dates-trips-card'></strong> {utilService.formatIsoDateToYMD(order.endDate)}</p> */}
-                                                    <p>{formatDateRange(order.startDate, order.endDate)}</p>
-                                                </div>
-                                                <div className='location-details-trips' style={{ paddingLeft: "10px", margin: "0", fontSize: "0.875em", width: "350px" }}>
-                                                    <p><strong className='location-details-trips-card'>{stay.loc.address} </strong></p>
-                                                    <p><strong className='location-details-trips-card'>{stay.loc.city}</strong></p>
-                                                    <p><strong className='location-details-trips-card'>{stay.loc.country}</strong></p>
-                                                </div>
-
-
-                                            </div>
-                                            <div className='card-trips-footer flex'>
-                                                <p className="price-trips-card"><strong>Total price:</strong> <span>${order.totalPrice.toFixed(2)}</span></p>
-                                                <p className={`status ${order.status}`}><strong>Status:</strong> {order.status}</p>
-                                            </div>
-
+                                <div className='main-card-section'>
+                                    <div className='trip-card-header '>
+                                        <div className="head-section" style={{ borderBottom: "1px solid $light-gray" }}>
+                                            <h2><strong className='location-trips-card'>{stay.loc.city}, {stay.loc.country}</strong></h2>
+                                            <p className='stay-name-trips-card'> {stay.roomType} hosted by {stay.host.fullname}</p>
+                                            {/* <p className='stay-name-trips-card'>{stay.name}</p> */}
                                         </div>
 
+                                        <div className="details-section-trips flex space-between" style={{ padding: "10px 0 10px 0" }}>
+                                            <div style={{ marginRight: "20px" }}>
 
-                                        <div className='img-trips'>
-                                            <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />
+                                                <p>{formatDateRange(order.startDate, order.endDate)}</p>
+                                            </div>
+                                            <div className='location-details-trips' style={{ paddingLeft: "10px", margin: "0", fontSize: "0.875em", maxWidth: "350px", minWidth: "200px" }}>
+                                                <p><strong className='location-details-trips-card'>{stay.loc.address} </strong></p>
+                                                <p><strong className='location-details-trips-card'>{stay.loc.city}</strong></p>
+                                                <p><strong className='location-details-trips-card'>{stay.loc.country}</strong></p>
+                                            </div>
+
+
                                         </div>
-
+                                        <div className='card-trips-footer flex'>
+                                            <p className="price-trips-card"><strong>Total price:</strong> <span>${order.totalPrice.toFixed(2)}</span></p>
+                                            <p className={`status ${order.status}`}><strong>Status:</strong> {order.status}</p>
+                                        </div>
 
                                     </div>
+
+
+                                    <div className='img-trips'>
+                                        <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />
+                                    </div>
+
+
                                 </div>
-                            );
-                        })}
-                    </div >
+                            </div>
+                        );
+                    })}
                 </div >
             </div >
+            {/* </div > */}
             <div className="past-trips-section" style={{ paddingLeft: "20px" }}>
                 <h2>Where you've been</h2>
-                <section className='flex' >
-                    <div className='flex align-center' style={{ paddingRight: "30px" }}>
+                <section className=' past-trips flex' >
+                    <div className='last-trip-card flex align-center' style={{ paddingRight: "30px" }}>
                         <div style={{ paddingRight: "10px" }} >
                             <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436453/ndl8odasqgnyquvsbalp.jpg" style={{ width: "105px", borderRadius: "12px" }} />
                         </div>
-                        <div>
+                        <div >
                             <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>New York</h4>
                             <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by israel jon</p>
                             <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>May 10 - May 28, 2022</p>
                         </div>
                     </div>
-                    <div className='flex align-center' style={{ paddingRight: "30px" }}>
+                    <div className=' last-trip-card flex align-center' style={{ paddingRight: "30px" }}>
                         <div style={{ paddingRight: "10px" }} >
                             <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg" style={{ width: "105px", borderRadius: "12px" }} />
                         </div>
@@ -225,7 +239,7 @@ export function Trips(stay) {
                             <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Apr 1 - Apr 6, 2023</p>
                         </div>
                     </div>
-                    <div className='flex align-center'>
+                    <div className=' last-trip-card flex align-center'>
                         <div style={{ paddingRight: "10px" }} >
                             <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436287/my8eunlgiiflc2ohslgx.jpg" style={{ width: "105px", borderRadius: "12px" }} />
                         </div>
@@ -237,6 +251,7 @@ export function Trips(stay) {
                     </div>
                 </section >
             </div >
+            <Footer />
         </>
     );
 }
