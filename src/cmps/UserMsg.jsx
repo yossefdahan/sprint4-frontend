@@ -1,11 +1,11 @@
 import { eventBus, showSuccessMsg } from "../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
-import { socketService, SOCKET_EVENT_ORDER_STATUS } from "../services/socket.service.js"
+import { socketService, SOCKET_EVENT_ORDER_STATUS, SOCKET_EVENT_ORDER_Update } from "../services/socket.service.js"
 
 export function UserMsg() {
 
   const [msg, setMsg] = useState(null)
-  const timeoutIdRef = useRef()
+  const timeoutIdRef = useRef(null)
 
   useEffect(() => {
     const unsubscribe = eventBus.on('show-msg', (msg) => {
@@ -18,13 +18,17 @@ export function UserMsg() {
       timeoutIdRef.current = setTimeout(closeMsg, 3000)
     })
 
-    socketService.on(SOCKET_EVENT_ORDER_STATUS, (msg) => {
-      showSuccessMsg(msg)
+    // socketService.on('order-update', (msg) => {
+    //   showSuccessMsg(msg)
+    // })
+    socketService.on('order-status', (msg) => {
+      showSuccessMsg('status change')
     })
 
     return () => {
       unsubscribe()
-      socketService.off(SOCKET_EVENT_ORDER_STATUS)
+      socketService.off('order-status')
+      // socketService.off('order-update')
     }
   }, [])
 
