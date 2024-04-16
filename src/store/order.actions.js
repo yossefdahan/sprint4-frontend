@@ -9,8 +9,10 @@ export function getActionRemoveOrder(orderId) {
   return { type: REMOVE_ORDER, orderId }
 }
 export function getActionAddOrder(order) {
-
   return { type: ADD_ORDER, order }
+}
+export function getActionUpdateOrder(order) {
+  return { type: UPDATE_ORDER, order }
 }
 export function getActionSetWatchedUser(user) {
   return { type: SET_WATCHED_USER, user }

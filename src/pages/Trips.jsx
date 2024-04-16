@@ -1,13 +1,14 @@
 
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadOrders } from '../store/order.actions';
+import { getActionUpdateOrder, loadOrders } from '../store/order.actions';
 import { NavLink } from 'react-router-dom';
 import { utilService } from '../services/util.service';
 import { SocialIconsTrips } from '../cmps/SocialIconsTrips';
 import { loadUsers } from '../store/user.actions';
 import { userService } from '../services/user.service';
 import { loadStays } from '../store/stay.actions';
+import { socketService } from '../services/socket.service';
 
 
 
@@ -23,6 +24,11 @@ export function Trips(stay) {
         loadOrders();
         loadUsers();
         loadStays();
+
+        // socketService.on('order-status', (order) => {
+        //     dispatch(getActionUpdateOrder(order))
+        // })
+
     }, []);
 
 

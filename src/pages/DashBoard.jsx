@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { loadOrders, updateOrder } from '../store/order.actions'
+import { useSelector, useDispatch } from 'react-redux'
+import { loadOrders, updateOrder, getActionAddOrder } from '../store/order.actions.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { MyChart } from '../cmps/MyChart.jsx'
 import { SalesChart } from '../cmps/SalesChart.jsx'
 
 import { NavLink } from 'react-router-dom'
 import { utilService } from '../services/util.service.js'
+import { socketService } from '../services/socket.service.js'
 
 export function DashBoard() {
-
+    const dispatch = useDispatch()
     const orders = useSelector(storeState => storeState.orderModule.orders)
     const [orderUpdateTrigger, setOrderUpdateTrigger] = useState(false)
     const user = userService.getLoggedinUser()
@@ -17,7 +18,14 @@ export function DashBoard() {
 
     useEffect(() => {
         loadOrders()
+
     }, [orderUpdateTrigger])
+
+    useEffect(() => {
+        socketService.on('add-order', (order) => {
+            dispatch(getActionAddOrder(order))
+        })
+    }, [])
 
     const filteredOrders = orders.filter(order => order.hostId === user._id)
 
