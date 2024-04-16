@@ -96,8 +96,8 @@ function getEmptyStay() {
             countryCode: "",
             city: "",
             address: "",
-            lat: 8.61308,
-            lng: 41.1413,
+            lat: 32.01226694679308,
+            lng: 34.79751583025042,
         },
 
         reviews: [],
