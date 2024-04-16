@@ -212,7 +212,7 @@ export function Trips(stay) {
                         <div>
                             <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>New York</h4>
                             <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by israel jon</p>
-                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>May 10 - May 28, 2023</p>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>May 10 - May 28, 2022</p>
                         </div>
                     </div>
                     <div className='flex align-center' style={{ paddingRight: "30px" }}>
@@ -222,7 +222,7 @@ export function Trips(stay) {
                         <div >
                             <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>Barcelona</h4>
                             <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by yan kon</p>
-                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Apr 1 - Apr 6, 2024</p>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Apr 1 - Apr 6, 2023</p>
                         </div>
                     </div>
                     <div className='flex align-center'>
@@ -232,7 +232,7 @@ export function Trips(stay) {
                         <div >
                             <h4 style={{ marginTop: "0", marginBottom: "5px", paddingLeft: "5px", fontSize: "1em" }}>Amsterdam</h4>
                             <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>Hosted by Alex welt</p>
-                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>jun 8 - jun 15, 2022</p>
+                            <p style={{ marginLeft: "5px", fontSize: "0.85em" }}>jun 8 - jun 15, 2024</p>
                         </div>
                     </div>
                 </section >
