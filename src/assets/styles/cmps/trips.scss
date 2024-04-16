@@ -227,13 +227,15 @@
       }
 
       @keyframes slope {
-        0% {}
+        0% {
+        }
 
         50% {
           transform: rotate(10deg);
         }
 
-        100% {}
+        100% {
+        }
       }
     }
 
@@ -241,7 +243,7 @@
       align-items: center;
       // margin-left: 15px;
       max-width: 500px;
-      min-width: 200px;
+      // min-width: 200px;
       width: 100%;
 
       & .israel-img {
@@ -257,9 +259,9 @@
 
     & .card-trips-footer {
       border-top: 1px solid $light-gray;
-      padding: 20px 0 20px 0;
+
       align-items: center;
-      height: 50px;
+      height: 20px;
 
       & .price-trips-card {
         font-size: 1em;
@@ -307,6 +309,7 @@
     }
 
     & .img-trips {
+      position: relative;
       & .trips-stay-img {
         width: 100%;
         min-width: 150px;
@@ -588,38 +591,90 @@
 
 .app-footer {
   display: none;
+  height: 70px;
 
   .footer-nav {
     display: flex;
     justify-content: space-around;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
-    // Other styling
   }
 
   .footer-nav-link {
     text-decoration: none;
     color: #333;
-    // Other styling
   }
 }
 
 @media (max-width: 860px) {
+  .social-icons-container {
+    & .social-header-trips {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0;
+      text-decoration: none;
+    }
+  }
+  .app-footer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5em;
+      text-align: center;
+    }
+
+    .footer-nav-link {
+      display: flex;
+      text-decoration: none;
+      color: #333;
+      flex-direction: column;
+      font-size: 14px;
+
+      i {
+        font-size: 26px;
+      }
+    }
+  }
+
+  .example-2 {
+    padding: 0;
+    justify-content: start;
+    margin-left: -20px;
+  }
   .app-header-trips {
     padding: 0;
 
     & .left-section-header {
       display: none;
+    }
+  }
 
+  .trip-card-header {
+    & .card-trips-footer {
+      padding: 40px 0 40px 0;
+      font-size: 14px;
+
+      & .status {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 
   .past-trips {
     flex-direction: column;
 
-    &>* {
+    & > * {
       padding: 0;
-      text-align: center;
+      // text-align: center;
+    }
+
+    & .last-trip-card {
+      padding-bottom: 20px;
     }
   }
 
@@ -628,9 +683,14 @@
       padding: 0;
     }
 
+    & .navigation-links {
+      & .active {
+        display: none;
+      }
+    }
+
     & .upcoming-trips-title {
-      text-align: center;
-      font-size: 1.3em;
+      font-size: 1.5em;
       // padding-bottom: 20px;
       padding: 0;
       // border-top: 1px solid $light-gray;

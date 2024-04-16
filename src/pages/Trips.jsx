@@ -94,11 +94,10 @@ export function Trips(stay) {
         return (
             <footer className="app-footer">
                 <nav className="footer-nav">
-                    <Link href="/" className="footer-nav-link">Explore <i className="fa-solid fa-magnifying-glass"></i></Link>
-                    <Link href="/" className="footer-nav-link">Plan Trip <i className="fa-regular fa-heart"></i></Link>
-                    <Link href="/user/trips" className="footer-nav-link">Trips <i className="fa-brands fa-airbnb"></i></Link>
-                    <Link href="/user/addstay" className="footer-nav-link">Add Stay <i className="fa-solid fa-house-flag"></i></Link>
-                    <Link href="/user/dashboard" className="footer-nav-link">Dashboard <i className="fa-solid fa-chart-line"></i></Link>
+                    <Link to="/" className="  footer-nav-link"> <i className="fa-solid fa-magnifying-glass"></i>Explore</Link>
+                    <Link style={{ color: "red", fontWeight: "500" }} to="/user/trips" className="  footer-nav-link"> <i className="fa-brands fa-airbnb"></i>Trips</Link>
+                    <Link to="/user/addstay" className=" footer-nav-link"><i className="fa-solid fa-house-flag"></i>Add Stay </Link>
+                    {/* <Link to="/user/dashboard" className="  footer-nav-link"> <i className="fa-solid fa-chart-line"></i>Dashboard</Link> */}
                 </nav>
 
             </footer>
@@ -146,10 +145,7 @@ export function Trips(stay) {
                     <NavLink to="/user/trips" activeClassName="active">Trips</NavLink>
                 </div>
 
-                <div className="social-icons-container ">
-                    <h2 className='social-header-trips flex align-center '>Plan Your Trip</h2>
-                    <SocialIconsTrips />
-                </div>
+
                 <h2 className='upcoming-trips-title'> Upcoming Reservitions</h2>
 
                 {/* <div className='dashboard-container'> */}
@@ -163,17 +159,6 @@ export function Trips(stay) {
                         return (
                             <div key={order._id} className="trip-card">
 
-                                <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        width="24" viewBox="0 0 24 24"
-                                        height="24"
-                                        fill="none"
-                                        className="svg-icon">
-                                        <g stroke-width="2" stroke-linecap="round" stroke="#fff">
-                                            <rect y="5" x="4" width="16" rx="2" height="16"></rect>
-                                            <path d="m8 3v4"></path><path d="m16 3v4"></path>
-                                            <path d="m4 11h16"></path></g></svg>
-                                    <span className="lable"></span></button>
 
                                 <div className='main-card-section'>
                                     <div className='trip-card-header '>
@@ -205,6 +190,18 @@ export function Trips(stay) {
 
 
                                     <div className='img-trips'>
+
+                                        <button className="add-to-calender" o onClick={() => handleAddToCalendar(order, stay)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" viewBox="0 0 24 24"
+                                                height="24"
+                                                fill="none"
+                                                className="svg-icon">
+                                                <g stroke-width="2" stroke-linecap="round" stroke="#fff">
+                                                    <rect y="5" x="4" width="16" rx="2" height="16"></rect>
+                                                    <path d="m8 3v4"></path><path d="m16 3v4"></path>
+                                                    <path d="m4 11h16"></path></g></svg>
+                                            <span className="lable"></span></button>
                                         <img className='trips-stay-img' src={stay.imgUrls[0]} alt="Stay" />
                                     </div>
 
@@ -250,6 +247,10 @@ export function Trips(stay) {
                         </div>
                     </div>
                 </section >
+                <div className="social-icons-container ">
+                    <h2 className='social-header-trips flex align-center '>Plan Your Trip</h2>
+                    <SocialIconsTrips />
+                </div>
             </div >
             <Footer />
         </>
