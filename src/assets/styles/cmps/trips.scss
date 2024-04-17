@@ -258,8 +258,9 @@
     }
 
     & .card-trips-footer {
+      padding-top: 30px;
+      display: flex;
       border-top: 1px solid $light-gray;
-
       align-items: center;
       height: 20px;
 
@@ -313,7 +314,7 @@
       & .trips-stay-img {
         width: 100%;
         min-width: 150px;
-        height: auto;
+        aspect-ratio: 1.5;
         display: block;
         /* This removes any extra space below the image */
         border-radius: 8px;

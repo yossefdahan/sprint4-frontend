@@ -43,7 +43,7 @@ export function GoogleMapList({ stays }) {
 
             <div style={{ height: '75vh', width: '99vw', marginTop: "0" }}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: "AIzaSyDElUwXgKJIonNDyOlmaIafPh2rywqfCPY" }}
+                    bootstrapURLKeys={{ key: "AIzaSyDpQLH-jeyCxrhaCOaPgN6eSwM7seybvSI" }}
                     defaultCenter={defaultCoords}
                     defaultZoom={zoom}
                 >
