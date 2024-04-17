@@ -19,7 +19,7 @@ export function AddStayPreview() {
       </div>
 
       <div className='video-container'>
-        <video src="public/video/addstayvideo.mp4" autoPlay muted loop ></video>
+        <video src="https://res.cloudinary.com/dheh8zkmv/video/upload/v1713336828/wsw600vdnhckuvqcen9z.mp4" autoPlay muted loop ></video>
       </div>
 
       <div className='addstay-footer'>
