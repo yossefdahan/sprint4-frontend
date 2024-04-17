@@ -22,12 +22,16 @@ export function UserMsg() {
     //   showSuccessMsg(msg)
     // })
     socketService.on('order-status', (msg) => {
-      showSuccessMsg('status change')
+      showSuccessMsg('one of your trip get a new status')
     })
+    socketService.on('add-order', (order) => {
+      showSuccessMsg('order is pending in Dash Board')
+  })
 
     return () => {
       unsubscribe()
       socketService.off('order-status')
+      socketService.off('add-order')
       // socketService.off('order-update')
     }
   }, [])
