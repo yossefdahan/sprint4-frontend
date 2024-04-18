@@ -61,7 +61,7 @@ export function DashBoard() {
         try {
             order.status = 'rejected'
             const savedOrder = await updateOrder(order)
-            showSuccessMsg(`order updated : ${savedOrder.status}`)
+            showSuccessMsg(`Order updated : ${savedOrder.status}`)
             setOrderUpdateTrigger(!orderUpdateTrigger)
 
 

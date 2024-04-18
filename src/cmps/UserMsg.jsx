@@ -25,8 +25,8 @@ export function UserMsg() {
       showSuccessMsg('one of your trip get a new status')
     })
     socketService.on('add-order', (order) => {
-      showSuccessMsg('order is pending in Dash Board')
-  })
+      showSuccessMsg('Order is pending in Dash Board')
+    })
 
     return () => {
       unsubscribe()
@@ -43,7 +43,7 @@ export function UserMsg() {
   if (!msg) return <span></span>
   return (
     <section className={`user-msg ${msg.type}`}>
-      <button onClick={closeMsg}>x</button>
+
       {msg.txt}
     </section>
   )
