@@ -298,7 +298,7 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                     }}>
                         <div className="header-label">GUESTS</div>
                         <div className="guest-input" >{setGuests().length > 27 ? setGuests().substring(0, 27) + '...' : setGuests()}</div>
-                        <div className="dropdown-arrow">{!showGuestDropdown ? <i className="fa-solid fa-chevron-down"></i> : <i class="fa-solid fa-chevron-up"></i>}</div>
+                        <div className="dropdown-arrow">{!showGuestDropdown ? <i className="fa-solid fa-chevron-down"></i> : <i className="fa-solid fa-chevron-up"></i>}</div>
                     </div>
                 </div>
                 <form onSubmit={sendToFinalOrder}>

@@ -20,7 +20,7 @@ export function SalesChart({ orders }) {
 
   useEffect(() => {
     const salesData = orders.reduce((acc, order) => {
-      const date = new Date(order.date);
+      const date = new Date(order.startDate);
       const yearMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
       acc[yearMonth] = (acc[yearMonth] || 0) + order.totalPrice;
       return acc;

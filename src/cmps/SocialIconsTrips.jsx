@@ -56,7 +56,7 @@ export function SocialIconsTrips() {
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-instagram"
+            className="bi bi-instagram"
             viewBox="0 0 16 16"
 
           >
@@ -81,7 +81,7 @@ export function SocialIconsTrips() {
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-youtube"
+            className="bi bi-youtube"
             viewBox="0 0 16 16"
 
           >

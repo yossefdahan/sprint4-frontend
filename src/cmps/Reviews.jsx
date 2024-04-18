@@ -34,7 +34,7 @@ export function Reviews({ stay, reviews }) {
             {!!reviews.length && <div className='review-by flex'>
                 {visibleReviews.map(rev => {
                     return (
-                        <div className='review-by-user' key={rev.id}>
+                        <div className='review-by-user' key={rev.by._id}>
                             <section className='by-details'>
                                 <Avatar alt="A" src={rev.by.imgUrl} />
                                 <section className='name-user flex column'>

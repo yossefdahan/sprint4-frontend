@@ -111,7 +111,7 @@ export function ScrollingFilter() {
       </Swiper>
 
       <div className='filter-small-scrolling'>
-        <button onClick={() => setIsOpen(!isOpen)} className='filter-small-btn'> <img src="src/assets/img/small-icons/filter.svg" alt="" /> Filters </button>
+        <button onClick={() => setIsOpen(!isOpen)} className='filter-small-btn'> <img src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713336806/xti0ctvlmmuturuo29hj.svg" alt="" /> Filters </button>
       </div>
       {isOpen ? <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} filterBy={filterBy} onSetFilter={onSetFilter} /> : ''}
     </div >

@@ -200,7 +200,7 @@
       padding-right: 5px;
       box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
       // margin-left: 740px;
-      z-index: 9999;
+      // z-index: ;
       gap: 8px;
       height: 50px;
       width: 50px;
@@ -311,6 +311,7 @@
 
     & .img-trips {
       position: relative;
+
       & .trips-stay-img {
         width: 100%;
         min-width: 150px;
@@ -646,6 +647,7 @@
     justify-content: start;
     margin-left: -20px;
   }
+
   .app-header-trips {
     padding: 0;
 
@@ -706,6 +708,12 @@
         & .main-card-section {
           display: flex;
           flex-direction: column;
+
+          & .img-trips {
+            & .trips-stay-img {
+              border-radius: 0 0 8px 8px;
+            }
+          }
         }
       }
     }
