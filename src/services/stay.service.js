@@ -68,13 +68,13 @@ function getEmptyStay() {
         price: 0 || utilService.getRandomIntInclusive(200, 2000),
         summary: "" || "Step into style with this elegantly designed rental. Featuring modern amenities and high-quality finishes, this property offers a serene and inviting space for your getaway.",
         capacity: 0 || utilService.getRandomIntInclusive(1, 10),
-        bedrooms: 0 || utilService.getRandomIntInclusive(1, 10),
-        bathrooms: 0 || utilService.getRandomIntInclusive(1, 10),
+        bedrooms: 0 || utilService.getRandomIntInclusive(1, 5),
+        bathrooms: 0 || utilService.getRandomIntInclusive(1, 3),
         dates: {
             checkIn: '',
             checkOut: '',
         },
-        amenities: [] || [
+        amenities: ["TV"] || [
             "TV",
             "Wifi",
             "Kitchen",
@@ -83,14 +83,14 @@ function getEmptyStay() {
             "Gym",
         ],
 
-        labels: [] || ["Play"],
+        labels: ["New", "Play"] || ["Play"],
         host: {
             _id: "",
             fullname: "",
             imgUrl: "",
         },
         loc: {
-            region: "",
+            region: "Europe",
             country: "",
             countryCode: "",
             city: "",
