@@ -179,7 +179,7 @@ export function AddStay() {
                     <MultiSelect onSetLabel={onSetLabel} stay={stay} />
                     <MultiSelectAmenities onSetAmenitie={onSetAmenitie} stay={stay} />
 
-                    <div style={{ padding: "20px", maxWidth: "200px" }}>
+                    <div style={{ padding: "20px", maxWidth: "300px" }}>
                         <ImgUploader onUploaded={onUploaded} />
                     </div>
                     <button type="sumbmit">Add</button>
