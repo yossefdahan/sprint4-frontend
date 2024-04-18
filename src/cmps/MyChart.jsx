@@ -10,13 +10,13 @@ export function MyChart({ orders }) {
             label: 'Order Status',
             data: [],
             backgroundColor: [
-                'rgba(54, 262, 235, 0.6)',
-                'rgba(255, 99, 132, 1)',
+                'rgba(54, 262, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
+                '#ff385c',
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 262, 235, 0.2)',
+                '#d7d6d6',
+                '#d7d6d6',
                 'rgba(255, 206, 86, 1)',
             ],
             borderWidth: 1,
@@ -39,6 +39,6 @@ export function MyChart({ orders }) {
     }, [orders]);
 
     return <div className='chart'>
-        <Pie className="pie" data={chartData} style={{ width: '250px', height: '250px' }} />
+        <Pie className="pie flex  " data={chartData} style={{ maxWidth: '150px', maxHeight: '150px' }} />
     </div>
 }

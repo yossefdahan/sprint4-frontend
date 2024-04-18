@@ -14,14 +14,15 @@ export function SalesChart({ orders }) {
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
+
       },
     ],
   });
 
   useEffect(() => {
     const salesData = orders.reduce((acc, order) => {
-      const date = new Date(order.date);
-      const yearMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      const date = new Date(order.startDate);
+      const yearMonth = `${String(date.getMonth() + 1).padStart(2, '0')} / ${date.getFullYear()}`;
       acc[yearMonth] = (acc[yearMonth] || 0) + order.totalPrice;
       return acc;
     }, {});

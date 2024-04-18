@@ -23,7 +23,7 @@ export function Trips(stay) {
     useEffect(() => {
         loadOrders();
         loadUsers();
-        loadStays();
+        // loadStays();
 
     }, []);
 
@@ -104,9 +104,9 @@ export function Trips(stay) {
     /*footer */
     const Footer = () => {
         return (
-            <footer className="app-footer">
-                <nav className="footer-nav">
-                    <Link to="/" className="  footer-nav-link"> <i className="fa-solid fa-magnifying-glass"></i>Explore</Link>
+            <footer className="app-footer-trips">
+                <nav className="footer-nav-trips">
+                    <Link to="/" className="  footer-nav-link-trips"> <i className="fa-solid fa-magnifying-glass"></i>Explore</Link>
                     <Link style={{ color: "red", fontWeight: "500" }} to="/user/trips" className="  footer-nav-link"> <i className="fa-brands fa-airbnb"></i>Trips</Link>
                     <Link to="/user/addstay" className=" footer-nav-link"><i className="fa-solid fa-house-flag"></i>Add Stay </Link>
                     {/* <Link to="/user/dashboard" className="  footer-nav-link"> <i className="fa-solid fa-chart-line"></i>Dashboard</Link> */}
@@ -209,7 +209,7 @@ export function Trips(stay) {
                                                 height="24"
                                                 fill="none"
                                                 className="svg-icon">
-                                                <g stroke-width="2" stroke-linecap="round" stroke="#fff">
+                                                <g stroke-width="2" strokeLinecap="round" stroke="#fff">
                                                     <rect y="5" x="4" width="16" rx="2" height="16"></rect>
                                                     <path d="m8 3v4"></path><path d="m16 3v4"></path>
                                                     <path d="m4 11h16"></path></g></svg>
