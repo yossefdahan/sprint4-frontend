@@ -24,7 +24,6 @@ window.cs = stayService
 
 
 async function query(filterBy) {
-    console.log(filterBy);
     return httpService.get(BASE_URL, { params: { filterBy } })
 }
 

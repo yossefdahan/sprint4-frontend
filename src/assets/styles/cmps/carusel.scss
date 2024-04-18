@@ -29,10 +29,10 @@
     font-size: 13px;
     color: black;
     background-color: white;
-    top: 40px;
+    top: 47px;
     right: 2px;
     // background-color: aqua;
-    box-shadow: rgb(255 255 255 / 83%) 0 0 20px 20px;
+    // box-shadow: rgb(255 255 255 / 83%) 0 0 20px 20px;
 
     &:hover {
       box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
@@ -50,24 +50,30 @@
     }
   }
 
+  & .swiper-button-disabled {
+    display: none;
+  }
+
   & .swiper-button-prev {
+    // opacity: 0;
     border: 0.5px solid rgba(0, 0, 0, 0.3);
     border-radius: 30px;
     width: 27px;
     height: 27px;
     font-size: 13px;
     color: black;
-    top: 40px;
+    top: 47px;
     left: 2px;
-    box-shadow: rgb(255 255 255 / 83%) 0 0 20px 20px;
+    // box-shadow: rgb(255, 255, 255) 0 0 20px 20px;
     // &::before {
-    //   background-color: #000000;
+    background-color: white;
 
     // }
 
     &::after {
       font-size: 13px;
       color: black;
+
     }
 
     &:hover {

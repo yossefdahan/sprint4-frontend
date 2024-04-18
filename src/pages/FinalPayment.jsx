@@ -134,13 +134,13 @@ export function FinalPayment() {
                         <h3>Pay with</h3>
                         <div className="inputs-group">
 
-                            <input type="text" className="card-number " placeholder=" Card number 🔒" />
+                            <input type="text" className="card-number " placeholder=" 1234-9251-4218-0828" />
                             <div className="input-group-twice">
-                                <input type="text" className="expiry-date" placeholder="MM/YY" />
-                                <input type="text" className="cvv" placeholder="cvv" />
+                                <input type="text" className="expiry-date" placeholder="05/29" />
+                                <input type="text" className="cvv" placeholder="357" />
                             </div>
                             <div className="input-g">
-                                <input type="text" className="name-on-card" placeholder="Enter Id" />
+                                <input type="text" className="name-on-card" placeholder="306050221" />
                             </div>
                         </div>
                     </div>

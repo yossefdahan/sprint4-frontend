@@ -30,6 +30,7 @@
 
   & .rc-slider-handle {
     border: solid 1px black;
+
     & :active {
       border-color: #131213;
       box-shadow: #131213;
@@ -106,8 +107,7 @@
       border-radius: 12px;
     }
 
-    & .type-op {
-    }
+    & .type-op {}
   }
 
   & .roomsbed {

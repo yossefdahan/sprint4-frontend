@@ -200,7 +200,7 @@
       padding-right: 5px;
       box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
       // margin-left: 740px;
-      z-index: 9999;
+      // z-index: ;
       gap: 8px;
       height: 50px;
       width: 50px;
@@ -227,15 +227,13 @@
       }
 
       @keyframes slope {
-        0% {
-        }
+        0% {}
 
         50% {
           transform: rotate(10deg);
         }
 
-        100% {
-        }
+        100% {}
       }
     }
 
@@ -311,6 +309,7 @@
 
     & .img-trips {
       position: relative;
+
       & .trips-stay-img {
         width: 100%;
         min-width: 150px;
@@ -614,8 +613,11 @@
       justify-content: flex-start;
       padding: 0;
       text-decoration: none;
+
+
     }
   }
+
   .app-footer {
     display: flex;
     flex-direction: column;
@@ -646,6 +648,7 @@
     justify-content: start;
     margin-left: -20px;
   }
+
   .app-header-trips {
     padding: 0;
 
@@ -669,7 +672,7 @@
   .past-trips {
     flex-direction: column;
 
-    & > * {
+    &>* {
       padding: 0;
       // text-align: center;
     }
@@ -706,6 +709,12 @@
         & .main-card-section {
           display: flex;
           flex-direction: column;
+
+          & .img-trips {
+            & .trips-stay-img {
+              border-radius: 0 0 8px 8px;
+            }
+          }
         }
       }
     }

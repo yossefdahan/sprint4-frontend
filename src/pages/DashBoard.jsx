@@ -121,7 +121,7 @@ export function DashBoard() {
                     </thead>
                     <tbody>
                         {filteredOrders.map((order) => (
-                            <tr key={order.buyer._id}>
+                            <tr key={order._id}>
                                 <td>{order.buyer.fullname}</td>
                                 <td>${order.totalPrice.toFixed(2)}</td>
                                 <td>{utilService.formatIsoDateToYMD(order.startDate)}</td>

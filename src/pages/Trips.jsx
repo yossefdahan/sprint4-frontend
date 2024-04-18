@@ -23,7 +23,7 @@ export function Trips(stay) {
     useEffect(() => {
         loadOrders();
         loadUsers();
-        loadStays();
+        // loadStays();
 
     }, []);
 
@@ -209,7 +209,7 @@ export function Trips(stay) {
                                                 height="24"
                                                 fill="none"
                                                 className="svg-icon">
-                                                <g stroke-width="2" stroke-linecap="round" stroke="#fff">
+                                                <g stroke-width="2" strokeLinecap="round" stroke="#fff">
                                                     <rect y="5" x="4" width="16" rx="2" height="16"></rect>
                                                     <path d="m8 3v4"></path><path d="m16 3v4"></path>
                                                     <path d="m4 11h16"></path></g></svg>
