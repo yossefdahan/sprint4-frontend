@@ -105,10 +105,10 @@ export function Trips(stay) {
     const Footer = () => {
         return (
             <footer className="app-footer-trips">
-                <nav className="footer-nav-trips">
-                    <Link to="/" className="  footer-nav-link-trips"> <i className="fa-solid fa-magnifying-glass"></i>Explore</Link>
-                    <Link style={{ color: "red", fontWeight: "500" }} to="/user/trips" className="  footer-nav-link"> <i className="fa-brands fa-airbnb"></i>Trips</Link>
-                    <Link to="/user/addstay" className=" footer-nav-link"><i className="fa-solid fa-house-flag"></i>Add Stay </Link>
+                <nav className="footer-nav">
+                    <Link to="/" className="footer-nav-link"> <i className="fa-solid fa-magnifying-glass"></i>Explore</Link>
+                    <Link style={{ color: "red", fontWeight: "500" }} to="/user/trips" className="footer-nav-link"> <i className="fa-brands fa-airbnb"></i>Trips</Link>
+                    <Link to="/user/addstay" className="footer-nav-link"><i className="fa-solid fa-house-flag"></i>Add Stay </Link>
                     {/* <Link to="/user/dashboard" className="  footer-nav-link"> <i className="fa-solid fa-chart-line"></i>Dashboard</Link> */}
                 </nav>
 

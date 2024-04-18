@@ -594,15 +594,24 @@
 .app-footer-trips {
   display: none;
   height: 70px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #f8f8f8;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid $light-gray;
 
-  .footer-nav-trips {
+  & .footer-nav {
     display: flex;
     justify-content: space-around;
     padding: 0.5em;
     text-align: center;
   }
 
-  .footer-nav-link-trips {
+  & .footer-nav-link {
     text-decoration: none;
     color: #333;
   }
@@ -617,27 +626,28 @@
       text-decoration: none;
     }
   }
+
   .app-footer-trips {
     display: flex;
     flex-direction: column;
     padding-top: 5px;
 
-    .footer-nav-trips {
+    & .footer-nav {
       display: flex;
       justify-content: space-around;
       padding: 0.5em;
       text-align: center;
-    }
 
-    .footer-nav-link-trips {
-      display: flex;
-      text-decoration: none;
-      color: #333;
-      flex-direction: column;
-      font-size: 14px;
+      & .footer-nav-link {
+        display: flex;
+        text-decoration: none;
+        color: #333;
+        flex-direction: column;
+        font-size: 14px;
 
-      i {
-        font-size: 26px;
+        i {
+          font-size: 26px;
+        }
       }
     }
   }
@@ -719,109 +729,3 @@
     }
   }
 }
-
-// @media (max-width: 860px) {
-//   .main-container {
-//     grid-template-columns: 20px 600px 20px;
-
-//     & .app-header-trips {
-//       display: flex;
-//       justify-content: center;
-//       padding: 0 30px;
-//       height: 50px;
-
-//       & .logo-img {
-//         width: 100px;
-//         margin: 0;
-//       }
-
-//       .stays-search,
-//       .side-nav-trips,
-//       .nav-links-trips,
-//       .Languages-btn,
-//       .side-nav-bar,
-//       .host-your-home-nav,
-//       .stays,
-//       .experiences {
-//         display: none;
-//       }
-//     }
-
-//     .trips-container {
-//       display: grid;
-//       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-//       margin: 0 auto;
-//       gap: 20px;
-//     }
-
-//     .trips-page {
-//       padding: 5px; /* Reduced padding */
-//       display: grid;
-
-//       & .navigation-links {
-//         display: none;
-//       }
-
-//       & .main-card-section {
-//         display: flex;
-//         flex-direction: column;
-//         & .img-trips {
-//           grid-area: img; /* Image takes the 'img' area */
-//           margin-top: 10px; /* Space above the image */
-
-//           .trips-stay-img {
-//             border-radius: 0; /* Remove border radius */
-//             box-shadow: none; /* Remove box shadow */
-//             width: 200px;
-//           }
-//         }
-
-//         & .trip-card {
-//           display: grid;
-//           grid-template-areas:
-//             "header"
-//             "img"
-//             "details";
-//           gap: 5px; /* Add gaps between grid items for spacing */
-
-//           & .trip-card-header {
-//             grid-area: header; /* Place header in the 'header' area */
-//           }
-
-//           & .details-section-trips {
-//             grid-area: details; /* Details in 'details' area */
-//           }
-
-//           & .location-details-trips {
-//             border-left: none; /* Remove border since it's now a vertical layout */
-//           }
-//         }
-//       }
-
-//       .social-icons-container {
-//         display: grid;
-//         justify-content: start;
-//         padding-left: 20px;
-
-//         & .social-header-trips {
-//           display: none;
-//         }
-//       }
-
-//       .loader-trips {
-//         width: 50px; /* Adjust size for mobile */
-//         height: 56px;
-//       }
-
-//       .past-trips-section {
-//         padding: 10px; /* Consistent padding */
-//         .past-trips {
-//           flex-direction: column; /* Vertical stacking */
-//           .last-trip-card {
-//             padding: 10px 0; /* Space between cards */
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
