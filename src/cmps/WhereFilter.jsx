@@ -339,9 +339,9 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                 {inputValue && suggestions.length > 0 && (
                     <ul className="destination-txt-input" >
 
-                        {suggestions.map(suggestion => (
+                        {suggestions.slice(0, 2).map(suggestion => (
                             <li key={suggestion} className="suggestion" onClick={() => handleSuggestionClick(suggestion)}>
-                                <img src="src/assets/img/small-icons/place-marker-svgrepo-com.svg" alt="" />
+                                <img src="https://res.cloudinary.com/dheh8zkmv/image/upload/v1713446408/bpjzyojnoloxmusbixva.svg" alt="" />
                                 <div>{suggestion}</div>
                             </li>
 
