@@ -1,9 +1,9 @@
 .social-icons-container {
   & .social-header-trips {
-    padding-left: 30px;
     display: flex;
-    justify-content: center;
-    text-decoration: underline $main-red;
+    justify-content: start;
+    padding-bottom: 10px;
+    padding-top: 20px;
   }
 }
 
@@ -13,8 +13,10 @@ ul {
 
 .example-2 {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  padding: 0;
+  margin-left: -20px;
 }
 .example-2 .icon-content {
   margin: 10px 10px;
