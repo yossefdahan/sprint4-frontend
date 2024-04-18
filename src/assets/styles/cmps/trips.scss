@@ -590,18 +590,18 @@
 
 /* Footer */
 
-.app-footer {
+.app-footer-trips {
   display: none;
   height: 70px;
 
-  .footer-nav {
+  .footer-nav-trips {
     display: flex;
     justify-content: space-around;
     padding: 0.5em;
     text-align: center;
   }
 
-  .footer-nav-link {
+  .footer-nav-link-trips {
     text-decoration: none;
     color: #333;
   }
@@ -616,19 +616,19 @@
       text-decoration: none;
     }
   }
-  .app-footer {
+  .app-footer-trips {
     display: flex;
     flex-direction: column;
     padding-top: 5px;
 
-    .footer-nav {
+    .footer-nav-trips {
       display: flex;
       justify-content: space-around;
       padding: 0.5em;
       text-align: center;
     }
 
-    .footer-nav-link {
+    .footer-nav-link-trips {
       display: flex;
       text-decoration: none;
       color: #333;
