@@ -182,7 +182,7 @@ export function AddStay() {
                     <div style={{ padding: "20px", maxWidth: "300px" }}>
                         <ImgUploader onUploaded={onUploaded} />
                     </div>
-                    <button type="sumbmit">Add</button>
+                    <button type="sumbmit">Add Your House</button>
                 </div>
             </form>
 

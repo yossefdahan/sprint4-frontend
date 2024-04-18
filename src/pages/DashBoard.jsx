@@ -38,17 +38,13 @@ export function DashBoard() {
         setTotalSales(totalSalesValue);
     }, [orders, user._id]);
 
+    const approvedOrders = filteredOrders.filter(order => order.status === 'approved');
+    useEffect(() => {
+        const totalSalesValue = approvedOrders.reduce((acc, order) => acc + order.totalPrice, 0);
+        setTotalSales(totalSalesValue);
+    }, [approvedOrders]);
 
-    // async function handleOrderStatusChange(order, newStatus) {
-    //     try {
-    //         const updatedOrder = { ...order, status: newStatus }
-    //         await dispatch(updateOrder(updatedOrder))
-    //         setOrderUpdateTrigger(!orderUpdateTrigger)
-    //         showSuccessMsg(`Order updated: ${updatedOrder.status}`)
-    //     } catch (err) {
-    //         showErrorMsg('Cannot update order')
-    //     }
-    // }
+    const sortedFilteredOrders = filteredOrders.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
     async function onAproveOrder(order) {
         try {
@@ -86,21 +82,31 @@ export function DashBoard() {
             </div>
 
             <div className='stat-section flex space-between '>
-                <div className='chart'>
+
+                <div className='chart content-card '>
+                    <h2 className='header-sales flex space-between'><strong>Orders status:</strong> <i className="fa-solid fa-house-user" style={{ fontSize: "24px" }}></i></h2>
                     <MyChart orders={orders.filter(order => order.hostId === user._id)} />
                 </div>
-                <div className='total-sales flex column '>
-                    <h2><strong>Total Sales:</strong></h2>
-                    <p className='total-sales-income'> ${totalSales.toFixed(2)}</p>
+
+                <div className=' small-cards-total flex column'>
+                    <div className='small-card' >
+                        <h2 className='header-sales flex space-between'><strong>Total Sales:</strong> <i className="fa-solid fa-hand-holding-dollar" style={{ fontSize: "24px" }}></i></h2>
+                        <p className='total-sales-income'> ${totalSales.toFixed(2)}</p>
+                    </div>
+                    <div className='small-card' >
+                        <h2 className='header-sales flex space-between'><strong>Total orders:</strong><i className="fa-solid fa-people-roof" style={{ fontSize: "24px" }}></i></h2>
+                        <p className='total-sales-income'> {filteredOrders.length}</p>
+                    </div>
                 </div>
 
-                <div className='sales-chart'>
-                    <SalesChart orders={orders.filter(order => order.hostId === user._id)} />
+                <div className='sales-chart content-card '>
+                    <h2 className='header-sales flex space-between'><strong>Month Sales:</strong> <i className="fa-solid fa-chart-simple" style={{ fontSize: "24px" }}></i></h2>
+
+                    <SalesChart orders={approvedOrders} />
                 </div>
-            </div>
+            </div >
 
             <div className="dashboard-container">
-
                 <table>
                     <thead>
                         <tr>
@@ -109,56 +115,45 @@ export function DashBoard() {
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Guests</th>
-
-                            {/* <th>Adults</th>
-                            <th>Kids</th>
-                            <th>Pets</th>
-                            <th>Infants</th> */}
                             <th>Stay Name</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {filteredOrders.map((order) => (
+                        {sortedFilteredOrders.map((order) => (
                             <tr key={order._id}>
                                 <td>{order.buyer.fullname}</td>
                                 <td>${order.totalPrice.toFixed(2)}</td>
                                 <td>{utilService.formatIsoDateToYMD(order.startDate)}</td>
                                 <td>{utilService.formatIsoDateToYMD(order.endDate)}</td>
                                 <td>
-                                    {/* <strong className='guests-trips-card'>Guests:</strong> */}
                                     {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
                                     {order.guests.kids ? ` , Kids: ${order.guests.kids}` : ''}
                                     {order.guests.pets ? ` , Pets: ${order.guests.pets}` : ''}
                                     {order.guests.infants ? ` , Infants: ${order.guests.infants}` : ''}
                                 </td>
-                                {/* <td>{order.guests.adults ? order.guests.adults : ''}</td>
-                                <td>{order.guests.kids ? order.guests.kids : ''}</td>
-                                <td>{order.guests.pets ? order.guests.pets : ''}</td>
-                                <td>{order.guests.infants ? order.guests.infants : ''}</td> */}
+
                                 <td>{order.stay.name}</td>
                                 <td className={`status ${order.status}`}>{order.status}</td>
                                 <td>
                                     {order.status === "approved" ?
                                         <div>
-                                            <button>Send massages to guest</button>
+                                            <button className='user-msg-btn'>Send massages to guest</button>
                                         </div> :
                                         <div className='actions flex'>
                                             <button onClick={() => onAproveOrder(order)} >Aprove</button>
                                             <button onClick={() => onRejectOrder(order)}>Reject</button>
                                         </div>}
-                                    {/* <div className='actions flex'>
-                                            <button onClick={() => handleOrderStatusChange(order, 'approved')} >Aprove</button>
-                                            <button onClick={() => handleOrderStatusChange(order, 'rejected')}>Reject</button>
-                                        </div>} */}
                                 </td>
                             </tr>
                         ))}
                     </tbody>
+
                 </table>
             </div>
-        </div>
+        </div >
     )
 }
 
