@@ -10,15 +10,16 @@ export function MyChart({ orders }) {
             label: 'Order Status',
             data: [],
             backgroundColor: [
-                'rgba(54, 262, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                '#ff385c',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
             ],
             borderColor: [
-                '#d7d6d6',
-                '#d7d6d6',
-                'rgba(255, 206, 86, 1)',
+                '#f1f1f1ab',
+                '#f1f1f1ab',
+                '#f1f1f1ab',
             ],
+
             borderWidth: 1,
         }],
     })
@@ -38,7 +39,7 @@ export function MyChart({ orders }) {
         })
     }, [orders]);
 
-    return <div className='chart'>
-        <Pie className="pie flex  " data={chartData} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+    return <div className='chart  '>
+        <Pie className="pie  " data={chartData} style={{ maxWidth: '150px', maxHeight: '150px' }} />
     </div>
 }

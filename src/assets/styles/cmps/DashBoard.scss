@@ -1,3 +1,9 @@
+.dashboard-page {
+  background-color: rgba(233, 233, 233, 0.194);
+  grid-column: 2;
+  padding: 0 80px 0 80px;
+}
+
 .trips-page {
   font-family: Montserrat;
   color: #333;
@@ -24,16 +30,77 @@
   /* main stat */
 
   .stat-section {
-    // padding: 24px;
-    // margin-bottom: 50px;
-    // height: 250px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    width: 1220px;
+    width: 100%;
+    // width: 1220px;
     margin-bottom: 30px;
+
+    & .best-seller {
+      width: 450px;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease-in-out;
+      height: 250px;
+
+      &:hover {
+        transform: scale(1.01);
+      }
+
+      & .bestseller-header-sales {
+        align-items: center;
+        margin: 0;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        font-size: 1.5em;
+        color: rgba(0, 0, 0, 0.635);
+
+        & i {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(233, 233, 233, 0.63);
+          height: 40px;
+          width: 40px;
+          border-radius: 50px;
+          text-align: center;
+          padding: 10px;
+          box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+          color: white;
+          color: rgb(79, 78, 78);
+        }
+      }
+
+      & .bestseller-card {
+        & .bestseller-img {
+          border-radius: 12px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          border: 1px solid $light-gray;
+        }
+
+        & .bestseller-card-info {
+          & .bestseller-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: $light-red;
+            padding-bottom: 10px;
+          }
+
+          & p {
+            padding-bottom: 5px;
+            & span {
+              margin-right: 10px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
 
     & .small-card {
       width: 350px;
@@ -41,38 +108,58 @@
       border-radius: 8px;
       padding: 10px 16px 10px 16px;
       margin-bottom: 20px;
-      box-shadow: 0 0 14px #d9d9d980;
+      box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease-in-out;
+      min-height: 110px;
 
       &:hover {
         transform: scale(1.01);
       }
 
-      & .total-sales-income {
-        color: $main-green;
+      & .total-orders {
+        color: rgba(0, 0, 0, 0.635);
         font-weight: 600;
-        font-size: 1.5em;
+        font-size: 1.3em;
+
+        padding: 0 10px 0 10px;
+        border-radius: 5px;
+        width: fit-content;
+        color: black;
+      }
+
+      & .total-sales-income {
+        color: rgba(0, 0, 0, 0.635);
+        font-weight: 600;
+        font-size: 1.3em;
+        background-color: $background-green;
+        padding: 0 10px 0 10px;
+        border-radius: 5px;
+        width: fit-content;
+        color: black;
       }
 
       & .header-sales {
         align-items: center;
         margin: 0;
+        margin-bottom: 14px;
         padding-bottom: 10px;
-        font-size: 2em;
-        color: $main-gray;
+        font-size: 1.5em;
+        color: rgba(0, 0, 0, 0.635);
+        font-weight: 900;
 
         & i {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: $main-red;
-          height: 50px;
-          width: 50px;
+          background-color: rgba(233, 233, 233, 0.63);
+          height: 40px;
+          width: 40px;
           border-radius: 50px;
           text-align: center;
-          padding: 8px;
-          box-shadow: 0 0 14px #d9d9d980;
+          padding: 10px;
+          box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
           color: white;
+          color: rgb(79, 78, 78);
         }
       }
     }
@@ -83,7 +170,8 @@
       border-radius: 8px;
       padding: 16px;
       margin-bottom: 24px;
-      box-shadow: 0 0 14px #d9d9d980;
+      box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+
       transition: all 0.3s ease-in-out;
       height: 250px;
 
@@ -91,30 +179,27 @@
         transform: scale(1.01);
       }
 
-      & .total-sales-income {
-        color: $main-green;
-        font-weight: 600;
-        font-size: 1.75em;
-      }
-
       & .header-sales {
         align-items: center;
         margin: 0;
+        margin-bottom: 16px;
         padding-bottom: 10px;
-        font-size: 2em;
-        color: $main-gray;
+        font-size: 1.5em;
+        color: rgba(0, 0, 0, 0.635);
 
         & i {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: $main-red;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          padding: 5px;
-          box-shadow: 0 0 14px #d9d9d980;
+          background-color: rgba(233, 233, 233, 0.63);
+          height: 40px;
+          width: 40px;
+          border-radius: 50px;
+          text-align: center;
+          padding: 10px;
+          box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
           color: white;
+          color: rgb(79, 78, 78);
         }
       }
     }
@@ -165,6 +250,12 @@
     table {
       width: 100%;
       border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease-in-out;
 
       td:first-child {
         width: 200px;
@@ -177,32 +268,37 @@
       th,
       td {
         text-align: left;
-        padding: 12px 8px;
+        padding: 12px 20px;
         border-bottom: 1px solid #ebebeb;
       }
 
       th {
-        background-color: #f7f7f7;
+        background-color: #f7f7f788;
         color: #484848;
         align-items: center;
-        width: 200px;
+        width: fit-content;
       }
 
       tr {
+        &:first-child {
+          padding-left: 10px;
+        }
+
         &:hover {
           background-color: #f7f7f7;
         }
       }
 
       & .user-msg-btn {
-        background-color: #ff5a5f;
+        background-color: $light-gray;
         border: none;
-        color: #fff;
+        color: $black2;
         padding: 8px 16px;
         margin: 0 4px;
         border-radius: 4px;
         cursor: pointer;
         width: 210px;
+        font-weight: 500;
 
         &:hover {
           transform: scale(1.05);
@@ -223,23 +319,25 @@
 
       .actions {
         button {
-          background-color: $light-gray;
-          border: none;
-          color: black;
+          background-color: $main-gray-hover;
+          border: 1px solid $light-gray;
+          // border: none;
+          color: $main-gray;
           padding: 8px 16px;
           margin: 0 4px;
           border-radius: 4px;
           cursor: pointer;
           width: 100px;
+          font-weight: 500;
 
           &:hover {
-            background-color: darken($main-red, 10%);
+            background-color: darken(black, 10%);
             color: white;
           }
 
           &:first-child {
             color: white;
-            background-color: #00b894;
+            background-color: $main-red;
           }
         }
       }

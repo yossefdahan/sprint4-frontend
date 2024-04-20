@@ -4,10 +4,12 @@ import { loadOrders, updateOrder, getActionAddOrder } from '../store/order.actio
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { MyChart } from '../cmps/MyChart.jsx'
 import { SalesChart } from '../cmps/SalesChart.jsx'
+import 'animate.css';
 
 import { NavLink } from 'react-router-dom'
 import { utilService } from '../services/util.service.js'
 import { socketService } from '../services/socket.service.js'
+import { loadStays } from '../store/stay.actions';
 
 export function DashBoard() {
     const dispatch = useDispatch()
@@ -15,11 +17,42 @@ export function DashBoard() {
     const [orderUpdateTrigger, setOrderUpdateTrigger] = useState(false)
     const user = userService.getLoggedinUser()
     const [totalSales, setTotalSales] = useState(0)
+    const [bestSellerStay, setBestSellerStay] = useState(null);
+    const stays = useSelector(state => state.stayModule.stays);
+
 
     useEffect(() => {
-        loadOrders()
-
+        loadOrders();
     }, [orderUpdateTrigger])
+
+
+
+    useEffect(() => {
+        const salesByStay = orders.filter(order => order.status === 'approved')
+            .reduce((acc, order) => {
+                const key = order.stay._id;
+                const stay = stays.find(stay => stay._id === key);
+                if (stay && !acc[key]) {
+                    acc[key] = {
+                        details: order.stay,
+                        totalRevenue: 0,
+                        totalNights: 0,
+                        imageUrl: stay.imgUrls && stay.imgUrls[0] ? stay.imgUrls[0] : 'default_image.jpg', // Safely access imgUrls
+                        rating: order.stay.rating
+                    };
+                }
+                if (stay) {
+                    acc[key].totalRevenue += order.totalPrice;
+                    const nights = (new Date(order.endDate) - new Date(order.startDate)) / (1000 * 3600 * 24);
+                    acc[key].totalNights += nights;
+                }
+                return acc;
+            }, {});
+
+        const bestSeller = Object.values(salesByStay).reduce((max, stay) => max.totalRevenue > stay.totalRevenue ? max : stay, { totalRevenue: 0 });
+        setBestSellerStay(bestSeller);
+    }, [orders, stays]);
+
 
     useEffect(() => {
         socketService.on('add-order', (order) => {
@@ -28,6 +61,8 @@ export function DashBoard() {
     }, [])
 
     const filteredOrders = orders.filter(order => order.hostId === user._id)
+    const approvedOrders = filteredOrders.filter(order => order.status === 'approved');
+
 
     useEffect(() => {
         const approvedOrders = orders.filter(order => order.status === 'approved' && order.hostId === user._id);
@@ -38,7 +73,8 @@ export function DashBoard() {
         setTotalSales(totalSalesValue);
     }, [orders, user._id]);
 
-    const approvedOrders = filteredOrders.filter(order => order.status === 'approved');
+
+
     useEffect(() => {
         const totalSalesValue = approvedOrders.reduce((acc, order) => acc + order.totalPrice, 0);
         setTotalSales(totalSalesValue);
@@ -75,7 +111,7 @@ export function DashBoard() {
     if (!orders || orders.length === 0) return <div className='loading'>No orders yet...</div>;
 
     return (
-        <div className="trips-page">
+        <div className="trips-page dashboard-page">
             <div className="navigation-links">
                 <NavLink to="/user/trips" activeClassName="active">Trips</NavLink>
                 <NavLink to="/user/dashboard" activeClassName="active">Dashboard</NavLink>
@@ -83,27 +119,48 @@ export function DashBoard() {
 
             <div className='stat-section flex space-between '>
 
-                <div className='chart content-card '>
-                    <h2 className='header-sales flex space-between'><strong>Orders status:</strong> <i className="fa-solid fa-house-user" style={{ fontSize: "24px" }}></i></h2>
+                <div className='chart content-card'>
+                    <h2 className='header-sales flex space-between'><strong>Orders status:</strong> <i className="fa-solid fa-house-user" style={{ fontSize: "18px" }}></i></h2>
                     <MyChart orders={orders.filter(order => order.hostId === user._id)} />
                 </div>
 
                 <div className=' small-cards-total flex column'>
                     <div className='small-card' >
-                        <h2 className='header-sales flex space-between'><strong>Total Sales:</strong> <i className="fa-solid fa-hand-holding-dollar" style={{ fontSize: "24px" }}></i></h2>
-                        <p className='total-sales-income'> ${totalSales.toFixed(2)}</p>
+                        <h2 className='header-sales flex space-between'><strong>Total Sales:</strong> <i className="fa-solid fa-hand-holding-dollar" style={{ fontSize: "18px" }}></i></h2>
+                        <p className='total-sales-income'>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalSales)} <i className="fa-solid fa-arrow-trend-up" style={{ color: "#63E6BE" }}></i></p>
                     </div>
                     <div className='small-card' >
-                        <h2 className='header-sales flex space-between'><strong>Total orders:</strong><i className="fa-solid fa-people-roof" style={{ fontSize: "24px" }}></i></h2>
-                        <p className='total-sales-income'> {filteredOrders.length}</p>
+                        <h2 className='header-sales flex space-between'><strong>Total orders:</strong><i className="fa-solid fa-people-roof" style={{ fontSize: "18px" }}></i></h2>
+                        <p className='total-orders'> {filteredOrders.length}</p>
                     </div>
                 </div>
 
                 <div className='sales-chart content-card '>
-                    <h2 className='header-sales flex space-between'><strong>Month Sales:</strong> <i className="fa-solid fa-chart-simple" style={{ fontSize: "24px" }}></i></h2>
-
+                    <h2 className='header-sales flex space-between'><strong>Month Sales:</strong> <i className="fa-solid fa-chart-simple" style={{ fontSize: "18px" }}></i></h2>
                     <SalesChart orders={approvedOrders} />
                 </div>
+
+
+                <div className='best-seller '>
+                    <h2 className='bestseller-header-sales flex space-between'><strong>Best Seller Stay:</strong> <i className="fa-solid fa-trophy" style={{ fontSize: "18px" }}></i></h2>
+                    {bestSellerStay && bestSellerStay.details ? (
+                        <div className='bestseller-card flex space-between'>
+                            <div className='bestseller-card-info'>
+                                <p className='bestseller-name'>{bestSellerStay.details.name}</p>
+                                <p><span>Revenue:</span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(bestSellerStay.totalRevenue)} </p>
+                                <p><span>Orders:</span>{bestSellerStay.totalNights} Nights</p>
+                                <p><span>Rating:</span>★{bestSellerStay.rating || '4.7'}</p>
+                            </div>
+                            <div>
+                                <img className='bestseller-img' src={bestSellerStay.imageUrl || 'default_image.jpg'} alt={bestSellerStay.details.name} style={{ width: '200px', height: '150px', objectFit: 'cover' }} />
+                            </div>
+                        </div>
+
+                    ) : (
+                        <p>No best seller yet.</p>
+                    )}
+                </div>
+
             </div >
 
             <div className="dashboard-container">
@@ -125,9 +182,10 @@ export function DashBoard() {
                         {sortedFilteredOrders.map((order) => (
                             <tr key={order._id}>
                                 <td>{order.buyer.fullname}</td>
-                                <td>${order.totalPrice.toFixed(2)}</td>
-                                <td>{utilService.formatIsoDateToYMD(order.startDate)}</td>
-                                <td>{utilService.formatIsoDateToYMD(order.endDate)}</td>
+                                <td>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(order.totalPrice)}</td>
+
+                                <td>{utilService.formatIsoDateToYMDDashboard(order.startDate)}</td>
+                                <td>{utilService.formatIsoDateToYMDDashboard(order.endDate)}</td>
                                 <td>
                                     {order.guests.adults ? ` Adults: ${order.guests.adults}` : ''}
                                     {order.guests.kids ? ` , Kids: ${order.guests.kids}` : ''}
@@ -140,10 +198,10 @@ export function DashBoard() {
                                 <td>
                                     {order.status === "approved" ?
                                         <div>
-                                            <button className='user-msg-btn'>Send massages to guest</button>
+                                            <button className='user-msg-btn'>Send massage to guest</button>
                                         </div> :
                                         <div className='actions flex'>
-                                            <button onClick={() => onAproveOrder(order)} >Aprove</button>
+                                            <button onClick={() => onAproveOrder(order)} >Approve</button>
                                             <button onClick={() => onRejectOrder(order)}>Reject</button>
                                         </div>}
                                 </td>

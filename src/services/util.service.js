@@ -14,6 +14,7 @@ export const utilService = {
   formatIsoDateToYMD,
   formatStayDateRange,
   haversineDistance,
+  formatIsoDateToYMDDashboard,
 }
 
 function makeId(length = 6) {
@@ -199,6 +200,14 @@ function formatIsoDateToYMD(isoDateString) {
   const month = ("0" + (date.getMonth() + 1)).slice(-2) // Months are 0-based
   const day = ("0" + date.getDate()).slice(-2)
   return `${year}/${month}/${day}`
+}
+
+function formatIsoDateToYMDDashboard(isoDateString) {
+  const date = new Date(isoDateString)
+  const year = date.getFullYear()
+  const month = ("0" + (date.getMonth() + 1)).slice(-2) // Months are 0-based
+  const day = ("0" + date.getDate()).slice(-2)
+  return `${day}/${month}/${year}`
 }
 
 function formatStayDateRange(stay) {
