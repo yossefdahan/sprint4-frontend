@@ -80,7 +80,17 @@ export function DashBoard() {
         setTotalSales(totalSalesValue);
     }, [approvedOrders]);
 
-    const sortedFilteredOrders = filteredOrders.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+    // const sortedFilteredOrders = filteredOrders.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+
+
+    const sortedFilteredOrders = filteredOrders.sort((a, b) => {
+        // Prioritize unapproved orders
+        if (a.status !== 'approved' && b.status === 'approved') return -1;
+        if (a.status === 'approved' && b.status !== 'approved') return 1;
+
+        // If both have the same status, sort by startDate descending
+        return new Date(b.startDate) - new Date(a.startDate);
+    });
 
     async function onAproveOrder(order) {
         try {
