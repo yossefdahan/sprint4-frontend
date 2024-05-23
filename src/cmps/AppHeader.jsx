@@ -90,6 +90,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const tripspage = location.pathname.startsWith('/user/trips')
     const dashboardpage = location.pathname.startsWith('/user/dashboard')
     const addstaypage = location.pathname.startsWith('/user/addstay')
+    const msgpage = location.pathname.startsWith('/user/Msg')
 
 
     if (tripspage)
@@ -111,7 +112,9 @@ export function AppHeader({ showSearch, setShowSearch }) {
                         ) :
                             <nav className="nav-links-trips">
 
+                                {/* <NavLink className=" nav-icon-massages " to="/user/Msg">Messages</NavLink> */}
                                 <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
+
                                 <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
                                 <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
                                 <div><hr /></div>
@@ -184,7 +187,9 @@ export function AppHeader({ showSearch, setShowSearch }) {
                     ) :
                         <nav className="nav-links">
 
+                            {/* <NavLink className=" nav-icon-massages " to="/user/Msg">Messages</NavLink> */}
                             <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
+
                             <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
                             <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
                             <div><hr /></div>
@@ -247,6 +252,8 @@ export function AppHeader({ showSearch, setShowSearch }) {
                                 <NavLink className=" nav-icon-massages " to="/">Messages</NavLink>
                                 <NavLink className=" nav-icon" to="/user/trips">Trips</NavLink>
                                 <NavLink className=" nav-icon-wishlist" to="/">Wishlists</NavLink>
+
+                                
                                 <div><hr /></div>
                                 <NavLink className=" nav-icon" to="/user/addstay">Airstay your home</NavLink>
                                 <NavLink className=" nav-icon" to="/">Account</NavLink>

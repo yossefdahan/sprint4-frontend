@@ -4,7 +4,7 @@ import { loadOrders, updateOrder, getActionAddOrder } from '../store/order.actio
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { MyChart } from '../cmps/MyChart.jsx'
 import { SalesChart } from '../cmps/SalesChart.jsx'
-import 'animate.css';
+// import 'animate.css';
 
 import { NavLink } from 'react-router-dom'
 import { utilService } from '../services/util.service.js'
@@ -17,6 +17,7 @@ export function DashBoard() {
     const [orderUpdateTrigger, setOrderUpdateTrigger] = useState(false)
     const user = userService.getLoggedinUser()
     const [totalSales, setTotalSales] = useState(0)
+    const [openModal, setModal] = useState(false)
     const [bestSellerStay, setBestSellerStay] = useState(null);
     const stays = useSelector(state => state.stayModule.stays);
 
@@ -24,6 +25,8 @@ export function DashBoard() {
     useEffect(() => {
         loadOrders();
     }, [orderUpdateTrigger])
+
+
 
 
 
@@ -221,6 +224,8 @@ export function DashBoard() {
 
                 </table>
             </div>
+
+        
         </div >
     )
 }
