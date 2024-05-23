@@ -51,21 +51,8 @@ export function AddStay() {
 
 
 
-    // async function onSaveStay(ev) {
-    //     ev.preventDefault()
-    //     try {
-    //         await addStay(stay)
-    //         showSuccessMsg('Stay Saved!')
-    //         navigate('/')
-    //     } catch (error) {
-    //         console.error('Error saving stay:', error)
-    //         showErrorMsg('Had issues in Stay details')
-    //     }
-    // }
-
     async function onSaveStay(ev) {
         ev.preventDefault();
-        // Show SweetAlert confirmation dialog
         const result = await Swal.fire({
             title: "You sure you want add your home?",
             showDenyButton: true,

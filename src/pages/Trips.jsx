@@ -154,12 +154,7 @@ export function Trips(stay) {
                 <div className="navigation-links">
                     <NavLink to="/user/trips" activeClassName="active">Trips</NavLink>
                 </div>
-
-
                 <h2 className='upcoming-trips-title'> Upcoming Reservitions</h2>
-
-                {/* <div className='dashboard-container'> */}
-
                 <div className="trips-container">
 
                     {sortedOrders.map((order) => {

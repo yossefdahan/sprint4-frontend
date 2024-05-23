@@ -30,11 +30,11 @@
 
     & .addstay-preview-title,
     .addstay-preview-second {
-      font-size: 50px;
+      font-size: 3.125rem;
     }
 
     & .addstay-preview-description {
-      font-size: 20px;
+      font-size: 1.25rem;
     }
 
     & h3 {
@@ -126,5 +126,43 @@
         transition: all 0.4s ease-in-out;
       }
     }
+  }
+
+  @media (max-width: 1400px) {
+    .video-container {
+      margin-top: 50px;
+    }
+
+    .addstay-details-section {
+      max-width: 600px;
+      padding-left: 20px;
+    }
+
+    .video-container {
+      video {
+        max-width: 500px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .app-header-addstay {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .addstay-preview-description {
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    text-wrap: wrap;
   }
 }

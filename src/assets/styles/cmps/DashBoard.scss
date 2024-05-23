@@ -353,3 +353,35 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .main-container {
+    grid-template-columns: 10px 1fr 10px;
+  }
+
+  .app-header-trips {
+    flex-direction: column;
+    padding: 0;
+    grid-column: 2;
+  }
+
+  .navigation-links {
+    opacity: 0;
+  }
+
+  .left-section-header {
+    opacity: 1;
+  }
+  .stat-section {
+    flex-direction: column;
+  }
+
+  table {
+    width: 500px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

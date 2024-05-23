@@ -21,19 +21,16 @@ import { AddStayPreview } from '../pages/AddStayPreview.jsx'
 
 export function AppHeader({ showSearch, setShowSearch }) {
     const [searchParams, setSearchParams] = useSearchParams()
-    // const [showSearchContainer, setShowSearchContainer] = useState(true)
     const [miniClicked, setMiniClicked] = useState(false)
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const user = useSelector(storeState => storeState.userModule.user)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const navigate = useNavigate()
     const location = useLocation()
-    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavVisible, setIsNavVisible] = useState(false)
     const [showFilter, setShowFilter] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const toggleModal = () => setIsModalOpen(!isModalOpen)
-    // const [user, setUser] = useState([])
     useEffect(() => {
         setSearchParams({
             ...filterBy,
@@ -45,41 +42,6 @@ export function AppHeader({ showSearch, setShowSearch }) {
     }, [filterBy])
 
     const isUserAHost = stays.some(stay => stay.host._id === user?._id)
- 
-
-    // async function loadUsers() {
-    //     const users = await userService.getUsers()
-    //     setUsers(users)
-    // }
-    // async function loadUser() {
-    //     const user = await userService.getUsers()
-    //     setUser(user)
-    // }
-
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const currentScrollPos = window.pageYOffset
-    //         setShowSearchContainer(currentScrollPos < 1)
-    //     }
-    //     window.addEventListener('scroll', handleScroll)
-
-    //     return () => window.removeEventListener('scroll', handleScroll)
-    // }, [])
-
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver((entries) => {
-    //         const [entry] = entries;
-    //         setShowSearch(entry.isIntersecting);
-    //     }, { threshold: 0.1 });
-
-    //     const section = headerRef.current;
-    //     if (section) {
-    //         observer.observe(section);
-    //     }
-
-    //     return () => observer.disconnect();
-    // }, []);
 
     const toggleNavBar = () => {
         setIsNavVisible(!isNavVisible)
@@ -126,9 +88,10 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const detailsRout = location.pathname.startsWith('/stay')
     const stayyourhome = location.pathname.startsWith('/AddStayPreview')
     const tripspage = location.pathname.startsWith('/user/trips')
+    const dashboardpage = location.pathname.startsWith('/user/dashboard')
 
 
-    if (tripspage)
+    if (tripspage || dashboardpage)
         return <header className=" app-header-trips flex space-between">
 
             <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
