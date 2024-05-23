@@ -140,7 +140,7 @@
 
     .video-container {
       video {
-        max-width: 500px;
+        max-width: 100%;
       }
     }
   }
@@ -159,8 +159,12 @@
 }
 
 @media (max-width: 700px) {
+  h1 {
+    max-width: 100%;
+  }
+
   .addstay-preview-description {
-    width: 400px;
+    max-width: 95%;
     display: flex;
     flex-wrap: wrap;
     text-wrap: wrap;

@@ -8,7 +8,7 @@
   font-family: Montserrat;
   color: #333;
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
 
   .navigation-links {
     display: flex;
@@ -39,14 +39,14 @@
     margin-bottom: 30px;
 
     & .best-seller {
-      width: 450px;
+      max-width: 450px;
       background-color: #fff;
       border-radius: 8px;
       padding: 16px;
       margin-bottom: 24px;
       box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
       transition: all 0.2s ease-in-out;
-      height: 250px;
+      height: auto;
 
       &:hover {
         transform: scale(1.01);
@@ -246,114 +246,6 @@
     }
   }
 }
-//   .dashboard-container {
-//     table {
-//       width: 100%;
-//       border-collapse: collapse;
-//       background-color: #fff;
-//       border-radius: 12px;
-//       padding: 16px;
-//       margin-bottom: 24px;
-//       box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
-//       transition: all 0.3s ease-in-out;
-
-//       td:first-child {
-//         max-width: 200px;
-//       }
-
-//       td:last-child {
-//         max-width: 250px;
-//       }
-
-//       th,
-//       td {
-//         text-align: left;
-//         padding: 12px 20px;
-//         border-bottom: 1px solid #ebebeb;
-//       }
-
-//       th {
-//         background-color: #f7f7f788;
-//         color: #484848;
-//         align-items: center;
-//         width: fit-content;
-//       }
-
-//       tr {
-//         &:first-child {
-//           padding-left: 10px;
-//         }
-
-//         &:hover {
-//           background-color: #f7f7f7;
-//         }
-//       }
-
-//       & .user-msg-btn {
-//         background-color: $light-gray;
-//         border: none;
-//         color: $black2;
-//         padding: 8px 16px;
-//         margin: 0 4px;
-//         border-radius: 4px;
-//         cursor: pointer;
-//         width: fit-content;
-//         font-weight: 500;
-
-//         &:hover {
-//           transform: scale(1.05);
-//         }
-//       }
-
-//       .status-pending {
-//         color: #ffa726;
-//       }
-
-//       .status-approved {
-//         color: #66bb6a;
-//       }
-
-//       .status-declined {
-//         color: #ef5350;
-//       }
-
-//       .actions {
-//         button {
-//           background-color: $main-gray-hover;
-//           border: 1px solid $light-gray;
-//           // border: none;
-//           color: $main-gray;
-//           padding: 8px 16px;
-//           margin: 0 4px;
-//           border-radius: 4px;
-//           cursor: pointer;
-//           width: 100px;
-//           font-weight: 500;
-
-//           &:hover {
-//             background-color: darken(black, 10%);
-//             color: white;
-//           }
-
-//           &:first-child {
-//             color: white;
-//             background-color: $main-red;
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   button {
-//     outline: none;
-
-//     &:focus {
-//       outline: none;
-//       box-shadow: none;
-//     }
-//   }
-// }
-
 .dashboard-container {
   table {
     width: 100%;
@@ -476,7 +368,7 @@
   .dashboard-container {
     margin: 0 auto;
     & table {
-      min-width: 90%;
+      min-width: 100%;
       max-width: 0;
       th,
       td {
@@ -535,5 +427,16 @@
     .actions button {
       padding: 4px 8px;
     }
+  }
+
+  .best-seller {
+    height: auto;
+    min-width: 100%;
+  }
+
+  .bestseller-card {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
   }
 }
