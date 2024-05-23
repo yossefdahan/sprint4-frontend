@@ -381,6 +381,18 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                                 minDate={new Date()}
 
                             />
+                            <section className="actions-btn flex">
+                                <button className='btn-prev' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(false)
+                                    setIsOpen(false)
+                                    setCountryModal(true)
+                                }} >prev</button>
+                                <button className='btn-next' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(!showGuestDropdown)
+                                    setIsOpen(false)
+                                    setCountryModal(false)
+                                }} >next</button>
+                            </section>
                         </div>
                         <div className="datepicker-footer">
                             <button className=" exact-date datepicker-range-button">Exact dates</button>
@@ -445,7 +457,14 @@ export function WhereFilter({ filterBy, onSetFilter }) {
                     <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                     <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                     <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
-
+                    <section className="actions-btn flex">
+                        <button onClick={(ev) => {
+                            ev.preventDefault; setShowGuestDropdown(false)
+                            setIsOpen(true)
+                            setCountryModal(false)
+                        }} className="btn-prev">prev</button>
+                        <button className="btn-next">Search</button>
+                    </section>
                 </div>}
 
             </form >

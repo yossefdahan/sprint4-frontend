@@ -91,6 +91,8 @@
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
+
+
 }
 
 .datepicker-header {
@@ -126,6 +128,10 @@
   }
 }
 
+.btn-next,.btn-prev {
+  display: none;
+}
+
 .datepicker-range-button {
   background-color: rgb(255, 255, 255);
   border: 1px solid $light-gray-2;
@@ -152,9 +158,8 @@
   background-color: black;
 }
 
-.react-datepicker__day--selected, .react-datepicker__day--in-range{
-
-}
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range {}
 
 .react-datepicker__day {
   width: 48px; // Increase size for larger hit area
@@ -670,3 +675,83 @@
 // search-btn-destination // 231
 // search-btn-dates // 140
 // search-btn-guests // 231
+
+@media (max-width:480px) {
+
+  .maps-search {
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    z-index: 100;
+    height: 500px;
+
+    h5 {
+      grid-area: 1/2;
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+  }
+
+  .min-filter {
+    //  margin-right: 100px;
+    margin-top: 70px !important;
+  }
+
+
+  .date-pick {
+    width: 100%;
+    top: 0px;
+    margin: 0px;
+    z-index: 100;
+    padding: 10px;
+    // height: 900px;
+
+  }
+
+  .react-datepicker {
+    flex-direction: column;
+    padding: 0px
+  }
+
+  .btn-next {
+    display: block;
+    width: 100%;
+    margin-right: 5px;
+    height: 48px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    color: white;
+    background-color: rgb(255, 56, 92);
+    cursor: pointer;
+  }
+
+  .btn-prev{
+    display: block;
+    width: 100%;
+    margin-right: 5px;
+    height: 48px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+
+  .datepicker-range-button {
+    display: none;
+  }
+
+  .search-filter .input-group.guests-container {
+    top: 0% !important;
+    right: -10px !important;
+    z-index: 100 !important;
+  }
+
+
+}

@@ -7,7 +7,7 @@ import { userService } from '../services/user.service.js'
 import { stayService } from '../services/stay.service.js'
 import { StayDetails } from './StayDetails.jsx'
 import { StayList } from '../cmps/StayList.jsx'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { ScrollingFilter } from '../cmps/ScrollingFilter.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
 
@@ -16,7 +16,7 @@ import { GoogleMapList } from '../cmps/GoogleMapList.jsx'
 export function StayIndex() {
     const dispatch = useDispatch()
     const [previewMap, setPreview] = useState(false)
-
+    const user = useSelector(storeState => storeState.userModule.user)
     // const [searchParams] = useSearchParams()
     // const [filterBy, setFilterBy] = useState(searchParams.get('country'))
     // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -86,6 +86,22 @@ export function StayIndex() {
         if (user.isAdmin) return true
         return stay.host?._id === user._id
     }
+
+    const Footer = () => {
+        return (
+            <footer className="app-footer-trips">
+                <nav className="footer-nav">
+                    <Link style={{ color: "red", fontWeight: "500" }} to="/" className="footer-nav-link"> <i className="fa-solid fa-magnifying-glass"></i>Explore</Link>
+                    {user?(<Link to="/user/trips" className="footer-nav-link"> <i className="fa-brands fa-airbnb"></i>Trips</Link>):''}
+                    <Link to="/user/addstay" className="footer-nav-link"><i className="fa-solid fa-house-flag"></i>Add Stay </Link>
+                    <div className='footer-nav-link'><i className="fa-solid fa-user"></i>{user ? 'Actions' : 'Login'}</div>
+                    {/* <Link to="/user/dashboard" className="  footer-nav-link"> <i className="fa-solid fa-chart-line"></i>Dashboard</Link> */}
+                </nav>
+
+            </footer>
+        );
+    };
+
     if (!stays) return <div className='loader'></div>
     return (
         <>
@@ -105,7 +121,7 @@ export function StayIndex() {
             <button className="show-map-btn" onClick={() => setPreview(!previewMap)}>
                 {previewMap ? "Show list" : "Show map"} <i className={`fa-solid ${previewMap ? 'fa-list' : 'fa-map'}`}></i>
             </button>
-            <AppFooter />
+            <Footer />
         </ >
 
     )

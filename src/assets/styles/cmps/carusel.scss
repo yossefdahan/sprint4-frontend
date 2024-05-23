@@ -167,8 +167,12 @@
   // -ms-flex-align: center;
   // -webkit-align-items: center;
   // align-items: center;
-
   // @media (max-width: 1990px) {
-  //   width: 84vw;
-  // }
-}
+    //   width: 84vw;
+    // }
+  }
+  @media (max-width: 480px) {
+    .carusel-filter-main{
+      width:95vw ;
+    }
+  }
