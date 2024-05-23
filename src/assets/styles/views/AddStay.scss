@@ -1,8 +1,140 @@
-$airbnb-red: #FF5A5F;
-$airbnb-light-gray: #EBEBEB;
+// $airbnb-red: #ff5a5f;
+// $airbnb-light-gray: #ebebeb;
+// $airbnb-dark-gray: #484848;
+// $background-color: #fff;
+// $font-family-base: "Circular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// .stay-add {
+//   max-width: 1200px;
+//   min-width: 800px;
+//   margin: 20px auto;
+//   padding: 20px;
+//   background-color: $background-color;
+//   box-shadow: 3px 2px 4px 2px rgba(0, 0, 0, 0.1);
+//   font-family: $font-family-base;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   border-radius: 12px;
+
+//   h2 {
+//     text-align: center;
+//     color: $airbnb-red;
+//     margin-bottom: 30px;
+//     width: 100%;
+//   }
+
+//   form {
+//     width: 100%;
+//     display: grid;
+//     grid-template-columns: repeat(2, 1fr);
+//     column-gap: 20px;
+
+//     .addStay1 {
+//       order: 2;
+
+//       & textarea {
+//         min-height: 108px;
+//       }
+//     }
+
+//     .addStay2 {
+//       order: 1;
+//     }
+
+//     .form-footer {
+//       grid-column: 1 / -1;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       width: 100%;
+//       order: 3;
+//     }
+
+//     .input,
+//     select {
+//       width: 100%;
+//       padding: 8px;
+//       margin-bottom: 10px;
+//       border: 1px solid $airbnb-light-gray;
+//       border-radius: 4px;
+
+//       &:focus {
+//         border-color: $airbnb-red;
+//         outline: none;
+//       }
+//     }
+
+//     label {
+//       display: block;
+//       color: $airbnb-dark-gray;
+//       margin-bottom: 5px;
+//       font-weight: 600;
+//     }
+
+//     .multi-select,
+//     .location-input,
+//     .date-inputs,
+//     .radio-sort {
+//       position: relative;
+//     }
+
+//     select,
+//     .multi-select div,
+//     .radio-sort {
+//       cursor: pointer;
+//       position: relative;
+//     }
+
+//     .selected-options-container {
+//       display: flex;
+//     }
+
+//     .options-container {
+//       display: none;
+//       position: absolute;
+//       width: 100%;
+//       background-color: #fff;
+//       border: 1px solid $airbnb-light-gray;
+//       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//       z-index: 100;
+
+//       &.open {
+//         display: block;
+//         position: absolute;
+//       }
+//     }
+
+//     button {
+//       padding: 10px 20px;
+//       background-color: $airbnb-red;
+//       color: #fff;
+//       border: none;
+//       border-radius: 5px;
+//       cursor: pointer;
+
+//       &:hover {
+//         background-color: darken($airbnb-red, 10%);
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: 900px) {
+//   .stay-add {
+//     & form {
+//       width: 700px;
+//       display: grid;
+//       grid-template-columns: 1fr;
+//     }
+//   }
+// }
+
+$airbnb-red: #ff5a5f;
+$airbnb-light-gray: #ebebeb;
 $airbnb-dark-gray: #484848;
 $background-color: #fff;
-$font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-base: "Circular", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 .stay-add {
   max-width: 1200px;
@@ -10,7 +142,7 @@ $font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 20px auto;
   padding: 20px;
   background-color: $background-color;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 2px 4px 2px rgba(0, 0, 0, 0.1);
   font-family: $font-family-base;
   display: flex;
   flex-direction: column;
@@ -84,7 +216,6 @@ $font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     .radio-sort {
       cursor: pointer;
       position: relative;
-
     }
 
     .selected-options-container {
@@ -117,6 +248,23 @@ $font-family-base: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       &:hover {
         background-color: darken($airbnb-red, 10%);
       }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .stay-add {
+    min-width: 90%;
+    & form {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .stay-add {
+    & form {
+      width: 100%;
     }
   }
 }
