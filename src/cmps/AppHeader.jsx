@@ -92,7 +92,7 @@ export function AppHeader({ showSearch, setShowSearch }) {
     const addstaypage = location.pathname.startsWith('/user/addstay')
 
 
-    if (tripspage || dashboardpage)
+    if (tripspage)
         return <header className=" app-header-trips flex space-between">
 
             <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
@@ -142,9 +142,15 @@ export function AppHeader({ showSearch, setShowSearch }) {
         <button onClick={backHome} className='go-back-addstay' > Exit without saving</button>
     </header>
 
+
     if (addstaypage) return <header className="app-header-addstay flex space-between align-center">
         <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
         <button onClick={backHome} className='go-back-addstay' > Exit without saving</button>
+    </header>
+
+    if (dashboardpage) return <header className="app-header-addstay flex space-between align-center">
+        <img onClick={backHome} className="logo-img logo-img-payment" src={logoImg} />
+        <button onClick={backHome} className='go-back-addstay' title='go-home-page'> <i className="fa-solid fa-plane-departure"></i></button>
     </header>
 
 
