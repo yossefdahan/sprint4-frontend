@@ -8,7 +8,7 @@
   font-family: Montserrat;
   color: #333;
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
 
   .navigation-links {
     display: flex;
@@ -368,7 +368,7 @@
   .dashboard-container {
     margin: 0 auto;
     & table {
-      min-width: 90%;
+      min-width: 100%;
       max-width: 0;
       th,
       td {
