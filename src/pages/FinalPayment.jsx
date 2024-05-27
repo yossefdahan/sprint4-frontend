@@ -83,17 +83,7 @@ export function FinalPayment() {
         const lightness = 40 + (20 * yRatio);
         setButtonColor(`hsl(351, 83%, ${lightness}%)`);
     };
-    // async function onSaveReview(ev) {
-    //     ev.preventDefault()
 
-    //     try {
-
-    //         const savedReview = await reviewService.add(order)
-    //         showSuccessMsg('Review saved!')
-    //     } catch (err) {
-    //         console.log('error saving the review :', err)
-    //     }
-    // }
     if (!stay || !order) return <div className='loader'></div>
     const rate = stay.reviews.reduce((acc, review) => acc + review.rate, 0)
     function formatDateRange(startDateStr, endDateStr) {
