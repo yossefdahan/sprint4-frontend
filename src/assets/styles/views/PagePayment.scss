@@ -214,7 +214,7 @@
           border-radius: 12px;
           box-shadow: rgba(0, 0, 0, 0.4) 0px 6px 16px;
           color: #222222;
-          width: 900px;
+          width: fit-content;
 
           & .left-payment-modal-section {
             width: 500px;
@@ -396,7 +396,7 @@
   }
 
   .lay-pay {
-    margin-left: 100px;
+    margin-left: 30px;
     & .back-btn {
       grid-column: 2;
       margin-left: 70px;
@@ -410,10 +410,23 @@
   .main-payment-page { 
     width: 80%;
   }
+
 }
 
 
+@media (max-width: 1050px) { 
+  .payment-confrim-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+}
+
 @media (max-width: 900px)   { 
+
+
   .main-payment-page { 
     width:  100%;
   }
@@ -456,5 +469,23 @@ p{
 }
 .finishOrder { 
   padding: 0px!important;
+}
+
+.left-payment-modal-section {
+  max-width: 80%;
+  display: none;
+}
+
+
+.title-container { 
+padding-right: 0px !important;
+padding: 0;
+  & .second-section-payment-modal{ 
+    margin: 10px 10px;
+  }
+}
+
+.payment-confrim-modal  { 
+  max-width: 100%;
 }
 }
