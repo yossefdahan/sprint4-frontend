@@ -423,7 +423,7 @@
   .app-header {
     flex-direction: column;
     align-items: center;
-    grid-template-rows: 0px
+    grid-template-rows: none;
   }
 
   .search-filter .input-group:not(:last-child)::after {
