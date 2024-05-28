@@ -326,11 +326,23 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                                 onBlur={() => setIsOpen(false)}
                                 minDate={new Date()}
                             />
+                            
                             <div className="datepicker-footer">
                                 <button className=" exact-date datepicker-range-button">Exact dates</button>
                                 <button className=" date-btn-search datepicker-range-button">+1 day</button>
                                 <button className="date-btn-search  datepicker-range-button">+2 days</button>
                             </div>
+                                   <section className="actions-btn flex">
+                                <button className='btn-prev' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(false)
+                                    setIsOpen(false)
+                                }} >prev</button>
+                                <button className='btn-next' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(!showGuestDropdown)
+                                    setIsOpen(false)
+                                    setShowGuestDropdown(true)
+                                }} >next</button>
+                            </section>
                         </div>
                     )}
 

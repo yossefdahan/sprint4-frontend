@@ -262,8 +262,17 @@
     text-decoration: underline;
     font-weight: 700;
   }
+
 }
 
+@media (max-width:776px) {
+  .main-details .main-user-host{
+    width: 100%;
+  }
+  .title-dates-details{
+    text-align: center;
+  }
+}
 /*payment modal */
 // .payment-modal {
 
@@ -692,6 +701,12 @@
   }
 }
 
+
+@media (max-width:870px){
+  .review-container .review-by-user .comment p {
+    padding: 0px;
+  }
+}
 // .footer-container-details {
 //   display: grid;
 //   margin-top: 2em;
@@ -737,3 +752,5 @@
 //   height: 50px;
 //   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 // }
+
+
