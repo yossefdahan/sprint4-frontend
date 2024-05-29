@@ -696,7 +696,7 @@
 
   .min-filter {
     //  margin-right: 100px;
-    margin-top: 70px !important;
+    // margin-top: 70px !important;
   }
 
 
@@ -745,6 +745,12 @@
 
   .datepicker-range-button {
     display: none;
+  }
+
+  .search-filter .input-group input{
+    &:focus{
+      background-color: #0f000000;
+    }
   }
 
   .search-filter .input-group.guests-container {

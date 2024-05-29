@@ -69,7 +69,13 @@
 
 
 @media (max-width:860px) {
-  .min-filter{ ///need fix it!
-    display: none;
+  .min-filter {
+    ///need fix it!
+    width: 100%;
+    
+
+    .main-min-filter {
+      width: max-content;
+    }
   }
 }
