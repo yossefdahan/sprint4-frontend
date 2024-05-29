@@ -368,34 +368,69 @@
 
 
 @media (max-width:776px) {
+  .actions-btn{
+    width: 100%;
+    .btn-next {
+      display: block;
+      width: 100%;
+      margin-right: 5px;
+      height: 48px;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      color: white;
+      background-color: rgb(255, 56, 92);
+      cursor: pointer;
+    }
+  
+    .btn-prev{
+      display: block;
+      width: 100%;
+      margin-right: 5px;
+      height: 48px;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 255, 255);
+      cursor: pointer;
+    }
+  }
   .line-payment-details {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: white;
     border-top: 1px solid $light-gray;
-
+    z-index: 1000;
     .payment-modal {
-
       width: 100%;
       display: flex;
       grid-template-columns: 1fr 2fr 1fr;
       padding:0px 1em 8px 1em;
       align-items: center;
       margin: 0px;
-      z-index: 5;
-      justify-content: space-between;
+      justify-content:space-between;
       // justify-self: center;
       border: 0px solid;
       box-shadow: none;
       max-width: 100%;
 
+      .price-modal-btn,.fee-modal-btn,h3,h4,hr{
+        display: none ;
+      }
+    
       .payment-guests-count{
         position: fixed;
         width: 100%;
-        height: max-content;
-        top: 440px;
+        height: 100%;
+        top: 0px;
         left: 0px;
+        display: flex;
+        // justify-content: center;
+
         .guest-selector{
           width: 100%;
         }
@@ -403,43 +438,16 @@
       .calendar{
         position: fixed;
         width: 100%;
-        height: max-content;
+        height: 100%;
         top: 0px;
         left: 0px;
+        margin: 0px;
+        border-radius: 0px;
         .datepicker-footer{
           display: none;
         }
 
-        .actions-btn{
-
-        .btn-next {
-          display: block;
-          width: 100%;
-          margin-right: 5px;
-          height: 48px;
-          border-radius: 8px;
-          font-size: 1em;
-          font-weight: 500;
-          transition: background-color 0.3s;
-          color: white;
-          background-color: rgb(255, 56, 92);
-          cursor: pointer;
-        }
-      
-        .btn-prev{
-          display: block;
-          width: 100%;
-          margin-right: 5px;
-          height: 48px;
-          border-radius: 8px;
-          font-size: 1em;
-          font-weight: 500;
-          transition: background-color 0.3s;
-          color: rgb(0, 0, 0);
-          background-color: rgb(255, 255, 255);
-          cursor: pointer;
-        }
-      }
+        
       } 
       .date-pick{
         transform:none
