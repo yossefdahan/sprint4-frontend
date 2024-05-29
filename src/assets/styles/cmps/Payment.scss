@@ -1,9 +1,12 @@
 .line-payment-details {
   position: relative;
 
-  .btn-next,.btn-prev {
+  
+  .btn-next,
+  .btn-prev {
     display: none;
   }
+
   & .payment-modal {
     position: sticky;
     top: 100px;
@@ -368,8 +371,11 @@
 
 
 @media (max-width:776px) {
-  .actions-btn{
+
+  
+  .actions-btn {
     width: 100%;
+
     .btn-next {
       display: block;
       width: 100%;
@@ -383,8 +389,8 @@
       background-color: rgb(255, 56, 92);
       cursor: pointer;
     }
-  
-    .btn-prev{
+
+    .btn-prev {
       display: block;
       width: 100%;
       margin-right: 5px;
@@ -398,31 +404,38 @@
       cursor: pointer;
     }
   }
+
   .line-payment-details {
     position: fixed;
     bottom: 0;
+    padding: 0px;
     width: 100%;
     background-color: white;
     border-top: 1px solid $light-gray;
     z-index: 1000;
+
     .payment-modal {
       width: 100%;
       display: flex;
       grid-template-columns: 1fr 2fr 1fr;
-      padding:0px 1em 8px 1em;
+      padding: 0px 1em 8px 1em;
       align-items: center;
       margin: 0px;
-      justify-content:space-between;
+      justify-content: space-between;
       // justify-self: center;
       border: 0px solid;
       box-shadow: none;
       max-width: 100%;
 
-      .price-modal-btn,.fee-modal-btn,h3,h4,hr{
-        display: none ;
+      .price-modal-btn,
+      .fee-modal-btn,
+      h3,
+      h4,
+      hr {
+        display: none;
       }
-    
-      .payment-guests-count{
+
+      .payment-guests-count {
         position: fixed;
         width: 100%;
         height: 100%;
@@ -431,11 +444,12 @@
         display: flex;
         // justify-content: center;
 
-        .guest-selector{
+        .guest-selector {
           width: 100%;
         }
       }
-      .calendar{
+
+      .calendar {
         position: fixed;
         width: 100%;
         height: 100%;
@@ -443,20 +457,23 @@
         left: 0px;
         margin: 0px;
         border-radius: 0px;
-        .datepicker-footer{
+
+        .datepicker-footer {
           display: none;
         }
 
-        
-      } 
-      .date-pick{
-        transform:none
+
       }
-      h1{
+
+      .date-pick {
+        transform: none
+      }
+
+      h1 {
         margin: 0px;
       }
 
-      .payment-date-picker{
+      .payment-date-picker {
         display: none;
       }
     }

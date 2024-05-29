@@ -108,6 +108,7 @@ export function StayDetails() {
             </div>}
             <div className='main-header-details flex space-between '>
                 <h1 className='stay-name-details '>{stay.name}</h1>
+                <div onClick={() => navigate('/')} className='phone-name flex'><i class="fa-solid fa-arrow-left"></i><h1 >Back</h1></div>
                 <div className='header-buttons-section'>
                     <button> <i className="fa-solid fa-arrow-up-from-bracket"></i> <span className='share-btn'> Share</span>  </button>
                     <button> ❤️ <span>Saved</span> </button>

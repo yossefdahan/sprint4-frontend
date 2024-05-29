@@ -11,6 +11,10 @@
     }
   }
 
+  .phone-name{
+    display: none;
+  }
+
   & .details-header-observer {
     position: sticky;
     top: 0;
@@ -702,10 +706,80 @@
 }
 
 
-@media (max-width:870px){
+@media (max-width:776px){
   .review-container .review-by-user .comment p {
     padding: 0px;
   }
+  
+
+  .header-buttons-section {
+    margin-right: 1em;
+  }
+
+  .details-layout .main-header-details {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 98%;
+    margin-top: 0px;
+
+    .stay-name-details {
+      display: none;
+
+    }
+    .phone-name{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      h1{
+        font-size: 1em;
+      }
+    }
+  }
+
+  .details-layout .header-buttons-section{
+    span{
+
+      display: none;
+    }
+    button{
+      font-size: larger;
+    }
+  }
+  // .details-layout .header-buttons-section button{
+  //   font-size: larger;
+  // }
+
+  .details-user .host-things {
+    width: 100%;
+  }
+
+  .guest-lover img {
+    width: 100%;
+  }
+
+  .details-description {
+    p {
+      width: 100%;
+    }
+
+  }
+
+  .details-layout .little-details {
+    padding: 0px;
+
+    .second-title-details {
+      font-size: 4vw;
+    }
+
+    .house-details {
+      font-size: 3vw;
+    }
+
+  }
+
 }
 // .footer-container-details {
 //   display: grid;
