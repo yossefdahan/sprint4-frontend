@@ -86,11 +86,14 @@
     width: 100%;
     display: grid;
     grid-column: 1/-1;
+    
     .main-min-filter {
       width: 100%;
 
-      .guests-min-filter,.any-min-filter,.where-min-filter{
-        font-size: 12px !important;      
+      .guests-min-filter,
+      .any-min-filter,
+      .where-min-filter {
+        font-size: 12px !important;
       }
     }
   }
