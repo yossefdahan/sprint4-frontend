@@ -9,6 +9,7 @@ import { SET_ORDER } from '../store/order.reducer.js'
 import { addOrder, getActionAddOrder } from '../store/order.actions.js'
 import { PaymentRequest } from '../cmps/PaymentRequest.jsx'
 import { utilService } from '../services/util.service.js'
+import { LoginSignup } from '../cmps/LoginSignup.jsx'
 
 
 export function FinalPayment() {
@@ -20,7 +21,9 @@ export function FinalPayment() {
     const [stay, setStay] = useState(null)
     const [isOpen, setOpen] = useState(false)
     const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
-
+    const user = useSelector(storeState => storeState.userModule.user)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const toggleModal = () => setIsModalOpen(!isModalOpen)
 
     // useEffect(()=>{
     //     loadOrder()
@@ -37,10 +40,8 @@ export function FinalPayment() {
 
 
     useEffect(() => {
-        // if(!order)
         loadStay()
         loadOrderProgres()
-        // navigate(0)
     }, [stayId])
 
     async function loadOrderProgres() {
@@ -96,6 +97,7 @@ export function FinalPayment() {
     }
     return (
         <div className='main-payment-page'>
+            {isModalOpen === true ? <LoginSignup onClose={toggleModal} /> : ''}
             <div className='main-title-container'>
                 <h1 className='main-title'> Request to book</h1>
             </div>
@@ -151,7 +153,8 @@ export function FinalPayment() {
 
                     <div className='calltoAction'>
                         <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
-                        <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openModal}>Request to book</button>
+                        {user ? <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openModal}>Request to book</button>
+                            : <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={() =>setIsModalOpen(!isModalOpen)}>Request to book</button>}
                     </div>
 
 

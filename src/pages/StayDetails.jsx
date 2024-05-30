@@ -37,7 +37,7 @@ export function StayDetails() {
     const [showReserveHeader, setShowReserveHeader] = useState(true)
     const [triggerReservation, setTriggerReservation] = useState(false);
     const [triggerCalender, setTriggerCalender] = useState(false);
-
+    
 
 
     const handleReserveClick = () => {

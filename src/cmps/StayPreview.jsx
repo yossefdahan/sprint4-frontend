@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdateStay }) {
     const [isSaved, setIsSaved] = useState(false);
     const user = useSelector(storeState => storeState.userModule.user)
+    
 
     async function handleSave(ev) {
         ev.stopPropagation();
@@ -49,7 +50,6 @@ export function StayPreview({ stay, shouldShowActionBtns, onRemoveStay, onUpdate
     return (
         <section className='stay-card' >
             <div className="stay-preview" >
-
                 <StayGallery
                     imgUrls={stay.imgUrls}
                     isSaved={isSaved}
