@@ -122,7 +122,7 @@ export function StayDetails() {
             </div>
             {isOpen ? (
                 <div className='gallery-modal'>
-                    <span className="close-btn" onClick={() => setIsOpen(false)}>{'>'}</span>
+                    <span className="close-btn" onClick={() => setIsOpen(false)}>{'x'}</span>
                     <div className='img-gallery-modal' >
                         {stay.imgUrls.map((img) =>
                             <img src={img} alt="Stay view" key={img} />
