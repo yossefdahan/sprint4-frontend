@@ -27,14 +27,6 @@ async function query(filterBy) {
     return httpService.get(BASE_URL, { params: { filterBy } })
 }
 
-
-// async function getCountries(stays) {
-
-//     const countries = stays.map((stay) => stay.loc.country)
-//     const uniqueCountries = [...new Set(countries)]
-//     return uniqueCountries
-// }
-
 function getById(stayId) {
     return httpService.get(`stay/${stayId}`)
 }

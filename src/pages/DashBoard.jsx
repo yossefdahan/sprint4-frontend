@@ -83,7 +83,6 @@ export function DashBoard() {
         setTotalSales(totalSalesValue);
     }, [approvedOrders]);
 
-    // const sortedFilteredOrders = filteredOrders.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 
 
     const sortedFilteredOrders = filteredOrders.sort((a, b) => {

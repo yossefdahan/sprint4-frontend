@@ -158,7 +158,7 @@ export function PaymentRequest({ guests, order, stay, isOpen, setOpen }) {
 
                 <section className='title-container'>
                     <div className="second-section-payment-modal">
-                        <h3>Price details</h3>
+                        <h3 >Price details</h3>
                         <section className='flex space-between'>
                             <span>$ {order.stay.price} X {Math.floor(order.totalPrice / order.stay.price)} nights </span>
                             <span>$ {order.stay.price * Math.floor(order.totalPrice / order.stay.price)}</span>
