@@ -729,6 +729,8 @@
 
   .react-datepicker {
     // flex-direction: column;
+    display: flex;
+    flex-direction: column;
     padding: 0px;
     height: max-content;
 
