@@ -1,3 +1,15 @@
+.carusel-filter-main-container {
+  background-color: #ffffff;
+  width: 100%;
+  position: sticky;
+  top: 70px;
+  height: 90px;
+  z-index: 1;
+  padding-top: 10px;
+
+
+}
+
 .carusel-filter-main {
   display: inline-flex;
   width: 90.5vw;
@@ -9,7 +21,7 @@
   // right: -200px;
   // grid-template-columns: auto;
   // margin: 0;
-  height: 80px;
+  height: 70px;
   padding: 0;
   // flex-flow: column;
   align-items: center;
@@ -168,11 +180,12 @@
   // -webkit-align-items: center;
   // align-items: center;
   // @media (max-width: 1990px) {
-    //   width: 84vw;
-    // }
+  //   width: 84vw;
+  // }
+}
+
+@media (max-width: 480px) {
+  .carusel-filter-main {
+    width: 95vw;
   }
-  @media (max-width: 480px) {
-    .carusel-filter-main{
-      width:95vw ;
-    }
-  }
+}

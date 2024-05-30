@@ -43,6 +43,7 @@ export function ScrollingFilter() {
 
   return (
     // <div className="filter-main flex">
+    <section className="carusel-filter-main-container">
     <div className="carusel-filter-main">
       {/* <hr className="hr-line" /> */}
       <Swiper
@@ -115,7 +116,7 @@ export function ScrollingFilter() {
       </div>
       {isOpen ? <FilterModal setIsOpen={setIsOpen} isOpen={isOpen} filterBy={filterBy} onSetFilter={onSetFilter} /> : ''}
     </div >
-    // </div >
+     </section >
 
   )
 }

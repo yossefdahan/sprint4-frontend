@@ -424,6 +424,9 @@
     flex-direction: column;
     align-items: center;
     grid-template-rows: none;
+    // width: 100%;
+    max-width: 98.5%;
+   
   }
 
   .search-filter .input-group:not(:last-child)::after {

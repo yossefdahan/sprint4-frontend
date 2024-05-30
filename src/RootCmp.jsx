@@ -25,7 +25,7 @@ export function RootCmp() {
         const observer = new IntersectionObserver((entries) => {
             const [entry] = entries;
             setShowSearch(entry.isIntersecting);
-        }, { threshold: 1 });
+        }, { threshold: 0.9 });
 
         const section = headerRef.current;
         if (section) {

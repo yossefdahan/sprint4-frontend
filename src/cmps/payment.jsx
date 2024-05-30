@@ -326,11 +326,23 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                                 onBlur={() => setIsOpen(false)}
                                 minDate={new Date()}
                             />
+
                             <div className="datepicker-footer">
                                 <button className=" exact-date datepicker-range-button">Exact dates</button>
                                 <button className=" date-btn-search datepicker-range-button">+1 day</button>
                                 <button className="date-btn-search  datepicker-range-button">+2 days</button>
                             </div>
+                            <section className="actions-btn flex">
+                                <button className='btn-prev' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(false)
+                                    setIsOpen(false)
+                                }} >prev</button>
+                                <button className='btn-next' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(!showGuestDropdown)
+                                    setIsOpen(false)
+                                    setShowGuestDropdown(true)
+                                }} >next</button>
+                            </section>
                         </div>
                     )}
 
@@ -340,8 +352,19 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                             <GuestSelector guestType="children" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                             <GuestSelector guestType="infants" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
                             <GuestSelector guestType="pets" guestCounts={guestCounts} updateGuestCount={updateGuestCount} />
+                            <section className="actions-btn flex">
+                                <button className='btn-prev' onClick={(ev) => {
+                                    ev.preventDefault(); setShowGuestDropdown(false)
+                                    setIsOpen(true)
+                                }} >prev</button>
+                                <button className='btn-next' onClick={(ev) => {
+                                    ev.preventDefault();
 
+                                    setShowGuestDropdown(false)
+                                }} >next</button>
+                            </section>
                         </div>}
+
                     </div>
                     {(filterBy.checkOut - filterBy.checkIn) >= 1 ?
                         (<button className="reserve-btn " type="submit" style={{ backgroundColor: buttonColor }}
