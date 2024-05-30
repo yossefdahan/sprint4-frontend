@@ -375,9 +375,13 @@
   
   .actions-btn {
     width: 100%;
-
+    background-color: rgb(254, 254, 254);
+    z-index: 10;
+    
+  
     .btn-next {
       display: block;
+      z-index: 1;
       width: 100%;
       margin-right: 5px;
       height: 48px;
@@ -402,6 +406,8 @@
       color: rgb(0, 0, 0);
       background-color: rgb(255, 255, 255);
       cursor: pointer;
+      z-index: 1;
+
     }
   }
 

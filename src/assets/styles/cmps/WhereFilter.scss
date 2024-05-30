@@ -725,16 +725,20 @@
     .datepicker-header {
       display: none;
     }
+    .react-datepicker {
+      // flex-direction: column;
+      display: flex;
+      flex-direction: column;
+      padding: 0px;
+      height:80vh;
+      width: 100%;
+      .react-datepicker__tab-loop{
+        display: flex;
+        width: 100%;
+      }
+    }
   }
 
-  .react-datepicker {
-    // flex-direction: column;
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    height: max-content;
-
-  }
 
   .btn-next {
     display: block;
@@ -778,7 +782,26 @@
     top: 0% !important;
     right: -10px !important;
     z-index: 100 !important;
+    
   }
 
 
+}
+
+@media (max-width:420px) {
+  
+  .search-filter .input-group.guests-container{
+  width: 100% !important;
+
+    .guest-selector{
+      width: 100% !important;
+
+      .guests-filter-btns{
+        display: flex;
+      }
+      .guest-title{
+        font-size: 12px !important;
+      }
+    }
+  }
 }
