@@ -37,8 +37,19 @@ export function StayDetails() {
     const [showReserveHeader, setShowReserveHeader] = useState(true)
     const [triggerReservation, setTriggerReservation] = useState(false);
     const [triggerCalender, setTriggerCalender] = useState(false);
-    
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [])
 
     const handleReserveClick = () => {
         setTriggerReservation(true)
@@ -115,10 +126,25 @@ export function StayDetails() {
                 </div>
             </div>
             <div className='gallery' ref={imgHeader}>
-                {stay.imgUrls.map((img) =>
-                    <img id='photos' src={img} alt="img of the photo" key={img} onClick={() => setIsOpen(!isOpen)} />
-                )
-                }
+                {windowWidth <= 776 ? (
+                    <img
+                        id='photos'
+                        src={stay.imgUrls[0]}
+                        alt="img of the photo"
+                        key={stay.imgUrls[0]}
+                        onClick={() => setIsOpen(!isOpen)}
+                    />
+                ) : (
+                    stay.imgUrls.map((img) => (
+                        <img
+                            id='photos'
+                            src={img}
+                            alt="img of the photo"
+                            key={img}
+                            onClick={() => setIsOpen(!isOpen)}
+                        />
+                    ))
+                )}
             </div>
             {isOpen ? (
                 <div className='gallery-modal'>
