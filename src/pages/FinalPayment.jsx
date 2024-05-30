@@ -137,12 +137,12 @@ export function FinalPayment() {
 
                     <div className='policy-title'>
                         <h2>Cancellation policy</h2>
-                        <p>Free cancellation before Apr 27. <br />
+                        <p className='payment-p'>Free cancellation before Apr 27. <br />
                             Cancel before check-in on May 2 for a partial refund. </p>
                     </div>
                     <div className='ground-title'>
                         <h2 >Ground rules</h2>
-                        <p>We ask every guest to remember a few simple things about what makes a great guest.</p>
+                        <p className='payment-p'> We ask every guest to remember a few simple things about what makes a great guest.</p>
                         <ul>
                             <li>Follow the house rules</li>
                             <li>Treat your Host’s home like your own</li>
@@ -150,7 +150,7 @@ export function FinalPayment() {
                     </div>
 
                     <div className='calltoAction'>
-                        <p>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
+                        <p className='payment-p'>By selecting the button below, I agree to the Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy, and that Airbnb can charge my payment method if I’m responsible for damage.</p>
                         <button onMouseMove={handleMouseMove} onMouseOut={() => setButtonColor('#ff385c')} onClick={openModal}>Request to book</button>
                     </div>
 
