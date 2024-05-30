@@ -3,7 +3,7 @@
   grid-template-columns: 1fr minmax(300px, 1120px) 1fr;
   font-family: Circular-Regular;
 
-  > * {
+  >* {
     grid-column: 2;
 
     &.full {
@@ -11,7 +11,7 @@
     }
   }
 
-  .phone-name{
+  .phone-name {
     display: none;
   }
 
@@ -270,13 +270,15 @@
 }
 
 @media (max-width:776px) {
-  .main-details .main-user-host{
+  .main-details .main-user-host {
     width: 100%;
   }
-  .title-dates-details{
+
+  .title-dates-details {
     text-align: center;
   }
 }
+
 /*payment modal */
 // .payment-modal {
 
@@ -490,6 +492,7 @@
     }
 
     .comment {
+
       // width: 10%;
       p {
         padding-inline-end: 80px;
@@ -685,6 +688,7 @@
 }
 
 @keyframes shadow324 {
+
   0%,
   100% {
     transform: scale(1, 1);
@@ -705,17 +709,7 @@
   }
 }
 
-
-@media (max-width:776px){
-  .review-container .review-by-user .comment p {
-    padding: 0px;
-  }
-  
-
-  .header-buttons-section {
-    margin-right: 1em;
-  }
-
+@media (max-width:860px) {
   .details-layout .main-header-details {
     position: absolute;
     display: flex;
@@ -728,26 +722,44 @@
       display: none;
 
     }
-    .phone-name{
+
+    .phone-name {
       display: flex;
       gap: 10px;
       align-items: center;
       justify-content: center;
-      h1{
+
+      h1 {
         font-size: 1em;
       }
     }
   }
+}
 
-  .details-layout .header-buttons-section{
-    span{
+
+@media (max-width:776px) {
+  .review-container .review-by-user .comment p {
+    padding: 0px;
+  }
+
+
+  .header-buttons-section {
+    margin-right: 1em;
+  }
+
+
+
+  .details-layout .header-buttons-section {
+    span {
 
       display: none;
     }
-    button{
+
+    button {
       font-size: larger;
     }
   }
+
   // .details-layout .header-buttons-section button{
   //   font-size: larger;
   // }
@@ -781,6 +793,7 @@
   }
 
 }
+
 // .footer-container-details {
 //   display: grid;
 //   margin-top: 2em;
@@ -826,5 +839,3 @@
 //   height: 50px;
 //   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 // }
-
-
