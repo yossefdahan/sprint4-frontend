@@ -443,6 +443,7 @@
 
       .payment-guests-count {
         position: fixed;
+        padding-bottom: 1em;
         width: 100%;
         height: 100%;
         top: 0px;
@@ -454,6 +455,10 @@
           width: 100%;
         }
       }
+      .date-pick{
+        padding-top: 0px;
+      }
+
 
       .calendar {
         position: fixed;
