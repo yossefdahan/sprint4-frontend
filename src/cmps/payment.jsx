@@ -13,17 +13,15 @@ import { orderInProgress } from "../store/order.actions.js"
 import { utilService } from "../services/util.service.js"
 import { setFilterBy } from "../store/stay.actions.js"
 
-export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setShowReserveHeader, triggerReservation, setTriggerReservation, setTriggerCalender, triggerCalender }) {
+export function Payment({ stay, filterBy, onSetFilter, setShowReserveHeader, triggerReservation, setTriggerReservation, setTriggerCalender, triggerCalender }) {
     const reserveHeader = useRef()
     const navigate = useNavigate()
-    // const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [order, setOrder] = useState(orderService.emptyOrder())
     const [priceModal, setPriceModal] = useState(false)
     const [feeModal, setFeeModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isSend, setSend] = useState(false)
     const paymentScroll = useRef(null)
-
     const [buttonColor, setButtonColor] = useState('hsl(351, 83%, 50%)');
     const [showGuestDropdown, setShowGuestDropdown] = useState(false)
     const [guestCounts, setGuestCounts] = useState({
@@ -55,12 +53,8 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
 
     }
 
-
     async function sendToFinalOrderFromFather() {
         const totalPrice = calculateTotalPrice()
-        // order.hostId = stay.host.id
-        // order.status = 'pending'
-        // order.stay = { _id: stay._id, name: stay.name, price: stay.price }
         const finalOrder = {
             ...order,
             totalPrice,
@@ -70,9 +64,6 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
             await orderInProgress(finalOrder)
             setSend(!isSend)
             setOrder(orderService.emptyOrder())
-            // setOrder(savedOrder)
-
-            // showSuccessMsg('order saved!')
             navigate(`/payment/${stay._id}`)
         } catch (err) {
             console.log('err cant save order', err)
@@ -82,11 +73,6 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
     useEffect(() => {
         handleChange();
     }, [guestCounts])
-    //    we need // const user = useSelector(storeState => storeState.userModule.loggedinUser)
-    // order.stay._id = stay._id
-    // order.stay.name = stay.name
-    // order.stay.price = stay.price
-    // order.hostId = stay.host._id
 
     const setGuests = () => {
         var guests = []
@@ -155,28 +141,16 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
         return finalPrice + fee
     }
 
-    // function handleOrderChange(ev) {
-    //     const field = ev.target.name
-    //     const value = ev.target.value
-    //     setOrder((order) => ({ ...order, [field]: value }))
-
-    // }
-
 
     function openCalenderModal(ev) {
         ev.preventDefault()
         setIsOpen(true)
 
     }
-    function reserveFromHeader() {
-        sendToFinalOrder()
-    }
+
     async function sendToFinalOrder(ev) {
         ev.preventDefault()
         const totalPrice = calculateTotalPrice()
-        // order.hostId = stay.host.id
-        // order.status = 'pending'
-        // order.stay = { _id: stay._id, name: stay.name, price: stay.price }
         const finalOrder = {
             ...order,
             totalPrice,
@@ -186,9 +160,6 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
             await orderInProgress(finalOrder)
             setSend(!isSend)
             setOrder(orderService.emptyOrder())
-            // setOrder(savedOrder)
-
-            // showSuccessMsg('order saved!')
             navigate(`/payment/${stay._id}`)
         } catch (err) {
             console.log('err cant save order', err)
@@ -219,12 +190,6 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
         setButtonColor(`hsl(351, 83%, ${lightness}%)`);
     };
 
-    // const updateGuestCount = (guestType, newValue) => {
-    //     setGuestCounts(prevCounts => ({
-    //         ...prevCounts,
-    //         [guestType]: newValue
-    //     }))
-    // }
     const updateGuestCount = (guestType, delta) => {
         setGuestCounts(prevCounts => {
 
@@ -252,8 +217,6 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
             return { ...prevCounts, [guestType]: newCount }
         })
     }
-
-
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -318,10 +281,8 @@ export function Payment({ stay, filterBy, onSetFilter, showReserveHeader, setSho
                                 startDate={filterBy.checkIn}
                                 endDate={filterBy.checkOut}
                                 selectsRange
-                                // inline
                                 monthsShown={2}
                                 open={isOpen}
-                                // onClick={() => setIsOpen(true)}
                                 onFocus={() => setIsOpen(true)}
                                 onBlur={() => setIsOpen(false)}
                                 minDate={new Date()}

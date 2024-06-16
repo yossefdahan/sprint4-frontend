@@ -31,7 +31,6 @@ export function StayDetails() {
     const [stay, setStay] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const navigate = useNavigate()
-    const users = useSelector(storeState => storeState.userModule.users)
     const imgHeader = useRef()
     const [showHeader, setShowHeader] = useState(true)
     const [showReserveHeader, setShowReserveHeader] = useState(true)
@@ -169,49 +168,6 @@ export function StayDetails() {
             <div className="google-map-details" id='location'>
                 <GoogleMap stay={stay} />
             </div>
-            {/* <div className='footer-container-details full'>
-                <div className='footer-details'>
-                    <section className='footer-section'>
-                        <h2 className="location-map-details">Airbnb</h2>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Policies</a></li>
-                            <li><a href="#">Help</a></li>
-                        </ul>
-                    </section>
-                    <section className='footer-section'>
-                        <h2 className="location-map-details">Hosting</h2>
-                        <ul>
-                            <li><a href="#">Why Host</a></li>
-                            <li><a href="#">Hospitality</a></li>
-                            <li><a href="#">Responsible Hosting</a></li>
-                            <li><a href="#">Community Center</a></li>
-                        </ul>
-                    </section>
-                    <section className='footer-section'>
-                        <h2 className="location-map-details">Support</h2>
-                        <ul>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Cancellation Options</a></li>
-                            <li><a href="#">Neighborhood Support</a></li>
-                        </ul>
-                    </section>
-                </div>
-            </div> */}
-            {/* <div className="app-footer full">
-                <div className="footer-content">
-
-                    <div className="footer-main-content">
-                        © 2024 Airstay, Inc. · <span> Terms </span> · <span> Sitemap </span> · <span> Privacy </span> · <span> Your Privacy Choices </span>
-                        <img className="privacy-icon" src="src/assets/img/small-icons/asset 99.svg" alt="" />
-                    </div>
-                    <div className="second-section-footer">
-                        <p className="lan-footer "><i className="fa-solid fa-globe"></i><span> English (US)</span> </p>
-                    </div>
-                </div>
-            </div> */}
-
 
         </div >
     )
