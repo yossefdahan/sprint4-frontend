@@ -184,8 +184,9 @@
   // }
 }
 
-// @media (max-width: 480px) {
-//   .carusel-filter-main {
-//     width: 95vw;
-//   }
-// }
+@media (max-width: 480px) {
+  .carusel-filter-main .swiper-slide {
+      margin-right: 0px;
+    }
+  
+}
